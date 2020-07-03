@@ -1,0 +1,105 @@
+body {
+	background: #f3f3f3;
+}
+
+/* Header START */
+header {
+	background: #4a90e2;
+	height: 50px;
+}
+
+header .dmx-logo {
+	background-image: url(../images/icondesktop@1x.v202007011410.png);
+	background-repeat: no-repeat;
+	line-height: 30px;
+    vertical-align: middle;
+	background-position: 0 0;
+    width: 174px;
+    height: 32px;
+    display: block;
+    margin-top: 10px;
+}
+header .province-box {
+	float: left;
+    vertical-align: middle;
+    background: #2878d7;
+    height: 35px;
+    padding: 0 5px;
+    border-radius: 4px;
+    margin: 7px 0 7px 7px;
+}
+header .province-box b {
+	display: block;
+    font-size: 10px;
+    color: #bae8ff;
+    height: 11px;
+    padding: 2px 0;
+    font-weight: normal;
+}
+header .province-box a {
+	display: inline-block;
+    font-size: 11px;
+    color: #fff;
+    position: relative;
+    font-weight: bold;
+    cursor: pointer;
+    width: 130px;
+}
+header .search-area {
+	margin-top: 7px;
+}
+header .search-area input {
+	height: 34px;
+    padding-left: 20px;
+	padding-top: 5px;
+    margin-left: 15px;
+}
+header .refer-link {
+	float: right;
+    height: 34px;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 600;
+    margin: 2px 0 7px 26px;
+    position: relative;
+}
+header .refer-link span {
+    display: block;
+    overflow: hidden;
+    font-size: 12px;
+    font-weight: 300;
+    color: #d0efff;
+}
+/* Header END */
+/* ================================= */
+/* Navigation START */
+nav {
+	box-shadow: 0 0 4px 0 rgba(0,0,0,.2);
+    border-bottom: 1px solid #dfdfdf;
+	background: #fff;
+}
+.fix-nav {
+	padding-left: 0;
+	padding-top: 15px;
+}
+.fix-nav li {
+	list-style-type: none;
+	padding: 0 15px;
+}
+
+.fix-nav li:not(:last-child) {
+	border-right: 1px solid #ccc;
+}
+/* Navigation END */
+/* ================================= */
+/* Fotter START */
+footer {
+	background: #fff;
+}
+/* Fotter END */
+/* ================================= */
+/* Common Style START */
+
+/* Common Style END */
+
+
