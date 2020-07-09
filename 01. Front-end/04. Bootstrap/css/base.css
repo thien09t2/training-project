@@ -2,6 +2,8 @@ body {
 	background: #f3f3f3;
 }
 
+
+
 /* Header START */
 header {
 	background: #4a90e2;
@@ -9,10 +11,7 @@ header {
 }
 
 header .dmx-logo {
-	background-image: url(../images/icondesktop@1x.v202007011410.png);
-	background-repeat: no-repeat;
 	line-height: 30px;
-    vertical-align: middle;
 	background-position: 0 0;
     width: 174px;
     height: 32px;
@@ -63,6 +62,9 @@ header .refer-link {
     margin: 2px 0 7px 26px;
     position: relative;
 }
+header .refer-link.one-line {
+	margin-top: 12px;
+}
 header .refer-link span {
     display: block;
     overflow: hidden;
@@ -78,17 +80,222 @@ nav {
     border-bottom: 1px solid #dfdfdf;
 	background: #fff;
 }
-.fix-nav {
+.fixed-nav {
 	padding-left: 0;
 	padding-top: 15px;
 }
-.fix-nav li {
+.fixed-nav li {
 	list-style-type: none;
 	padding: 0 15px;
 }
 
-.fix-nav li:not(:last-child) {
+.fixed-nav li:not(:last-child) {
 	border-right: 1px solid #ccc;
+}
+.fixed-nav .active {
+	font-weight: bold;
+}
+.fixed-nav i {
+	margin-right: 5px;
+}
+.fixed-nav a {
+    position: relative;
+}
+.hot-event .text {
+    margin-left: 25px;
+}
+.hot-event .dot {
+    width: 10px;
+    height: 10px;
+    background-color: #d0021b;
+    border-radius: 100%;
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    margin-top: -5px;
+    display: block;
+}
+.hot-event .dot .ping {
+    border: 1px solid #d0021b;
+    width: 10px;
+    height: 10px;
+    opacity: 1;
+    background-color: rgba(238,46,36,.2);
+    border-radius: 100%;
+    -moz-animation: sonar 1.25s linear infinite;
+    -o-animation: sonar 1.25s linear infinite;
+    -webkit-animation: sonar 1.25s linear infinite;
+    animation: sonar 1.25s linear infinite;
+    display: block;
+    margin: 0;
+}
+@-webkit-keyframes sonar {
+    0% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+        transform: scale(1)
+    }
+
+    100% {
+        -webkit-transform: scale(4);
+        transform: scale(4);
+        opacity: 0
+    }
+}
+
+@keyframes sonar {
+    0% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+        transform: scale(1)
+    }
+
+    100% {
+        -webkit-transform: scale(4);
+        transform: scale(4);
+        opacity: 0
+    }
+}
+
+/** Local Navigation **/
+.local-nav {
+    background-color: #fff;
+    padding: 0;
+    margin-left: 15px;
+    margin-top: -1px;
+    overflow: visible;
+    box-shadow: 3px 0 4px 0 rgba(0,0,0,.2);
+    border-left: 1px solid #ddd;
+}
+.local-nav ul {
+    padding-left: 0;
+    margin-bottom: 0;
+}
+.local-nav ul li {
+    list-style-type: none;
+}
+
+.local-nav .sup-menu {
+    position: relative;
+    padding: 5px 0;
+    border-bottom: 1px solid #ccc;
+    margin: 0 10px;
+}
+.local-nav .nav-item:last-child .sup-menu {
+    border-bottom: none;
+}
+
+.local-nav .sup-menu:after {
+    content: "\f054";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+    right: 0;
+    top: 13px;
+    position: absolute;
+    color: #9e9e9ec7;
+    font-size: 0.7rem;
+}
+.local-nav .sup-menu:hover a {
+    font-weight: bold;  
+}
+.local-nav .nav-item a {
+    color: #333;
+    font-size: 0.9rem;
+}
+.local-nav .nav-item a:hover {
+    color: #007bff;
+    
+    text-decoration: none;
+}
+
+.local-nav .sub-menu {
+    position: absolute;
+    left: 100%;
+    top: 0;
+    background: #fff;
+    display: none;    
+    z-index: 1;
+}
+
+.local-nav .sub-menu .group {
+    width: 265px;
+    height: 419px;
+    padding: 10px 20px;
+}
+.local-nav .sub-menu .group-title {
+    border-bottom: 1px solid #ccc;
+}
+.local-nav .sub-menu .item {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.local-nav a.view-all {
+    color: #007bff;
+    font-weight: bold;  
+    text-decoration: none;
+    padding-left: 20px;
+    font-size: 0.785rem;
+    float: right;
+    margin-top: 5px;
+}
+.local-nav a.view-all i {
+    padding-left: 7px;
+}
+
+.local-nav .icon-dmx {
+    width: 20px;
+    height: 13px;
+    margin-top: -3px;
+}
+.local-nav .icon-tivi {
+    background-position: 0 -156px;   
+}
+.local-nav .icon-tulanh {
+    background-position: -19px -157px;
+    height: 21px;
+}
+.local-nav .icondmx-maygiat {
+    background-position: -38px -157px;
+    height: 21px;
+}
+
+.local-nav .icondmx-locnuoc {
+    background-position: -144px -157px;
+    height: 19px;
+}
+.local-nav .icondmx-giadung {
+    background-position: -83px -157px;
+    height: 21px;
+}
+.local-nav .icondmx-dodung {
+    background-position: -103px -157px;
+    height: 17px;
+}
+.local-nav .icondmx-tele {
+    background-position: -124px -157px;
+    height: 19px;
+}
+.local-nav .icondmx-ict {
+    background-position: -192px -177px;
+    height: 17px;
+}
+.local-nav .icondmx-phukien {
+    background-position: -168px -157px;
+    height: 16px;
+}
+.local-nav .icondmx-simso {
+    background-position: -192px -154px;
+    height: 19px;
+}
+.local-nav .icondmx-maycu {
+    background-position: -215px -157px;
+    height: 18px;
 }
 /* Navigation END */
 /* ================================= */
@@ -99,7 +306,20 @@ footer {
 /* Fotter END */
 /* ================================= */
 /* Common Style START */
-
+.icon-dmx {
+    background-image: url(../images/icondesktop@1x.v202007011410.png);
+    background-repeat: no-repeat;
+    display: inline-block;
+    vertical-align: middle;
+}
 /* Common Style END */
-
+.top-banner {
+	background-color: #AC0911;
+}
+.hot-campaign {
+    margin-top: 13px;
+}
+.hot-campaign img {
+    height: 350px;
+}
 
