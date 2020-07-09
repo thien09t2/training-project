@@ -17,37 +17,39 @@
 			</div>
 	</div>
 	<header>		
-		<div class="container">				
-			<div class="left-area float-left d-flex">
-				<div class="logo">
-					<a class="logo" title="Về trang chủ DienmayXanh.com" href="/"> <i class="icon-dmx dmx-logo"></i> </a>
-				</div>
-				<div class="province-box">
-					<b>Xem giá, tồn kho ở</b>
-					<a class="province" > TP. Hồ Chí Minh <i class="fas fa-chevron-down"></i></a>
-				</div>
-				<div class="search-area">
-					<form class="search-form">
-						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Bạn tìm gì...">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-search"></i></span>
+		<div class="container">	
+			<div class="row">
+				<div class="left-area float-left d-flex">
+					<div class="logo">
+						<a class="logo" title="Về trang chủ DienmayXanh.com" href="/"> <i class="icon-dmx dmx-logo"></i> </a>
+					</div>
+					<div class="province-box">
+						<b>Xem giá, tồn kho ở</b>
+						<a class="province" > TP. Hồ Chí Minh <i class="fas fa-chevron-down"></i></a>
+					</div>
+					<div class="search-area">
+						<form class="search-form">
+							<div class="input-group">
+								<input type="text" class="form-control" placeholder="Bạn tìm gì...">
+								<div class="input-group-append">
+									<span class="input-group-text"><i class="fas fa-search"></i></span>
+								</div>
 							</div>
-						</div>
-					</form>
+						</form>
+					</div>
 				</div>
-			</div>
-			<div class="right-area float-right">					
-				<a href="/kinh-nghiem-hay" class="refer-link">Kinh nghiệm hay <span>&amp; Tin khuyến mãi <label class="arr-down"></label></span></a>
-				<a href="/kinh-nghiem-hay" class="refer-link">1800.1061 <span>&amp; Tổng đài miễn phí </span></a>
-				<a href="/kinh-nghiem-hay" class="refer-link one-line"><i class="fas fa-shopping-cart"></i></a>
-				<a href="/kinh-nghiem-hay" class="refer-link one-line">Lịch sử mua hàng</a>
-			</div>
-		</div>
+				<div class="right-area float-right">					
+					<a href="/kinh-nghiem-hay" class="refer-link">Kinh nghiệm hay <span>&amp; Tin khuyến mãi <label class="arr-down"></label></span></a>
+					<a href="/kinh-nghiem-hay" class="refer-link">1800.1061 <span>&amp; Tổng đài miễn phí </span></a>
+					<a href="/kinh-nghiem-hay" class="refer-link one-line"><i class="fas fa-shopping-cart"></i></a>
+					<a href="/kinh-nghiem-hay" class="refer-link one-line">Lịch sử mua hàng</a>
+				</div>
+			</div>	
+		</div>				
 	</header>
 	<nav>
 		<div class="container">
-			<ul class="d-flex fixed-nav">
+			<ul class="d-flex fixed-nav row">
 				<li class="active"><a><i class="fas fa-bars"></i> Danh Mục</a></li>
 				<li><a>Xem Tất Cả</a></li>
 				<li><a class="hot-event"><div class="dot"><span class="ping"></span></div><span class="text">Tivi Giảm Lớn 49%</span></a></li>
@@ -58,8 +60,8 @@
 	</nav>
 	<main class="container">
 		<div class="row">
-			<div class="col-sm-3 local-nav">
-				<ul>
+			<div class="local-nav">
+				<ul class="list-nav-item">
 					<li class="nav-item">
 						<div class="sup-menu">
 							<i class="icon-dmx icon-tivi"></i>
@@ -459,8 +461,8 @@
 					</li>
 				</ul>
 			</div>
-			<div class="col-sm-6 hot-campaign">
-				<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+			<div class="hot-campaign">
+				<div id="myCarousel" class="carousel slide" data-ride="carousel">
 					<div class="carousel-inner">
 					  <div class="carousel-item active">
 						<img class="d-block w-100" src="images/03_07_2020_15_50_29_SONY-TV--690-300-(1).png" alt="First slide">
@@ -475,19 +477,126 @@
 						<img class="d-block w-100" src="images/BIG-MG-690-300-690x300-1.png"  alt="Third slide">
 					  </div>
 					</div>
-					<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+					<a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
 					  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
 					  <span class="sr-only">Previous</span>
 					</a>
-					<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+					<a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
 					  <span class="carousel-control-next-icon" aria-hidden="true"></span>
 					  <span class="sr-only">Next</span>
 					</a>
-				  </div>
+					<!-- Indicators -->
+					<ol class="carousel-indicators">
+						<li data-target="#myCarousel" data-slide-to="0" class="active"><span>Bỏ Cũ Lấy Mới<br>Chảo Giảm 50%</span></li>
+						<li data-target="#myCarousel" data-slide-to="1"><span>Sắm Tivi TCL<br>Giảm Đến 6.2 Triệu</span></li>
+						<li data-target="#myCarousel" data-slide-to="2"><span>Mua TV Samsung<br>Giảm Đến 18 Triệu</span></li>
+						<li data-target="#myCarousel" data-slide-to="3"><span>Dụng Cụ Cầm Tay<br>Giảm Đến 20%</span></li>
+					</ol>
+				</div>
 			</div>
-			<div class="col-sm-3 hot-videos"></div>
+			<div class="hot-news">
+				<ul>
+					<li><a class="bold-link">KINH NGHIỆM HAY - VIDEO <i class="fas fa-caret-right"></i></a></li>
+					<li><a>Máy giặt cửa trên thế hệ mới TH2111DSAB của LG có gì HOT?</li>
+					<li><a></a>Top 10 máy lạnh bán chạy nhất Điện máy XANH năm 2019</li>
+				</ul>
+				<div>
+					<img src="images/26064-260x64.png"/>
+					<img src="images/260X64.pngdesk-260x64.png"/>
+					<img src="images/StickyBannerTCL-2-260x64.png"/>
+				</div>
+				
+			</div>
 		</div>
-		<section>Top Products</section>		
+		<section class="row top-deal">
+			<div class="mt-2"><img class="w-100" src="images/vunggiasocdesk-1200x80.png"></div>
+			<div class="product-list">
+				<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="500000">
+					<div class="carousel-inner">
+					  <div class="carousel-item active">
+						<ul>
+							<li class="product-info">
+								
+								<div class="prod-avatar">
+									<img  src="images/lg-rn7-1-600x600.jpg">
+								</div>
+								<div class="prod-deal">
+									<img src="images/giamsoc_optimized.png">
+								</div>
+								<span class="prod-name">Loa Karaoke LG Xboom RN7 <span class="new-prod-label">Mới 2020</span></span>
+								<span class="prod-price">8.990.000₫</span>
+								<div class="prod-promotion">Giảm <b>4.400.000₫</b> và quà <b>400.000₫</b></div>
+							</li>
+							<li class="product-info">
+								<div class="prod-avatar">
+									<img  src="images/tcl-40s6500-550x340.jpg">
+								</div>
+								<div class="prod-deal">
+									<img src="images/giamsoc_optimized.png">
+								</div>
+								
+								<span class="prod-name">Loa Karaoke LG Xboom RN7 <span class="new-prod-label">Mới 2020</span></span>
+								<span class="prod-price">8.990.000₫</span>
+								<div class="prod-promotion">Giảm <b>4.400.000₫</b> và quà <b>400.000₫</b></div>
+							</li>
+							<li class="product-info">
+								<img class="w-100" src="images/tcl-40s6500-550x340.jpg">
+								<img class="w-100" src="images/giamsoc_optimized.png">
+								<span class="">Loa Karaoke LG Xboom RN7 <span>Mới 2020</span></span>
+								<span class="price">8.990.000₫</span>
+								<div class="promotion">Giảm <b>4.400.000₫</b> và quà <b>400.000₫</b></div>
+							</li>
+							<li class="product-info">
+								<img class="w-100" src="images/lg-rn7-1-600x600.jpg">
+								<img class="w-100" src="images/giamsoc_optimized.png">
+								<span class="">Loa Karaoke LG Xboom RN7 <span>Mới 2020</span></span>
+								<span class="price">8.990.000₫</span>
+								<div class="promotion">Giảm <b>4.400.000₫</b> và quà <b>400.000₫</b></div>
+							</li>
+							<li class="product-info">
+								<img class="w-100" src="images/lg-rn7-1-600x600.jpg">
+								<img class="w-100" src="images/giamsoc_optimized.png">
+								<span class="">Loa Karaoke LG Xboom RN7 <span>Mới 2020</span></span>
+								<span class="price">8.990.000₫</span>
+								<div class="promotion">Giảm <b>4.400.000₫</b> và quà <b>400.000₫</b></div>
+							</li>
+							<li class="product-info">
+								<img class="w-100" src="images/lg-rn7-1-600x600.jpg">
+								<img class="w-100" src="images/giamsoc_optimized.png">
+								<span class="">Loa Karaoke LG Xboom RN7 <span>Mới 2020</span></span>
+								<span class="price">8.990.000₫</span>
+								<div class="promotion">Giảm <b>4.400.000₫</b> và quà <b>400.000₫</b></div>
+							</li>
+						</ul>
+					  </div>
+					  <div class="carousel-item">
+						<img class="d-block w-100" src="images/TCL-TV-690-300-690x300.png" alt="Second slide">
+					  </div>
+					  <div class="carousel-item">
+						<img class="d-block w-100" src="images/690-300-690x300-15.png"  alt="Third slide">
+					  </div>
+					  <div class="carousel-item">
+						<img class="d-block w-100" src="images/BIG-MG-690-300-690x300-1.png"  alt="Third slide">
+					  </div>
+					</div>
+					<a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+					  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					  <span class="sr-only">Previous</span>
+					</a>
+					<a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+					  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+					  <span class="sr-only">Next</span>
+					</a>
+					<!-- Indicators -->
+					<ol class="carousel-indicators">
+						<li data-target="#myCarousel" data-slide-to="0" class="active"><span>Bỏ Cũ Lấy Mới<br>Chảo Giảm 50%</span></li>
+						<li data-target="#myCarousel" data-slide-to="1"><span>Sắm Tivi TCL<br>Giảm Đến 6.2 Triệu</span></li>
+						<li data-target="#myCarousel" data-slide-to="2"><span>Mua TV Samsung<br>Giảm Đến 18 Triệu</span></li>
+						<li data-target="#myCarousel" data-slide-to="3"><span>Dụng Cụ Cầm Tay<br>Giảm Đến 20%</span></li>
+					</ol>
+				</div>
+			</div>
+		</section>		
 		<section>Top Products of July</section>			
 		<section>Top Products of day</section>				
 	</main>
