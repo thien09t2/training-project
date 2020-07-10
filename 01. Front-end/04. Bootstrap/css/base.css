@@ -1,3 +1,4 @@
+/* Common Style START */
 body {
 	background: #f3f3f3;
 }
@@ -10,8 +11,47 @@ a.bold-link {
     color: #007bff;
     font-weight: bold;  
 }
+img {
+    max-width: 100%;
+}
 
+.linethough {
+    text-decoration: line-through;
+    font-weight: 400;
+    font-size: 14px;
+    color: #999;
+    display: inline-block;
+    line-height: 25px;
+}
+.discount-percent {
+    font-size: 1rem;
+    display: inline-block;
+    color: #d0021b;
+    font-weight: 600;
+}
+.section-title {
+    font-size: 1.5rem;
+    color: #cf1717;
+    line-height: 30px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    font-weight: 700;
+}
 
+.tab-content .tab-panel {
+    display: none;
+}
+.tab-content .tab-panel.active {
+    display: block;
+}
+.carousel-control-prev, .carousel-control-next {
+    width: unset;
+}
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    background-color: #333;
+    height: 50px;
+    width: 30px;
+}
 
 /* Header START */
 header {
@@ -52,6 +92,55 @@ header .province-box a {
     font-weight: bold;
     cursor: pointer;
     width: 130px;
+}
+header .province-box .modal-content {
+    position: relative;
+}
+header .province-box .modal-body {
+    padding: 15px 25px; 
+}
+header .province-box .close {
+    position: absolute;
+    top: -10px;
+    right: -12px;
+    opacity: 1;
+    cursor: pointer;
+    width: 26px;
+    height: 26px;
+}
+
+header .province-box .close:before{
+    color: #fff;
+    content: "✕";
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 21px;
+    text-align: center;
+    width: 26px;
+    height: 26px;
+    font-family: Tahoma;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    display: block;
+    background-color: #000;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,1);
+}
+header .province-box .accept-btn {
+    display: inline-block;
+    overflow: hidden;
+    padding: 10px 0;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 90%;
+    line-height: normal;
+    text-transform: uppercase;
+    color: #fff;
+    text-align: center;
+    background: #fd6e1d;
+    margin: auto;
+}
+header .province-box .modal-footer {
+    background-color: #f3f3f3;
 }
 header .search-area {
 	margin-top: 7px;
@@ -313,11 +402,87 @@ nav {
 /* ================================= */
 /* Fotter START */
 footer {
-	background: #fff;
+    background: #fff;
+    margin-top: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+footer .icondmx-logomaiam {
+    background-position: -177px -205px;
+    width: 96px;
+    height: 20px;
+    display: block;
+}
+footer .icondmx-logotgdd {
+    background-position: -125px -131px;
+    width: 108px;
+    height: 25px;
+    display: block;
+}
+footer .icondmx-logobhx {
+    background-position: 0 -131px;
+    width: 111px;
+    height: 25px;
+    display: block;
+}
+footer .icondmx-share1 {
+    background-position: -235px 0;
+    width: 8px;
+    height: 16px;
+    vertical-align: sub;
+}
+footer .icondmx-share3 {
+    background-position: -245px 0;
+    width: 13px;
+    height: 16px;
+    vertical-align: sub;
 }
 /* Fotter END */
-/* ================================= */
-/* Common Style START */
+
+#online-support {
+    position: fixed;
+    bottom: 80px;
+    right: 30px;
+    background-color: #00A4DE;
+    border-radius: 25px;
+    border: 3px solid #ffffff;
+    width: 86px;
+    height: 33px;
+}
+#online-support img {
+    float: left;
+    position: absolute;
+    top: 1px;
+    left: 8px;
+    width: 26px;
+}
+#online-support span {
+    font-size: 0.625rem;
+    color: #fff;
+    line-height: 100%;
+    display: block;
+    float: right;
+    margin: 1px;
+    margin-top: 2px;
+    margin-right: 12px;
+    font-weight: 700;
+}
+#goto-top {
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    background-color: rgba(0,0,0,.6);
+    border-radius: 100%;
+    color: #fff;
+    width: 30px;
+    height: 30px;
+    font-size: 19px;
+    text-align: center;
+    cursor: pointer;
+    display: none;
+}
+/* ====================================================================================== */
+
 .icon-dmx {
     background-image: url(../images/icondesktop@1x.v202007011410.png);
     background-repeat: no-repeat;
@@ -390,7 +555,7 @@ footer {
     margin-bottom: 10px;
 }
 
-.top-deal .product-list {
+.top-deal .products-list {
     background: #fff;
     flex-flow: row wrap;
     max-height: 375px;
@@ -399,42 +564,229 @@ footer {
     border-color: #132f86;
     border-top: 0;
     width: 100%;
+    margin-right: 1px;
 }
-
 .top-deal .carousel-item ul {
-    padding-left: 0;
     display: flex;
+    padding-left: 0;
+    margin-bottom: 0;
 }
-.top-deal .carousel-item ul li:last-child {
+.products-list li:last-child {
     border-right: none;
 }
-.top-deal .carousel-item ul li {
+.products-list li {
     width: calc(100%/6);
-    border-right: 1px solid #cccccc3d;
+    border-right: 1px solid #9e9e9e30;
+    border-bottom: 1px solid #9e9e9e30;
     padding: 25px 10px 15px 10px;
+    float: left;
+    height: 350px;
 }
-.top-deal .product-info {
+.products-list {
+    display: block;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+.product-info {
     font-size: 0.875rem;
+    position: relative;
 }
-.top-deal .product-info img {
+.product-info img {
     max-width: 100%;
 }
-.top-deal .prod-avatar {
-    height: 150px;
+.product-info .prod-avatar {
+    height: 155px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
-.top-deal .prod-deal {
-    width: 150px;
+.product-info .prod-avatar img {
+    max-height: 150px;
+}
+.product-info .prod-deal {
+    width: 140px;
     height: 30px;
 }
-.top-deal .new-prod-label {
+.product-info .new-prod-label {
     color: #fe890b;
     font-weight: bold;
 }
-.top-deal .prod-price {
+.product-info .prod-name {
+    height: 40px;
+}
+.product-info .prod-price {
     color: #d0021b;
     display: block;
     margin-top: 5px;
     line-height: 25px;
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 700;
+}
+.product-info .prod-rating .rating-point {
+    color: #fc9639;
+}
+.product-info .prod-rating .icondmx-star {
+    background-position: -232px -93px;
+    width: 13px;
+    height: 13px;
+    margin: 0 2px 4px;
+}
+.product-info .prod-payment {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #fbda00;
+    font-size: 10px;
+    color: #000;
+    border-radius: 2px;
+    line-height: 18px;
+    text-align: center;
+    padding: 0 5px;
+}
+.discount-in-day .group-tabs {
+    width: 100%;
+}
+.discount-in-day .product-types {
+    background-color: #fff;
+    width:  100%;
+    border-left: 1px solid #fde6d5;
+    border-bottom: 1px solid #fde6d5;
+    display: flex;
+    padding: 0;
+    margin-bottom: 0;
+}
+.discount-in-day .product-types li {
+    width: calc(100%/12);
+}
+.discount-in-day .nav-link {
+    padding: 5px 3px;
+    font-size: 0.875rem;
+    color: #333;
+    border: none;
+    border-right: 1px solid #9e9e9e30;
+    border-radius: 0;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+.discount-in-day .nav-tab-item:last-child .nav-link {
+    border-right: none;
+}
+.discount-in-day .active .nav-link {
+    background: #cf1717;
+    color: #fff;
+    font-weight: 600;
+}
+.discount-in-day .tab-content {
+    background-color: #fff;
+}
+.ads-area {
+    margin-top: 20px;
+}
+.ads-area img {
+    width: calc(100%/3);
+}
+.ads-area img:nth-child(1) {
+    padding-right: 5px;    
+}
+.ads-area img:nth-child(2) {
+    padding-right: 5px;
+    padding-left: 5px;
+}
+.ads-area img:nth-child(3) {
+    padding-left: 5px;
+}
+
+.hot-videos-area .section-title {
+    color: #333;
+}
+.hot-videos-area .hot-videos {
+    padding: 15px 0;
+    background-color: #fff; 
+}
+.hot-videos-area .hero-video .video-title {
+    font-weight: bold;
+    font-size: 1.25rem;
+    padding-top: 10px;
+}
+.hot-videos-area .other-videos .video-item {
+    border-bottom: 1px solid #9e9e9e30;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    margin-right: 0;
+    margin-left: 0;
+}
+.hot-videos-area .other-videos .video-item:first-child {
+    padding-top: 0;
+}
+.hot-videos-area .other-videos .video-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+.hot-videos-area .btn-play-video {
+    position: relative;
+    cursor: pointer;
+}
+.hot-videos-area .btn-play-video:before {
+    content: "";
+    background-image: url(../images/iconfinder_youtube_317714.png);
+    background-size: cover;
+    width: 63px;
+    height: 58px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 2;
+}
+
+.hot-videos-area .other-videos .btn-play-video:before {
+    width: 30px;
+    height: 30px;
+}
+
+.video-player-modal {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    background-color: rgba(23,24,25,.85);
+    padding: 50px
+}
+
+.video-player-modal .video-player-body {
+    width: 75%;
+    height: 91%;
+    margin: 0 auto;
+    position: relative
+}
+
+.video-player-modal .video-player-body .close-btn {
+    position: absolute;
+    top: -27px;
+    right: 0;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    opacity: .65;
+    z-index: 1;
+    background-color: #495057;
+    width: 28px;
+    height: 28px;
+    padding: 1px 5px;
+    border: 1px solid
+}
+
+.video-player-modal .video-player-body .close-btn:hover {
+    opacity: 1
+}
+
+.video-player-modal .video-player {
+    width: 100%;
+    height: 100%
 }
