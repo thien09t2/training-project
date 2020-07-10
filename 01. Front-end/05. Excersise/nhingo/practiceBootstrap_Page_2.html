@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Navigation Tab Data-Toggle</title>
+
+    <!--- base luôn ở cuối --->
+    <link rel="stylesheet" href="plug-in/bootstrap-4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/base.css">
+</head>
+<body>
+    <button onclick="topFunction()" id="myTopBtn" title="Back to Top">
+        Top
+    </button>
+
+<!--    Các class .role, .aria-controls .aria-selected .aria-labelledby chỉ là option cho thiết bị người mù :)-->
+    <div class="container-fluid" id="navTab">
+        <h4>New Navigation Nav for Nav Tabs Data-Toggle</h4>
+        <div class="nav nav-tabs" id="myNavTabToggle" role="tablist">
+            <div class="nav-item">
+                <a href="#containerEx_2" class="nav-link" id="Container-Tab" data-toggle="tab"
+                   role="tab" aria-controls="containerEx_2" aria-selected="false">
+                    Containers
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="#gallery" class="nav-link" id="Grid-Tab" data-toggle="tab"
+                   role="tab" aria-controls="gallery" aria-selected="false">
+                    Grid System
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="#navEx_2" class="nav-link" id="Navigation-Tab" data-toggle="tab"
+                   role="tab" aria-controls="navEx" aria-selected="false">
+                    Navigation
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="#" class="nav-link disabled" id="NavBar-Tab" data-toggle="tab"
+                   role="tab" aria-controls="#" aria-selected="false">
+                    Navigation Bar
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-content" id="myTabContent">
+        <div class="container-fluid tab-pane fade" id="gallery" role="tabpanel"
+             aria-labelledby="Grid-Tab">
+            <h2>
+                Here's my beautiful Gallery of Wallpapers ~~~ <3 <br>
+                #GridSystem
+            </h2>
+
+            <div class="row d-inline-flex p-2">
+                <!-- Gallery Item 1 -->
+                <div class="col-12 col-sm-6 col-md-4 bg-success">
+                    <div class="d-flex flex-column text-center border height100">
+                        <p>
+                            This is col-12 col-sm-6 col-md-4
+                        </p>
+                        <div>
+                            <img src="images/background1.jpg" class="rounded img-fluid" height="300" width="300"/>
+                        </div>
+                        <h2>
+                            Sky, mountains and clouds
+                        </h2>
+                        <p>Info ...</p>
+                    </div>
+                </div>
+                <!-- Gallery Item 2 -->
+                <div class="col-12 col-sm-6 col-md-4 bg-info">
+                    <div class="d-flex flex-column text-center border height100">
+                        <p>
+                            This is col-12 col-sm-6 col-md-4
+                        </p>
+                        <div>
+                            <img src="images/cityscape.jpg" class="rounded img-fluid" height="300" width="300"/>
+                        </div>
+                        <h2>
+                            City scape
+                        </h2>
+                        <p>Info ...</p>
+                    </div>
+                </div>
+                <!-- Gallery Item 3 -->
+                <div class="col-12 col-sm-6 col-md-4 bg-primary">
+                    <div class="d-flex flex-column text-center border height100">
+                        <p>
+                            This is col-12 col-sm-6 col-md-4
+                        </p>
+                        <div>
+                            <img src="images/waves_colorful.jpg" class="rounded img-fluid" height="300" width="300"/>
+                        </div>
+                        <h2>
+                            Colorful Waves
+                        </h2>
+                        <p>Info ...</p>
+                    </div>
+                </div>
+                <!-- Gallery Item 4 -->
+                <div class="col-12 col-sm-6 col-md-4 bg-warning">
+                    <div class="d-flex flex-column text-center border height100">
+                        <p>
+                            This is col-12 col-sm-6 col-md-4
+                        </p>
+                        <div>
+                            <img src="images/Old-Nice.jpg" class="rounded img-fluid" height="300" width="300"/>
+                        </div>
+                        <h2>
+                            Old Nice
+                        </h2>
+                        <p>Info ...</p>
+                    </div>
+                </div>
+                <!-- Gallery Item 5 -->
+                <div class="col-12 col-sm-6 col-md-4 bg-secondary">
+                    <div class="d-flex flex-column text-center border height100">
+                        <p>
+                            This is col-12 col-sm-6 col-md-4
+                        </p>
+                        <div>
+                            <img src="images/olive-trees-near-nice.jpg" class="rounded img-fluid" height="300"
+                                 width="300"/>
+                        </div>
+                        <h2>
+                            Oliver Trees near Nice
+                        </h2>
+                        <p>Info ...</p>
+                    </div>
+                </div>
+                <!-- Gallery Item 6 -->
+                <div class="col-12 col-sm-6 col-md-4 bg-danger">
+                    <div class="d-flex flex-column text-center border height100">
+                        <p>
+                            This is col-12 col-sm-6 col-md-4
+                        </p>
+                        <div>
+                            <img src="images/white-blue-red-clouds-scenery.jpg" class="rounded img-fluid" height="300"
+                                 width="300"/>
+                        </div>
+                        <h2>
+                            White Blue Red Clouds Scenery
+                        </h2>
+                        <p>Info ...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container tab-pane fade" role="tabpanel" aria-labelledby="Container-Tab" id="containerEx_2">
+            <p>
+                Đây thì là <b>.container</b> nhé!
+            </p>
+            <div class="row">
+                <div class="col-sm-3">
+                    sm-3 <br>
+                    <img src="images/background1.jpg" class="rounded img-fluid" height="300" width="300"/>
+                </div>
+                <div class="col-sm-3">
+                    sm-3 <br>
+                    <img src="images/anime-painting.jpg" class="rounded-circle img-fluid" height="300" width="300"/>
+                </div>
+                <div class="col-md-5">
+                    md-5 <br>
+                    <img src="images/waves_colorful.jpg" class="img-thumbnail img-fluid" height="300" width="300"/>
+                </div>
+                <div class="col-md-3 bg-light">
+                    .col 1
+                </div>
+                <div class="col-md-9 bg-transparent">
+                    .col 2
+                </div>
+                <div class="alert alert-info fade in alert-dismissible show">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="close"></button>
+                    Info! This alert box indicates a neutral informative change or action.
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="navEx_2" role="tabpanel" aria-labelledby="Container-Tab">
+            Navigation Tab Content is heree ~~~
+        </div>
+    </div>
+    <div id="index">
+        <h4>
+            Lorem Ipsum
+        </h4>
+        <div>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vitae erat nec orci interdum facilisis.
+                Fusce ut
+                condimentum urna. In ut justo quam. Maecenas vel nulla accumsan, interdum nunc sed, dictum purus.
+                Ut et congue
+                metus, at condimentum metus. Aenean tortor urna, interdum id est id, consequat eleifend libero. Fusce
+                condimentum hendrerit dapibus. Proin lacinia imperdiet diam, ut aliquam augue dictum in.
+                Aliquam mollis bibendum
+                lacinia. Duis interdum vel lectus vel euismod. Nulla auctor, urna sed cursus posuere, quam lacus
+                consectetur
+                libero, id dapibus odio sem eu ante. Praesent luctus dignissim odio, scelerisque mattis tortor
+                volutpat at.
+                Donec mattis vehicula posuere. Suspendisse dignissim lobortis orci, id tincidunt est iaculis a.
+                Praesent est
+                lorem, cursus euismod vehicula ut, dignissim sed enim. Vestibulum imperdiet diam ut sem pulvinar
+                ultricies.
+            </p>
+
+            <blockquote>
+                Nullam semper lorem vitae turpis blandit, eu faucibus tortor dictum. Vivamus gravida laoreet erat.
+                Etiam
+                vestibulum vitae mauris quis mattis. Cras eu erat magna. Quisque sit amet mollis dolor.
+                Morbi at justo ac eros
+                pulvinar auctor ut consectetur lacus. Vivamus aliquam orci quis commodo ultrices. Cras sodales at nisl
+                a congue.
+            </blockquote>
+            <footer class="blockquote-footer">
+                https://www.lipsum.com/feed/html
+            </footer>
+
+            <div class="container">
+                Sed interdum est nibh, eget ullamcorper massa commodo ac. Phasellus at nulla sit amet erat pellentesque
+                molestie
+                non in elit. Donec sed maximus justo. Aliquam at neque suscipit, posuere enim at, vehicula orci.
+                Praesent sapien
+                lectus, placerat commodo libero pulvinar, sodales commodo dui. Integer accumsan rutrum mauris, vel
+                faucibus leo
+                egestas vel. Pellentesque vitae fermentum eros. Nam cursus sagittis diam, nec ultrices odio.
+                Duis commodo augue
+                ac sem placerat, quis eleifend mauris mattis. Suspendisse at tortor magna. Integer sit amet arcu a dolor
+                mattis
+                feugiat consectetur sed erat. Ut fermentum, purus quis efficitur molestie, odio magna rhoncus nibh,
+                a efficitur
+                nulla eros ut tortor. Etiam hendrerit eleifend justo, ac aliquet ligula tincidunt eu. Nullam maximus
+                magna quis
+                efficitur vulputate.
+            </div>
+        </div>
+    </div>
+    <!--- Nhúng JS sau cùng, jQuery nằm trước Bootrstrap! --->
+    <!--- base luôn ở cuối --->
+    <script src="plug-in/jQuery/jquery-3.5.1.min.js"></script>
+    <script src="plug-in/popper/popper.min.js"></script>
+    <script src="plug-in/bootstrap-4.5.0/js/bootstrap.min.js"></script>
+    <script src="js/base.js"></script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Let's try to create a Survey Form">
+    <title>Survey Form</title>
+    <link rel="stylesheet" href="css/form.css">
+    <link rel="stylesheet" href="css/normalize.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <h1>Survey Form</h1>
+
+        <div class="content-page">
+            <p>
+                Let us know how we can improve FreecodeCamp
+            </p>
+            <form>
+                <div class="row">
+                    <label class="leftcol">
+                        *Name:
+                    </label>
+                    <div class="rightcol">
+                        <input id="name" type="text" class="o_nhap" placeholder="Enter your name" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="leftcol">
+                        *Email:
+                    </label>
+                    <div class="rightcol">
+                        <input id="email" type="text" class="o_nhap" placeholder="Enter your email" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="leftcol">
+                        *Age:
+                    </label>
+                    <div class="rightcol">
+                        <input id="Age" type="number" class="o_nhap" placeholder="Age" step="1">
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="leftcol">
+                        Which option best describes your current role?
+                    </label>
+                    <div class="rightcol">
+                        <select name="Roles" id="Roles" class="o_chon">
+                            <option value="Student">Student</option>
+                            <option value="Employed">Employed</option>
+                            <option value="Sales">Sales</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="leftcol">
+                        How likely is that you would recommend freeCodeCamp for your friends?
+                    </label>
+                    <div class="rightcol">
+                        <input type="radio" name="rate" value="Definitely">Definitely<br>
+                        <input type="radio" name="rate" value="Maybe">Maybe<br>
+                        <input type="radio" name="rate" value="Not sure">Not sure<br>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="leftcol">
+                        What do you like most in FCC?
+                    </label>
+                    <div class="rightcol">
+                        <select name="Mostfavo" id="Favor" class="o_chon">
+                            <option>Select an option</option>
+                            <option value="Employed">Employed</option>
+                            <option value="Sales">Sales</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="leftcol">
+                        Things that should be improved in the future: <br>
+                        (Check all that apply)
+                    </label>
+                    <div class="rightcol">
+                        <input type="checkbox" value="Front-end"> Front-end Projects <br>
+                        <input type="checkbox" value="Back-end"> Back-end Projects <br>
+                        <input type="checkbox" value="Visual"> Data Visualization
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="leftcol">
+                        Any Comment or Suggestion?
+                    </label>
+                    <div class="rightcol">
+                        <textarea id="comment" class="o_nhap" placeholder="Enter your comments here ..."></textarea>
+                    </div>
+                </div>
+                <button type="submit" id="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

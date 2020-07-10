@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" content="Đồng hồ" >
+    <title>Clock</title>
+    <style>
+        body {
+            background: url("images/clock-background.jpg") no-repeat;
+            background-size: 100%;
+        }
+        .clock {
+            display: flex; /* để các div bên trong xếp hàng với nhau */
+            margin: auto;
+            margin-top: 20%; /* chính giữa trang */
+            width: 30%;
+        }
+        .clock div {
+            box-sizing: border-box;
+            width: 30%;
+            font-size: 2.5em;
+            font-weight: bold;
+            padding: 5%;
+            border: 2px solid lightgreen;
+            border-radius: 5%;
+            background-color: white;
+            color: black;
+            text-align: center;
+            vertical-align: middle;
+            margin-right: 2%;
+        }
+    </style>
+</head>
+<body>
+    <div class="clock">
+        <div id = "hours">
+            01
+        </div>
+        <div id = "minutes">
+            59
+        </div>
+        <div id = "seconds">
+            59
+        </div>
+    </div>
+
+    <script>
+        function runClock() {
+            var currentTime = new Date();
+            var hrs = currentTime.getHours();
+            var min = currentTime.getMinutes();
+            var sec = currentTime.getSeconds();
+            document.getElementById("hours").innerHTML = checkTime(hrs);
+            document.getElementById("minutes").innerHTML = checkTime(min);
+            document.getElementById("seconds").innerHTML = checkTime(sec);
+        }
+        runClock();
+        var timer = setInterval(runClock, 500);
+        //clearInterval(time);
+        function checkTime(i) {
+            if (i < 10) {i = "0" + i}
+            return i;
+        }
+    </script>
+</body>
+</html>

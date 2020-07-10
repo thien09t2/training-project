@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JQuery Practice</title>
+
+    <link rel="stylesheet" href="plug-in/bootstrap-4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/base.css">
+
+    <style>
+        h2, div, p {
+            padding: 5px;
+            margin: 5px;
+            width: 350px;
+            border: 1px solid blue;
+        }
+    </style>
+    <script>
+        function selectAdv() {
+            $('div p:first-child').css("background","#ccc");
+        }
+    </script>
+</head>
+<body>
+    <h1>
+        jQuery examples: Select first child of div:
+    </h1>
+    <input type="button" onclick="selectAdv();" value="Select First Child of div">
+    <a href="">Reset</a>
+
+    <div>Div Elements</div>
+    <h2 class="abc">H2 Element</h2>
+    <div>
+        Div Elements
+        <p class="abc">
+            p- First Child of Div
+        </p>
+        <p class="abc">
+            p- Second Child of Div
+        </p>
+        <div class="abc">
+            Div Elements
+            <p class="abc">
+                p- First Child of Div
+            </p>
+        </div>
+    </div>
+
+    <div>
+        <div class="abc">
+            Div Element
+        </div>
+        <p class="abc">
+            p- First Child of Div
+        </p>
+    </div>
+    <!--- Nhúng JS sau cùng, jQuery nằm trước Bootrstrap! --->
+    <!--- base luôn ở cuối --->
+    <script src="plug-in/jQuery/jquery-3.5.1.min.js"></script>
+    <script src="plug-in/popper/popper.min.js"></script>
+    <script src="plug-in/bootstrap-4.5.0/js/bootstrap.min.js"></script>
+    <script src="js/base.js"></script>
+</body>
+</html>
