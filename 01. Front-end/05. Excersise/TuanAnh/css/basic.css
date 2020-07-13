@@ -3,38 +3,208 @@
     padding: 0px;
 }
 
-#show {
-    border: 1px solid black;
-    width: 60px;
-    height: 20px;
-    cursor: pointer;
-    float: left;
-    margin-left: 60px;
+.container-fluid {
+    background-color: #AC0911;
 }
 
-#hide {
-    border: 1px solid black;
-    width: 60px;
-    height: 20px;
-    cursor: pointer;
-    float: left;
-    margin-left: 60px;
+.header {
+    background-color: #4a90e2;
 }
 
-#toggle {
-    border: 1px solid black;
-    width: 60px;
-    height: 20px;
-    cursor: pointer;
-    float: left;
-    margin-left: 60px;
+.image-banner {
+    height: 50px;
 }
 
-.btbChange {
-    border: 1px solid black;
-    width: 60px;
-    height: 20px;
+.row {
+    background-color: #4a90e2;
+    height: 50px;
+}
+
+.left-header {
+    width: 50%;
+}
+
+.icon-dmx {
+    background-image: url(images/icondesktop@1x.v202007011410.png);
+    background-repeat: no-repeat;
+    border: oldlace;
+}
+
+.dmx-logo {
+    background-position: 0 0;
+    width: 174px;
+    height: 32px;
+    display: block;
+    margin-top: 10px;
     cursor: pointer;
     float: left;
-    margin-left: 60px;
+}
+
+.province-box {
+    display: block;
+    border-radius: 4px;
+    height: 35px;
+    background-color: #2878d7;
+    float: left;
+    margin: 7px 0px 7px 7px;
+    padding: 0px 5px 0px 5px;
+}
+
+.province-box>b {
+    font-size: 10px;
+    display: block;
+    height: 11px;
+    color: #bae8ff;
+}
+
+.province-box>span {
+    font-size: 12px;
+    display: inline-block;
+    font-weight: bold;
+    width: 120px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.province-box>span:hover {
+    color: black;
+}
+
+.topinput {
+    float: right;
+    margin: 10px 0px 10px 15px;
+    border-radius: 4px;
+    background: #fff;
+    border: 0px;
+    width: 42%;
+    height: 30px;
+    padding-left: 10px;
+}
+
+#full-modal {
+    display: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 10;
+}
+
+#modal {
+    background-color: seashell;
+    width: 50%;
+    margin: 20% auto;
+    border-radius: 4px;
+    padding: 15px 25px;
+    max-width: 500px;
+    margin: 1.75rem auto;
+}
+
+.close-modal {
+    cursor: pointer;
+    float: right;
+    width: 10px;
+    height: 10px;
+    font-size: 30px;
+    margin-top: -15px;
+}
+
+#choose {
+    width: 100%;
+    border-radius: 4px;
+    margin-top: 10px;
+    display: block;
+    height: 40px;
+}
+
+.accept {
+    width: 100%;
+    background-color: sandybrown;
+    border-radius: 4px;
+    text-align: center;
+    margin-top: 10px;
+    cursor: pointer;
+    height: 40px;
+    line-height: 40px;
+    ;
+}
+
+form {
+    display: block;
+    z-index: 10;
+}
+
+.icon-search {
+    background-image: url(images/icondesktop@1x.v202007011410.png);
+    background-position: -180px 0;
+    width: 16px;
+    height: 16px;
+    display: block;
+    margin: auto;
+}
+
+.btntop {
+    float: right;
+    width: 40px;
+    height: 30px;
+    border: 0;
+    cursor: pointer;
+    background: none;
+    position: absolute;
+    right: 0;
+    margin-top: 9px;
+}
+
+.search-group {
+    position: relative;
+}
+
+
+/* right-header*/
+
+.right-height {
+    width: 50%;
+}
+
+.buy-history {
+    display: block;
+    color: black;
+    line-height: 50px;
+    margin-left: 15px;
+}
+
+.refer-link {
+    height: 34px;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 600;
+    margin: 2px 0 7px 26px;
+    position: relative;
+    display: block;
+    float: left;
+}
+
+.refer-link>span {
+    display: block;
+    overflow: hidden;
+    font-size: 12px;
+    font-weight: 300;
+    color: #d0efff;
+}
+
+.icon-box {
+    float: left;
+}
+
+.icon-box>i {
+    background-image: url(https://cdn.tgdd.vn/dmx2016/Content/images/V2/global/icondesktop@2x.v202007111940.png);
+    background-size: 330px 293px;
+    background-position: -265px 0;
+    width: 26px;
+    height: 20px;
+    display: block;
+    margin-top: 15px;
+    margin-left: 10px;
 }
