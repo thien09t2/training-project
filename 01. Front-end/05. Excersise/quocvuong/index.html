@@ -1,108 +1,280 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/base.css">
-    <title>Document</title>
-</head>
-<body>
-    <div class="imgtop">
-        <a href="#">
-            <img src="https://cdn.tgdd.vn/2020/07/banner/Tragop-1200-44-1200x44-1.png">
-        </a>
+<html lang="en" class="h-100">
+  <head>
+    <title>Điện Máy Xanh</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/base.css" />
+    <!-- <link rel="stylesheet" href="css/fontawesome-all.css"> -->
+  </head>
+
+  <body class="d-flex flex-column h-100">
+    <div class="container-fluid top-banner">
+      <div class="top-banner row">
+        <img class="mx-auto" src="img/Tragop-1200-44-1200x44-1.png" />
+      </div>
     </div>
     <header>
-        <div class="topnar">
-            <div class="logo">
-                <a href="#">
-                    <img src="/img/dienmayxanh-amp.jpg">
-                </a>
-            </div>  
-            <!-- TP -->
-            <div class="xemgiodau">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" >
-                    Xem giá , tồn kho ở : <br>
-                    TP.Hồ Chí Minh
-                    </button>
-                    
-                    <!-- JS -->
-                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                ...
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Search bar -->
-            <div class="searchbar">
-                <div class="timkiem" >
-                    <form action="#">
-                      <input type="text" placeholder="Bạn tìm gì... " name="search">
-                      <button type="submit"><i class="fa fa-search"></i></button>
-                    </form>
-                </div>
-            </div>
-            <!-- Buy history -->
-            <div class="lsmh">
-                <a href="#"> 
-                   <strong>
-                    Lịch sử <br>
-                    mua hàng
-                   </strong>
-                </a>
-            </div>
-            <!-- buy cart -->
-            <div class="buycart">
-                <i class="fa fa-shopping-cart" style="font-size: 48px;"></i>
-            </div>
-            <!-- tổng đài hỗ trợ -->
-            <div class="tdht" >
-                <a href="tel:19001061" class="sdttdht">
-                   <strong> 1800.1061</strong> <br>
-                   Tổng đài miễn phí
-                </a>
-            </div>
-            <!-- kinh nghiệm hay -->
-            <div class="knh">
-                <a href="#" class="knh-1">
-                    <div class="knh-2" style="color: white;">Kinh nghiệm hay</div>
-                    <span>
-                        <div class="dropdown">
-                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                & Tin khuyến mãi 
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <a class="dropdown-item" href="#">Action</a>
-                              <a class="dropdown-item" href="#">Another action</a>
-                              <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                          </div>
-                    </span>
-                </a>
-            </div>
-        </div>
+      <div class="container-fluid">
+        <div class="row">
         
+          <!-- logo -->
+          <div class="logo">
+            <a class="logodmx" title="Về trang chủ DienmayXanh.com" href="/">
+              <i class="icon-dmx dmx-logo"></i>
+            </a>
+            <!-- <img src="/img/dienmayxanh-amp.jpg"> -->
+          </div>
+          <!-- TP -->
+          <div class="xemgiodau ml-2">
+            <!-- Button trigger modal -->
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-toggle="modal"
+              data-target="#exampleModal"
+            >
+              <b>Xem giá , tồn kho ở :</b> <br />
+              <span>
+                TP.Hồ Chí Minh
+              </span>
+            </button>
+
+            <!-- Modal -->
+            <div
+              class="modal fade"
+              id="exampleModal"
+              tabindex="-1"
+              role="dialog"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                      Modal title
+                    </h5>
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    ...
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-dismiss="modal"
+                    >
+                      Close
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                      Save changes
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- search -->
+          <div class="search-bar ml-2">
+            <div class="input-group md-form form-sm form-2 pl-0">
+              <input
+                class="form-control my-0 py-1 red-border"
+                type="text"
+                placeholder="Bạn muốn tìm gì"
+                aria-label="Search"
+              />
+              <div class="input-group-append">
+                <span class="input-group-text red lighten-3" id="basic-text1"
+                  ><i class="fas fa-search text-grey" aria-hidden="true"></i
+                ></span>
+              </div>
+            </div>
+          </div>
+          <!-- Buy history -->
+          <div class="lsmh ml-2">
+            <a href="#">
+              <strong>
+                Lịch sử <br />
+                mua hàng
+              </strong>
+            </a>
+          </div>
+          <!-- buy cart -->
+          <div class="buycart ml-2">
+            <a href="#">
+              <i class="fa fa-shopping-cart" style="font-size: 48px;"></i>
+            </a>
+          </div>
+          <!-- tổng đài hỗ trợ -->
+          <div class="tdht">
+            <a href="tel:19001061" class="sdttdht">
+              <strong> 1800.1061</strong> <br />
+              Tổng đài miễn phí
+            </a>
+          </div>
+          <!-- kinh nghiệm hay -->
+          <div class="knh">
+            <a href="#" class="knh-1">
+              <div class="knh-2" style="color: white;">Kinh nghiệm hay</div>
+              <span>
+                <div class="dropdown">
+                  <button
+                    class="btn btn-primary dropdown-toggle"
+                    type="button"
+                    id="dropdownMenuButton"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    & Tin khuyến mãi
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                  </div>
+                </div>
+              </span>
+            </a>
+          </div>
+          <!-- </div>     -->
+        </div>
+      </div>
     </header>
-
-
-</body>
-<script src="plugins/jquery/jquery-3.5.1.min.js"></script>
-<script src="plugins/js/bootstrap.min.js"></script>
-<script src="js/base.js"></script>
+    <nav>
+      <section class="main-content">
+        <div class="row">
+          <div class="3daugach">
+            <div>
+              <li class="active">
+                <i class="fa fa-shopping-cart" style="font-size: 30px;"></i>
+              </li>
+            </div>
+          </div>
+          <div class="danhmuc">
+            <div class="dropdown">
+              <button
+                type="button"
+                class="btn btn-primary dropdown-toggle"
+                data-toggle="dropdown"
+              >
+                Dropdown button
+              </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="/">Link 1</a>
+                <a class="dropdown-item" href="/">Link 2</a>
+                <a class="dropdown-item" href="/">Link 3</a>
+			</div>
+			<div class="sub-menu">
+				<ul class="group">
+					<li class="group-title"><b>TIVI</b> <a class="view-all">Xem Tất Cả<i class="fas fa-caret-right"></i></a></li>
+					<li class="item"><a href="/tivi-tra-gop-0-phan-tram">Tivi trả góp 0-1%</a></li>
+					<li class="item"><a href="/tivi-tra-gop-0-phan-tram">Sony</a></li>
+					<li class="item"><a href="/tivi-tra-gop-0-phan-tram">Samsung</a></li>
+					<li class="item"><a href="/tivi-tra-gop-0-phan-tram">LG</a></li>
+					<li class="item"><a href="/tivi-tra-gop-0-phan-tram">TCL</a></li>
+					<li class="item"><a href="/tivi-tra-gop-0-phan-tram">Từ 32-43 inch</a></li>
+					<li class="item"><a href="/tivi-tra-gop-0-phan-tram">Từ 44-54 inch</a></li>
+					<li class="item"><a href="/tivi-tra-gop-0-phan-tram">Dưới 10 triệu</a></li>
+					<li class="item"><a href="/tivi-tra-gop-0-phan-tram">Tivi</a></li>
+				</ul>
+			</div>
+            </div>
+          </div>
+          <div class="xtc">
+            <li><a href="#">Xem tất cả</a></li>
+          </div>
+          <div class="xemtatca">
+            <ul class="xemtatca-1">
+              <li><a href="#">Tivi Giảm Lớn 49%</a></li>
+              <li><a href="#">Quạt Điều Hòa Ưu Đãi Đến 34%</a></li>
+              <li><a href="#">Bỏ cũ lấy mới máy lọc nước giảm 30%</a></li>
+            </ul>
+          </div>
+		</div>	
+	  </section>
+	 	<div class="hot-deal">
+			<div id="demo" class="carousel slide" data-ride="carousel">
+				<ul class="carousel-indicators">
+				<li data-target="#demo" data-slide-to="0" class="active"></li>
+				<li data-target="#demo" data-slide-to="1"></li>
+				<li data-target="#demo" data-slide-to="2"></li>
+				</ul>
+				<div class="carousel-inner">
+				<div class="carousel-item active">
+					<img src="/img/1.png" alt="1" width="100%" height="500">
+					<div class="carousel-caption">
+						<h3>Mua tivi giảm 6.2 triệu</h3>
+						<p>Trả góp 0%</p>
+					</div>   
+				</div>
+				<div class="carousel-item">
+					<img src="/img/2.png" alt="2" width="100%" height="500">
+					<div class="carousel-caption">
+					<h3>Panasonic diệt khuẩn 99%</h3>
+					<p>Trả góp giảm 14%</p>
+					</div>   
+				</div>
+				<div class="carousel-item">
+					<img src="/img/3.png" alt="3" width="100%" height="500">
+					<div class="carousel-caption" style="color: blue;">
+					<h3>Mua tivi giảm 6.2 triệu</h3>
+					<p>Trả góp 0%</p>
+					</div>   
+				</div>
+				</div>
+				<a class="carousel-control-prev" href="#demo" data-slide="prev">
+				<span class="carousel-control-prev-icon"></span>
+				</a>
+				<a class="carousel-control-next" href="#demo" data-slide="next">
+				<span class="carousel-control-next-icon"></span>
+				</a>
+			</div>
+			<div class="kinhnghiemhay">
+				<ul style="width: 100%; height: 200px;" >
+					<li><a href="#" style="color: blue;"><strong>Kinh NGHIỆM HAY - VIDEO </strong><i class="fas fa-caret-right"></i></a></li>
+					<li><a href="#">Top 10 nồi cơm điện nấu cơm không chín</a></li>
+					<li><a href="#">Top 10 quạt k mát</a></li>
+					<li><a href="#">baby shark do do do do</a></li>
+					<li><a href="#">Cách không làm mà vẫn có ăn</a></li>
+					<li><a href="#">Cách nấu cơm không cần gạo</a></li>
+				</ul>
+				<div class="hinhanh456">
+					<img src="/img/4.png"/>
+					<img src="/img/5.png"/>
+					<img src="/img/6.png"/>
+				</div>	
+			</div>
+		</div>
+		<section class="row top-deal">
+			<div class="mt-2"><img class="w-100"
+				 src="/img/giamgiathang7.png">
+			</div>
+    </nav>
+  </body>
+  <script src="plugins/jquery/jquery-3.5.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="plugins/js/bootstrap.min.js"></script>
+  <script src="js/base.js"></script>
 </html>

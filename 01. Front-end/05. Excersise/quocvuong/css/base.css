@@ -1,214 +1,254 @@
-/* a {
-  margin-left: 15px;
-} */
-
-/* .container-fluid .row #logoDmx{
-  width: 100px;
-  height: 100px;
-} */
-
-/* .box {
-  float: left;
-  width: 20%;
-  padding: 50px;
-  margin-bottom: 80%;
-}
-
-.clearfix::after {
-  content: "";
-  clear: both;
-  display: table;
-} */
-/* a {
-  text-decoration: none;
-}
-.container-fluid {
-  height: 50px;
-  background-color: #009DE0;
-}
-
-.container-fluid .row #dstp {
-  margin-top: 4px;
- 
-}
-
-.container-fluid .row #dstp button{
-  font-size: 6px;
-}
-.container-fluid .row #searchbar {
-  margin-top: 5px;
-}
-
-.topnar {
-  margin-left: 2%;
-  margin-right: 2%;
-}
-
-.container-fluid .row #lsmh {
-  color: white;
-  text-align: center;
-}
-
-.container-fluid .row #cart {
-  size: 10px;
-  color: white;
-  margin-top: 10px;
-}
-
-.container-fluid .row #sdtlh {
-  display: left;
-  
-}
-.container-fluid .row #sdtlh p {
-  line-height: 0.8;
-  color: white;
-  margin-top: 3px;
-}
-
-.container-fluid .row #tinkm {
-  display: left;
-}
-
-.container-fluid row #tinkm .dropdown {
-  line-height: 0.8;
-  background-color: #009DE0;
-}
-.topnar .container-fluid .row .col-sm-2 .dropdown button {
-  margin-top: -35px;
-  margin-left: -12px;
-  color: white;
-}
-.topnar .container-fluid .row .col-sm-2 .dropdown:hover>.dropdown-menu{
-  display: block;
-}
-.topnar .container-fluid .row .col-sm-2 .knh {
-  color: white;
-} */
-
-body {
-  background-color: white;
-  min-width: 1024px;
-}
-
-.imgtop {
-  display: block;
-  text-align: center;
-  background-color: #AC0911;
-}
-
 header {
-  min-width: 1024px;
-  background: #4a90e2;
-  width: 100%;
-  height: 102px;
+    min-width: 1024px;
+    background: #4a90e2;
+    width: 100%;
+    height: 62px;
+    /* z-index: 999; */
 }
 
-.topnar {
-  max-width: 1200px;
-  min-width: 1024px;
-  width: 100%;
-  height: 50px;
-  background: #4a90e2;
-  margin: auto;
-  display: flex;
-}
-.topnar .logo img{
-  height: 45px;
-  width: 174px;
-  display: block;
-  margin-top: 5px;
-}
-.topnar .logo {
-  float: left;
-}
-
-a {
-  text-decoration: none;
-}
-
-.topnar .xemgiodau button {
-  float: left;
-  vertical-align: middle;
-  background: #2878d7;
-  height: 92%;
-  padding: 0 5px;
-  border-radius: 4px;
-  width: 104%;
-  margin-top: 5px;
-  font-size: 10px;
-  
-}
-/* .topnar .xemgiodau {
-  margin: 7px 10px 0 10px;
-} */
-.topnar .searchbar {
-  float: left;
-
-  margin: 7px 10px 0 10px;
-  background: #fff;
-  position: relative;
-}
-
-.topnar .searchbar .timkiem form input {
-  height: 43px;
-  width: 83%;
-}
-
-.topnar .lsmh {
-  text-align: center;
-  color: white;
-  float: left;
-  margin-left: 10px;
-  margin-top: 2px;
-}
-
-.topnar .lsmh a {
-  color: white;
-  text-decoration: none;
-}
-
-.topnar .buycart {
-  color:  white;
-
-}
-
-.topnar .buycart i {
-  margin-left: 24px;
-}
-
-.topnar .tdht a {
-  color: #fff;
-}
-
-.topnar .tdht {
-  float: left;
-  margin-left: 2%;
-}
-
-.topnar .knh  button{
-  display: flex;
-  float: left;
-  color: white;
-  margin-top: 5px;
-  margin-left: 20px;
-  padding: 0;
-  border: none;
-  background: none; 
-}
-
-/* .topnar .knh .dropdown:hover>.dropdown-menu {
-  display: block;
+/* a { 
+    text-decoration: none;
 } */
 
-.topnar .knh {
-  float: right;
-  height: 34px;
-  font-size: 16px;
-  color: #fff;
-  font-weight: 600;
-  margin: 7px 0 7px 26px;
-  position: relative;
+.logo {
 }
-.topnar .knh . knh-1 div {
-  color: white;
+.logodmx i{
+    background-image: url(https://cdn.tgdd.vn/dmx2016/Content/images/V2/global/icondesktop@1x.v202007111950.png);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    width: 174px;
+    height: 32px;
+    display: block;
+    line-height: 30px;
+    vertical-align: middle;
+}
+
+.container-fluid .row {
+    max-width: 1200px;
+    min-width: 1024px;
+    width: 100%;
+    height: auto;
+    background: #4a90e2;
+    margin: auto;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo img {
+    
+    width: auto;
+    height: 50px;
+}
+.xemgiodau {
+    
+    vertical-align: middle;
+    background: #2878d7;
+    height: auto;
+    border-radius: 4px;
+    width: auto;
+}
+
+.xemgiodau button {
+    height: 50px;
+    font-size: 10px;
+}
+
+.xemgiodau b {
+    display: block;
+    font-size: 10px;
+    color: #bae8ff;
+    height: 3px;
+    padding: 2px 0;
+    font-weight: normal;
+}
+.xemgiodau span {
+    display: inline-block;
+    font-size: 11px;
+    color: #fff;
+    position: relative;
+    font-weight: bold;
+    cursor: pointer;
+    width: 130px;
+    display: left;
+}
+.search-bar {
+    
+    overflow: hidden;
+    width: 27%;
+}
+
+.search-bar .input-group.md-form.form-sm.form-2 input {
+    border: 1px solid #bdbdbd;
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+    width: auto;
+    height: 50px;
+  }
+ .search-bar .input-group.md-form.form-sm.form-2 input.red-border {
+    border: 1px solid #ef9a9a;
+  }
+
+  .lsmh {
+    border-radius: 4px;
+    padding: 2px 10px;
+    font-size: 12px;
+    
+    margin-top: 4px;
+    cursor: pointer;
+    text-align: center;
+  }
+
+.lsmh a { 
+    text-decoration: none;
+    color: #fff;
+
+}
+
+.buycart a{
+    text-decoration: none;
+    color: #fff;
+}
+
+.tdht {
+    margin-left: 20px;
+    font-size: 15px;
+    margin-top: 5px;
+}
+
+.tdht a{
+    text-decoration: none;
+    color: #fff;
+}
+
+.knh {
+    margin-left: 17px;
+}
+.knh a {
+    text-decoration: none;
+}
+
+.knh .dropdown:hover>.dropdown-menu {
+    display: block;
+}
+
+.knh .dropdown>.dropdown-toggle:active {
+    /*Without this, clicking will make it sticky*/
+    pointer-events: none;
+}
+
+main {
+    background: white;
+    height: 50px;
+}
+
+
+.container ul {
+   display: flex;
+   list-style: none;
+}
+
+.container .row {
+    max-width: 1200px;
+    min-width: 1024px;
+    width: 100%;
+    height: auto;
+    background:white;
+    margin: auto;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1%;
+}
+
+.container ul li {
+    margin: auto;
+    display: left;
+
+}
+.main-content {
+    background-color: orange;
+    height: 50px;
+    margin: auto;
+    display: flex;
+    display: left;
+}
+
+.xemtatca ul 
+{
+    display: flex;
+}
+
+.xemtatca ul li {
+    display: block; 
+    color: white;
+    text-align: center; 
+    padding: 16px;
+    text-decoration: none;
+}
+
+.xemtatca .xemtatca-1 {
+    display: flex;
+}
+
+.xemtatca .xemtatca-1 li a {
+    color: white;
+    text-decoration:none;
+}
+.xemtatca .xemtatca-1 li a:hover{
+    color: red;
+}
+/* .row .danhmuc .dropdown button {
+    margin-top : 9px  !important;;
+} */
+
+.danhmuc  {
+    padding-top: 7px;
+    margin-left: 40px;
+}
+
+.xtc li a{
+    display: block; 
+    color: white;
+    text-align: center; 
+    text-decoration: none;
+    margin-top: 17px;
+    margin-left: 15px;
+}
+.xtc li a:hover {
+    color: red;
+}
+.xtc li {
+    list-style: none;
+}
+
+.hot-deal{
+   display: flex;
+}
+
+.hot-deal #demo {
+    flex: 3;
+}
+.hot-deal .kinhnghiemhay {
+    flex: 1;
+    margin-left: 1%;
+}
+
+.kinhnghiemhay .hinhanh456 img {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.kinhnghiemhay ul li {
+    border-bottom: 1px solid #ededed;
+    list-style: none;
+    margin-bottom: 10px;
+}
+.kinhnghiemhay ul li a {
+    color:black;
+    text-decoration: none;
+}
+.kinhnghiemhay ul {
+    margin-top: 11px;
+    margin-left: -31px;
 }
