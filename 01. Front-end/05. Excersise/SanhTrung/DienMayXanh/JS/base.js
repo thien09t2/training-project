@@ -25,3 +25,25 @@ $(document).ready(function () {
     }
   );
 });
+/**Sub menu  */
+$(document).ready(function () {
+  $("#sup-menu-1").hover(
+    function () {
+      $("#sub-menu-1").css("display", "flex");
+    },
+    function () {
+      $("#sub-menu-1").css("display", "none");
+    }
+  );
+});
+
+$(document).ready(function () {
+  $("#sup-menu-2").hover(
+    function () {
+      $("#sub-menu-2").css("display", "flex");
+    },
+    function () {
+      $("#sub-menu-2").css("display", "none");
+    }
+  );
+});
