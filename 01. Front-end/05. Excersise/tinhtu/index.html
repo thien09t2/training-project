@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+
+<head>
+	<meta charset="utf-8">
+	<link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+	<title>Diện máy xanh</title>
+	<link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="plugins/font-awesome/css/all.min.css">
+	<link rel="stylesheet" href="css/basic.css">
+</head>
+
+<body class="d-flex flex-column h-100">
+	<div class="container-fluid top-banner">
+		<div class="top-banner row">
+			<img class="mx-auto" src="images/Tragop-1200-44-1200x44-1.png" />
+		</div>
+	</div>
+	<header>
+		<div class="container">
+			<div class="row">
+				<div class="left-area float-left d-flex">
+					<div class="logo">
+						<a href="/" class="logo" title="Về trang chủ điện máy xanh"> <i
+								class="icon-dmx dmx-logo"></i></a>
+					</div>
+					<div class="province-box">
+						<b>Xem giá, tồn kho ở</b>
+						<a class="province" data-toggle="modal" data-target="#selectProvinceModal"> TP. Hồ Chí Minh <i
+								class="fas fa-chevron-down"></i></a>
+						<div class="modal fade" id="selectProvinceModal" tabindex="-1" role="dialog"
+							aria-labelledby="myLargeModalLabel" aria-hidden="true">
+							<div class="modal-dialog modal-md">
+								<div class="modal-content">
+									<button type="button" class="close" data-dismiss="modal"
+										aria-label="Close"></button>
+									<div class="modal-body">
+										<form>
+											<div class="form-group">
+												<label for="provincee"><strong>Chọn Tỉnh Thành</strong></label>
+												<select class="form-control" id="provincee">
+													<option>Tp. Hồ Chí Minh</option>
+													<option>Tp. Hà nội</option>
+													<option>Tp. Huế</option>
+												</select>
+											</div>
+											<div class="form-group">
+												<label for="district"><strong>Chọn đầy đủ địa chỉ nhận hàng</strong> để
+													biết chính xác thời gian giao</label>
+												<select class="form-control" id="district">
+													<option>Vui lòng chọn Quận/Huyện</option>
+												</select>
+											</div>
+											<div class="form-group">
+												<select class="form-control" id="province" disabled>
+													<option>Vui lòng chọn Phường/Xã</option>
+												</select>
+											</div>
+											<div class="form-group">
+												<input type="text" class="form-control" id="detailAddress" placeholder="Số nhà, tên đường" disabled>
+											</div>											
+										</form>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-default accpent-btn" data-dismiss="modal">Xác nhận</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="search-area">
+						<form class="search-form">
+							<div class="input-group">
+								<input type="text" class="form-control" placeholder="Bạn tìm gì?...">
+								<div class="input-group-append">
+									<span class="input-group-text">
+										<i class="fas fa-search"></i>
+									</span>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="right-area float-right">
+					<a href="/kinh-nghiem-hay" class="refer-link">Kinh nghiệm hay <span>&amp; Tin khuyến mãi<label class="arr-down"></label></span></a>
+					<a href="/kinh-nghiem-hay" class="refer-link">1800.1061 <span>&amp; Tổng đài miễn phí </span></a>
+					<a href="/kinh-nghiem-hay" class="refer-link one-line"><i class="fas fa-shopping-cart"></i></a>
+					<a href="/kinh-nghiem-hay" class="refer-link one-line">Lịch sử mua hàng</a>
+				</div>
+			</div>
+	</header>
+	<nav>
+		<div class="container">
+			<ul class="d-flex fixed-nav row">
+				<li class="active">
+					<a><i class="fas fa-bars"></i>Danh Mục</a>
+					
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<main class="container">
+		<div class="mixed-area">Mixed Area</div>
+		<div class="good-price-in-moth">Good price in the month</div>
+		<div class="discount-in-day">Discount In Day</div>
+		<div class="ads-area">Adsvertisement Area</div>
+		<div class="hot-video">Hot video</div>
+	</main>
+	<footer class="footer">
+		Footer
+	</footer>
+	<script src="plugins/jQuery/jquery-3.5.1.min.js"></script>
+	<script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script src="js/basic.js"></script>
+</body>
+
+</html>

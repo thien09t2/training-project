@@ -1,0 +1,140 @@
+.top-banner {
+	background-color : #AC0911;
+}
+
+header {
+	background-color : #4a90e2;
+	height : 50px;
+}
+
+footer {
+	background : #fff;
+}
+
+body {
+	background-color: #f3f3f3;
+}
+ul li {
+	list-style-type: none;
+}
+
+header .dmx-logo {
+    line-height: 30px;
+    background-position: 0 0px;
+	width: 174px;
+	height: 32px;
+	display: block;
+	margin-top: 10px;
+}
+
+.icon-dmx {
+	background-image: url(../images/icondesktop@1x.v202007011410.png);
+	background-repeat: no-repeat;
+}
+
+
+
+header .province-box {
+	float: left;
+	vertical-align: middle;
+	background: #2878d7;
+	height: 35px;
+	padding: 0 5px;
+	border-radius: 4px;
+	margin: 7px 0 7px 7px;
+}
+
+header .province-box b {
+	font-size: 10px;
+	color: #bae8ff;
+	display: block;
+	height: 11px;
+	font-weight: normal;
+	padding: 2px 0;
+}
+
+header .province-box a {
+	display: inline-block;
+	font-size: 11px;
+	width: 130px;
+	color: #fff;
+	cursor: pointer;
+	font-weight: bold;
+	position: relative;
+}
+header .close:before {
+    color: #fff;
+    content: "✕";
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 21px;
+    text-align: center;
+    width: 26px;
+    height: 26px;
+    font-family: Tahoma;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    display: block;
+    background-color: #000;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,1);
+}
+header .province-box .close {
+	position : absolute;
+	top : -10px;
+	right : -12px;
+	opacity : 1;
+	width : 26px;
+	height : 26px;
+	cursor : pointer;
+}
+header .search-area {
+	margin-top: 7px;
+	float: right;
+	padding: 0 15px;
+}
+
+header .refer-link {
+	float: right;
+	height: 34px;
+	font-size: 16px;
+	color: #fff;
+	margin: 2px 0 7px 26px;
+	position: relative;
+	font-weight: 600;
+}
+
+header .refer-link span {
+	display : block;
+	color: #d0efff;
+	overflow: hidden;
+	font-size : 12px;
+	font-weight: 300;
+}
+
+header .refer-link.one-line {
+	margin-top : 12px;
+}
+
+header .accpent-btn {
+	text-align: center;
+	background: #fd6e1d;
+	margin: auto;
+	text-transform: uppercase;
+	font-size: 14px;
+	padding: 10px 0;
+	width: 90%;
+	display: inline-block;
+	border-radius: 4px;
+	width: 90%;
+	line-height: normal;
+	color: #fff;
+	background: #fd6e1d;
+}
+
+.fixed-nav {
+	padding-left: 0;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	margin-bottom: 0;
+	box-shadow: 0 0 4px rgba(0,0,0,2);
+}
