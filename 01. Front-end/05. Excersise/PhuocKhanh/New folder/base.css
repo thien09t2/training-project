@@ -1,0 +1,35 @@
+.container-fluid{
+	width: 100%;
+	background-color: blue;
+}
+/*.container{
+	width: 90%;
+	background-color: red;
+	display: block;
+}*/
+.larea1{
+	float: left;
+	border: 1px solid red;
+}
+.larea2{
+	float: left;
+}
+.larea3{
+	float: left;
+}
+.rarea1{
+	float: right;
+}
+.rarea2{
+	float: right;
+}
+.rarea3{
+	float: right;
+}
+.rarea4{
+	float: right;
+}
+header{
+	/*background-color: #007bff;*/
+}
+
