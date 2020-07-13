@@ -20,3 +20,7 @@ function topFunction() {
 }
 
 /* w3School Top button */
+
+function knhFunction() {
+    x.classList.toggle("fa-caret-up")
+}
