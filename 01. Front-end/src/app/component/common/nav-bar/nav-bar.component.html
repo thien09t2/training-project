@@ -1,0 +1,29 @@
+<!-- Navigation bar -->
+<nav class="menu-bar">
+    <!-- Display menu full screen -->
+    <div class="full-screen">
+        <button mat-button [routerLink]="['/product']" routerLinkActive="active-on">Product</button>
+        <button mat-button [routerLink]="['/brand']" routerLinkActive="active-on">Brand</button>
+        <div class="logout" *ngIf="flagLogin">
+            <button mat-button class="bg-danger text-white" (click)="logout()">
+                Logout
+            </button>
+        </div>
+        <div class="logout" *ngIf="!flagLogin">
+            <button mat-button class="bg-danger text-white" [routerLink]="['/login']">
+                Login
+            </button>
+        </div>
+    </div>
+
+    <!-- Display menu max screen 600px -->
+    <div class="fix-screen">
+        <button [matMenuTriggerFor]="menu" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">Menu</button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item [routerLink]="['/product']" routerLinkActive="active-menu">Product</button>
+            <button mat-menu-item [routerLink]="['/brand']" routerLinkActive="active-menu">Brand</button>
+            <button mat-menu-item (click)="logout()" *ngIf="flagLogin" style="color: red">Logout</button>
+            <button mat-menu-item [routerLink]="['/login']" *ngIf="!flagLogin" style="color: red">Login</button>
+        </mat-menu>
+    </div>
+</nav>

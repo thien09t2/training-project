@@ -1,0 +1,28 @@
+<div class="form-login">
+    <br>
+    <legend>Login</legend>
+    <form (ngSubmit)="login(formLogin.value)" [formGroup]="formLogin">
+        <!-- Input Username -->
+        <div class="form-group">
+            <label for="email">Username <small style="color: red">(*)</small>:</label>
+            <input type="email" class="form-control" placeholder="Username" formControlName="username">
+            <small class="required" *ngIf="formLogin.get('username').errors?.required && flagRequired">
+                Please fill out this field.
+            </small>
+        </div>
+
+        <!-- Input Password -->
+        <div class="form-group">
+            <label for="pwd">Password <small style="color: red">(*)</small>:</label>
+            <input type="password" class="form-control" placeholder="Password" formControlName="password">
+            <small class="required" *ngIf="formLogin.get('password').errors?.required && flagRequired">
+                Please fill out this field.
+            </small>
+        </div>
+
+        <!-- Button login-->
+        <div class="button-row">
+            <button type="submit" class="btn btn-primary">Login</button>
+        </div><br>
+    </form>
+</div>

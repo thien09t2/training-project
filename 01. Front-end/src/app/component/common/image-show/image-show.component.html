@@ -1,0 +1,10 @@
+<!-- Show image or logo -->
+<div class="image">
+    <div class="image-show">
+        <img class="image" *ngIf="flagShow" src="../../../../../assets/image/{{ image }}">
+        <img class="image" *ngIf="!flagShow" src="../../../../../assets/logo/{{ image }}">
+    </div><br>
+    <div class="product">
+        <strong>{{ flagShow ? 'Product' : 'Brand' }}: </strong><span>{{name}}</span>
+    </div>
+</div>
