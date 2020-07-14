@@ -10,6 +10,9 @@ html {
   font-family: "Roboto", sans-serif;
   font-size: 62.5%;
 }
+a:hover {
+  text-decoration: none;
+}
 *,
 *:before,
 *:after {
@@ -291,29 +294,7 @@ header {
   font-weight: normal;
 }
 /* switchboard END */
-/* Kinh Nghiệm hay */
-/* .kinhnghiemhay:hover .kinhnghiemhay__sub {
-  display: block !important;
-} */
-.kinhnghiemhay {
-  color: var(--white-color);
-  width: 144px;
-  height: 34px;
-  margin: 9px 9px 9px 20px;
-  font-size: 1.6rem;
-  font-weight: 400;
-  font-weight: bold;
-  position: relative;
-}
-.kinhnghiemhay:hover {
-  text-decoration: none;
-  color: var(--white-color);
-}
-.kinhnghiemhay span {
-  font-size: 1.2rem;
-  color: var(--text-color);
-  font-weight: normal;
-}
+/* Experience  */
 .icon-sort-down,
 .icon-sort-up {
   font-size: 2rem;
@@ -323,33 +304,43 @@ header {
 .icon-sort-up {
   display: none;
 }
-.kinhnghiemhay__sub {
-  display: none;
+.experience {
+  margin-top: 8px;
+  margin-left: auto;
+  position: relative;
+}
+.experience__heading {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: var(--white-color);
+}
+.experience__desc {
+  font-size: 1.2rem;
+  color: var(--text-color);
+}
+.experience__btns {
   position: absolute;
   background-color: var(--white-color);
-  top: 90px;
-  right: 146px;
+  top: 100%;
+  right: 0;
   font-size: 1.4rem;
   color: var(--black-color);
-  width: 140px;
-  height: 63px;
+  min-width: 140px;
   box-shadow: 1px 6px 9px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s;
+  opacity: 0;
+  visibility: hidden;
 }
-
-.kinhnghiemhay__sub--link {
-  display: flex;
-  flex-direction: column;
+.experience__btn {
+  display: block;
+  padding: 10px;
   color: var(--black-color);
-  position: relative;
-  bottom: 27%;
-  left: 2px;
-  padding: 10px 10px 1px 11px;
 }
-
-.kinhnghiemhay__sub--link:hover {
-  text-decoration: none;
+.experience:hover .experience__btns {
+  opacity: 1;
+  visibility: visible;
 }
-/* kinhnghiemhay END */
+/* Experience end */
 /* Navigation */
 nav {
   background-color: var(--white-color);
