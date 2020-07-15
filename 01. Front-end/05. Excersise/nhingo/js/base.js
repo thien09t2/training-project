@@ -1,3 +1,23 @@
+// FOr dmx-----------------
+$(document).ready(function () {
+    $("#show-hide").hover(function(){
+        $(this).hide();
+        $(".toShow").show();
+    }, function(){
+        $(this).show();
+        $(".toShow").hide();
+    });
+
+    $(".side-navbar .sup-menu").mouseover(function () {
+        $(this).parent().find(".sub-menu").css("display", "flex"
+        );
+    }, function () {
+        $(this).parent().find(".sub-menu").css("display", "none"
+        );
+    });
+
+
+});
 /* w3School Top button */
 // Get the Button:
 var mybutton = document.getElementById("myTopBtn");

@@ -7,63 +7,112 @@
     <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon">
     <link rel="stylesheet" href="plugins/bootstrap-4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="plugins/font-awesome/css/all.min.css">
+<!--    <link rel="stylesheet" href="css/base.css">-->
     <style>
         body {
             background: #f3f3f3;
-        }
-
-        ul li {
-            list-style-type: none;
-        }
-
-        a.bold-link {
-            color: #007bff;
-            font-weight: bold;
-        }
-        img {
-            max-width: 100%;
+            margin: 0;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #212529;
+            text-align: left;
         }
 
         header {
+            min-width: 1024px;
             background: #4a90e2;
             height: 50px;
+            z-index: 999;
+        }
+        .top-banner {
+            background: #ac0911;
+
+        i.icon-dmx {
+            background: url("https://cdn.tgdd.vn/dmx2016/Content/images/V2/global/icondesktop@2x.v202007091140.png");
+            background-size: 330px 293px;
+            background-repeat: no-repeat;
+            vertical-align: middle;
         }
 
-        header .dmx-logo {
+        i.logo-dmx {
             line-height: 30px;
             background-position: 0 0;
             width: 174px;
             height: 32px;
             display: block;
-            margin-top: 10px;
+            margin-top: 3px;
         }
 
-        .carousel-indicators {
-            position: absolute;
-            bottom: 0;
-            margin: 0;
-            left: 0;
-            right: 0;
-            width: auto;
+        i.cart-dmx {
+            background-position: -265px 0;
+            width: 26px;
+            height: 20px;
+            display: block;
+            margin: auto;
+            margin-top: 15px;
         }
-        .carousel-indicators li, .carousel-indicators li.active {
-            float: left;
-            width: 33%;
-            height: 5px;
-            margin: 0;
-            border-radius: 0;
-            border: 0;
-            background: #ccc;
-        }
-        .carousel-indicators li.active {
-            background: #4a90e2;
-        }
-
     </style>
 </head>
 <body class="d-flex flex-column h-100">
     <header>
         <div class="container">
+            <div class="row">
+
+                <!--Left-->
+                <div class="left-are float-left d-flex">
+                    <div class="logo">
+                        <a href="#index" class="logo">
+                            <i class="icon-dmx logo-dmx"></i>
+                        </a>
+                    </div>
+                    <div class="province-box">
+                        <b>Xem giá, tồn kho ở :</b>
+                        <!--                        <a class="nav-link province" data-toggle="modal" data-target="#selectProvinceModal">-->
+                        <!--                            "TP. Hồ Chí Minh"-->
+
+                        <!--                        </a>-->
+                    </div>
+                    <form id="searchForm" class="search-form" action="/action_page.php" style="margin:auto">
+                        <input type="text" placeholder="Bạn tìm gì.." name="search">
+                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </form>
+                    <div class="history-shopping">
+                        <a class="history" href="#">
+                            Lịch sử mua hàng
+                        </a>
+                    </div>
+                    <div class="cart-box">
+                        <a class="cart" href="#">
+                            <i class="icon-dmx cart-dmx"></i>
+                        </a>
+                    </div>
+                </div>
+                <!--Right-->
+                <div class="right-area float-right d-flex">
+                    <a class="hotline" href="#hotline">
+                        1800.1061
+                        <span>Tổng đài miễn phí</span>
+                    </a>
+                    <div class="dropdown more-info">
+                        <a class="nav-link knh" href="#">
+                            Kinh nghiệm hay
+                            <div class="km">
+                                & Tin khuyến mãi
+                                <label class="dropbtn">
+                                    <i onmouseover="knhFunction(this)" class="fa fa-caret-down" aria-hidden="true"></i>
+                                </label>
+                                <div class="dropdown-content">
+                                    <a href="#">Tư vấn chọn mua</a>
+                                    <a href="#">Tin khuyến mãi</a>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
             <!-- Button to Open the Modal -->
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                 Xem giá, kho ở: <br>
