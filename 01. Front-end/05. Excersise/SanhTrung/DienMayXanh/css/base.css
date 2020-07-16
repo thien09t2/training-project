@@ -435,12 +435,21 @@ nav {
   padding: 0 20px;
   font-size: 1.4rem;
   color: var(--black-color);
-  border-left: 1px solid #ccc;
+  /* border-left: 1px solid #ccc; */
+  position: relative;
 }
 .txt-banner__list--item:hover {
   text-decoration: none;
 }
-
+.bd-left::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  border-left: 1px solid #ddd;
+  transform: translateY(-50%);
+  height: 20px;
+}
 @-webkit-keyframes sonar {
   0% {
     opacity: 1;
@@ -472,7 +481,7 @@ nav {
 /* Mixed main */
 .mixed-area {
   max-height: 400px;
-  height: 370px;
+  min-height: 370px;
 }
 /* Navigation details */
 /* Sub-item */
@@ -483,10 +492,19 @@ nav {
   font-size: 1.4rem;
   background-color: var(--white-color);
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
+  position: relative;
 }
 .list-nav-item li.nav-item:last-child {
   border-bottom: none;
   padding-bottom: 15px;
+}
+.bd-bottom::before {
+  content: "";
+  position: absolute;
+  bottom: 0%;
+  left: 7px;
+  width: 202px;
+  border-bottom: 1px solid #ddd;
 }
 .icon-dmx {
   display: inline-block;
@@ -536,15 +554,16 @@ nav {
   display: block;
   padding: 5px;
   margin: 0 15px;
-  border-bottom: 1px solid #ddd;
   position: relative;
 }
+
 .sup-menu:hover {
   font-weight: bold;
 }
 .nav-item:hover .icon-dmx {
   opacity: 1;
 }
+
 .icon-right {
   position: absolute;
   top: 9px;
@@ -566,6 +585,7 @@ nav {
 .sup-menu {
   position: relative;
   width: 220px;
+  height: 20px;
 }
 .sup-menu:hover .sub-menu {
   opacity: 1;
@@ -603,7 +623,7 @@ ul .group {
 }
 .sup-menu .sub-menu-2 {
   position: absolute;
-  top: -35px;
+  top: -34px;
   right: 0;
 }
 .sub-menu.sub-menu-3 {
@@ -693,7 +713,6 @@ ul .group {
   font-weight: normal;
   color: var(--white-color);
   padding: 5px;
-  /* margin-bottom: 2px; */
 }
 strong {
   text-transform: uppercase;
@@ -707,7 +726,104 @@ strong {
 .carousel-sale {
   width: 710px;
   padding: 10px;
+  position: relative;
 }
+.carousel-sale .carousel-indicators {
+  width: 100%;
+  bottom: -60px;
+  height: 60px;
+  margin: 0;
+  background: var(--white-color);
+}
+.carousel-sale:hover .carousel-control-next-icon {
+  opacity: 1;
+  visibility: visible;
+}
+.carousel-sale:hover .carousel-control-prev-icon {
+  opacity: 1;
+  visibility: visible;
+}
+.carousel-control-next-icon {
+  position: absolute;
+  right: 0;
+  width: 30px;
+  height: 50px;
+  background: url(../images/icondesktop@1x.v202007011410.png) no-repeat;
+  background-position: -35px -35px;
+  opacity: 0;
+  visibility: hidden;
+}
+.carousel-control-prev-icon {
+  position: absolute;
+  left: 0;
+  width: 30px;
+  height: 50px;
+  background: url(../images/icondesktop@1x.v202007011410.png) no-repeat;
+  background-position: 0px -35px;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.carousel-fade .carousel-item {
+  opacity: 0;
+  transition-duration: 0.6s;
+  transition-property: opacity;
+}
+
+.carousel-fade .carousel-item.active,
+.carousel-fade .carousel-item-next.carousel-item-left,
+.carousel-fade .carousel-item-prev.carousel-item-right {
+  opacity: 1;
+}
+
+.carousel-fade .active.carousel-item-left,
+.carousel-fade .active.carousel-item-right {
+  opacity: 0;
+}
+
+.carousel-fade .carousel-item-next,
+.carousel-fade .carousel-item-prev,
+.carousel-fade .carousel-item.active,
+.carousel-fade .active.carousel-item-left,
+.carousel-fade .active.carousel-item-prev {
+  transform: translateX(0);
+  transform: translate3d(0, 0, 0);
+}
+
+.carousel-sale .carousel-indicators li {
+  width: calc(100% / 5);
+  height: unset;
+  text-indent: unset;
+  border-top: unset;
+  border-bottom: unset;
+  opacity: unset;
+  font-size: 1.3rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 10px;
+  position: relative;
+}
+.carousel-sale .carousel-indicators li span::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  border-right: 1px solid #ccc;
+  height: 20px;
+  transform: translateY(-50%);
+}
+.carousel-sale .carousel-indicators li:last-child {
+  border-right: none;
+}
+.carousel-sale .carousel-indicators li.active {
+  border-top: 4px solid var(--blue-color);
+  padding-top: 8px;
+  font-weight: 500;
+}
+/* Carousel END */
 footer {
   background: #fff;
 }
