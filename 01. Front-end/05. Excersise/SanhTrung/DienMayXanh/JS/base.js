@@ -8,6 +8,8 @@ $(document).ready(function () {
 $(document).ready(function () {
   $(".btn-close").click(function () {
     $(".modal").css("display", "none");
+    $(".btn-close").css("outline", "none");
+    $(".btn-close").css("border", "0");
   });
 });
 /** Kinh nghiệm hay hover */

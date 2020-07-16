@@ -37,11 +37,12 @@ header {
 }
 
 .logo {
+  cursor: pointer;
   display: block;
   width: 177px;
   height: 46px;
   background-position: 0px 11px;
-  background-image: url(/images/icondesktop@1x.v202007011410.png);
+  background-image: url(../images/icondesktop@1x.v202007011410.png);
 }
 /* Province */
 .provinces-box {
@@ -240,7 +241,7 @@ header {
   width: 25px;
   height: 34px;
   background-position: -174px 10px;
-  background-image: url(/images/icondesktop@1x.v202007011410.png);
+  background-image: url(../images/icondesktop@1x.v202007011410.png);
 }
 /* Search END */
 /* History */
@@ -263,7 +264,7 @@ header {
 /* Cart */
 #cart-box {
   display: block;
-  background-image: url(/images/icondesktop@1x.v202007011410.png);
+  background-image: url(../images/icondesktop@1x.v202007011410.png);
   background-position: -265px 0;
   width: 26px;
   height: 20px;
@@ -295,19 +296,31 @@ header {
 }
 /* switchboard END */
 /* Experience  */
-.icon-sort-down,
-.icon-sort-up {
+.icon-sort-down {
   font-size: 2rem;
   color: var(--white-color);
   padding: 0px 5px 0 7px;
 }
 .icon-sort-up {
-  display: none;
+  position: absolute;
+  top: 23px;
+  right: 11px;
+  font-size: 2rem;
+  color: var(--white-color);
 }
+.icon-sort-up {
+  opacity: 0;
+  visibility: hidden;
+}
+/* .icon-sort-down {
+  opacity: 0;
+  visibility: hidden;
+} */
 .experience {
-  margin-top: 8px;
+  margin-top: 6px;
   margin-left: auto;
   position: relative;
+  cursor: pointer;
 }
 .experience__heading {
   font-size: 1.6rem;
@@ -321,8 +334,8 @@ header {
 .experience__btns {
   position: absolute;
   background-color: var(--white-color);
-  top: 100%;
-  right: 0;
+  top: 86%;
+  right: -16px;
   font-size: 1.4rem;
   color: var(--black-color);
   min-width: 140px;
@@ -337,6 +350,14 @@ header {
   color: var(--black-color);
 }
 .experience:hover .experience__btns {
+  opacity: 1;
+  visibility: visible;
+}
+.experience:hover .icon-sort-down {
+  opacity: 0;
+  visibility: hidden;
+}
+.experience:hover .icon-sort-up {
   opacity: 1;
   visibility: visible;
 }
@@ -447,9 +468,13 @@ nav {
     opacity: 0;
   }
 }
-
 /* Navigation END */
 /* Mixed main */
+.mixed-area {
+  max-height: 400px;
+  height: 370px;
+}
+/* Navigation details */
 /* Sub-item */
 .local-nav {
   width: 240px;
@@ -465,7 +490,7 @@ nav {
 }
 .icon-dmx {
   display: inline-block;
-  background-image: url(/images/icondesktop@1x.v202007011410.png);
+  background-image: url(../images/icondesktop@1x.v202007011410.png);
   width: 20px;
   height: 21px;
   margin-bottom: -5px;
@@ -507,15 +532,14 @@ nav {
 .icon-dmx.icon-mc {
   background-position: -214px -155px;
 }
-
 .nav-item {
   display: block;
   padding: 5px;
   margin: 0 15px;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #ddd;
   position: relative;
 }
-.nav-item .sup-menu:hover {
+.sup-menu:hover {
   font-weight: bold;
 }
 .nav-item:hover .icon-dmx {
@@ -524,7 +548,7 @@ nav {
 .icon-right {
   position: absolute;
   top: 9px;
-  right: -16px;
+  right: 8px;
   font-size: 1.2rem;
   color: #aaa;
 }
@@ -541,57 +565,149 @@ nav {
 }
 .sup-menu {
   position: relative;
+  width: 220px;
 }
-
+.sup-menu:hover .sub-menu {
+  opacity: 1;
+  visibility: visible;
+}
 /* Sub-menu */
-.local-nav .sub-menu {
+.sub-menu {
+  padding-top: 10px;
   display: flex;
   position: absolute;
-  top: 0px;
-  left: 226px;
-  width: 470px;
-  /* height: 344px; */
+  top: -5px;
+  left: 221px;
+  min-width: 480px;
+  height: 369px;
   background-color: var(--white-color);
-  display: none;
+  opacity: 0;
+  visibility: hidden;
+  box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.1);
+  z-index: 100;
 }
-.local-nav .sub-menu .group {
-  width: 235px;
-  /* height: 344px; */
+ul .group {
+  min-width: 235px;
 }
 .group-title {
   padding: 10px 10px 5px 0;
   border-bottom: 1px solid #ccc;
   margin: 0 20px 0 10px;
 }
-
-.local-nav .sub-menu .item {
+.sub-menu .item {
   padding: 10px;
 }
-.local-nav .sub-menu .item a {
-  color: var(--gray-color);
-}
-.local-nav .sub-menu .item:hover a {
+.sub-menu .item:hover a {
   color: var(--blue-color);
-  font-weight: normal;
   text-decoration: none;
 }
-.local-nav .sub-menu:hover a {
+.sup-menu .sub-menu-2 {
+  position: absolute;
+  top: -35px;
+  right: 0;
+}
+.sub-menu.sub-menu-3 {
+  position: absolute;
+  top: -65px;
+  right: 0;
+}
+.sub-menu.sub-menu-4 {
+  position: absolute;
+  top: -96px;
+  right: 0;
+}
+.sub-menu.sub-menu-5 {
+  position: absolute;
+  top: -125px;
+  right: 0;
+}
+.sup-menu:hover .sub-menu-5 {
+  opacity: 1;
+  visibility: visible;
+  min-width: 247px;
+}
+.sub-menu.sub-menu-6 {
+  position: absolute;
+  top: -155px;
+  right: 0;
+}
+.sup-menu:hover .sub-menu-6 {
+  opacity: 1;
+  visibility: visible;
+  min-width: 750px;
+}
+.sub-menu.sub-menu-7 {
+  position: absolute;
+  top: -185px;
+  right: 0;
+}
+.sub-menu.sub-menu-8 {
+  position: absolute;
+  top: -215px;
+  right: 0;
+}
+.sup-menu:hover .sub-menu-8 {
+  opacity: 1;
+  visibility: visible;
+  min-width: 750px;
+}
+.sub-menu.sub-menu-9 {
+  position: absolute;
+  top: -245px;
+  right: 0;
+}
+.sub-menu.sub-menu-10 {
+  position: absolute;
+  top: -275px;
+  right: 0;
+}
+.sup-menu:hover .sub-menu-10 {
+  opacity: 1;
+  visibility: visible;
+  min-width: 750px;
+}
+.sub-menu.sub-menu-12 {
+  position: absolute;
+  top: -335px;
+  right: 0;
+}
+.sup-menu:hover .sub-menu-12 {
+  opacity: 1;
+  visibility: visible;
+  min-width: 980px;
+}
+.item__link {
   font-weight: normal;
 }
 .view-all {
-  font-size: 1.2rem;
+  font-size: 1.2rem !important;
   font-weight: bold !important;
+  color: var(--blue-color) !important;
 }
-a.view-all {
-  font-weight: bold;
-  text-decoration: none;
+/* Item new */
+.item-new {
+  width: 10px;
+  height: 15px;
+  background-color: #d0021b;
+  font-size: 1.3rem;
+  font-weight: normal;
+  color: var(--white-color);
+  padding: 5px;
+  /* margin-bottom: 2px; */
 }
 strong {
-  font-weight: bold;
+  text-transform: uppercase;
+  font-weight: 600;
   font-size: 1.3rem;
   padding-right: 10px;
 }
+/* Navigation details END */
 
+/* Carousel sale */
+.carousel-sale {
+  width: 710px;
+  padding: 10px;
+}
 footer {
   background: #fff;
 }
