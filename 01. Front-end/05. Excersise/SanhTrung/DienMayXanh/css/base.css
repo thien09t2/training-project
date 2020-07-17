@@ -370,7 +370,7 @@ nav {
 }
 .main-menu {
   color: var(--black-color);
-  width: 240px;
+  width: 220px;
   height: 50px;
   background-color: var(--white-color);
   font-size: 1.5rem;
@@ -486,7 +486,7 @@ nav {
 /* Navigation details */
 /* Sub-item */
 .local-nav {
-  width: 240px;
+  width: 220px;
 }
 .list-nav-item {
   font-size: 1.4rem;
@@ -496,15 +496,15 @@ nav {
 }
 .list-nav-item li.nav-item:last-child {
   border-bottom: none;
-  padding-bottom: 15px;
+  padding-bottom: 6px;
 }
 .bd-bottom::before {
   content: "";
   position: absolute;
   bottom: 0%;
   left: 7px;
-  width: 202px;
-  border-bottom: 1px solid #ddd;
+  width: 199px;
+  border-bottom: 1px solid #eee;
 }
 .icon-dmx {
   display: inline-block;
@@ -553,7 +553,7 @@ nav {
 .nav-item {
   display: block;
   padding: 5px;
-  margin: 0 15px;
+  margin: 0px 5px;
   position: relative;
 }
 
@@ -567,9 +567,9 @@ nav {
 .icon-right {
   position: absolute;
   top: 9px;
-  right: 8px;
-  font-size: 1.2rem;
-  color: #aaa;
+  right: 12px;
+  font-size: 1rem;
+  color: #ccc;
 }
 .nav-item .sup-menu a {
   text-align: center;
@@ -596,8 +596,8 @@ nav {
   padding-top: 10px;
   display: flex;
   position: absolute;
-  top: -5px;
-  left: 221px;
+  top: -13px;
+  left: 211px;
   min-width: 480px;
   height: 369px;
   background-color: var(--white-color);
@@ -623,23 +623,23 @@ ul .group {
 }
 .sup-menu .sub-menu-2 {
   position: absolute;
-  top: -34px;
-  right: 0;
+  top: -43px;
+  left: 211px;
 }
 .sub-menu.sub-menu-3 {
   position: absolute;
-  top: -65px;
-  right: 0;
+  top: -73px;
+  left: 211px;
 }
 .sub-menu.sub-menu-4 {
   position: absolute;
-  top: -96px;
-  right: 0;
+  top: -103px;
+  left: 211px;
 }
 .sub-menu.sub-menu-5 {
   position: absolute;
-  top: -125px;
-  right: 0;
+  top: -132px;
+  left: 211px;
 }
 .sup-menu:hover .sub-menu-5 {
   opacity: 1;
@@ -648,8 +648,8 @@ ul .group {
 }
 .sub-menu.sub-menu-6 {
   position: absolute;
-  top: -155px;
-  right: 0;
+  top: -163px;
+  left: 211px;
 }
 .sup-menu:hover .sub-menu-6 {
   opacity: 1;
@@ -658,13 +658,13 @@ ul .group {
 }
 .sub-menu.sub-menu-7 {
   position: absolute;
-  top: -185px;
-  right: 0;
+  top: -193px;
+  left: 211px;
 }
 .sub-menu.sub-menu-8 {
   position: absolute;
-  top: -215px;
-  right: 0;
+  top: -223px;
+  left: 211px;
 }
 .sup-menu:hover .sub-menu-8 {
   opacity: 1;
@@ -673,13 +673,13 @@ ul .group {
 }
 .sub-menu.sub-menu-9 {
   position: absolute;
-  top: -245px;
-  right: 0;
+  top: -252px;
+  left: 211px;
 }
 .sub-menu.sub-menu-10 {
   position: absolute;
-  top: -275px;
-  right: 0;
+  top: -283px;
+  left: 211px;
 }
 .sup-menu:hover .sub-menu-10 {
   opacity: 1;
@@ -688,8 +688,8 @@ ul .group {
 }
 .sub-menu.sub-menu-12 {
   position: absolute;
-  top: -335px;
-  right: 0;
+  top: -343px;
+  left: 211px;
 }
 .sup-menu:hover .sub-menu-12 {
   opacity: 1;
@@ -724,8 +724,8 @@ strong {
 
 /* Carousel sale */
 .carousel-sale {
-  width: 710px;
-  padding: 10px;
+  width: 690px;
+  padding: 10px 10px 15px 10px;
   position: relative;
 }
 .carousel-sale .carousel-indicators {
@@ -824,6 +824,62 @@ strong {
   font-weight: 500;
 }
 /* Carousel END */
+/* Hot new */
+.hotnew {
+  width: 200px;
+  height: 352px;
+  margin-top: 10px;
+}
+.experience-video {
+  height: 168px;
+  background-color: #fff;
+}
+.experience-video-heading {
+  height: 40px;
+  line-height: 20px;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  padding: 10px 0 10px 5px;
+  font-weight: 600;
+  border-bottom: 1px solid #ccc;
+}
+.experience-video-heading::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 5px solid var(--blue-color);
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-top: 5px solid transparent;
+  display: inline-block;
+  margin-left: 5px;
+}
+
+.experience-video ul li {
+  padding: 5px 10px;
+  font-size: 1.4rem;
+  border-bottom: 1px solid #ccc;
+}
+.experience-video ul li:last-child {
+  border-bottom: none;
+}
+.experience-video ul li a {
+  display: block;
+  color: var(--gray-color);
+  line-height: 1.8rem;
+}
+.experience-video-heading:hover {
+  color: var(--blue-color);
+}
+/* Experience video END */
+/* Image sale */
+.img-sale {
+  margin-top: 6px;
+  background-color: #fff;
+}
+.img-sale img {
+  padding: 5px 0px 5px 0px;
+}
 footer {
   background: #fff;
 }
