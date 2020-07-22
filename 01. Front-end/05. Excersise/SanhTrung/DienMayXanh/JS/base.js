@@ -14,5 +14,29 @@ $(document).ready(function () {
 });
 /**Carousel */
 $(".carousel").carousel({
-  interval: 1000 * 5
+  interval: 1000 * 5,
 });
+/**Slide show */
+// var slideIndex = [1, 1];
+// var slideId = ["mySlides"];
+// showSlides(1, 0);
+// showSlides(1, 1);
+
+// function plusSlides(n, no) {
+//   showSlides((slideIndex[no] += n), no);
+// }
+
+// function showSlides(n, no) {
+//   var i;
+//   var x = document.getElementsByClassName(slideId[no]);
+//   if (n > x.length) {
+//     slideId[no] = 1;
+//   }
+//   if (n < 1) {
+//     slideId[no] = x.length;
+//   }
+//   for (i = 0; i < x.length; i++) {
+//     x[i].style.display = "none";
+//   }
+//   x[slideIndex[no] - 1].style.display = "block";
+// }
