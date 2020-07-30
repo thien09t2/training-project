@@ -1,0 +1,19 @@
+header .main-logo {
+	font-size: 30px;
+    color: #fff;
+    font-weight: 700;
+}
+header .nav-link {
+	background-color: #fff;
+    margin-left: 8px;
+    margin-top: 4px;
+    width: 100px;
+    text-align: center;
+    font-weight: 600;
+    border-radius: 3px;
+    border: 1px solid;
+}
+header .nav-link.active {
+	background-color: black;
+	color: #fff;
+}
