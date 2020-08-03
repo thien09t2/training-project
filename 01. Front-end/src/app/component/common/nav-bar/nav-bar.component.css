@@ -1,0 +1,39 @@
+.active-on {
+    background-color: orange;
+    width: 80px;
+}
+
+.active-menu {
+    background-color: orange;
+}
+
+.menu-bar {
+    background-color: ghostwhite;
+    margin-top: 5px;
+    height: 53px;
+}
+
+.menu-bar button {
+    margin: 7px;
+    width: 80px;
+    border: 1px groove;
+    box-shadow: 1px 1px gray;
+}
+
+.logout {
+    float: right;
+    margin-right: 5px;
+}
+
+.fix-screen {
+    display: none;
+}
+
+@media screen and (max-width: 600px) {
+    .full-screen {
+        display: none;
+    }
+    .fix-screen {
+        display: block;
+    }
+}
