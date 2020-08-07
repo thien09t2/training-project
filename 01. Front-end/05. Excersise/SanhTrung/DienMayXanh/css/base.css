@@ -884,7 +884,7 @@ strong {
 /* Product sale for birthday */
 /* Product type 1 */
 .product-promo {
-  background-color:#132f86;
+  background-color: #132f86;
   height: auto;
   margin-top: 15px;
 }
@@ -1042,4 +1042,94 @@ strong {
 
 footer {
   background: #fff;
+}
+/* Product promotion in month END */
+/* Hot promotion in day START */
+.hot-promotion-in-day {
+  padding: 0;
+  margin-top: 15px;
+}
+.hot-promotion-in-day .title-promotion {
+  color: #cf1717;
+  font-size: 22px;
+  font-weight: 600;
+  margin: 15px 0;
+  line-height: 30px;
+}
+.hot-promotion-in-day .nav-tabs {
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.hot-promotion-in-day .nav-tabs .nav-tab-item {
+  flex: 1;
+  min-height: 50px;
+  text-align: center;
+  padding: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid #f3f3f3;
+  line-height: 16px;
+}
+.hot-promotion-in-day .nav-tabs .nav-tab-item:last-child {
+  border-right: none;
+}
+.hot-promotion-in-day .nav-tabs .nav-tab-item a {
+  padding: 7px;
+  font-size: 1.2rem;
+  color: #333;
+  border: none;
+}
+.hot-promotion-in-day .nav-tabs .nav-tab-item a:hover {
+  border: none;
+}
+.hot-promotion-in-day .nav-tabs .active .nav-link {
+  color: #fff;
+  font-weight: bold;
+}
+.hot-promotion-in-day .nav-tabs .nav-tab-item.active {
+  background-color: #cf1717;
+  color: #fff;
+}
+/* List of products */
+.list-promotion {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+}
+.list-promotion .product-promo--item {
+  background-color: var(--white-color);
+  width: 16.66666666%;
+  max-height: 400px;
+  position: relative;
+  padding: 10px;
+  border-right: 1px solid #eee;
+}
+/* Tab content */
+.tab-content > .active {
+  display: block;
+}
+.tab-content .tab-product.active {
+  display: block;
+}
+.tab-content .tab-product {
+  display: none;
+}
+/* Hot promotion in day END */
+/* Area ads */
+.area-ads {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.img-ads {
+  width: 34.3%;
+  padding-right: 10px;
+}
+.img-ads:last-child {
+  padding-right: 0;
 }
