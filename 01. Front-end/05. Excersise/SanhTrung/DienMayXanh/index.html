@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="./css/reset.css" />
     <link rel="stylesheet" href="css/base.css" />
   </head>
-
   <body class="d-flex flex-column h-100">
     <div class="container-fluid top-banner">
       <div class="row">
@@ -37,7 +36,6 @@
                 <i class="fas fa-chevron-down arrow-down"></i>
               </a>
             </div>
-
             <div class="modal">
               <div class="modal__overlay"></div>
               <div class="modal__body">
@@ -88,14 +86,13 @@
                 </div>
               </div>
             </div>
-
             <div class="search">
               <input
                 type="text"
                 class="search__input"
                 placeholder="Bạn tìm gì..."
               />
-              <a href="#" class="search__item"> </a>
+              <a href="#" class="search__item"></a>
             </div>
             <a href="#" id="history-buy">Lịch sử mua hàng</a>
             <a href="#" id="cart-box"></a>
@@ -143,9 +140,9 @@
                   >
                 </li>
                 <li>
-                  <a href="/" class="txt-banner__list--item bd-left">
-                    Bỏ cũ lấy mới máy lọc nước giảm 30%
-                  </a>
+                  <a href="/" class="txt-banner__list--item bd-left"
+                    >Bỏ cũ lấy mới máy lọc nước giảm 30%</a
+                  >
                 </li>
               </ul>
             </div>
@@ -171,9 +168,8 @@
                       <li class="group-title">
                         <strong>TIVI</strong>
                         <a href="#" class="view-all">
-                          Xem tất cả
-                          <i class="fas fa-caret-right"></i>
-                        </a>
+                          Xem tất cả<i class="fas fa-caret-right"></i
+                        ></a>
                       </li>
                       <li class="item">
                         <a href="#" class="item__link">Tivi trả góp 0-1%</a>
@@ -203,14 +199,12 @@
                         <a href="#" class="item__link">Tivi cao cấp</a>
                       </li>
                     </ul>
-
                     <!-- Group 2 -->
                     <ul class="group">
                       <li class="group-title">
                         <strong>LOA, ÂM THANH</strong>
                         <a href="#" class="view-all">
-                          Xem tất cả
-                          <i class="fas fa-caret-right"></i>
+                          Xem tất cả<i class="fas fa-caret-right"></i>
                         </a>
                       </li>
                       <li class="item">
@@ -245,8 +239,7 @@
                       <li class="group-title">
                         <strong>Tủ lạnh</strong>
                         <a href="#" class="view-all">
-                          Xem tất cả
-                          <i class="fas fa-caret-right"></i>
+                          Xem tất cả<i class="fas fa-caret-right"></i>
                         </a>
                       </li>
                       <li class="item">
@@ -1391,192 +1384,618 @@
       <section class="container-fluid product-promo">
         <div class="row">
           <div class="img-label-title">
-            <img class="img-birthday"
+            <img
+              class="img-birthday"
               src="../images/vunggiasocdesk-1200x80.png"
               alt="Vùng giá sockdeal"
             />
           </div>
-          <ul class="product-promo__list">
-            <a href="/" onclick="plusSlides(-1, 0)">
-              <div class="btn-prev"></div>
+          <!-- Carousel product promotions -->
+          <div
+            id="product-promotions"
+            class="carousel slide"
+            data-interval="false"
+          >
+            <!-- The slideshow -->
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <ul class="product-promo__list">
+                  <!-- Product 1 -->
+                  <li class="product-promo--item">
+                    <a href="/">
+                      <div class="img-container">
+                        <span class="tra-gop">Trả góp 0%</span>
+                        <img src="../images/tcl-40s6500-(5).jpg" alt="Tivi" />
+                      </div>
+                      <div class="img-label">
+                        <img
+                          src="../images/online-giảm-sốc-1x.png"
+                          alt="Gia soc"
+                        />
+                      </div>
+                      <p class="product-name">
+                        TCL Android TV 40"
+                        <span class="new-2020">Mới 2020</span>
+                      </p>
+                      <strong class="product-price-new">5.990.000₫</strong>
+                      <span class="product-price-old"> 6.990.000</span>
+                      <span class="percent-sale">(-14%)</span>
+                    </a>
+
+                    <div class="rating">
+                      <span class="rating__start">
+                        <b>4.2</b>/5
+                        <i class="fas fa-star"></i>
+                      </span>
+                      <span class="sl-rating">70 đánh giá</span>
+                    </div>
+                  </li>
+                  <!-- Product 2 -->
+                  <li class="product-promo--item">
+                    <a href="/">
+                      <div class="img-container">
+                        <span class="tra-gop">Trả góp 0%</span>
+                        <img
+                          src="../images/panasonic-nr-ba229pkvn-300x300.jpg"
+                          alt="Tủ lạnh panasonic"
+                        />
+                      </div>
+                      <div class="img-label">
+                        <img
+                          src="../images/online-giảm-sốc-1x.png"
+                          alt="Gia soc"
+                        />
+                      </div>
+                      <p class="product-name">
+                        Panasonic Inverter 188 lít
+                        <span class="new-2020">Mới 2020</span>
+                      </p>
+                      <strong class="product-price-new">6.690.000₫</strong>
+                      <span class="price-sale"> Giảm <b>800.000₫</b></span>
+                    </a>
+
+                    <div class="rating">
+                      <span class="rating__start">
+                        <b>2.9</b>/5
+                        <i class="fas fa-star"></i>
+                      </span>
+                      <span class="sl-rating">11 đánh giá</span>
+                    </div>
+                  </li>
+                  <!-- Product 3 -->
+                  <li class="product-promo--item product-promo--item-type2">
+                    <a href="/">
+                      <div class="img-container">
+                        <span class="tra-gop">Trả góp 0%</span>
+                        <img
+                          src="../images/samsung-ww85k54e0ux-sv-10-300x300.jpg"
+                          alt="Máy giặt samsung"
+                        />
+                      </div>
+                      <div class="img-label">
+                        <img
+                          src="../images/online-giảm-sốc-1x.png"
+                          alt="Gia soc"
+                        />
+                      </div>
+                      <p class="product-name">Samsung Inverter 8.5 Kg</p>
+                      <strong class="product-price-old">12.990.000₫ </strong>
+                      <div class="product-price-sale">
+                        <span class="product-sale">
+                          Online giảm <span class="percent-sale">23%</span> còn
+                          :
+                        </span>
+                        <strong class="product-price-new">9.990.000₫</strong>
+                      </div>
+                    </a>
+                    <div class="rating">
+                      <span class="rating__start">
+                        <b>3.8</b>/5
+                        <i class="fas fa-star"></i>
+                      </span>
+                      <span class="sl-rating">24 đánh giá</span>
+                    </div>
+                  </li>
+                  <!-- Product 4 -->
+                  <li class="product-promo--item">
+                    <a href="/">
+                      <div class="img-container">
+                        <span class="tra-gop">Trả góp 0%</span>
+                        <img
+                          src="../images/toshiba-ras-h10d2kcvg-v-2-550x160.jpg"
+                          alt="Máy lạnh toshiba"
+                        />
+                      </div>
+                      <div class="img-label qua-ngon"></div>
+                      <p class="product-name">
+                        Toshiba Inverter 1 HP
+                        <span class="new-2020">Mới 2020</span>
+                      </p>
+                      <strong class="product-price-new">9.690.000₫</strong>
+                      <span class="price-sale">
+                        Giảm <b>500.000₫</b> và quà <b>800.000₫</b>
+                      </span>
+                    </a>
+                    <div class="rating">
+                      <span class="rating__start">
+                        <b>3.8</b>/5
+                        <i class="fas fa-star"></i>
+                      </span>
+                      <span class="sl-rating">156 đánh giá</span>
+                    </div>
+                  </li>
+                  <!-- Product 5 -->
+                  <li class="product-promo--item product-promo--item-type2">
+                    <a href="/">
+                      <div class="img-container">
+                        <span class="tra-gop">Trả góp 0%</span>
+                        <img
+                          src="../images/sony-kd-43x8000g-(4).jpg"
+                          alt="Tivi sony"
+                        />
+                      </div>
+                      <div class="img-label">
+                        <img
+                          src="../images/online-giảm-sốc-1x.png"
+                          alt="Gia soc"
+                        />
+                      </div>
+                      <p class="product-name">Sony Android TV 4K 43"</p>
+                      <strong class="product-price-old">12.400.000₫ </strong>
+                      <div class="product-price-sale">
+                        <span class="product-sale">
+                          Online giảm <span class="percent-sale">22%</span> còn
+                          :
+                        </span>
+                        <strong class="product-price-new"> 9.600.000₫ </strong>
+                      </div>
+                    </a>
+                    <div class="rating">
+                      <span class="rating__start">
+                        <b>3.9</b>/5
+                        <i class="fas fa-star"></i>
+                      </span>
+                      <span class="sl-rating">77 đánh giá</span>
+                    </div>
+                  </li>
+                  <!-- Product 6 -->
+                  <li class="product-promo--item">
+                    <a href="/">
+                      <div class="img-container">
+                        <span class="tra-gop">Trả góp 0%</span>
+                        <img
+                          src="../images/may-giat-panasonic-na-f90a4grv-daidien-300x300.jpg"
+                          alt="Máy giặt panasonic"
+                        />
+                      </div>
+                      <div class="img-label">
+                        <img
+                          src="../images/boculaymoilabel.png"
+                          alt="Bỏ cũ lấy mới"
+                        />
+                      </div>
+                      <p class="product-name">
+                        Panasonic 9 Kg <span class="new-2020"></span>
+                      </p>
+                      <strong class="product-price-new">6.890.000₫</strong>
+                      <span class="price-sale"> Giảm <b>1.100.000₫</b></span>
+                    </a>
+
+                    <div class="rating">
+                      <span class="rating__start">
+                        <b>4.3</b>/5
+                        <i class="fas fa-star"></i>
+                      </span>
+                      <span class="sl-rating">176 đánh giá</span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="carousel-item">
+                <ul class="product-promo__list">
+                  <!-- Product 1 -->
+                  <li class="product-promo--item">
+                    <a href="/">
+                      <div class="img-container">
+                        <span class="tra-gop">Trả góp 0%</span>
+                        <img
+                          src="../images/panasonic-nr-ba229pkvn-300x300.jpg"
+                          alt="Tủ lạnh panasonic"
+                        />
+                      </div>
+                      <div class="img-label">
+                        <img
+                          src="../images/online-giảm-sốc-1x.png"
+                          alt="Gia soc"
+                        />
+                      </div>
+                      <p class="product-name">
+                        Panasonic Inverter 188 lít
+                        <span class="new-2020">Mới 2020</span>
+                      </p>
+                      <strong class="product-price-new">6.690.000₫</strong>
+                      <span class="price-sale"> Giảm <b>800.000₫</b></span>
+                    </a>
+
+                    <div class="rating">
+                      <span class="rating__start">
+                        <b>2.9</b>/5
+                        <i class="fas fa-star"></i>
+                      </span>
+                      <span class="sl-rating">11 đánh giá</span>
+                    </div>
+                  </li>
+                  <!-- Product 2 -->
+                  <li class="product-promo--item product-promo--item-type2">
+                    <a href="/">
+                      <div class="img-container">
+                        <span class="tra-gop">Trả góp 0%</span>
+                        <img
+                          src="../images/samsung-ww85k54e0ux-sv-10-300x300.jpg"
+                          alt="Máy giặt samsung"
+                        />
+                      </div>
+                      <div class="img-label">
+                        <img
+                          src="../images/online-giảm-sốc-1x.png"
+                          alt="Gia soc"
+                        />
+                      </div>
+                      <p class="product-name">Samsung Inverter 8.5 Kg</p>
+                      <strong class="product-price-old">12.990.000₫ </strong>
+                      <div class="product-price-sale">
+                        <span class="product-sale">
+                          Online giảm <span class="percent-sale">23%</span> còn
+                          :
+                        </span>
+                        <strong class="product-price-new">9.990.000₫</strong>
+                      </div>
+                    </a>
+                    <div class="rating">
+                      <span class="rating__start">
+                        <b>3.8</b>/5
+                        <i class="fas fa-star"></i>
+                      </span>
+                      <span class="sl-rating">24 đánh giá</span>
+                    </div>
+                  </li>
+                  <!-- Product 3 -->
+                  <li class="product-promo--item">
+                    <a href="/">
+                      <div class="img-container">
+                        <span class="tra-gop">Trả góp 0%</span>
+                        <img
+                          src="../images/toshiba-ras-h10d2kcvg-v-2-550x160.jpg"
+                          alt="Máy lạnh toshiba"
+                        />
+                      </div>
+                      <div class="img-label qua-ngon"></div>
+                      <p class="product-name">
+                        Toshiba Inverter 1 HP
+                        <span class="new-2020">Mới 2020</span>
+                      </p>
+                      <strong class="product-price-new">9.690.000₫</strong>
+                      <span class="price-sale">
+                        Giảm <b>500.000₫</b> và quà <b>800.000₫</b>
+                      </span>
+                    </a>
+                    <div class="rating">
+                      <span class="rating__start">
+                        <b>3.8</b>/5
+                        <i class="fas fa-star"></i>
+                      </span>
+                      <span class="sl-rating">156 đánh giá</span>
+                    </div>
+                  </li>
+                  <!-- Product 4 -->
+                  <li class="product-promo--item product-promo--item-type2">
+                    <a href="/">
+                      <div class="img-container">
+                        <span class="tra-gop">Trả góp 0%</span>
+                        <img
+                          src="../images/sony-kd-43x8000g-(4).jpg"
+                          alt="Tivi sony"
+                        />
+                      </div>
+                      <div class="img-label">
+                        <img
+                          src="../images/online-giảm-sốc-1x.png"
+                          alt="Gia soc"
+                        />
+                      </div>
+                      <p class="product-name">Sony Android TV 4K 43"</p>
+                      <strong class="product-price-old">12.400.000₫ </strong>
+                      <div class="product-price-sale">
+                        <span class="product-sale">
+                          Online giảm <span class="percent-sale">22%</span> còn
+                          :
+                        </span>
+                        <strong class="product-price-new"> 9.600.000₫ </strong>
+                      </div>
+                    </a>
+                    <div class="rating">
+                      <span class="rating__start">
+                        <b>3.9</b>/5
+                        <i class="fas fa-star"></i>
+                      </span>
+                      <span class="sl-rating">77 đánh giá</span>
+                    </div>
+                  </li>
+                  <!-- Product 5 -->
+                  <li class="product-promo--item">
+                    <a href="/">
+                      <div class="img-container">
+                        <span class="tra-gop">Trả góp 0%</span>
+                        <img
+                          src="../images/may-giat-panasonic-na-f90a4grv-daidien-300x300.jpg"
+                          alt="Máy giặt panasonic"
+                        />
+                      </div>
+                      <div class="img-label">
+                        <img
+                          src="../images/boculaymoilabel.png"
+                          alt="Bỏ cũ lấy mới"
+                        />
+                      </div>
+                      <p class="product-name">
+                        Panasonic 9 Kg <span class="new-2020"></span>
+                      </p>
+                      <strong class="product-price-new">6.890.000₫</strong>
+                      <span class="price-sale"> Giảm <b>1.100.000₫</b></span>
+                    </a>
+
+                    <div class="rating">
+                      <span class="rating__start">
+                        <b>4.3</b>/5
+                        <i class="fas fa-star"></i>
+                      </span>
+                      <span class="sl-rating">176 đánh giá</span>
+                    </div>
+                  </li>
+                  <!-- Product 6 -->
+                  <li class="product-promo--item">
+                    <a href="/">
+                      <div class="img-container">
+                        <span class="tra-gop">Trả góp 0%</span>
+                        <img
+                          src="../images/tcl-32s6500-550x340.jpg"
+                          alt="Máy giặt panasonic"
+                        />
+                      </div>
+                      <div class="img-label">
+                        <img
+                          src="../images/boculaymoilabel.png"
+                          alt="Bỏ cũ lấy mới"
+                        />
+                      </div>
+                      <p class="product-name">
+                        TCL Android TV 32 <span class="new-2020"></span>
+                      </p>
+                      <strong class="product-price-new">4.690.000₫</strong>
+                      <span class="price-sale"> Giảm <b>1.100.000₫</b></span>
+                    </a>
+
+                    <div class="rating">
+                      <span class="rating__start">
+                        <b>4.3</b>/5
+                        <i class="fas fa-star"></i>
+                      </span>
+                      <span class="sl-rating">176 đánh giá</span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="carousel-item">
+                <ul class="product-promo__list">
+                  <!-- Product 1 -->
+                  <li class="product-promo--item product-promo--item-type2">
+                    <a href="/">
+                      <div class="img-container">
+                        <span class="tra-gop">Trả góp 0%</span>
+                        <img
+                          src="../images/samsung-ww85k54e0ux-sv-10-300x300.jpg"
+                          alt="Máy giặt samsung"
+                        />
+                      </div>
+                      <div class="img-label">
+                        <img
+                          src="../images/online-giảm-sốc-1x.png"
+                          alt="Gia soc"
+                        />
+                      </div>
+                      <p class="product-name">Samsung Inverter 8.5 Kg</p>
+                      <strong class="product-price-old">12.990.000₫ </strong>
+                      <div class="product-price-sale">
+                        <span class="product-sale">
+                          Online giảm <span class="percent-sale">23%</span> còn
+                          :
+                        </span>
+                        <strong class="product-price-new">9.990.000₫</strong>
+                      </div>
+                    </a>
+                    <div class="rating">
+                      <span class="rating__start">
+                        <b>3.8</b>/5
+                        <i class="fas fa-star"></i>
+                      </span>
+                      <span class="sl-rating">24 đánh giá</span>
+                    </div>
+                  </li>
+                  <!-- Product 2 -->
+                  <li class="product-promo--item">
+                    <a href="/">
+                      <div class="img-container">
+                        <span class="tra-gop">Trả góp 0%</span>
+                        <img
+                          src="../images/toshiba-ras-h10d2kcvg-v-2-550x160.jpg"
+                          alt="Máy lạnh toshiba"
+                        />
+                      </div>
+                      <div class="img-label qua-ngon"></div>
+                      <p class="product-name">
+                        Toshiba Inverter 1 HP
+                        <span class="new-2020">Mới 2020</span>
+                      </p>
+                      <strong class="product-price-new">9.690.000₫</strong>
+                      <span class="price-sale">
+                        Giảm <b>500.000₫</b> và quà <b>800.000₫</b>
+                      </span>
+                    </a>
+                    <div class="rating">
+                      <span class="rating__start">
+                        <b>3.8</b>/5
+                        <i class="fas fa-star"></i>
+                      </span>
+                      <span class="sl-rating">156 đánh giá</span>
+                    </div>
+                  </li>
+                  <!-- Product 3 -->
+                  <li class="product-promo--item product-promo--item-type2">
+                    <a href="/">
+                      <div class="img-container">
+                        <span class="tra-gop">Trả góp 0%</span>
+                        <img
+                          src="../images/sony-kd-43x8000g-(4).jpg"
+                          alt="Tivi sony"
+                        />
+                      </div>
+                      <div class="img-label">
+                        <img
+                          src="../images/online-giảm-sốc-1x.png"
+                          alt="Gia soc"
+                        />
+                      </div>
+                      <p class="product-name">Sony Android TV 4K 43"</p>
+                      <strong class="product-price-old">12.400.000₫ </strong>
+                      <div class="product-price-sale">
+                        <span class="product-sale">
+                          Online giảm <span class="percent-sale">22%</span> còn
+                          :
+                        </span>
+                        <strong class="product-price-new"> 9.600.000₫ </strong>
+                      </div>
+                    </a>
+                    <div class="rating">
+                      <span class="rating__start">
+                        <b>3.9</b>/5
+                        <i class="fas fa-star"></i>
+                      </span>
+                      <span class="sl-rating">77 đánh giá</span>
+                    </div>
+                  </li>
+                  <!-- Product 4 -->
+                  <li class="product-promo--item">
+                    <a href="/">
+                      <div class="img-container">
+                        <span class="tra-gop">Trả góp 0%</span>
+                        <img
+                          src="../images/may-giat-panasonic-na-f90a4grv-daidien-300x300.jpg"
+                          alt="Máy giặt panasonic"
+                        />
+                      </div>
+                      <div class="img-label">
+                        <img
+                          src="../images/boculaymoilabel.png"
+                          alt="Bỏ cũ lấy mới"
+                        />
+                      </div>
+                      <p class="product-name">
+                        Panasonic 9 Kg <span class="new-2020"></span>
+                      </p>
+                      <strong class="product-price-new">6.890.000₫</strong>
+                      <span class="price-sale"> Giảm <b>1.100.000₫</b></span>
+                    </a>
+
+                    <div class="rating">
+                      <span class="rating__start">
+                        <b>4.3</b>/5
+                        <i class="fas fa-star"></i>
+                      </span>
+                      <span class="sl-rating">176 đánh giá</span>
+                    </div>
+                  </li>
+                  <!-- Product 5 -->
+                  <li class="product-promo--item">
+                    <a href="/">
+                      <div class="img-container">
+                        <span class="tra-gop">Trả góp 0%</span>
+                        <img
+                          src="../images/tcl-32s6500-550x340.jpg"
+                          alt="Máy giặt panasonic"
+                        />
+                      </div>
+                      <div class="img-label">
+                        <img
+                          src="../images/boculaymoilabel.png"
+                          alt="Bỏ cũ lấy mới"
+                        />
+                      </div>
+                      <p class="product-name">
+                        TCL Android TV 32 <span class="new-2020"></span>
+                      </p>
+                      <strong class="product-price-new">4.690.000₫</strong>
+                      <span class="price-sale"> Giảm <b>1.100.000₫</b></span>
+                    </a>
+
+                    <div class="rating">
+                      <span class="rating__start">
+                        <b>4.3</b>/5
+                        <i class="fas fa-star"></i>
+                      </span>
+                      <span class="sl-rating">176 đánh giá</span>
+                    </div>
+                  </li>
+                  <!-- Product 6 -->
+                  <li class="product-promo--item">
+                    <a href="/">
+                      <div class="img-container">
+                        <span class="tra-gop">Trả góp 0%</span>
+                        <img
+                          src="../images/kangaroo-kg-265nc1-300x300.jpg"
+                          alt="Máy lạnh toshiba"
+                        />
+                      </div>
+                      <div class="img-label qua-ngon"></div>
+                      <p class="product-name">
+                        Tủ đông Kangaroo 140 lít KG 265NC1
+                      </p>
+                      <strong class="product-price-new">5.990.000₫</strong>
+                      <span class="price-sale"> Giảm <b>500.000₫</b> </span>
+                    </a>
+                    <div class="rating">
+                      <span class="rating__start">
+                        <b>3.8</b>/5
+                        <i class="fas fa-star"></i>
+                      </span>
+                      <span class="sl-rating">156 đánh giá</span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- Left and right controls -->
+            <a
+              class="carousel-control-prev"
+              href="#product-promotions"
+              role="button"
+              data-slide="prev"
+            >
+              <span class="btn-prev" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
             </a>
-            <!-- Product 1 -->
-            <li class="product-promo--item mySlides">
-              <a href="/">
-                <div class="img-container">
-                  <span class="tra-gop">Trả góp 0%</span>
-                  <img
-                    src="../images/tcl-40s6500-(5).jpg"
-                    alt="Tivi"
-                  />
-                </div>
-                <div class="img-label">
-                  <img src="../images/online-giảm-sốc-1x.png" alt="Gia soc" />
-                </div>
-                <p class="product-name">
-                  TCL Android TV 40" <span class="new-2020">Mới 2020</span>
-                </p>
-                <strong class="product-price-new">5.990.000₫</strong>
-                <span class="product-price-old"> 6.990.000</span>
-                <span class="percent-sale">(-14%)</span>
-              </a>
-
-              <div class="rating">
-                <span class="rating__start">
-                  <b>4.2</b>/5
-                  <i class="fas fa-star"></i>
-                </span>
-                <span class="sl-rating">70 đánh giá</span>
-              </div>
-            </li>
-            <!-- Product 2 -->
-            <li class="product-promo--item mySlides">
-              <a href="/">
-                <div class="img-container">
-                  <span class="tra-gop">Trả góp 0%</span>
-                  <img
-                    src="../images/panasonic-nr-ba229pkvn-300x300.jpg"
-                    alt="Tủ lạnh panasonic"
-                  />
-                </div>
-                <div class="img-label">
-                  <img src="../images/online-giảm-sốc-1x.png" alt="Gia soc" />
-                </div>
-                <p class="product-name">
-                  Panasonic Inverter 188 lít  <span class="new-2020">Mới 2020</span>
-                </p>
-                <strong class="product-price-new">6.690.000₫</strong>
-                <span class="price-sale"> Giảm <b>800.000₫</b></span>
-              </a>
-
-              <div class="rating">
-                <span class="rating__start">
-                  <b>2.9</b>/5
-                  <i class="fas fa-star"></i>
-                </span>
-                <span class="sl-rating">11 đánh giá</span>
-              </div>
-            </li>
-            <!-- Product 3 -->
-            <li class="product-promo--item mySlides product-promo--item-type2">
-              <a href="/">
-                <div class="img-container">
-                  <span class="tra-gop">Trả góp 0%</span>
-                  <img
-                    src="../images/samsung-ww85k54e0ux-sv-10-300x300.jpg"
-                    alt="Máy giặt samsung"
-                  />
-                </div>
-                <div class="img-label">
-                  <img src="../images/online-giảm-sốc-1x.png" alt="Gia soc" />
-                </div>
-                <p class="product-name">Samsung Inverter 8.5 Kg</p>
-                <strong class="product-price-old">12.990.000₫ </strong>
-                <div class="product-price-sale">
-                  <span class="product-sale">
-                    Online giảm <span class="percent-sale">23%</span> còn :
-                  </span>
-                  <strong class="product-price-new">9.990.000₫</strong>
-                </div>
-              </a>
-              <div class="rating">
-                <span class="rating__start">
-                  <b>3.8</b>/5
-                  <i class="fas fa-star"></i>
-                </span>
-                <span class="sl-rating">24 đánh giá</span>
-              </div>
-            </li>
-            <!-- Product 4 -->
-            <li class="product-promo--item mySlides">
-              <a href="/">
-                <div class="img-container">
-                  <span class="tra-gop">Trả góp 0%</span>
-                  <img
-                    src="../images/toshiba-ras-h10d2kcvg-v-2-550x160.jpg"
-                    alt="Máy lạnh toshiba"
-                  />
-                </div>
-                <div class="img-label qua-ngon">
-                </div>
-                <p class="product-name">
-                  Toshiba Inverter 1 HP   <span class="new-2020">Mới 2020</span>
-                </p>
-                <strong class="product-price-new">9.690.000₫</strong>
-                <span class="price-sale"> Giảm <b>500.000₫</b> và quà <b>800.000₫</b> </span>
-              </a>
-              <div class="rating">
-                <span class="rating__start">
-                  <b>3.8</b>/5
-                  <i class="fas fa-star"></i>
-                </span>
-                <span class="sl-rating">156 đánh giá</span>
-              </div>
-            </li>
-            <!-- Product 5 -->
-            <li class="product-promo--item mySlides product-promo--item-type2">
-              <a href="/">
-                <div class="img-container">
-                  <span class="tra-gop">Trả góp 0%</span>
-                  <img
-                    src="../images/sony-kd-43x8000g-(4).jpg"
-                    alt="Tivi sony"
-                  />
-                </div>
-                <div class="img-label">
-                  <img src="../images/online-giảm-sốc-1x.png" alt="Gia soc" />
-                </div>
-                <p class="product-name">Sony Android TV 4K 43" </p>
-                <strong class="product-price-old">12.400.000₫  </strong>
-                <div class="product-price-sale">
-                  <span class="product-sale">
-                    Online giảm <span class="percent-sale">22%</span> còn :
-                  </span>
-                  <strong class="product-price-new"> 9.600.000₫ </strong>
-                </div>
-              </a>
-              <div class="rating">
-                <span class="rating__start">
-                  <b>3.9</b>/5
-                  <i class="fas fa-star"></i>
-                </span>
-                <span class="sl-rating">77 đánh giá</span>
-              </div>
-            </li>
-            <!-- Product 6 -->
-            <li class="product-promo--item mySlides">
-              <a href="/">
-                <div class="img-container">
-                  <span class="tra-gop">Trả góp 0%</span>
-                  <img
-                    src="../images/may-giat-panasonic-na-f90a4grv-daidien-300x300.jpg"
-                    alt="Máy giặt panasonic"
-                  />
-                </div>
-                <div class="img-label">
-                  <img src="../images/boculaymoilabel.png" alt="Bỏ cũ lấy mới" />
-                </div>
-                <p class="product-name">
-                  Panasonic 9 Kg   <span class="new-2020"></span>
-                </p>
-                <strong class="product-price-new">6.890.000₫</strong>
-                <span class="price-sale"> Giảm <b>1.100.000₫</b></span>
-              </a>
-
-              <div class="rating">
-                <span class="rating__start">
-                  <b>4.3</b>/5
-                  <i class="fas fa-star"></i>
-                </span>
-                <span class="sl-rating">176 đánh giá</span>
-              </div>
-            </li>
-            <a href="/" onclick="plusSlides(1, 0)">
-              <div class="btn-next"></div>
+            <a
+              class="carousel-control-next"
+              href="#product-promotions"
+              role="button"
+              data-slide="next"
+            >
+              <span class="btn-next" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
             </a>
-          </ul>
+          </div>
         </div>
       </section>
+
       <div class="discount-in-day">Discount in day</div>
       <div class="hot-videos">Hot videos</div>
     </main>
