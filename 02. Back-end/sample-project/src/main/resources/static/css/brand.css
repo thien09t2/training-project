@@ -2,6 +2,8 @@ header .main-logo {
 	font-size: 30px;
     color: #fff;
     font-weight: 700;
+    text-transform: uppercase;
+    padding-top: 2px;
 }
 header .nav-link {
 	background-color: #fff;
@@ -16,4 +18,21 @@ header .nav-link {
 header .nav-link.active {
 	background-color: black;
 	color: #fff;
+}
+
+.sub-header {
+	border: 1px solid #333;
+    border-radius: 5px;
+    height: 46px;
+    padding: 3px 3px;
+    background: #e9ecef;
+    color: #fff;
+    margin-bottom: 10px;
+}
+.sub-header .sub-title {
+	font-weight: 900;
+    color: #333;
+    padding-left: 20px;
+    font-size: 20px;
+    padding-top: 3px;
 }

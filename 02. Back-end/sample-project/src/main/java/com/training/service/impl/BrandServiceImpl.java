@@ -3,6 +3,7 @@ package com.training.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,15 +20,13 @@ public class BrandServiceImpl implements IBrandService {
 	IBrandDao brandDao;
 
 	@Override
-	public ResponseDataModel add(BrandEntity brandEntity) {
-		// TODO Auto-generated method stub
-		return null;
+	public BrandEntity add(BrandEntity brandEntity) {
+		return brandDao.saveAndFlush(brandEntity);
 	}
 
 	@Override
-	public ResponseDataModel update(BrandEntity brandEntity) {
-		// TODO Auto-generated method stub
-		return null;
+	public BrandEntity update(BrandEntity brandEntity) {
+		return brandDao.saveAndFlush(brandEntity);
 	}
 
 	@Override
@@ -37,7 +36,17 @@ public class BrandServiceImpl implements IBrandService {
 	}
 
 	@Override
+	public BrandEntity findByBrandId(Long brandId) {
+		return brandDao.findByBrandId(brandId);
+	}
+
+	@Override
 	public List<BrandEntity> getAll() {
-		return brandDao.findAll();
+		return brandDao.findAll(Sort.by(Sort.Direction.DESC, "brandId"));
+	}
+
+	@Override
+	public BrandEntity findByBrandName(String brandName) {
+		return brandDao.findByBrandName(brandName);
 	}
 }

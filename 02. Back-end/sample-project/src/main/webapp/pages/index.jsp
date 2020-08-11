@@ -6,9 +6,9 @@
 <head>
 <title>Điện Máy Xanh</title>
 <jsp:include page="../common/head.jsp" />
+<link rel="stylesheet" href="<c:url value='/css/index.css'/>">
 </head>
 <body class="d-flex flex-column h-100">
-	<jsp:include page="../common/header.jsp" />
 	<div class="container-fluid">
 		<div class="top-banner row">
 			<img class="mx-auto" src="images/Tragop-1200-44-1200x44-1.png" />
@@ -25,7 +25,7 @@
 						<b>Xem giá, tồn kho ở</b>
 						<a class="province" data-toggle="modal" data-target="#selectProvinceModal"> TP. Hồ Chí Minh <i class="fas fa-chevron-down"></i></a>
 						<div class="modal fade" id="selectProvinceModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-							<div class="modal-dialog modal-md">								
+							<div class="modal-dialog modal-md">
 							  	<div class="modal-content">
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
 									<div class="modal-body">
@@ -51,15 +51,15 @@
 											</div>
 											<div class="form-group">
 												<input type="text" class="form-control" id="detailAddress" placeholder="Số nhà, tên đường" disabled>
-											</div>										
+											</div>
 										</form>	
 									</div>	
 									<div class="modal-footer">
 										<button type="button" class="btn btn-default accept-btn" data-dismiss="modal">Xác Nhận</button>
-									</div>							
+									</div>
 								</div>
 							</div>
-						  </div>
+						</div>
 					</div>
 					<div class="search-area">
 						<form class="search-form">
@@ -72,14 +72,14 @@
 						</form>
 					</div>
 				</div>
-				<div class="right-area float-right">					
+				<div class="right-area float-right">
 					<a href="/kinh-nghiem-hay" class="refer-link">Kinh nghiệm hay <span>&amp; Tin khuyến mãi <label class="arr-down"></label></span></a>
 					<a href="/kinh-nghiem-hay" class="refer-link">1800.1061 <span>&amp; Tổng đài miễn phí </span></a>
 					<a href="/kinh-nghiem-hay" class="refer-link one-line"><i class="fas fa-shopping-cart"></i></a>
 					<a href="/kinh-nghiem-hay" class="refer-link one-line">Lịch sử mua hàng</a>
 				</div>
 			</div>	
-		</div>				
+		</div>
 	</header>
 	<nav>
 		<div class="container">
@@ -538,7 +538,7 @@
 					<img src="images/26064-260x64.png"/>
 					<img src="images/260X64.pngdesk-260x64.png"/>
 					<img src="images/StickyBannerTCL-2-260x64.png"/>
-				</div>				
+				</div>
 			</div>
 		</div>
 		<section class="row top-deal">
@@ -566,9 +566,9 @@
 										<span>Trả góp <b>0%</b></span>
 									</div>
 									<div class="prod-avatar">
-										<img  src="images/tcl-40s6500-550x340.jpg">
+										<img src="images/tcl-40s6500-550x340.jpg">
 									</div>
-									<div class="prod-deal">									
+									<div class="prod-deal">
 									</div>
 									<div class="prod-name">
 										TCL Android TV 40" 
@@ -2174,5 +2174,6 @@
 		</div>
 	</footer>
 	<jsp:include page="../common/footer.jsp" />
+	<script src="<c:url value='/js/index.js'/>"></script>
 </body>
 </html>

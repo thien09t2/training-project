@@ -7,11 +7,15 @@ import com.training.model.ResponseDataModel;
 
 public interface IBrandService {
 
-	ResponseDataModel add(BrandEntity brandEntity);
+	BrandEntity add(BrandEntity brandEntity);
 
-	ResponseDataModel update(BrandEntity brandEntity);
+	BrandEntity update(BrandEntity brandEntity);
 
 	ResponseDataModel delete(Long brandId);
 
 	List<BrandEntity> getAll();
+
+	BrandEntity findByBrandId(Long brandId);
+
+	BrandEntity findByBrandName(String brandName);
 }

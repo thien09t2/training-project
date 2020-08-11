@@ -9,4 +9,6 @@ import com.training.entity.BrandEntity;
 public interface IBrandDao extends JpaRepository<BrandEntity, Long> {
 
 	BrandEntity findByBrandId(Long brandId);
+
+	BrandEntity findByBrandName(String brandName);
 }
