@@ -109,7 +109,7 @@
 		</dependency> 
 	</dependencies>
 	<build>
-		<finalName>kubet-core</finalName>
+		<finalName>sample-project</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
