@@ -1478,7 +1478,12 @@ footer {
   margin: 10px 0 10px 0;
 }
 .col-footer .social .social__share {
-  margin: 0 12px;
+  margin: 0 12px; 
+}
+.group-icon-dmx {
+  position: relative;
+  top: 30px;
+  left: -5px;
 }
 .col-footer .social .social__share .iconfb {
   position: absolute;
@@ -1570,4 +1575,5 @@ footer {
   text-align: center;
   background-color: rgba(0,0,0,.6);
   border-radius: 20px;
+  cursor: pointer;
 }
