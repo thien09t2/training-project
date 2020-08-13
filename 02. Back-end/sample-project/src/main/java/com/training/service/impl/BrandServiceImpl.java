@@ -31,7 +31,7 @@ public class BrandServiceImpl implements IBrandService {
 
 	@Override
 	public ResponseDataModel delete(Long brandId) {
-		// TODO Auto-generated method stub
+		brandDao.deleteById(brandId);
 		return null;
 	}
 
