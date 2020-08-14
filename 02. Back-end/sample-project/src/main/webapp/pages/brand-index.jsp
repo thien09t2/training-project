@@ -30,7 +30,7 @@
 					<tr>
 						<td>${brand.brandId}</td>
 						<td>${brand.brandName}</td>
-						<td><img src="${brand.logo}"></td>
+						<td class="text-center"><img src="${brand.logo}"></td>
 						<td>${brand.description}</td>
 						<td class="action-btns" data-id="${brand.brandId}"><a class="edit-btn" href="/brand/update?id=${brand.brandId}"><i class="fas fa-edit"></i></a> | <a class="delete-btn" href="/brand/delete?id=${brand.brandId}"><i class="fas fa-trash-alt"></i></a></td>
 					</tr>

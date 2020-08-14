@@ -6,6 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name = "BRAND")
@@ -24,6 +27,9 @@ public class BrandEntity {
 
 	@Column(name = "LOGO", nullable = true)
 	private String logo;
+
+	@Transient
+	private MultipartFile[] logoFiles;
 
 	public BrandEntity() {
 	}
@@ -82,5 +88,19 @@ public class BrandEntity {
 	 */
 	public void setLogo(String logo) {
 		this.logo = logo;
+	}
+
+	/**
+	 * @return the logoFiles
+	 */
+	public MultipartFile[] getLogoFiles() {
+		return logoFiles;
+	}
+
+	/**
+	 * @param logoFiles the logoFiles to set
+	 */
+	public void setLogoFiles(MultipartFile[] logoFiles) {
+		this.logoFiles = logoFiles;
 	}
 }

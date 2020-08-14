@@ -38,7 +38,7 @@
 									<img src="<c:url value='/${brandEntity.logo}'/>" alt="${brandEntity.brandName}">
 								</div>
 								<input type="file" class="form-control upload-image" name="logoFiles" accept="image/*" />
-								<input type="hidden" class="old-img" id="logo" name="logo">
+								<input type="hidden" class="old-img" id="logo" name="logo" value="${brandEntity.logo}">
 							</div>
 							<div class="form-group">
 								<label for="description">Description</label>
