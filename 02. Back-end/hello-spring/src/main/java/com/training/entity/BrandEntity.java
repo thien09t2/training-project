@@ -6,12 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Transient;
-
-import org.springframework.web.multipart.MultipartFile;
 
 @Entity
-@Table(name = "BRAND")
+@Table(name="BRAND")
 public class BrandEntity {
 
 	@Id
@@ -19,20 +16,14 @@ public class BrandEntity {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long brandId;
 
-	@Column(name = "BRAND_NAME", length = 100, nullable = true)
+	@Column(name = "BRAND_NAME", nullable = false)
 	private String brandName;
-
-	@Column(name = "DESCRIPTION", nullable = true)
-	private String description;
 
 	@Column(name = "LOGO", nullable = true)
 	private String logo;
 
-	@Transient
-	private MultipartFile[] logoFiles;
-
-	public BrandEntity() {
-	}
+	@Column(name = "DESCRIPTION", nullable = true)
+	private String description;
 
 	/**
 	 * @return the brandId
@@ -63,20 +54,6 @@ public class BrandEntity {
 	}
 
 	/**
-	 * @return the description
-	 */
-	public String getDescription() {
-		return description;
-	}
-
-	/**
-	 * @param description the description to set
-	 */
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	/**
 	 * @return the logo
 	 */
 	public String getLogo() {
@@ -91,16 +68,16 @@ public class BrandEntity {
 	}
 
 	/**
-	 * @return the logoFiles
+	 * @return the description
 	 */
-	public MultipartFile[] getLogoFiles() {
-		return logoFiles;
+	public String getDescription() {
+		return description;
 	}
 
 	/**
-	 * @param logoFiles the logoFiles to set
+	 * @param description the description to set
 	 */
-	public void setLogoFiles(MultipartFile[] logoFiles) {
-		this.logoFiles = logoFiles;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }
