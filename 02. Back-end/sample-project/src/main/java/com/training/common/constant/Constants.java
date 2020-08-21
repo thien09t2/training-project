@@ -14,4 +14,7 @@ public class Constants {
 
 	/** Common property key */
 	public static final String PROP_KEY_ROOT_FOLDER = "root.storage.folder";
+
+	/** The number of record per each page */
+	public static final int PAGE_SIZE = 10;
 }

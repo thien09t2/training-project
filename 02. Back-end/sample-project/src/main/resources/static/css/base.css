@@ -81,3 +81,25 @@ div.error-message-invalid, div.error, label.error-message-invalid, label.error {
 .table-bordered img {
 	max-width: 80px;
 }
+
+.pagination {
+	margin-bottom: 30px;
+}
+.pagination a {
+	display: block;
+	color: #000000;
+	float: left;
+	margin: 0px 7px 0px 0;
+	padding: 6px 14px 9px;
+	text-decoration: none;
+	transition: background-color .3s;
+	min-width: 36px;
+}
+.pagination a.active {
+	color: white;
+	background-color: #000000;
+}
+.pagination a.disabled {
+	pointer-events: none;
+	color: #ccc;
+}
