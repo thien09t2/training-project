@@ -5,5 +5,4 @@
 <meta charset="utf-8">
 <link rel="stylesheet" href="<c:url value='/plugins/bootstrap/css/bootstrap.min.css'/>">
 <link rel="stylesheet" href="<c:url value='/plugins/font-awesome/css/all.min.css'/>">
-<link href="<c:url value='/vendor/datatables/css/dataTables.bootstrap4.min.css'/>" rel="stylesheet">
 <link rel="stylesheet" href="<c:url value='/css/base.css'/>">

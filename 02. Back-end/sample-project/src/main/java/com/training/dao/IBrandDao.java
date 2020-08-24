@@ -11,4 +11,6 @@ public interface IBrandDao extends JpaRepository<BrandEntity, Long> {
 	BrandEntity findByBrandId(Long brandId);
 
 	BrandEntity findByBrandName(String brandName);
+
+	BrandEntity findByBrandNameAndBrandIdNot(String brandName, Long brandId);
 }

@@ -17,4 +17,9 @@ public class Constants {
 
 	/** The number of record per each page */
 	public static final int PAGE_SIZE = 10;
+
+	/** Response Code */
+	public static final int RESULT_CD_FAIL = 0;
+	public static final int RESULT_CD_DUPL = 1;
+	public static final int RESULT_CD_SUCCESS = 100;
 }

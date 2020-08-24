@@ -21,4 +21,14 @@ public interface IBrandService {
 	BrandEntity findByBrandName(String brandName);
 
 	Map<String, Object> findAllWithPager(int pageNumber);
+	
+	ResponseDataModel findAllWithPagerApi(int pageNumber);
+
+	ResponseDataModel addApi(BrandEntity brandEntity);
+
+	ResponseDataModel updateApi(BrandEntity brandEntity);
+
+	ResponseDataModel findBrandByIbApi(Long brandId);
+
+	ResponseDataModel deleteApi(Long brandId);
 }

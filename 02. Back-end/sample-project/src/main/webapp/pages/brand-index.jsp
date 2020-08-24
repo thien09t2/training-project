@@ -13,7 +13,7 @@
 	<div class="container">
 		<div class="sub-header">
 			<div class="float-left sub-title">Brand Management</div>
-			<div class="float-right"><a class="btn btn-success add-btn" href="/brand/add"><i class="fas fa-plus-square"></i> Add Brand</a></div>
+			<div class="float-right"><a class="btn btn-success add-btn" id="addBrandInfoModal"><i class="fas fa-plus-square"></i> Add Brand</a></div>
 		</div>
 		<table class="table table-bordered" id="brandInfoTable">
 			<thead>
@@ -26,31 +26,53 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="brand" items="${responseData.brandsList}">
-					<tr>
-						<td>${brand.brandId}</td>
-						<td>${brand.brandName}</td>
-						<td class="text-center"><img src="${brand.logo}"></td>
-						<td>${brand.description}</td>
-						<td class="action-btns" data-id="${brand.brandId}"><a class="edit-btn" href="/brand/update?id=${brand.brandId}"><i class="fas fa-edit"></i></a> | <a class="delete-btn" href="/brand/delete?id=${brand.brandId}"><i class="fas fa-trash-alt"></i></a></td>
-					</tr>
-				</c:forEach>
 			</tbody>
 		</table>
-		<c:set value="${responseData.paginationInfo}" var="paginationInfo" />
-		<c:if test="${not empty paginationInfo}" >
-			<div class="d-flex justify-content-center">
-				<ul class="pagination">
-					<li class="page-item"><a class="page-link ${paginationInfo.firstPage == 0 ? 'disabled' : ''}" href="?page=${paginationInfo.firstPage}" data-index="${paginationInfo.firstPage}">Trang Đầu</a></li>
-					<li class="page-item"><a class="page-link ${paginationInfo.previousPage == 0 ? 'disabled' : ''}" href="?page=${paginationInfo.previousPage}" data-index="${paginationInfo.previousPage}"> < </a></li>
-					<c:forEach items="${paginationInfo.pageNumberList}" var="pageNumber" varStatus="loop">
-						<li class="page-item"><a class="page-link ${pageNumber == paginationInfo.currentPage ? 'active' : ''}" href="?page=${pageNumber}" data-index="${pageNumber}">${pageNumber}</a></li>
-					</c:forEach>
-					<li class="page-item"><a class="page-link ${paginationInfo.nextPage == 0 ? 'disabled' : ''}" href="?page=${paginationInfo.nextPage}" data-index="${paginationInfo.nextPage}"> > </a></li>
-					<li class="page-item"><a class="page-link ${paginationInfo.lastPage == 0 ? 'disabled' : ''}" href="?page=${paginationInfo.lastPage}" data-index="${paginationInfo.lastPage}"> Trang Cuối </a></li>
-				</ul>
+		<div class="d-flex justify-content-center">
+			<ul class="pagination">
+			</ul>
+		</div>
+	</div>
+	<!-- Modal Add and Edit Brand -->
+	<div class="modal fade" id="brandInfoModal">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<form id="brandInfoForm" role="form" enctype="multipart/form-data">
+					<div class="modal-header">
+						<h5 class="modal-title">Add Brand</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="form-group d-none">
+							<label>Brand ID</label>
+							<input type="text" class="form-control" name="brandId" id="brandId" placeholder="Brand ID" readonly>
+						</div>
+						<div class="form-group">
+							<label for="brandName">Brand Name</label>
+							<input type="text" class="form-control" id="brandName" name="brandName" placeholder="Brand Name">
+						</div>
+						<div class="form-group">
+							<label for="logo">Logo</label>
+							<div class="preview-image-upload" id="logoImg">
+								<img src="<c:url value='/images/image-demo.png'/>" alt="image">
+							</div>
+							<input type="file" class="form-control upload-image" name="logoFiles" accept="image/*" />
+							<input type="hidden" class="old-img" id="logo" name="logo">
+						</div>
+						<div class="form-group">
+							<label for="description">Description</label>
+							<textarea name="description" id="description" cols="30" rows="3" class="form-control" placeholder="Description"></textarea>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+						<button type="button" class="btn btn-primary" id="saveBrandBtn">Save</button>
+					</div>
+				</form>
 			</div>
-		</c:if>
+		</div>
 	</div>
 	<!-- Modal Confirm Deleting Brand -->
 	<div class="modal fade" id="confirmDeleteModal" >
@@ -63,7 +85,7 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<p>Do you want to delete <b class="brand-name"></b>?</p>
+					<p>Do you want to delete <b id="deletedBrandName"></b>?</p>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -73,5 +95,6 @@
 		</div>
 	</div>
 	<jsp:include page="../common/footer.jsp" />
+	<script src="<c:url value='/js/brand.js'/>"></script>
 </body>
 </html>
