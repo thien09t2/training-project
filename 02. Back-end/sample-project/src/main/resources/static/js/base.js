@@ -114,3 +114,20 @@ function showMsgOnForm($element, message, isSuccessMsg) {
 	$element.find(".form-msg").remove();
 	$element.prepend("<div class='" + className + " form-msg'>" + message + "</div>");
 }
+
+/**
+ * Show message below input field
+ * 
+ * @param $element
+ *				element show error message
+ * @param isSuccessMsg
+ *				true if message is a inform message
+ *				false if message is error message
+ * @param message
+ */
+function showMsgOnField($element, message, isSuccessMsg) {
+
+	var className = isSuccessMsg ? "alert-info" : "error-message-invalid";
+	$element.find(".form-msg").remove();
+	$element.parent().append("<div class='" + className + " form-msg'>" + message + "</div>");
+}

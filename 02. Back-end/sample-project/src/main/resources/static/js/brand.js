@@ -80,11 +80,30 @@ $(document).ready(function() {
 		var formData = new FormData($brandInfoForm[0]);
 		var brandId = formData.get("brandId");
 		var isAddAction = brandId == undefined || brandId == "";
-		//var isValidForm = formValidate($footballTeamForm, _self.getValidationInfo(isAddAction));
+	
+		$brandInfoForm.validate({
+			ignore: [],
+			rules: {
+				brandName: {
+					required: true,
+				},
+				logoFiles: {
+					required: isAddAction,
+				}
+			},
+			messages: {
+				brandName: {
+					required: "Please input Brand Name",
+				},
+				logoFiles: {
+					required: "Please upload Brand Logo",
+				}
+			},
+			errorElement: "div",
+			errorClass: "error-message-invalid"
+		});
 
-		var isValidForm = true;
-		// Save data if form is validated
-		if (isValidForm) {
+		if ($brandInfoForm.valid()) {
 
 			// POST data to server-side by AJAX
 			$.ajax({
@@ -105,7 +124,7 @@ $(document).ready(function() {
 						findBrands(1);
 						showNotification(true, responseData.responseMsg);
 					} else {
-						showMsgOnForm($brandInfoForm.find(".modal-body"), responseData.responseMsg);
+						showMsgOnField($brandInfoForm.find("#brandName"), responseData.responseMsg);
 					}
 				}
 			});
