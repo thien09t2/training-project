@@ -4,5 +4,6 @@
 <link rel="icon" href="<c:url value='/images/favicon.ico'/>" type="image/gif" sizes="16x16">
 <meta charset="utf-8">
 <link rel="stylesheet" href="<c:url value='/plugins/bootstrap/css/bootstrap.min.css'/>">
+<link rel="stylesheet" href="<c:url value='/plugins/ekko-lightbox/ekko-lightbox.min.css'/>">
 <link rel="stylesheet" href="<c:url value='/plugins/font-awesome/css/all.min.css'/>">
 <link rel="stylesheet" href="<c:url value='/css/base.css'/>">

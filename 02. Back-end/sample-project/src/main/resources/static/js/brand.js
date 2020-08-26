@@ -18,10 +18,13 @@ $(document).ready(function() {
 		showModalWithCustomizedTitle($brandInfoModal, "Add Brand");
 		$('#logoImg img').attr('src', '/images/image-demo.png');
 		$('#brandId').closest(".form-group").addClass("d-none");
+		$("#brandLogo .required-mask").removeClass("d-none");
 	});
 
 	// Show update brand modal
 	$("#brandInfoTable").on('click', '.edit-btn', function() {
+
+		$("#brandLogo .required-mask").addClass("d-none");
 
 		// Get brand info by brand ID
 		$.ajax({
@@ -86,6 +89,7 @@ $(document).ready(function() {
 			rules: {
 				brandName: {
 					required: true,
+					maxlength: 100
 				},
 				logoFiles: {
 					required: isAddAction,
@@ -94,6 +98,7 @@ $(document).ready(function() {
 			messages: {
 				brandName: {
 					required: "Please input Brand Name",
+					maxlength: "The Brand Name must be less than 100 characters",
 				},
 				logoFiles: {
 					required: "Please upload Brand Logo",
@@ -165,7 +170,7 @@ function renderBrandsTable(brandsList) {
 		rowHtml = "<tr>"
 				+		"<td>" + value.brandId + "</td>"
 				+		"<td>" + value.brandName + "</td>"
-				+		"<td class='text-center'><img src='" + value.logo + "'/></td>"
+				+		"<td class='text-center'><a href='" + value.logo + "' data-toggle='lightbox' data-max-width='1000'><img class='img-fluid' src='" + value.logo + "'></td>"
 				+		"<td>" + value.description + "</td>"
 				+		"<td class='action-btns'>"
 				+			"<a class='edit-btn' data-id='" + value.brandId + "'><i class='fas fa-edit'></i></a> | <a class='delete-btn' data-name='" + value.brandName + "' data-id='" + value.brandId + "'><i class='fas fa-trash-alt'></i></a>"
@@ -185,13 +190,13 @@ function renderPagination(paginationInfo) {
 	var paginationInnerHtml = "";
 	if (paginationInfo.pageNumberList.length > 0) {
 		$("ul.pagination").empty();
-		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationInfo.firstPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="'+ paginationInfo.firstPage + '">Trang Đầu</a></li>'
+		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationInfo.firstPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="'+ paginationInfo.firstPage + '">First</a></li>'
 		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationInfo.previousPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="'+ paginationInfo.previousPage + '"> < </a></li>'
 		$.each(paginationInfo.pageNumberList, function(key, value) {
 			paginationInnerHtml += '<li class="page-item"><a class="page-link '+ (value == paginationInfo.currentPage ? 'active' : '') +'" href="javascript:void(0)" data-index="' + value +'">' + value + '</a></li>';
 		});
 		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationInfo.nextPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="'+ paginationInfo.nextPage + '"> > </a></li>'
-		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationInfo.lastPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="'+ paginationInfo.lastPage + '">Trang Cuối</a></li>'
+		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationInfo.lastPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="'+ paginationInfo.lastPage + '">Last</a></li>'
 		$("ul.pagination").append(paginationInnerHtml);
 	}
 }

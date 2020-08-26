@@ -50,11 +50,11 @@
 							<input type="text" class="form-control" name="brandId" id="brandId" placeholder="Brand ID" readonly>
 						</div>
 						<div class="form-group">
-							<label for="brandName">Brand Name</label>
+							<label for="brandName">Brand Name <span class="required-mask">(*)</span></label>
 							<input type="text" class="form-control" id="brandName" name="brandName" placeholder="Brand Name">
 						</div>
-						<div class="form-group">
-							<label for="logo">Logo</label>
+						<div class="form-group" id="brandLogo" >
+							<label for="logo">Logo <span class="required-mask">(*)</span></label>
 							<div class="preview-image-upload" id="logoImg">
 								<img src="<c:url value='/images/image-demo.png'/>" alt="image">
 							</div>
