@@ -29,11 +29,6 @@ public class BrandController {
 		return "brand-index";
 	}
 
-	@GetMapping(value = {"/add"})
-	public String initAddPage() {
-		return "brand-add";
-	}
-
 	@PostMapping(value = {"/add"})
 	public String add(@ModelAttribute BrandEntity brandEntity, RedirectAttributes redirectAttributes) {
 
@@ -50,12 +45,6 @@ public class BrandController {
 		}
 	}
 
-	@GetMapping(value = {"/update"})
-	public String initUpdatePage(@RequestParam(name = "id") Long brandId, Model model) {
-		model.addAttribute("brandEntity", brandService.findByBrandId(brandId));
-		return "brand-update";
-	}
-
 	@PostMapping(value = {"/update"})
 	public String update(@ModelAttribute BrandEntity brandEntity, Model model, RedirectAttributes redirectAttributes) {
 		BrandEntity brandEntityUpdated = brandService.update(brandEntity);
@@ -67,19 +56,13 @@ public class BrandController {
 		}
 	}
 
-	@GetMapping(value = {"/delete"})
-	public String delete(@RequestParam(name = "id") Long brandId) {
-		brandService.delete(brandId);
-		return "redirect:/brand";
-	}
-
 	@GetMapping("/api/find")
 	@ResponseBody
 	public ResponseDataModel findBrandByIbApi(@RequestParam("id") Long brandId) {
 		return brandService.findBrandByIbApi(brandId);
 	}
 
-	@GetMapping("/api/find/{pageNumber}")
+	@GetMapping("/api/findAll/{pageNumber}")
 	@ResponseBody
 	public ResponseDataModel findAllWithPagerApi(@PathVariable("pageNumber") int pageNumber) {
 		return brandService.findAllWithPagerApi(pageNumber);

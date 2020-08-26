@@ -1,12 +1,12 @@
 $(document).ready(function() {
 
 	// Show brands list when opening page
-	findBrands(1);
+	findAllBrands(1);
 
 	// Show brands list when clicking pagination button
 	$('.pagination').on('click', '.page-link', function() {
 		var pagerNumber = $(this).attr("data-index");
-		findBrands(pagerNumber);
+		findAllBrands(pagerNumber);
 	})
 
 	var $brandInfoForm = $('#brandInfoForm');
@@ -71,7 +71,7 @@ $(document).ready(function() {
 			success : function(responseData) {
 				$('#confirmDeleteModal').modal('hide');
 				showNotification(responseData.responseCode == 100, responseData.responseMsg);
-				findBrands(1);
+				findAllBrands(1);
 			}
 		});
 	});
@@ -126,7 +126,7 @@ $(document).ready(function() {
 					// Else show error message in modal
 					if (responseData.responseCode == 100) {
 						$brandInfoModal.modal('hide');
-						findBrands(1);
+						findAllBrands(1);
 						showNotification(true, responseData.responseMsg);
 					} else {
 						showMsgOnField($brandInfoForm.find("#brandName"), responseData.responseMsg);
@@ -142,9 +142,9 @@ $(document).ready(function() {
  * 
  * @param pagerNumber
  */
-function findBrands(pagerNumber) {
+function findAllBrands(pagerNumber) {
 	$.ajax({
-		url : "/brand/api/find/" + pagerNumber,
+		url : "/brand/api/findAll/" + pagerNumber,
 		type : 'GET',
 		dataType : 'json',
 		contentType : 'application/json',
