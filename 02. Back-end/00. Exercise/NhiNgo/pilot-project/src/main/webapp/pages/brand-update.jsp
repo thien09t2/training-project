@@ -36,10 +36,10 @@
                             <div class="form-group">
                                 <label for="logo">Logo</label>
                                 <div class="preview-img-upload" id="logoImg">
-                                    <img src="<c:url value="/${brandEntity.logo}"/>" alt="${brandEntity.brandName}">
+                                    <img src="<c:url value='/${brandEntity.logo}'/>" alt="${brandEntity.brandName}">
                                 </div>
-                                <input type="file" class="form-control upload-img" name="logoFiles" accept="image/*">
-                                <input type="hidden" class="old-img" id="logo" name="logo">
+                                <input type="file" class="form-control upload-img" name="logoFiles" accept="image/*" >
+                                <input type="hidden" class="old-img" id="logo" name="logo" value="${brandEntity.logo}">
                             </div>
                             <div class="form-group">
                                 <label for="description">Description</label>
@@ -48,7 +48,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-primary" id="saveBtn">Save</button>
+                            <button type="submit" class="btn btn-primary" id="saveBtn">Submit</button>
                         </div>
                     </form>
                 </c:when>

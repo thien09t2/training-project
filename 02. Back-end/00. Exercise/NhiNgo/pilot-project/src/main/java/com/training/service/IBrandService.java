@@ -20,6 +20,16 @@ public interface IBrandService {
 
     BrandEntity findByBrandName(String brandName);
 
-    Map<String, Object> findAllWithPager(int pgNum);
+	Map<String, Object> findAllWithPager(int pgNum);
+
+	ResponseDataModel findByBrandIdApi(Long brandID);
+
+	ResponseDataModel findAllWithPagerApi(int pgNum);
+
+	ResponseDataModel addApi(BrandEntity brandEntity);
+
+	ResponseDataModel updateApi(BrandEntity brandEntity);
+
+	ResponseDataModel deleteApi(Long brandID);
 
 }
