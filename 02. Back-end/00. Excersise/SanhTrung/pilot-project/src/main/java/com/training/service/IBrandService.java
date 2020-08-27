@@ -1,26 +1,20 @@
 package com.training.service;
 
-import java.util.List;
-import java.util.Map;
-
 import com.training.entity.BrandEntity;
 import com.training.model.ResponseDataModel;
 
 public interface IBrandService {
 
-	List<BrandEntity> findAll();
-
-	BrandEntity add(BrandEntity brandEntity);
 
 	BrandEntity findByBrandName(String brandName);
 
-	BrandEntity findByBrandId(Long brandId);
+	ResponseDataModel findAllWithPageApi(int pageNumber);
 
-	BrandEntity update(BrandEntity brandEntity);
+	ResponseDataModel addApi(BrandEntity brandEntity);
 
-	ResponseDataModel delete(Long brandId);
+	ResponseDataModel deleteApi(Long brandId);
 
-	Map<String, Object> findAllWithPage(int pageNumber);
+	ResponseDataModel updateApi(BrandEntity brandEntity);
 
-
+	ResponseDataModel findBrandByIdApi(Long brandId);
 }

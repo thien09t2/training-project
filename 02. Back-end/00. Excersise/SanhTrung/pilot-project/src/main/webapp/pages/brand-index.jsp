@@ -6,15 +6,20 @@
 <head>
 <title>Brand Management</title>
 <link rel="stylesheet" href="<c:url value='/plugins/bootstrap/css/bootstrap.min.css'/>">
+<link rel="stylesheet" href="<c:url value='/plugins/ekko-lightbox/ekko-lightbox.min.css'/>">
 <link rel="stylesheet" href="<c:url value='/plugins/font-awesome/css/all.min.css'/>">
 <link rel="stylesheet" href="<c:url value='/css/base.css'/>">
 <link rel="stylesheet" href="<c:url value='/css/brand.css'/>">
+<%-- <link rel="stylesheet" href="<c:url value='https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js'/>">
+ --%>
+
+
 </head>
 <body>
 	<div class="container">
 		<div class="sub-header">
 			<div class="float-left sub-title">Brand Management</div>
-			<div class="float-right"><a class="btn btn-success add-btn" href="/brand/add"><i class="fas fa-plus-square"></i> Add Brand</a></div>
+			<div class="float-right"><a class="btn btn-success add-btn" id="addBrandInfoModal"><i class="fas fa-plus-square"></i> Add Brand</a></div>
 		</div>
 		<table class="table table-bordered" id="brandInfoTable">
 			<thead>
@@ -27,34 +32,80 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="brand" items="${responData.brandsList}">
-					<tr  class="text-center">
-						<td>${brand.brandId}</td>
-						<td>${brand.brandName}</td>
-						<td class="text-center"><img src="${brand.logo}"></td>
-						<td>${brand.description}</td>
-						<td class="action-btns" data-id="${brand.brandId}"><a class="edit-btn" href="/brand/update?id=${brand.brandId}"><i class="fas fa-edit"></i></a> | <a class="delete-btn" href="/brand/delete?id=${brand.brandId}"><i class="fas fa-trash-alt"></i></a></td>
-					</tr>
-				</c:forEach>
 			</tbody>
 		</table>
-		<c:set value="${responData.paginationList}" var="paginationList"></c:set>
-		<c:if test="${not empty paginationList}">
-			<div class="d-flex justify-content-center">
-				<ul class="pagination">
-					<li class="page-item"><a class="page-link ${paginationList.firstPage == 0 ? 'disabled' : ''}" href="?page=${paginationList.firstPage}" data-index = "${paginationList.firstPage }" > Fisrt page </a></li>
-					<li class="page-item"><a class="page-link ${paginationList.prevPage == 0 ? 'disabled' : ''}"  href="?page=${paginationList.prevPage}" data-index="${paginationList.prevPage}"> < </a></li>
-					<c:forEach items="${paginationList.pageNumberList}" var="pageNumber" varStatus="loop">
-						<li class="page-item"><a class="page-link ${pageNumber == paginationList.currentPage ? 'active' : ''}" href="?page=${pageNumber}" data-index="${pageNumber}">${pageNumber}</a></li>
-					</c:forEach>
-					<li class="page-item"><a class="page-link ${paginationList.nextPage == 0 ? 'disabled' : '' }" href="?page=${paginationList.nextPage}" data-index="${paginationList.nextPage }"> > </a></li>
-					<li class="page-item"><a class="page-link ${paginationList.lastPage == 0 ? 'disabled': '' }" href="?page=${paginationList.lastPage}" data-index="${paginationList.lastPage}"> Last page </a></li>
-				</ul>
-			</div>
-		</c:if>
+		<div class="d-flex justify-content-center">
+			<ul class="pagination">
+			</ul>
+		</div>
 	</div>
-<script type="text/javascript" src="<c:url value='/plugins/bootstrap/css/bootstrap.min.js' />"></script>	
-<script type="text/javascript" src="<c:url value='/plugins/jquery/jquery-3.5.1.min.js' />"></script>	
-<script type="text/javascript" src="<c:url value='/js/base.js' />"></script>		
+	<!-- Modal form Add new brand and Edit brand -->
+	<div class="modal fade" id="brandInfoModal">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<form id="brandInfoForm" role="form" enctype="multipart/form-data">
+					<div class="modal-header">
+						<h5 class="modal-title">Add Brand</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="form-group d-none">
+							<label for="brandID">Brand ID</label>
+							<input type="text" class="form-control" name="brandId" id="brandId" placeholder="Brand ID" readonly>
+						</div>
+						<div class="form-group">
+							<label for="brandName">Brand Name <span class="required-field">(*)</span></label>
+							<input type="text" class="form-control" id="brandName" name="brandName" placeholder="Brand Name">
+						</div>
+						<div class="form-group" id="brandLogo">
+							<label for="logo">Logo <span class="required-field">(*)</span></label>
+							<div class="preview-image-upload" id="logoImg">
+								<img src="<c:url value='/images/image-demo.png'/>" alt="image">
+							</div>
+							<input type="file" class="form-control upload-image" name="logoFiles" accept="image/*" />
+							<input type="hidden" class="old-img" id="logo" name="logo">
+						</div>
+						<div class="form-group">
+							<label for="description">Description</label>
+							<textarea name="description" id="description" cols="30" rows="3" class="form-control" placeholder="Description"></textarea>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+						<button type="submit" class="btn btn-primary" id="saveBrandBtn">Save</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- Modal Confirm Deleting Brand -->
+	<div class="modal fade" id="confirmDeleteModal" >
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Delete Brand</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p>Do you want to delete <b id="deletedBrandName"></b>?</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+					<button type="button" class="btn btn-primary" id="deleteSubmitBtn">Save</button>
+				</div>
+			</div>
+		</div>
+	</div>
+<script src="<c:url value='/plugins/jquery/jquery-3.5.1.min.js'/>"></script>
+<script src="<c:url value='/plugins/jquery/jquery.validate.min.js'/>"></script>
+<script src="<c:url value='/plugins/bootstrap/js/bootstrap.min.js'/>"></script>
+<script src="<c:url value='/plugins/bootstrap/js/bootstrap-notify.min.js'/>"></script>
+<script src="<c:url value='/plugins/ekko-lightbox/ekko-lightbox.min.js'/>"></script>
+<script src="<c:url value='/js/base.js'/>"></script>
+<script src="<c:url value='/js/brand.js'/>"></script>	
 </body>
 </html>
