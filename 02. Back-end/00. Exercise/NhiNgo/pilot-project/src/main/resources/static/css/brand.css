@@ -1,0 +1,14 @@
+.wrapper {
+	width: 100%;
+    max-width: 1200px;
+    min-width: 1024px;
+    margin: auto;
+    position: relative;
+}
+
+form#brandInfoForm .modal-body .form-group input.upload-img {
+	padding: 5px 5px 5px 12px;
+}
+form#brandInfoForm .modal-body .form-group input.upload-img button {
+	height: 95%;
+}

@@ -1,0 +1,136 @@
+* .btn {
+	line-height: 1 !important;
+}
+
+header {
+    background: #4a90e2;
+    height: 50px;
+    margin-bottom: 15px;
+}
+header .container {
+	width: 100%;
+    max-width: 1200px;
+    min-width: 1024px;
+    margin: auto;
+    position: relative;
+}
+header .main-logo {
+    font-size: 30px;
+    color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding-top: 2px;
+}
+
+header .nav-link {
+    background-color: #fff;
+    color: #333;
+    margin-left: 8px;
+    margin-top: 4px;
+    padding: .25rem .5rem;
+    width: 100px;
+    text-align: center;
+    font-weight: 600;
+    border-radius: 3px;
+    border: 1px solid;
+}
+
+header .nav-link.active {
+    background-color: black;
+    color: #fff;
+}
+
+.sub-header {
+	border: 1px solid #333;
+	border-radius: 5px;
+	height: 46px;
+	padding: 3px 3px;
+	background: #e9ecef;
+	color: #fff;
+	margin-bottom: 10px;
+}
+
+.sub-header .sub-title {
+    font-weight: 900;
+    color: #333;
+    padding-left: 20px;
+    font-size: 20px;
+    padding-top: 3px;
+}
+
+.table {
+	table-layout: fixed;
+}
+.table td {
+	height: 120px;
+}
+.table tbody td:first-child {
+	text-align: center;
+}
+.table tbody td.logo-cell {
+	vertical-align: middle;
+}
+.table-bordered img {
+	max-width: 90%;
+	max-height: 98%;
+	min-height: 50%;
+}
+.action-btns {
+    text-align: center;
+    color: #4a90e2;
+}
+
+.modal-content .modal-header {
+    padding: .5rem 1rem;
+    background: #e9ecef;
+}
+.modal-content .modal-body {
+    padding-bottom: .5rem;
+}
+
+.preview-img-upload {
+    text-align: center;
+    margin-bottom: 5px;
+}
+.preview-img-upload img {
+    max-width: 50%;
+}
+
+.message-area {
+    padding: 5px 15px;
+}
+
+div.err-message-invalid, div.error, label.err-message-invalid, label.error {
+    background-color: #f8d7da;
+    position: relative;
+    padding: .375rem .75rem;
+    margin-top: .5rem;
+    border: 1px solid #f5c6cb !important;
+    color: #dc3545 !important;
+    width: 100%;
+    border-radius: .25rem;
+}
+
+.pagination {
+	margin-bottom: 30px;
+}
+.pagination a {
+	display: block;
+	color: #000000;
+	float: left;
+	margin: 0 7px 0 0;
+	padding: 6px 14px 9px;
+	text-decoration: none;
+	transition: background-color .3s;
+	min-width: 36px;
+}
+.pagination a.active {
+	color: white;
+	background-color: #000000;
+}
+.pagination a.disabled {
+	pointer-events: none;
+	color: #ccc;
+}
+
+
