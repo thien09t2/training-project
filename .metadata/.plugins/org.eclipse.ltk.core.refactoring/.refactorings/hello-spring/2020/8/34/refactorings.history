@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;brand-index.jsp&apos; to &apos;pages&apos;&#x0D;&#x0A;- Original project: &apos;hello-spring&apos;&#x0D;&#x0A;- Destination element: &apos;pages&apos;&#x0D;&#x0A;- Original element: &apos;brand-index.jsp&apos;" description="Copy file" element1="src/main/webapp/pages/brand-index.jsp" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1597994343015" target="/pilot-project/src/main/webapp/pages" units="0" version="1.0"/>
+</session>

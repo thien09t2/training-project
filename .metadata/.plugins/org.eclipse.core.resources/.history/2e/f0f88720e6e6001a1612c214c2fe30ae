@@ -1,0 +1,7 @@
+package com.training.service.imlp;
+
+import com.training.service.IProductService;
+
+public class ProductServiceImpl implements IProductService{
+
+}

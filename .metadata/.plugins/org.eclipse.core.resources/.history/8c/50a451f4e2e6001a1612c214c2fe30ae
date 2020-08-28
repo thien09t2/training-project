@@ -1,0 +1,21 @@
+package com.training.service;
+
+import java.util.List;
+
+import com.training.entity.BrandEntity;
+import com.training.model.ResponseDataModel;
+
+public interface IBrandService {
+	
+	List<BrandEntity> getAll();
+	
+	BrandEntity add(BrandEntity brandEntity);
+
+	BrandEntity update(BrandEntity brandEntity);
+
+	ResponseDataModel delete(Long brandId);
+
+	BrandEntity findByBrandId(Long brandId);
+
+	BrandEntity findByBrandName(String brandName);
+}

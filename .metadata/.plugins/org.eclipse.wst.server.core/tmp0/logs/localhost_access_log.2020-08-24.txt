@@ -1,0 +1,17 @@
+127.0.0.1 - - [24/Aug/2020:18:44:12 +0700] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [24/Aug/2020:18:44:14 +0700] "GET /pilot-project/pages/brand-add.jsp HTTP/1.1" 200 2586
+0:0:0:0:0:0:0:1 - - [24/Aug/2020:18:44:14 +0700] "GET /pilot-project/plugins/font-awesome/css/all.min.css HTTP/1.1" 200 46930
+0:0:0:0:0:0:0:1 - - [24/Aug/2020:18:44:14 +0700] "GET /pilot-project/plugins/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 160403
+0:0:0:0:0:0:0:1 - - [24/Aug/2020:18:44:14 +0700] "GET /pilot-project/css/base.css HTTP/1.1" 200 1971
+0:0:0:0:0:0:0:1 - - [24/Aug/2020:18:44:14 +0700] "GET /pilot-project/css/brand.css HTTP/1.1" 200 702
+0:0:0:0:0:0:0:1 - - [24/Aug/2020:18:44:14 +0700] "GET /pilot-project/plugins/jquery/jquery-3.5.1.min.js HTTP/1.1" 200 89476
+0:0:0:0:0:0:0:1 - - [24/Aug/2020:18:44:14 +0700] "GET /pilot-project/plugins/jquery/jquery.validate.min.js HTTP/1.1" 200 23261
+0:0:0:0:0:0:0:1 - - [24/Aug/2020:18:44:14 +0700] "GET /pilot-project/plugins/bootstrap/js/bootstrap.min.js HTTP/1.1" 200 60174
+0:0:0:0:0:0:0:1 - - [24/Aug/2020:18:44:14 +0700] "GET /pilot-project/plugins/datatables/js/jquery.dataTables.min.js HTTP/1.1" 200 82411
+0:0:0:0:0:0:0:1 - - [24/Aug/2020:18:44:14 +0700] "GET /pilot-project/plugins/datatables/js/dataTables.bootstrap4.min.js HTTP/1.1" 200 2085
+0:0:0:0:0:0:0:1 - - [24/Aug/2020:18:44:14 +0700] "GET /pilot-project/js/base.js HTTP/1.1" 200 1204
+0:0:0:0:0:0:0:1 - - [24/Aug/2020:18:44:14 +0700] "GET /pilot-project/images/image-demo.png HTTP/1.1" 200 7227
+0:0:0:0:0:0:0:1 - - [24/Aug/2020:18:44:14 +0700] "GET /pilot-project/vendor/datatables/css/dataTables.bootstrap4.min.css HTTP/1.1" 404 173
+0:0:0:0:0:0:0:1 - - [24/Aug/2020:18:44:23 +0700] "GET /product HTTP/1.1" 404 1008
+0:0:0:0:0:0:0:1 - - [24/Aug/2020:18:44:25 +0700] "GET /pilot-project/pages/brand-add.jsp HTTP/1.1" 200 2586
+0:0:0:0:0:0:0:1 - - [24/Aug/2020:18:44:25 +0700] "GET /pilot-project/vendor/datatables/css/dataTables.bootstrap4.min.css HTTP/1.1" 404 178

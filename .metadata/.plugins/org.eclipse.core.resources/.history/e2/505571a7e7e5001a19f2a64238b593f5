@@ -1,0 +1,112 @@
+package com.training.entity;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
+
+@Entity
+@Table(name = "PRODUCT")
+public class ProductEntity {
+	
+	@Id
+	@Column(name = "PRODUCT_ID", nullable = false)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long productId;
+
+	@Column(name = "PRODUCT_NAME", length = 100, nullable = false)
+	private String productName;
+
+	@Column(name = "QUANTITY", nullable = true)
+	private String quantity;
+
+	@Column(name = "PRICE", nullable = true)
+	private String price;
+	
+	@Column(name = "SALE_DATE", nullable = true)
+	private String saleDate;
+	
+	@Column(name = "DESCRIPTION", nullable = true)
+	private String description;
+
+	@Column(name = "IMAGE", nullable = true)
+	private String image;
+	
+	@Transient
+	//Array
+	private MultipartFile[] logoFiles;
+
+	public ProductEntity() {
+		
+	}
+
+	public MultipartFile[] getLogoFiles() {
+		return logoFiles;
+	}
+
+	public void setLogoFiles(MultipartFile[] logoFiles) {
+		this.logoFiles = logoFiles;
+	}
+
+	public Long getProductId() {
+		return productId;
+	}
+
+	public void setProductId(Long productId) {
+		this.productId = productId;
+	}
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+
+	public String getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(String quantity) {
+		this.quantity = quantity;
+	}
+
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
+	}
+
+	public String getSaleDate() {
+		return saleDate;
+	}
+
+	public void setSaleDate(String saleDate) {
+		this.saleDate = saleDate;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+}

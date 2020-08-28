@@ -1,0 +1,103 @@
+$(document).ready(function() {
+
+	// Show brands list when opening page
+	findBrands(1);
+
+	// Show brands list when clicking pagination button
+	$('.pagination').on('click', '.page-link', function() {
+		var pagerNumber = $(this).attr("data-index");
+		findBrands(pagerNumber);
+	})
+
+	var $brandInfoForm = $('#brandInfoForm');
+	var $brandInfoModal = $('#brandInfoModal');
+
+	// Show add brand modal
+	$('#addBrandInfoModal').on('click', function() {
+		resetFormModal($brandInfoForm);
+		showModalWithCustomizedTitle($brandInfoModal, "Add Brand");
+		$('#logoImg img').attr('src', '/images/image-demo.png');
+		$('#brandId').closest(".form-group").addClass("d-none");
+	});
+	
+	// Show update brand modal
+	$("#brandInfoTable").on('click', '.edit-btn', function() {
+
+		// Get brand info by brand ID
+		$.ajax({
+			url : "/brand/api/find?id=" + $(this).data("id"),
+			type : 'GET',
+			dataType : 'json',
+			contentType : 'application/json',
+			success : function(responseData) {
+				if (responseData.responseCode == 100) {
+					var brandInfo = responseData.data;
+					resetFormModal($brandInfoForm);
+					showModalWithCustomizedTitle($brandInfoModal, "Edit Brand");
+
+					$('#brandId').val(brandInfo.brandId);
+					$('#brandName').val(brandInfo.brandName);
+					$('#description').val(brandInfo.description);
+
+					var brandLogo = brandInfo.logo;
+					if (brandLogo == null || brandLogo == "") {
+						brandLogo = "/images/image-demo.png";
+					}
+					$("#logoImg img").attr("src", brandLogo);
+					$("#logo").val(brandLogo);
+					$('#brandId').closest(".form-group").removeClass("d-none");
+				}
+			}
+		});
+	});
+
+});
+	
+function findBrands(pagerNumber) {
+	$.ajax({
+		url : "/brand/api/findAll?page=" + pagerNumber,
+		type : 'GET',
+		dataType : 'json',
+		contentType : 'application/json',
+		success : function(responseData) {
+			if (responseData.responseCode == 100) {
+				renderBrandsTable(responseData.data.brandsList);
+				renderPagination(responseData.data.paginationInfo);
+			}
+		}
+	});
+}
+
+function renderBrandsTable(brandsList) {
+
+	var rowHtml = "";
+	$("#brandInfoTable tbody").empty();
+	$.each(brandsList, function(key, value) {
+		rowHtml = "<tr>"
+				+		"<td>" + value.brandId + "</td>"
+				+		"<td>" + value.brandName + "</td>"
+				+		"<td class='text-center'><img src='" + value.logo + "'/></td>"
+				+		"<td>" + value.description + "</td>"
+				+		"<td class='action-btns'>"
+				+			"<a class='edit-btn' data-id='" + value.brandId + "'><i class='fas fa-edit'></i></a> | <a class='delete-btn' data-name='" + value.brandName + "' data-id='" + value.brandId + "'><i class='fas fa-trash-alt'></i></a>"
+				+		"</td>"
+				+	"</tr>";
+		$("#brandInfoTable tbody").append(rowHtml);
+	});
+}
+
+function renderPagination(paginationInfo) {
+
+	var paginationInnerHtml = "";
+	if (paginationInfo.pageNumberList.length > 0) {
+		$("ul.pagination").empty();
+		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationInfo.firstPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="'+ paginationInfo.firstPage + '">Trang Đầu</a></li>'
+		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationInfo.previousPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="'+ paginationInfo.previousPage + '"> < </a></li>'
+		$.each(paginationInfo.pageNumberList, function(key, value) {
+			paginationInnerHtml += '<li class="page-item"><a class="page-link '+ (value == paginationInfo.currentPage ? 'active' : '') +'" href="javascript:void(0)" data-index="' + value +'">' + value + '</a></li>';
+		});
+		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationInfo.nextPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="'+ paginationInfo.nextPage + '"> > </a></li>'
+		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationInfo.lastPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="'+ paginationInfo.lastPage + '">Trang Cuối</a></li>'
+		$("ul.pagination").append(paginationInnerHtml);
+	}
+}
