@@ -9,12 +9,6 @@ import org.springframework.context.annotation.Configuration;
 import com.training.common.constant.Constants;
 import com.training.common.util.CommonUtil;
 
-/**
- * Add configuration for application on start up
- * 
- * @author Red Devil
- * @since 2020-02-20
- */
 @Configuration
 @ComponentScan(basePackages = "com.training")
 public class ServletContextInitializerConfig implements ServletContextInitializer {

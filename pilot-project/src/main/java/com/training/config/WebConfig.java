@@ -7,12 +7,6 @@ import org.springframework.http.CacheControl;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-/**
- * Web MVC Configuration
- * 
- * @author Red Devil
- * @since 2020-02-20
- */
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 

@@ -9,12 +9,6 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-/**
- * Spring Boot Application
- * 
- * @author Red Devil
- * @since 2020-02-20
- */
 @SpringBootApplication
 @PropertySource({"classpath:config/datasource.properties"})
 @EnableTransactionManagement
