@@ -47,7 +47,6 @@ $(document).ready(function() {
 		})
 	});
 
-
 	/*Show modal confirm delete brand*/
 	$("#brandInfoTable").on('click', '.delete-btn', function() {
 		$("#deletedBrandName").text($(this).data("name"));

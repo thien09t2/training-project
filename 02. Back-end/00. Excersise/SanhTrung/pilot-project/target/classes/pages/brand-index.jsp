@@ -10,9 +10,6 @@
 <link rel="stylesheet" href="<c:url value='/plugins/font-awesome/css/all.min.css'/>">
 <link rel="stylesheet" href="<c:url value='/css/base.css'/>">
 <link rel="stylesheet" href="<c:url value='/css/brand.css'/>">
-<%-- <link rel="stylesheet" href="<c:url value='https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js'/>">
- --%>
-
 
 </head>
 <body>

@@ -1,6 +1,7 @@
 package com.training.service.impl;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
@@ -154,6 +155,16 @@ public class BrandServiceImpl implements IBrandService {
 			LOGGER.error("Can't delete brand: ", e);
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
+	}
+	
+	@Override
+	public List<BrandEntity> getAll() {
+		return brandDao.findAll(Sort.by(Sort.Direction.DESC, "brandId"));
+	}
+	
+	@Override
+	public BrandEntity findByBrandId(Long brandId) {
+		return brandDao.findByBrandId(brandId);
 	}
 
 }

@@ -19,7 +19,7 @@ import com.training.service.IBrandService;
 @Controller
 @RequestMapping(value = "/brand")
 public class BrandController {
-	
+
 	@Autowired
 	IBrandService brandService;
 
