@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+	
 	// Show products list when opening page
 	findAllProducts(1);
 
@@ -202,3 +202,11 @@ function renderPagination(paginationInfo) {
 		$("ul.pagination").append(paginationInnerHtml);
 	}
 }
+
+$(function(){
+	$('.input-group.date').datepicker({
+	    calendarWeeks: true,
+	    todayHighlight: true,
+	    autoclose: true
+	});  
+	});

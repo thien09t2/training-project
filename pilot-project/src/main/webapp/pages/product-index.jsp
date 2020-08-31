@@ -16,7 +16,7 @@
 		<hr>
 		<div class="container text-left">
 			<a class="btn btn-success add-btn" id="addProductInfoModal"><i
-					class="fas fa-plus-square"></i> Add Product</a>
+				class="fas fa-plus-square"></i> Add Product</a>
 		</div>
 		<br>
 		<table class="table table-bordered" id="productInfoTable">
@@ -55,7 +55,8 @@
 					<div class="modal-body">
 						<div class="form-group d-none">
 							<label>Product ID</label> <input type="text" class="form-control"
-								name="productId" id="productId" placeholder="Product ID" readonly>
+								name="productId" id="productId" placeholder="Product ID"
+								readonly>
 						</div>
 						<div class="form-group">
 							<label for="productName">Product <span
@@ -64,27 +65,28 @@
 								placeholder="Product Name">
 						</div>
 						<div class="form-group">
-							<label for="quantity">Quantity<span
-								class="required-mask">(*)</span></label>
+							<label for="quantity">Quantity<span class="required-mask">(*)</span></label>
 							<textarea name="quantity" id="quantity" cols="30" rows="3"
 								class="form-control" placeholder="Quantity"></textarea>
 						</div>
 						<div class="form-group">
-							<label for="price">Price<span
-								class="required-mask">(*)</span></label>
+							<label for="price">Price<span class="required-mask">(*)</span></label>
 							<textarea name="price" id="price" cols="30" rows="3"
 								class="form-control" placeholder="Price"></textarea>
 						</div>
 						<div class="form-group">
-							<label for="brandName">Brand Name<span
-								class="required-mask">(*)</span></label>
+							<label for="brandName">Brand Name</label>
 							<textarea name="brandName" id="brandName" cols="30" rows="3"
 								class="form-control" placeholder="Brand Name"></textarea>
 						</div>
 						<div class="form-group">
 							<label for="saleDate">Opening For Sale<span
 								class="required-mask">(*)</span></label>
-							<input type="text" id="datepicker"/>
+							<div class="input-group date">
+								<input type="text" class="form-control"><span
+									class="input-group-addon"><i
+									class="glyphicon glyphicon-calendar"></i></span>
+							</div>
 						</div>
 						<div class="form-group" id="image">
 							<label for="image">Image <span class="required-mask">(*)</span></label>
@@ -130,7 +132,6 @@
 		</div>
 	</div>
 	<jsp:include page="../common/footer.jsp" />
-	<script src="<c:url value='/plugins/jquery/jquery-ui.min.js'/>"></script>
 	<script src="<c:url value='/js/product.js'/>"></script>
 </body>
 </html>
