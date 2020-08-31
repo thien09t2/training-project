@@ -83,3 +83,7 @@ div.error-message-invalid, div.error, label.error-message-invalid, label.error {
 	height: 100px;/* đây a nhé */
 }
 
+.required-field {
+	color: red;
+	font-weight: bold;
+}

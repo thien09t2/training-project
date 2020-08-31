@@ -51,11 +51,9 @@ public class ProductController {
 		return productService.findProductByIdApi(productId);
 	}
 	
-	@PostMapping("/api/add/{brandId}")
+	@PostMapping("/api/add")
 	@ResponseBody
-	public ResponseDataModel addProductByApi(@ModelAttribute ProductEntity productEntity, @PathVariable("brandId") long brandId) {
-		BrandEntity brandEntity = brandService.findByBrandId(brandId);
-		productEntity.setBrandEntity(brandEntity);
+	public ResponseDataModel addProductByApi(@ModelAttribute ProductEntity productEntity) {
 		return productService.addProductByApi(productEntity);
 	}
 	

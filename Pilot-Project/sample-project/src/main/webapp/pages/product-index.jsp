@@ -25,6 +25,7 @@
 					<th scope="col">Brand Name</th>
 					<th scope="col">Open for sale</th>
 					<th scope="col">Image</th>
+					<th scope="col"></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -53,27 +54,27 @@
 							<input type="text" class="form-control" name="productId" id="productId" placeholder="Product ID" readonly>
 						</div>
 						<div class="form-group">
-							<label for="productName">Product Name</label>
+							<label for="productName">Product Name <span class="required-field">(*)</span></label>
 							<input type="text" class="form-control" id="productName" name="productName" placeholder="Product Name">
 						</div>
 						<div class="form-group">
-							<label for="price">Price</label>
+							<label for="price">Price <span class="required-field">(*)</span></label>
 							<input name="price" id="price" class="form-control" placeholder="Price">
 						</div>
 						<div class="form-group">
-							<label for="quantity">Quantity</label>
+							<label for="quantity">Quantity <span class="required-field">(*)</span></label>
 							<input name="quantity" id="quantity" class="form-control" placeholder="Quantity">
 						</div>
 						<div class="form-group">
 							<label for="brandId">Brand Name</label>
-							<select  class="form-control" id="brandId" name ="brandId">
+							<select  class="form-control" id="brandId" name ="brandEntity.brandId">
 								<c:forEach items="${listBrand}" var="brand">
 									<option value="${brand.brandId}">${brand.brandName}</option>
 								</c:forEach>
 							</select>
 						</div>
 						<div class="form-group">
-							<label for="openForSale">Open for sale</label>
+							<label for="openForSale">Open for sale <span class="required-field">(*)</span></label>
 							<input type=date name="saleDate" id="saleDate" class="form-control" placeholder="Open for sale">
 						</div>
 						<div class="form-group">
@@ -81,12 +82,12 @@
 							<textarea name="description" id="description" cols="30" rows="3" class="form-control" placeholder="Description"></textarea>
 						</div>
 						 <div class="form-group">
-							<label for="img">Images</label>
+							<label for="img">Images <span class="required-field">(*)</span></label>
 							<div class="preview-image-upload" id="logoImg">
 								<img src="<c:url value='/images/image-demo.png'/>" alt="image">
 							</div>
-							<input type="file" class="form-control upload-image" name="productImage" accept="image/*" />
-							<!-- <input type="hidden" class="old-img" id="logo" name="logo"> -->
+							<input type="file" class="form-control upload-image" name="imageFiles" accept="image/*" />
+							<input type="hidden" class="old-img" id="image" name="image">
 						</div>
 						
 					</div>

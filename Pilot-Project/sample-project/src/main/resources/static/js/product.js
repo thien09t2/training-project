@@ -44,7 +44,8 @@ $(document).ready(function() {
 						productLogo = "/images/image-demo.png";
 					}
 					$("#logoImg img").attr("src", productLogo);
-					$("#logo").val(productLogo);
+					//phải mapping logo với các productEntity == ajax giống jsp và giống productEntity
+					$("#image").val(productLogo);
 					$('#productdId').closest(".form-group").removeClass("d-none");
 				}
 			}
@@ -79,8 +80,8 @@ $(document).ready(function() {
 
 		event.preventDefault();
 		var formData = new FormData($productInfoForm[0]);
+		//form data sẽ mapping với các thiết kế trong Entity 
 		var productId = formData.get("productId");
-		var brandId = $('#brandId').val();
 		var isAddAction = productId == undefined || productId == "";
 	
 		$productInfoForm.validate({
@@ -120,7 +121,7 @@ $(document).ready(function() {
 
 			// POST data to server-side by AJAX
 			$.ajax({
-				url: "/product/api/" + (isAddAction ? "add" : "update")+"/"+brandId,
+				url: "/product/api/" + (isAddAction ? "add" : "update"),
 				type: 'POST',
 				enctype: 'multipart/form-data',
 				processData: false,
@@ -172,7 +173,7 @@ function renderProductTable(productList) {
 			+		"<td>" + value.price + "</td>"
 			+		"<td>" + value.brandEntity.brandName+ "</td>"
 			+		"<td>" + value.saleDate + "</td>"
-			+		"<td class='text-center'><a href='" + value.image + "' data-toggle='lightbox' data-max-width='1000'><img class='img-fluid' src='" + value.logo + "'></td>"
+			+		"<td class='text-center'><a href='" + value.image + "' data-toggle='lightbox' data-max-width='1000'><img class='img-fluid' src='" + value.image + "'></td>"
 			+		"<td class='action-btns'>"
 			+			"<a class='edit-btn' data-id='" + value.productId + "'><i class='fas fa-edit'></i></a> | <a class='delete-btn' data-name='" + value.productName + "' data-id='" + value.productId + "'><i class='fas fa-trash-alt'></i></a>"
 			+		"</td>"
