@@ -1,5 +1,7 @@
 package com.training.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -101,6 +103,13 @@ public class BrandController {
 	@ResponseBody
 	public ResponseDataModel deleteApi(@PathVariable("brandId") Long brandId) {
 		return brandService.deleteApi(brandId);
+	}
+	
+	@GetMapping(value = { "/api/search/{keyword}/{pageNumber}" })
+	@ResponseBody
+	public ResponseDataModel searchApi(@PathVariable("keyword") String keyword,
+			@PathVariable("pageNumber") int pageNumber) {
+		return brandService.search(keyword, pageNumber);
 	}
 	
 }

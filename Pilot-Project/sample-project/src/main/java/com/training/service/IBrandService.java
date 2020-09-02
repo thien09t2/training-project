@@ -35,5 +35,10 @@ public interface IBrandService {
 	ResponseDataModel deleteApi(Long brandId);
 
 	ResponseDataModel updateApi(BrandEntity brandEntity);
+	
+	ResponseDataModel search(String searchKey, int pageNumber);
+	
+
+	
 
 }

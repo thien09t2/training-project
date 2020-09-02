@@ -3,10 +3,22 @@ $(document).ready(function() {
 	//truyền vào trang page số 1 lúc mở trang
 	findBrands(1);
 
-	//hiển thị brand khi click vào thanh chỉ mục
+	
+	$('#btnSearch').on('click', function() {
+		var keyword = $('#keyword').val();
+		searchBrand(keyword,1);
+	})
+	
+		//hiển thị brand khi click vào thanh chỉ mục
 	$('.pagination').on('click', '.page-link', function() {
 		var pagerNumber = $(this).attr("data-index");
-		findBrands(pagerNumber);
+		var keyword = $('#keyword').val();
+		if(keyword != "" ){
+			searchBrand(keyword,pagerNumber);
+		} else{
+			findBrands(pagerNumber);
+		}
+		
 	})
 
 	var $brandInfoForm = $('#brandInfoForm');
@@ -145,6 +157,20 @@ $(document).ready(function() {
 function findBrands(pageNumber) {
 	$.ajax({
 		url : "/brand/api/findAll/"  + pageNumber,
+		type : 'GET',
+		dataType : 'json',
+		contentType : 'application/json',
+		success : function(responseData) {
+			if (responseData.responseCode == 100) {
+				renderBrandsTable(responseData.data.brandsList);
+				renderPagination(responseData.data.paginationInfo);
+			}
+		}
+	});
+}
+function searchBrand(keyword, pageNumber) {
+	$.ajax({
+		url : "/brand/api/search/" + keyword+"/"+pageNumber,
 		type : 'GET',
 		dataType : 'json',
 		contentType : 'application/json',

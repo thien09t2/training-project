@@ -1,5 +1,31 @@
 $(document).ready(function() {
-	findProductList(1)
+	
+	findProductList(1);
+	
+	
+	
+	
+	//bắt event search
+	$('#btnSearch').on('click', function() {
+		var keyword = $('#keyword').val();
+		var startPrice = $('#priceFrom').val();
+		var endPrice = $('#priceTo').val();
+		searchFn(keyword,1,startPrice,endPrice);
+	})
+	
+	//hiển thị brand khi click vào thanh chỉ mục
+	$('.pagination').on('click', '.page-link', function() {
+		var pagerNumber = $(this).attr("data-index");
+		var keyword = $('#keyword').val();
+		var startPrice = $('#priceFrom').val();
+		var endPrice = $('#priceTo').val();
+		if(keyword != "" ){
+			searchFn(keyword,pagerNumber,startPrice,endPrice);
+		} else{
+			findProductList(pagerNumber);
+		}
+		
+	})
 	
 	//form add product
 	var $productInfoForm = $('#productInfoForm');
@@ -156,6 +182,44 @@ function findProductList(pageNumber) {
 			if (responseData.responseCode == 100) {
 				renderProductTable(responseData.data.productList);
 				renderPagination(responseData.data.paginationInfo);
+			}
+		}
+	});
+}
+
+function searchFn(keyword, pageNumber, startPrice, endPrice) {
+	$.ajax({
+		url : "/product/api/search/"  + keyword+"/"+pageNumber+"/"+startPrice+"/"+endPrice,
+		type : 'GET',
+		dataType : 'json',
+		contentType : 'application/json',
+		success : function(responseData) {
+			if (responseData.responseCode == 100) {
+				renderProductTable(responseData.data.productList);
+				renderPagination(responseData.data.paginationInfo);
+				if(pageNumber==1){
+					showNotification(true, responseData.responseMsg);
+				}
+				
+			}
+		}
+	});
+}
+
+function searchPrice(startKey,endKey, pageNumber) {
+	$.ajax({
+		url : "/product/api/searchPrice/" + startKey + "/"+ endKey +"/"+pageNumber,
+		type : 'GET',
+		dataType : 'json',
+		contentType : 'application/json',
+		success : function(responseData) {
+			if (responseData.responseCode == 100) {
+				renderProductTable(responseData.data.productList);
+				renderPagination(responseData.data.paginationInfo);
+				if(pageNumber==1){
+					showNotification(true, responseData.responseMsg);
+				}
+				
 			}
 		}
 	});

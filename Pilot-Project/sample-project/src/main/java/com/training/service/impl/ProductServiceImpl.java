@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -118,12 +119,12 @@ public class ProductServiceImpl implements IProductService {
 	@Override
 	public ResponseDataModel updateProductByApi(ProductEntity productEntity) {
 
-
 		int responseCode = Constants.RESULT_CD_FAIL;
 		String responseMsg = StringUtils.EMPTY;
 		try {
-			
-			ProductEntity duplicatedProduct = productDao.findByProductNameAndProductIdNot(productEntity.getProductName(), productEntity.getProductId());
+
+			ProductEntity duplicatedProduct = productDao
+					.findByProductNameAndProductIdNot(productEntity.getProductName(), productEntity.getProductId());
 
 			// Check if brand name existed
 			if (duplicatedProduct != null) {
@@ -133,7 +134,8 @@ public class ProductServiceImpl implements IProductService {
 				MultipartFile[] imgFile = productEntity.getImageFiles();
 				if (imgFile != null && imgFile[0].getSize() > 0) {
 					String imagePath = FileHelper.editFile(productImageFolderPath, imgFile, productEntity.getImage());
-					productEntity.setImage(imagePath);;
+					productEntity.setImage(imagePath);
+					;
 				}
 				productDao.saveAndFlush(productEntity);
 				responseMsg = "product is updated successfully";
@@ -161,10 +163,68 @@ public class ProductServiceImpl implements IProductService {
 				responseMsg = "Product is deleted successfully";
 				responseCode = Constants.RESULT_CD_SUCCESS;
 			}
-		} catch(Exception e) {
+		} catch (Exception e) {
 			responseMsg = "Error when deleting Product";
 			LOGGER.error("Error when delete Product: ", e);
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
 	}
+
+	@Override
+	public ResponseDataModel search(String searchKey, int pageNumber , double startPrice , double endPrice) {
+		List<ProductEntity> listProduct = productDao.resultSearch(searchKey, startPrice, endPrice);
+
+		int responseCode = Constants.RESULT_CD_FAIL;
+		String responseMsg = StringUtils.EMPTY;
+		Map<String, Object> responseMap = new HashMap<>();
+		try {
+			Sort sortInfo = Sort.by(Sort.Direction.DESC, "productId");
+			Pageable pageable = PageRequest.of(pageNumber - 1, Constants.PAGE_SIZE, sortInfo);
+			int start = (int) pageable.getOffset();
+			int end = (start + pageable.getPageSize()) > listProduct.size() ? listProduct.size()
+					: (start + pageable.getPageSize());
+			// mỗi trang sẽ có page khác nhau
+			Page<ProductEntity> pages = new PageImpl<ProductEntity>(listProduct.subList(start, end), pageable,
+					listProduct.size());
+			// getContent lấy ra listProduct.subList(start, end)
+			responseMap.put("productList", pages.getContent());
+			responseMap.put("paginationInfo", new PagerModel(pageNumber, pages.getTotalPages()));
+			responseCode = Constants.RESULT_CD_SUCCESS;
+			responseMsg = "ResultSet has " + listProduct.size() + " products";
+		} catch (Exception e) {
+			responseMsg = e.getMessage();
+			LOGGER.error("Error when get all product: ", e);
+		}
+		return new ResponseDataModel(responseCode, responseMsg, responseMap);
+	}
+	
+	@Override
+	public ResponseDataModel searchByPriceBetween(int startPrice , int endPrice,int pageNumber ) {
+		List<ProductEntity> listProduct = productDao.findAllByPriceBetween(startPrice, startPrice);
+		int responseCode = Constants.RESULT_CD_FAIL;
+		String responseMsg = StringUtils.EMPTY;
+		Map<String, Object> responseMap = new HashMap<>();
+		try {
+			Sort sortInfo = Sort.by(Sort.Direction.DESC, "productId");
+			Pageable pageable = PageRequest.of(pageNumber - 1, Constants.PAGE_SIZE, sortInfo);
+			int start = (int) pageable.getOffset();
+			int end = (start + pageable.getPageSize()) > listProduct.size() ? listProduct.size()
+					: (start + pageable.getPageSize());
+			// mỗi trang sẽ có page khác nhau
+			Page<ProductEntity> pages = new PageImpl<ProductEntity>(listProduct.subList(start, end), pageable,
+					listProduct.size());
+			// getContent lấy ra listProduct.subList(start, end)
+			responseMap.put("productList", pages.getContent());
+			responseMap.put("paginationInfo", new PagerModel(pageNumber, pages.getTotalPages()));
+			responseCode = Constants.RESULT_CD_SUCCESS;
+			responseMsg = "ResultSet has " + listProduct.size() + " products";
+		} catch (Exception e) {
+			responseMsg = e.getMessage();
+			LOGGER.error("Error when get all product: ", e);
+		}
+		return new ResponseDataModel(responseCode, responseMsg, responseMap);
+	}
+	
+	
+
 }
