@@ -36,13 +36,17 @@
 	</section>
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\Users\USER\Downloads\todo-management-spring-boot-master"/>
+			<item value="C:\Users\USER\Downloads\todo-application-jsp-servlet-jdbc-mysql"/>
+			<item value="G:\2\02. Back-end"/>
+			<item value="C:\Users\USER\Downloads\sample-project"/>
+			<item value="G:\1\02. Back-end\sample-project"/>
 			<item value="F:\1\02. Back-end\sample-project"/>
 			<item value="F:\Java web\02. Back-end\sample-project"/>
 			<item value="G:\ex\02. Back-end\sample-project"/>
 			<item value="F:\1\03. Database\02. Back-end\sample-project"/>
 			<item value="F:\01.Workspaces\first-project\1\02. Back-end\hello-spring"/>
 			<item value="F:\01.Workspaces\first-project\1\02. Back-end\sample-project"/>
-			<item value="C:\Users\USER\Downloads\sample-project"/>
 			<item value="C:\Users\USER\Downloads\SimpleServlet"/>
 			<item value="F:\Java web\Spring\pilot-project\src\main\java\com\training\controller\BrandController.java"/>
 		</list>

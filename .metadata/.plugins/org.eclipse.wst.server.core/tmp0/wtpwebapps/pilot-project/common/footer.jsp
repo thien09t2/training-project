@@ -6,4 +6,6 @@
 <script src="<c:url value='/plugins/jquery/jquery.validate.min.js'/>"></script>
 <script src="<c:url value='/plugins/bootstrap/js/bootstrap.min.js'/>"></script>
 <script src="<c:url value='/plugins/bootstrap/js/bootstrap-notify.min.js'/>"></script>
+<script src="<c:url value='/plugins/bootstrap/js/bootstrap-datepicker.min.js'/>"></script>
+<script src="<c:url value='/plugins/ekko-lightbox/ekko-lightbox.min.js'/>"></script>
 <script src="<c:url value='/js/base.js'/>"></script>

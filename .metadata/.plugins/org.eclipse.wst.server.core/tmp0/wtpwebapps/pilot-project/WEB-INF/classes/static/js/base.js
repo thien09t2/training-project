@@ -17,6 +17,7 @@ $(document).ready(function() {
 		var $parent = $(this).parent();
 		if (file) {
 			fileUrl = url.createObjectURL(file);
+			$parent.find(".error-message-invalid").removeClass("error-message-invalid");
 		} else {
 			var oldImagePath = $parent.find(".old-img").val();
 			if (oldImagePath) {
@@ -26,6 +27,14 @@ $(document).ready(function() {
 			}
 		}
 		$parent.find('.preview-image-upload img').attr('src', fileUrl);
+	});
+
+	//Open image in full size
+	$(document).on('click', '[data-toggle="lightbox"]', function (event) {
+		event.preventDefault();
+		$(this).ekkoLightbox({
+			alwaysShowClose: true
+		});
 	});
 });
 
@@ -41,18 +50,6 @@ function resetFormModal($formElement) {
 	$formElement.validate().destroy();
 	$formElement.find(".error-message-invalid").remove();
 	$formElement.find("img").attr('src', '');
-}
-
-function formValidate($formElement, validationInfo) {
-
-	$formElement.validate({
-		rules: validationInfo.rules,
-		messages: validationInfo.errorMessages,
-		errorElement: "div",
-		errorClass: "error-message-invalid",
-		ignore: 'input[type=hidden], .select2-input, .select2-focusser'
-	});
-	return $formElement.valid();
 }
 
 function showNotification(isSuccess, message) {

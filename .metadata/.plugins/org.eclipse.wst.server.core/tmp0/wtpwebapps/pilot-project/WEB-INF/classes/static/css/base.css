@@ -1,7 +1,21 @@
+:focus {
+	outline: 0 !important;
+	box-shadow: none !important;
+}
+
 header {
-	background: #4a90e2;
+	background: #17a2b8;
 	height: 50px;
 	margin-bottom: 15px;
+}
+
+header .dmx-logo {
+	line-height: 30px;
+	background-position: 0 0;
+	width: 174px;
+	height: 32px;
+	display: block;
+	margin-top: 10px;
 }
 header .main-logo {
 	font-size: 30px;
@@ -10,6 +24,7 @@ header .main-logo {
 	text-transform: uppercase;
 	padding-top: 2px;
 }
+
 header .nav-link {
 	background-color: #fff;
 	margin-left: 8px;
@@ -20,9 +35,11 @@ header .nav-link {
 	border-radius: 3px;
 	border: 1px solid;
 }
+
 header .nav-link {
 	color: #333;
 }
+
 header .nav-link.active {
 	background-color: black;
 	color: #fff;
@@ -37,6 +54,7 @@ header .nav-link.active {
 	color: #fff;
 	margin-bottom: 10px;
 }
+
 .sub-header .sub-title {
 	font-weight: 900;
 	color: #333;
@@ -49,6 +67,7 @@ header .nav-link.active {
 	text-align: center;
 	color: #4a90e2;
 }
+
 .action-btns a {
 	cursor: pointer;
 }
@@ -57,20 +76,26 @@ header .nav-link.active {
 	padding: 0.5rem 1rem;
 	background: #e9ecef;
 }
+
 .modal-content .modal-body {
-	padding-bottom: 0.5rem; 
+	padding-bottom: 0.5rem;
 }
+
 .preview-image-upload {
 	text-align: center;
 	margin-bottom: 5px;
 }
+
 .preview-image-upload img {
 	max-width: 50%;
 }
+
 .message-area {
 	padding: 5px 15px;
 }
-div.error-message-invalid, div.error, label.error-message-invalid, label.error {
+
+div.error-message-invalid, div.error, label.error-message-invalid, label.error
+	{
 	background-color: #f8d7da;
 	position: relative;
 	padding: .375rem .75rem;
@@ -89,6 +114,7 @@ div.error-message-invalid, div.error, label.error-message-invalid, label.error {
 .pagination {
 	margin-bottom: 30px;
 }
+
 .pagination a {
 	display: block;
 	color: #000000;
@@ -99,11 +125,80 @@ div.error-message-invalid, div.error, label.error-message-invalid, label.error {
 	transition: background-color .3s;
 	min-width: 36px;
 }
+
 .pagination a.active {
 	color: white;
 	background-color: #000000;
 }
+
 .pagination a.disabled {
 	pointer-events: none;
 	color: #ccc;
+}
+
+.ekko-lightbox .modal-content {
+	border-radius: 5px;
+}
+
+.ekko-lightbox .modal-body {
+	padding: 0.5rem;
+}
+
+.ekko-lightbox .modal-header {
+	height: 0px;
+	border: none;
+	position: relative;
+	padding: 0;
+	border: none;
+	z-index: 1;
+}
+
+.ekko-lightbox .modal-header .close, .ekko-lightbox .modal-header .close:hover
+	{
+	opacity: 1;
+	color: #fff;
+}
+
+.ekko-lightbox .modal-header .close span {
+	position: absolute;
+	top: -10px;
+	right: -10px;
+	border: 1px solid #6c757d;
+	background: black;
+	border-radius: 50%;
+	padding: 0px 5px 4px 5px;
+	font-size: 1.2rem;
+}
+
+.ekko-lightbox .modal-header .close:hover span {
+	background: #212529;
+}
+
+.required-mask {
+	color: red;
+	font-weight: bold;
+}
+
+table, th, td {  
+  border: 1px solid black;  
+  border-collapse: collapse;  
+}  
+th, td {  
+  padding: 10px;  
+  text-align: center;
+}  
+table tr:nth-child(even) {  
+  background-color: #eee;  
+}  
+table tr:nth-child(odd) {  
+  background-color: #fff;  
+}  
+table th {  
+  color: white;  
+  background-color: #17a2b8;  
+} 
+.btn-success {
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
 }

@@ -1,5 +1,7 @@
 package com.training.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -72,6 +74,7 @@ public class BrandController {
 	public ResponseDataModel findBrandByIbApi(@RequestParam("id") Long brandId) {
 		return brandService.findBrandByIbApi(brandId);
 	}
+	
 
 	@GetMapping(value = {"/delete"})
 	public String delete(@RequestParam(name = "id") Long brandId) {
@@ -80,7 +83,7 @@ public class BrandController {
 	}
 	
 	@GetMapping("/api/findAll/{pageNumber}")
-	@ResponseBody
+	@ResponseBody 
 	public ResponseDataModel findAllWithPagerApi(@PathVariable("pageNumber") int pageNumber) {
 		return brandService.findAllWithPagerApi(pageNumber);
 	}
@@ -101,5 +104,12 @@ public class BrandController {
 	@ResponseBody
 	public ResponseDataModel deleteApi(@PathVariable("brandId") Long brandId) {
 		return brandService.deleteApi(brandId);
+	}
+	
+	@GetMapping("/api/search/{keyword}/{pageNumber}")
+	@ResponseBody
+	public ResponseDataModel searchApi( @PathVariable("keyword") String keyword, @PathVariable("pageNumber") int pageNumber) {
+//		List<BrandEntity> result = brandService.search(keyword);
+		return brandService.searchApi(keyword, pageNumber);
 	}
 }

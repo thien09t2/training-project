@@ -14,9 +14,21 @@
 	<div class="container">
 		<h3 class="text-center">Brand Management</h3>
 		<hr>
-		<div class="container text-left">
-			<a class="btn btn-success add-btn" id="addBrandInfoModal"><i
-					class="fas fa-plus-square"></i> Add Brand</a>
+		<div class="row">
+			<div class="col-6 no-padding">
+				<form class="form-inline">
+					<input class="form-control mr-sm-2" type="search" name="term"
+						placeholder="Search by name ..." />
+					<button class="btn btn-success" type="submit">
+						<i class="fa fa-search"></i> Search
+					</button>
+				</form>
+			</div>
+			<div class="col-6 no-padding">
+				<a class="btn btn-success add-btn float-right"
+					id="addBrandInfoModal"><i class="fas fa-plus-square"></i> Add
+					Brand</a>
+			</div>
 		</div>
 		<br>
 		<table class="table table-bordered" id="brandInfoTable">

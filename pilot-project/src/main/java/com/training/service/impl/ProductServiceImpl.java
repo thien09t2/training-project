@@ -153,7 +153,7 @@ public class ProductServiceImpl implements IProductService{
 				productDao.deleteById(productId);
 				productDao.flush();
 
-				// Remove logo of brand from store folder
+				// Remove image of product from store folder
 				FileHelper.deleteFile(productEntity.getImage());
 				responseMsg = "Product is deleted successfully";
 				responseCode = Constants.RESULT_CD_SUCCESS;

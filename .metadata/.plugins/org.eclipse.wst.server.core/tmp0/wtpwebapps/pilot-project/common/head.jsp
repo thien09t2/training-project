@@ -3,5 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <meta charset="utf-8">
 <link rel="stylesheet" href="<c:url value='/plugins/bootstrap/css/bootstrap.min.css'/>">
+<link rel="stylesheet" href="<c:url value='/plugins/bootstrap/css/bootstrap-datepicker3.min.css'/>">
+<link rel="stylesheet" href="<c:url value='/plugins/ekko-lightbox/ekko-lightbox.min.css'/>">
 <link rel="stylesheet" href="<c:url value='/plugins/font-awesome/css/all.min.css'/>">
 <link rel="stylesheet" href="<c:url value='/css/base.css'/>">

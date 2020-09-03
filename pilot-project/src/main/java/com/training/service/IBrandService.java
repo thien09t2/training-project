@@ -32,5 +32,6 @@ public interface IBrandService {
 
 	ResponseDataModel deleteApi(Long brandId);
 
-	
+	ResponseDataModel searchApi(String keyword, int pageNumber);
+
 }

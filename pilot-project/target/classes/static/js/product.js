@@ -42,7 +42,7 @@ $(document).ready(function() {
 					$('#productName').val(productInfo.productName);
 					$('#quantity').val(productInfo.quantity);
 					$('#price').val(productInfo.price);
-					$('#brandName').val(productInfo.brandName);
+					$('#brandName').val(productInfo.brandEntity.brandName);
 					$('#saleDate').val(productInfo.saleDate);
 					var productImage = productInfo.image;
 					if (productImage == null || productImage == "") {
@@ -176,7 +176,7 @@ function renderProductsTable(productsList) {
 				+		"<td>" + value.productName + "</td>"
 				+		"<td>" + value.quantity + "</td>"
 				+		"<td>" + value.price + "</td>"
-				+		"<td>" + value.brandEntity + "</td>"
+				+		"<td>" + value.brandEntity.brandName + "</td>"
 				+		"<td>" + value.saleDate + "</td>"
 				+		"<td class='text-center'><a href='" + value.image + "' data-toggle='lightbox' data-max-width='1000'><img class='img-fluid' src='" + value.image + "'></td>"
 				+		"<td class='action-btns'>"

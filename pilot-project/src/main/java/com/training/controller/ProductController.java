@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.training.entity.ProductEntity;
@@ -25,6 +26,12 @@ public class ProductController {
 	@GetMapping
 	public String initPage(Model model) {
 		return "product-index";
+	}
+	
+	@GetMapping("/api/find")
+	@ResponseBody
+	public ResponseDataModel findProductByIdApi(@RequestParam("id") Long productId) {
+		return productService.findProductById(productId);
 	}
 	
 	@GetMapping("/api/findAll/{pageNumber}")

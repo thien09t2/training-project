@@ -1,0 +1,18 @@
+package com.training.service;
+
+import com.training.entity.ProductEntity;
+import com.training.model.ResponseDataModel;
+
+public interface IProductService {
+	
+	ResponseDataModel addProduct(ProductEntity productEntity);
+	
+	ResponseDataModel updateProduct(ProductEntity productEntity);
+	
+	ResponseDataModel deleteProduct(Long productId);
+
+	ProductEntity findByProductId(Long productId);
+	
+	
+
+}

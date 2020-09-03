@@ -14,9 +14,20 @@
 	<div class="container">
 		<h3 class="text-center">Product Management</h3>
 		<hr>
-		<div class="container text-left">
-			<a class="btn btn-success add-btn" id="addProductInfoModal"><i
-				class="fas fa-plus-square"></i> Add Product</a>
+		<div class="row">
+			<div class="col-6 no-padding">
+				<form class="form-inline">
+					<input class="form-control mr-sm-2" type="search"
+						placeholder="Search by name ..." />
+					<button class="btn btn-success" type="submit">
+						<i class="fa fa-search"></i> Search</button>
+				</form>
+			</div>
+			<div class="col-6 no-padding">
+				<a class="btn btn-success add-btn float-right"
+					id="addProductInfoModal"><i class="fas fa-plus-square"></i> Add
+					Product</a>
+			</div>
 		</div>
 		<br>
 		<table class="table table-bordered" id="productInfoTable">
@@ -75,9 +86,12 @@
 								class="form-control" placeholder="Price"></textarea>
 						</div>
 						<div class="form-group">
-							<label for="brandName">Brand Name</label>
-							<textarea name="brandName" id="brandName" cols="30" rows="3"
-								class="form-control" placeholder="Brand Name"></textarea>
+							<label for="brandName">Brand Name<span class="required-mask">(*)</span></label>
+							<select id="brandName">
+								<option value="brandName">------- Select Brand Name -------</option>
+								<option data-ng-repeat="brandName in brandEntity"
+									value="{{brandEntity.brandId}}">{{brandEntity.brandName}}</option>
+							</select>
 						</div>
 						<div class="form-group">
 							<label for="saleDate">Opening For Sale<span

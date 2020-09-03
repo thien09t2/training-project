@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -93,6 +94,7 @@ public class BrandServiceImpl implements IBrandService {
 	public List<BrandEntity> getAll() {
 		return brandDao.findAll(Sort.by(Sort.Direction.DESC, "brandId"));
 	}
+	
 
 	@Override
 	public BrandEntity findByBrandName(String brandName) {
@@ -223,4 +225,29 @@ public class BrandServiceImpl implements IBrandService {
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
 	}
+
+	@Override
+	public ResponseDataModel searchApi(String keyword, int pageNumber) {
+		int responseCode = Constants.RESULT_CD_FAIL;
+		String responseMsg = StringUtils.EMPTY;
+		List<BrandEntity> listBrand = brandDao.findByBrandNameLike("%"+keyword+"%");
+		Map<String, Object> responseMap = new HashMap<>();
+		try {
+			Sort sortInfo = Sort.by(Sort.Direction.DESC,"brandId");
+			Pageable pageable = PageRequest.of(pageNumber - 1, Constants.PAGE_SIZE, sortInfo);
+			int start = (int) pageable.getOffset();
+			int end = (start + pageable.getPageSize()) > listBrand.size() ? listBrand.size() : (start + pageable.getPageSize());
+			Page<BrandEntity> pages = new PageImpl<BrandEntity>(listBrand.subList(start, end),pageable,listBrand.size());
+			responseMap.put("brandList", pages.getContent());
+			responseMap.put("paginationInfo", new PagerModel(pageNumber, pages.getTotalPages()));
+			responseCode = Constants.RESULT_CD_SUCCESS;
+			responseMsg = "Ngọc anh bị ngáo " + listBrand.size() +" lần =))";
+ 		} catch (Exception e) {
+			responseMsg = e.getMessage();
+			LOGGER.error("lỗi cmnr ");
+		}
+		return new ResponseDataModel(responseCode, responseMsg, responseMap);
+	}
+
+	
 }

@@ -1,7 +1,6 @@
 package com.training.service;
 
 import java.util.List;
-import java.util.Map;
 
 import com.training.entity.ProductEntity;
 import com.training.model.ResponseDataModel;
@@ -23,7 +22,5 @@ public interface IProductService {
 	ResponseDataModel findAllWithPagerApi(int pageNumber);
 
 	ResponseDataModel findProductById(Long productId);
-	
-	
 
 }
