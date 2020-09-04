@@ -34,7 +34,6 @@ $(document).ready(function() {
 
 	// show form add brand with js
 	$('#addProductInfoModal').on('click', function() {
-//		$brandInfoModal.modal("show");
 		resetFormModal($productInfoForm);
 		showModalWithCustomizedTitle($productInfoModal, "Add Product");
 		$('#logoImg img').attr('src', '/images/image-demo.png');
@@ -206,25 +205,6 @@ function searchFn(keyword, pageNumber, startPrice, endPrice) {
 	});
 }
 
-function searchPrice(startKey,endKey, pageNumber) {
-	$.ajax({
-		url : "/product/api/searchPrice/" + startKey + "/"+ endKey +"/"+pageNumber,
-		type : 'GET',
-		dataType : 'json',
-		contentType : 'application/json',
-		success : function(responseData) {
-			if (responseData.responseCode == 100) {
-				renderProductTable(responseData.data.productList);
-				renderPagination(responseData.data.paginationInfo);
-				if(pageNumber==1){
-					showNotification(true, responseData.responseMsg);
-				}
-				
-			}
-		}
-	});
-}
-
 function renderProductTable(productList) {
 
 	var rowHtml = "";
@@ -250,13 +230,13 @@ function renderPagination(paginationInfo) {
 	var paginationInnerHtml = "";
 	if (paginationInfo.pageNumberList.length > 0) {
 		$("ul.pagination").empty();
-		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationInfo.firstPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="'+ paginationInfo.firstPage + '">Trang Đầu</a></li>'
+		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationInfo.firstPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="'+ paginationInfo.firstPage + '">Firts Page</a></li>'
 		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationInfo.previousPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="'+ paginationInfo.previousPage + '"> < </a></li>'
 		$.each(paginationInfo.pageNumberList, function(key, value) {
 			paginationInnerHtml += '<li class="page-item"><a class="page-link '+ (value == paginationInfo.currentPage ? 'active' : '') +'" href="javascript:void(0)" data-index="' + value +'">' + value + '</a></li>';
 		});
 		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationInfo.nextPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="'+ paginationInfo.nextPage + '"> > </a></li>'
-		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationInfo.lastPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="'+ paginationInfo.lastPage + '">Trang Cuối</a></li>'
+		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationInfo.lastPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="'+ paginationInfo.lastPage + '">Last Page</a></li>'
 		$("ul.pagination").append(paginationInnerHtml);
 	}
 }

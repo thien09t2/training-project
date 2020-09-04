@@ -13,11 +13,13 @@
 	<div class="container">
 		<div class="sub-header">
 			<div class="float-left sub-title">Brand Management</div>
-			<div>
-				  <input type="text" placeholder="Search.." id="keyword">
-				  <button type="submit" id="btnSearch" class="btn btn-info">Search</button>
+		</div>
+		<div class="tool" style="margin-bottom: 50px;">
+			<div class="float-right">
+				<input type="text" placeholder="Search.." id="keyword">
+				<button type="submit" id="btnSearch" class="btn btn-info">Search</button>
 			</div>
-			<div class="float-right"><a class="btn btn-success add-btn" id="addBrandInfoModal"><i class="fas fa-plus-square"></i> Add Brand</a></div>
+			<div class="float-left"><a class="btn btn-success add-btn" id="addBrandInfoModal"><i class="fas fa-plus-square"></i> Add Brand</a></div>
 		</div>
 		<table class="table table-bordered" id="brandInfoTable">
 			<thead>

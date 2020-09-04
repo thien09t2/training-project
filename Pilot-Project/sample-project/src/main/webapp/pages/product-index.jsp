@@ -13,26 +13,27 @@
 	<div class="container">
 		<div class="sub-header">
 			<div class="float-left sub-title">Product Management</div>
-			<div>
-				  <input type="text" placeholder="Search.." id="keyword">
-				  <label for="cars">Price From :</label>
-				  <select name="priceFrom" id="priceFrom">
-					  <option value="1000000">1.000.000 VND</option>
-					  <option value="3000000">3.000.000 VND</option>
-					  <option value="5000000">5.000.000 VND</option>
-					  <option value="10000000">10.000.000 VND</option>
-				  </select>
-				  <label for="priceTo">Price To :</label>
-				  <select name="price" id="priceTo">
-					  <option value="2000000">2.000.000 VND</option>
-					  <option value="4000000">4.000.000 VND</option>
-					  <option value="5000000">5.000.000 VND</option>
-					  <option value="100000000">100.000.000 VND</option>
-				  </select>
-				  <button type="submit" id="btnSearch" class="btn btn-info">Search</button>
-			</div>
-			
 			<div class="float-right"><a class="btn btn-success add-btn" id="addProductInfoModal"><i class="fas fa-plus-square"></i> Add Product</a></div>
+		</div>
+		<div class="tool" style="margin-bottom: 10px;">
+			<div>
+				<input type="text" placeholder="Product Name , Brand Name" id="keyword">
+				<label for="priceFrom" style="margin-left: 80px;" ><strong>Price From :</strong></label>
+				<select name="priceFrom" id="priceFrom">
+					<option value="1000000">1.000.000 VND</option>
+					<option value="3000000">3.000.000 VND</option>
+					<option value="5000000">5.000.000 VND</option>
+					<option value="10000000">10.000.000 VND</option>
+				 </select>
+				 <label for="priceTo" style="margin-left: 80px;"><strong>Price To :</strong></label>
+				 <select name="price" id="priceTo">
+					<option value="2000000">2.000.000 VND</option>
+					<option value="4000000">4.000.000 VND</option>
+					<option value="5000000">5.000.000 VND</option>
+					<option value="100000000">100.000.000 VND</option>
+				 </select>
+				 <button type="submit" id="btnSearch" class="btn btn-info" style=" float: right">Search</button>
+			</div>
 		</div>
 		<table class="table table-bordered" id="productInfoTable">
 			<thead>
@@ -68,7 +69,7 @@
 					</div>
 					
 					<div class="modal-body">
-						<div class="form-group d-none">
+						<div class="form-group">
 							<label>Product ID</label>
 							<input type="text" class="form-control" name="productId" id="productId" placeholder="Product ID" readonly>
 						</div>
@@ -94,7 +95,7 @@
 						</div>
 						<div class="form-group">
 							<label for="openForSale">Open for sale <span class="required-field">(*)</span></label>
-							<input type=date name="saleDate" id="saleDate" class="form-control" placeholder="Open for sale">
+							<input type=date name="saleDate" id="saleDate" class="form-control"  placeholder="Open for sale">
 						</div>
 						<div class="form-group">
 							<label for="description">Description</label>

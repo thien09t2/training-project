@@ -138,7 +138,7 @@ public class ProductServiceImpl implements IProductService {
 					;
 				}
 				productDao.saveAndFlush(productEntity);
-				responseMsg = "product is updated successfully";
+				responseMsg = "Product is updated successfully";
 				responseCode = Constants.RESULT_CD_SUCCESS;
 			}
 		} catch (Exception e) {

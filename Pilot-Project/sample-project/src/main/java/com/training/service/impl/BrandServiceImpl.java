@@ -24,7 +24,6 @@ import com.training.common.constant.Constants;
 import com.training.common.util.FileHelper;
 import com.training.dao.IBrandDao;
 import com.training.entity.BrandEntity;
-import com.training.entity.ProductEntity;
 import com.training.model.PagerModel;
 import com.training.model.ResponseDataModel;
 import com.training.service.IBrandService;

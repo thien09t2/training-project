@@ -23,6 +23,11 @@ header .nav-link {
 header .nav-link {
 	color: #333;
 }
+/* header .nav-link.active {
+	background-color: black;
+	color: #fff;
+} */
+
 header .nav-link.active {
 	background-color: black;
 	color: #fff;

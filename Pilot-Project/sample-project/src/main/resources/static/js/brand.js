@@ -2,7 +2,8 @@ $(document).ready(function() {
 
 	//truyền vào trang page số 1 lúc mở trang
 	findBrands(1);
-
+	
+	
 	
 	$('#btnSearch').on('click', function() {
 		var keyword = $('#keyword').val();
@@ -177,7 +178,11 @@ function searchBrand(keyword, pageNumber) {
 		success : function(responseData) {
 			if (responseData.responseCode == 100) {
 				renderBrandsTable(responseData.data.brandsList);
+				console.log(responseData.data.brandsList)
 				renderPagination(responseData.data.paginationInfo);
+				if(pageNumber==1){
+					showNotification(true, responseData.responseMsg);
+				}
 			}
 		}
 	});
@@ -211,13 +216,13 @@ function renderPagination(paginationInfo) {
 	var paginationInnerHtml = "";
 	if (paginationInfo.pageNumberList.length > 0) {
 		$("ul.pagination").empty();
-		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationInfo.firstPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="'+ paginationInfo.firstPage + '">Trang Đầu</a></li>'
+		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationInfo.firstPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="'+ paginationInfo.firstPage + '">Firts Page</a></li>'
 		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationInfo.previousPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="'+ paginationInfo.previousPage + '"> < </a></li>'
 		$.each(paginationInfo.pageNumberList, function(key, value) {
 			paginationInnerHtml += '<li class="page-item"><a class="page-link '+ (value == paginationInfo.currentPage ? 'active' : '') +'" href="javascript:void(0)" data-index="' + value +'">' + value + '</a></li>';
 		});
 		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationInfo.nextPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="'+ paginationInfo.nextPage + '"> > </a></li>'
-		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationInfo.lastPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="'+ paginationInfo.lastPage + '">Trang Cuối</a></li>'
+		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationInfo.lastPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="'+ paginationInfo.lastPage + '">Last Page</a></li>'
 		$("ul.pagination").append(paginationInnerHtml);
 	}
 }
