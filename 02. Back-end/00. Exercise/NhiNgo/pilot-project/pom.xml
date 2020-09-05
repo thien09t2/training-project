@@ -4,12 +4,12 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.training</groupId>
-	<artifactId>sample-project</artifactId>
+	<artifactId>pilot-project</artifactId>
 	<version>1.0.0</version>
 	<packaging>war</packaging>
 
 	<name>pilot-project</name>
-	<description>Spring Boot - Sample Project</description>
+	<description>Spring Boot - Pilot Project</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -91,7 +91,7 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
-
+		
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
@@ -112,6 +112,11 @@
     		<groupId>javax.xml.bind</groupId>
    			<artifactId>jaxb-api</artifactId>
 		</dependency>
+		
+		<dependency>
+   			<groupId>net.sourceforge.nekohtml</groupId>
+   			<artifactId>nekohtml</artifactId>
+  		</dependency>
 	</dependencies>
 	<build>
 		<finalName>pilot-project</finalName>

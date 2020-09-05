@@ -1,0 +1,130 @@
+html {
+    font-size: 42.5%;
+    font-family: "Poppins", sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(to right top, #254C79, #D5B287, #FEFCFB) no repeat;
+    /* align-items: center;
+    justify-content: center; */
+}
+
+:root {
+    --text-color: #202020;
+}
+.form-area {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.signup {
+    width: 100%;
+    max-width: 50rem;
+    background-color: white;
+    border-radius: 10px;
+    padding: 5rem 3rem;
+	mardin: auto;
+}
+
+.signup-heading {
+    font-size: 3rem;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group--2 {
+    display: flex;
+    justify-content: space-between;
+}
+.form-input {
+    font-family: "Poppins", sans-serif;
+    color: var(--text-color);
+    padding: 1.5rem;
+    border-radius: 10px;
+    outline: none;
+    font-size: 1.6rem;
+    font-weight: 500;
+    border: 1px solid #eee;
+    background-color: #eee;
+    transition: .25s linear;
+    width: 100%;
+}
+.form-input:focus {
+    border-color: #eee;
+    background-color: #fff;
+}
+.form-group--2 > .form-input {
+    width: calc(50% - 2.5px);
+}
+.form-group--2 > .form-input:last-child {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.form-group--2 > .form-input:first-child {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.form-input::-webkit-input-placeholder {
+    color: #ccc;
+    font-style: italic;
+}
+
+.form-submit {
+    border-radius: 10px;
+    color: white;
+    padding: 1.5rem;
+    outline: none;
+    font-family: "Poppins", sans-serif;
+    font-size: 1.6rem;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    width: 100%;
+    background-color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.form-submit-text {
+    margin: 0 auto;
+}
+#logInBtn {
+    margin-top: 10px;
+    background-color: var(--primary-color);
+}
+#logInBtn:hover, #regisBtn:hover {
+    color: #81929B;
+}
+
+.switch-sign-link {
+    background-color: var(--secondary-color);
+    padding: 1.8rem;
+}
+.form-tos {
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+    color: #999999;
+    margin-left: 5px;
+}
+#askToSwitchText {
+	font-size: 1.5rem;
+	text-align: center;
+	font-style: italic;
+}
+
+div.err-message-invalid, div.error, label.err-message-invalid, label.error {
+	font-size: 1.5rem;
+}

@@ -1,48 +1,124 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #254C79;
+    --secondary-color: #029E74;
+    --hover-color: #EDEDD3;
+}
+
 * .btn {
 	line-height: 1 !important;
 }
-
-:focus {
-	outline: 0 !important;
-	box-shadow: none !important;
+* .btn-primary {
+	background-color: var(--primary-color);
+	border: 0 solid var(--primary-color);
+}
+* .btn-primary:hover {
+	background-color: #3A50A3;
+	border: 0 solid;
 }
 
-header {
-    background: #4a90e2;
-    height: 50px;
-    margin-bottom: 15px;
+/* w3School Top button */
+#myTopBtn {
+    display: none;/* Hidden by default */
+    position: fixed; /* Fixed/sticky position */
+    bottom: 20px; /* Place the button at the bottom of the page */
+    right: 30px; /* Place the button 30px from the right */
+    z-index: 99; /* Make sure it does not overlap */
+    border: none; /* Remove borders */
+    outline: none; /* Remove outline */
+    background-color: gray; /* Set a background color */
+    color: white; /* Text color */
+    cursor: pointer; /* Add a mouse pointer on hover */
+    padding: 2px 12px; /* Some padding */
+    border-radius: 100%; /* Rounded corners */
+    font-size: 18px; /* Increase font size */
 }
-header .container {
+#myTopBtn:hover {
+    background-color: #555; /* Add a dark-grey background on hover */
+}
+/* Ending Top button */
+.wrapper, header .container, footer .container {
 	width: 100%;
     max-width: 1200px;
     min-width: 1024px;
     margin: auto;
     position: relative;
 }
+
+:focus {
+	outline: 0 !important;
+	box-shadow: none !important;
+}
+body {
+	background-color: #F9F9F0;
+}
+
+header {
+    margin-bottom: 30px;
+}
 header .main-logo {
-    font-size: 30px;
+    line-height: 2;
+    margin: auto;
+    background: var(--primary-color);
+    font-size: 50px;
     color: #fff;
-    font-weight: 700;
+    font-weight: 500;
     text-transform: uppercase;
-    padding-top: 2px;
+    text-align: center;
+}
+header .d-flex {
+    background: #ccc;
+    width: 100%;
+    padding: 0;
+	display: flex;
+	justify-content: space-between;
+	margin: auto;
+	margin-top: 20px;
+}
+header .d-flex .row {
+    margin-right: 5px; 
+    margin-left: 5px; 
 }
 
 header .nav-link {
-    background-color: #fff;
     color: #333;
-    margin-left: 8px;
-    margin-top: 4px;
-    padding: .25rem .5rem;
     width: 100px;
     text-align: center;
     font-weight: 600;
-    border-radius: 3px;
-    border: 1px solid;
+    border: 0 solid;
+    padding: .2rem .75rem;
 }
-
 header .nav-link.active {
-    background-color: black;
+    background-image: linear-gradient(to right top, #EE6A94, #D5B287, #FEFCFB);
     color: #fff;
+}
+header .float-left .nav-link {
+	padding: .5rem;
+}
+header .float-left .nav-link:hover {
+	background-position: 100% 0;
+	background: var(--hover-color);
+	color: #81929B;
+	transition: all .2s ease-in-out; 
+}
+header .nav-link#logOutBtn {
+	border: 1px solid #333333;
+	border-radius: 7px;
+	background-image: linear-gradient(to right, #003973 0%, #E5E5BE 100%);
+	color: #fff;
+	font-weight: 500;
+	margin: .25rem;
+}
+header .nav-link#logOutBtn:hover {
+	background-position: 100% 0;
+    background: var(--hover-color);
+    color: #81929B;
+    transition: all .2s ease-in-out; 
 }
 
 .sub-header {
@@ -54,7 +130,6 @@ header .nav-link.active {
 	color: #fff;
 	margin-bottom: 10px;
 }
-
 .sub-header .sub-title {
     font-weight: 900;
     color: #333;
@@ -65,14 +140,19 @@ header .nav-link.active {
 
 .table {
 	table-layout: fixed;
+	background: #fff;
+}
 }
 .table td {
 	height: 120px;
 }
+.table td.action-btns a {
+	cursor: pointer;
+}
 .table tbody td:first-child {
 	text-align: center;
 }
-.table tbody td.logo-cell {
+.table thead th, .table tbody td.logo-cell {
 	vertical-align: middle;
 }
 .table-bordered img {
@@ -87,7 +167,14 @@ header .nav-link.active {
 
 .modal-content .modal-header {
     padding: .5rem 1rem;
-    background: #e9ecef;
+    background: var(--primary-color);
+    color: #fff;
+}
+.modal-content .modal-header button.close span {
+	color: #fff;
+}
+.modal-content .modal-header button.close span:hover {
+	color: var(--hover-color);
 }
 .modal-content .modal-body {
     padding-bottom: .5rem;
@@ -113,7 +200,7 @@ div.err-message-invalid, div.error, label.err-message-invalid, label.error {
     border: 1px solid #f5c6cb !important;
     color: #dc3545 !important;
     width: 100%;
-    border-radius: .25rem;
+    border-radius: .5rem;
 }
 
 .pagination {
@@ -131,7 +218,10 @@ div.err-message-invalid, div.error, label.err-message-invalid, label.error {
 }
 .pagination a.active {
 	color: white;
-	background-color: #000000;
+	background-color: var(--primary-color);
+}
+.pagination a.active:hover {
+	background-color: #3A50A3;
 }
 .pagination a.disabled {
 	pointer-events: none;
@@ -172,5 +262,25 @@ div.err-message-invalid, div.error, label.err-message-invalid, label.error {
 .ekko-lightbox .modal-header .close:hover span {
 	background: #212529;
 }
-
-
+footer .row {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	margin-top: 20px;
+	margin-left: 0;
+}
+footer .row .add-btn {
+	background-image: linear-gradient(to right, var(--secondary-color) 50%, #2bb673 100%);
+	color: #fff;
+    box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75);
+    padding: .5rem .75rem;
+}
+footer .row .add-btn:hover {
+	background: var(--hover-color);
+	box-shadow: 0 4px 15px 0 rgba(255,255,204,0.9);
+	color: #333;
+	transition: all .35s ease-in-out; 
+}
+footer .row .float-right {
+	margin-right: -7px;
+}

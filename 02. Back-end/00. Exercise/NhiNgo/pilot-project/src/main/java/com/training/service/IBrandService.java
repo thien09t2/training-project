@@ -1,28 +1,30 @@
 package com.training.service;
 
-import com.training.entity.BrandEntity;
-import com.training.model.ResponseDataModel;
-
 import java.util.List;
 import java.util.Map;
 
+import com.training.entity.BrandEntity;
+import com.training.model.ResponseDataModel;
+
 public interface IBrandService {
 
-    BrandEntity add(BrandEntity brandEntity);
+	BrandEntity add(BrandEntity brandEntity);
 
-    BrandEntity update(BrandEntity brandEntity);
+	BrandEntity update(BrandEntity brandEntity);
 
-    ResponseDataModel delete(Long brandID);
+	ResponseDataModel delete(Long brandId);
 
-    List<BrandEntity> getAll();
+	List<BrandEntity> getAll();
 
-    BrandEntity findByBrandID(Long brandID);
+	List<BrandEntity> getAllOrderByBrandName();
 
-    BrandEntity findByBrandName(String brandName);
+	BrandEntity findByBrandId(Long brandId);
+
+	BrandEntity findByBrandName(String brandName);
 
 	Map<String, Object> findAllWithPager(int pgNum);
 
-	ResponseDataModel findByBrandIdApi(Long brandID);
+	ResponseDataModel findByBrandIdApi(Long brandId);
 
 	ResponseDataModel findAllWithPagerApi(int pgNum);
 
@@ -30,6 +32,6 @@ public interface IBrandService {
 
 	ResponseDataModel updateApi(BrandEntity brandEntity);
 
-	ResponseDataModel deleteApi(Long brandID);
+	ResponseDataModel deleteApi(Long brandId);
 
 }

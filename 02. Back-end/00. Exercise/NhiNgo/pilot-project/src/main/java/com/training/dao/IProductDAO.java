@@ -1,11 +1,19 @@
 package com.training.dao;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface IProductDAO {
+import com.training.entity.ProductEntity;
 
-//    ProductEntity findByProductID(Long prodID);
+@Repository("productRepository")
+public interface IProductDAO
+		extends JpaRepository<ProductEntity, Long>, PagingAndSortingRepository<ProductEntity, Long> {
 
-//    ProductEntity findByProductName(String prodName);
+	ProductEntity findByProductId(Long prodId);
+
+	ProductEntity findByProductName(String prodName);
+
+	ProductEntity findByProductNameAndProductIdNot(String prodName, Long prodId);
+
 }

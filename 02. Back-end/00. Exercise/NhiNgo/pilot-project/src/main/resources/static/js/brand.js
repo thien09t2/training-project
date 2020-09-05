@@ -3,6 +3,9 @@ $(document).ready(function() {
     //Load brandList when page opening
     loadAllBrands(1);
     
+    //Load add-new-button with customized name
+    
+    
     //Load brandList when clicking pagination btn
     $('.pagination').on('click', '.page-link', function() {
     	var pgNum = $(this).attr("data-index");
@@ -17,7 +20,7 @@ $(document).ready(function() {
     	resetFormModal($brandInfoForm);
     	showModalWithCustomizedTitle($brandModifyModal, "Add New Brand");
     	$('#logoImg img').attr('src', '/images/image-demo.png');
-    	$('#brandID').closest(".form-group").addClass("d-none");
+    	$('#brandId').closest(".form-group").addClass("d-none");
     	$('#brandLogo .required-mask').removeClass("d-none");
 //    	$brandModifyModal.modal("show");
     });
@@ -27,7 +30,7 @@ $(document).ready(function() {
 		
     	$('#brandLogo .required-mask').addClass("d-none");
     	
-    	//Load brand details by brandID
+    	//Load brand details by brandId
     	$.ajax({
     		url  : "/brand/api/find?id=" + $(this).data("id"),
     		type : 'GET',
@@ -40,9 +43,9 @@ $(document).ready(function() {
     	    	if (responseData.responseCode == 100) {
     	    		var brandDetails = responseData.data;
     	    		resetFormModal($brandInfoForm);
-    	    		showModalWithCustomizedTitle($brandModifyModal, "Edit Brand #" + brandDetails.brandID);
+    	    		showModalWithCustomizedTitle($brandModifyModal, "Edit Brand #" + brandDetails.brandId);
 
-    	    		$('#brandID').val(brandDetails.brandID);
+    	    		$('#brandId').val(brandDetails.brandId);
     	    		$('#brandName').val(brandDetails.brandName);
     	    		$('#description').val(brandDetails.description);
 
@@ -53,7 +56,7 @@ $(document).ready(function() {
 
     	    		$('#logoImg img').attr("src", brandLogo);
     	    		$('#logo').val(brandLogo);
-    	    		$('#brandID').closest(".form-group").removeClass("d-none");
+    	    		$('#brandId').closest(".form-group").removeClass("d-none");
     	    	}
     	    }
     	});
@@ -64,8 +67,8 @@ $(document).ready(function() {
 		
     	event.preventDefault();
     	var formData = new FormData($brandInfoForm[0]);
-    	var brandID = formData.get("brandID");
-    	var isAddAction = brandID == undefined || brandID == "";
+    	var brandId = formData.get("brandId");
+    	var isAddAction = brandId == undefined || brandId == "";
     	
     	$brandInfoForm.validate({
     		ignore : [],
@@ -75,7 +78,7 @@ $(document).ready(function() {
     				maxlength : 20
     			},
     			logoFiles : {
-    				required : isAddAction,
+    				required : isAddAction
     			},
     			description : {
     				maxlength : 50
@@ -87,7 +90,7 @@ $(document).ready(function() {
     				maxlength : "Brand name must not be longer than 20 characters!"
     			},
     			logoFiles : {
-    				required : "Brand Logo is required for new Brand.",
+    				required : "Brand Logo is required for new Brand."
     			},
     			description : {
     				maxlength : "Description must not be longer than 50 characters!"
@@ -183,14 +186,14 @@ function renderBrandTable(brandList) {
     $("#brandDetailsTable tbody").empty();
     $.each(brandList, function(key, value) {
         rowHtml = "<tr>"
-                +       "<td>"  + value.brandID  +   "</td>"
+                +       "<td>"  + value.brandId  +   "</td>"
                 +       "<td>"  + value.brandName  +   "</td>"
                 +       "<td class='text-center logo-cell'><a href='"  +   value.logo    + "' data-toggle='lightbox' data-max-width='1000'><img class='img-fluid' src='"  +   value.logo    + "'></td>"
                 +       "<td>"  + value.description  +   "</td>"
                 +       "<td class='action-btns'>"
-                +	         "<a class='edit-btn' data-id='" +   value.brandID   +   
+                +	         "<a class='edit-btn' data-id='" +   value.brandId   +   
                 				"'><i class='fas fa-edit'></i></a> | <a class='delete-btn' data-name='" +   value.brandName   +	
-                				"' data-id='" +   value.brandID   + "'><i class='fas fa-trash-alt'></i></a>"
+                				"' data-id='" +   value.brandId   + "'><i class='fas fa-trash-alt'></i></a>"
                 +		"</td>"
                 +   "</tr>"; 
         $("#brandDetailsTable tbody").append(rowHtml);
@@ -198,7 +201,7 @@ function renderBrandTable(brandList) {
 }
 
 /**
- * Render Html for pagination bar
+ * Render Html for pagination bar in Brand page
  * 
  * @param paginationInfo
  */ 
@@ -217,3 +220,9 @@ function renderPagination(paginationInfo) {
         $("ul.pagination").append(paginationInnerHtml);
     }
 }
+
+//function loadButtonWithCustomizedName(pgName) {
+//	
+//	var name = "";
+//	if 
+//}

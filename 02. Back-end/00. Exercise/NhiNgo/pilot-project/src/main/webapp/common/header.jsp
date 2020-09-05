@@ -3,16 +3,15 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <header class="container-fluid">
     <div class="container">
-        <div class="d-flex">
-            <div class="main-logo">
-                Pilot Project
-            </div>
-            <a class="ml-5 nav-link" href="/product">
-                Product
-            </a>
-            <a class="active nav-link" href="/brand">
-                Brand
-            </a>
+		<div class="main-logo">JAVA PILOT PROJECT</div>
+		<div class="d-flex">
+			<div class="float-left row">
+				<a class="nav-link .active" href="/product"> Product </a> 
+				<a class="nav-link" href="/brand"> Brand </a>
+			</div>
+			<div class="float-right row">
+				<a class="nav-link" href="/logout" id="logOutBtn"> Logout </a> 
+			</div>
         </div>
     </div>
 </header>

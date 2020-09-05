@@ -18,12 +18,13 @@
  		<div class="container wrapper">
 			<div class="sub-header">
 				<div class="float-left sub-title">Brand Management</div>
-				<div class="float-right">
-					<a class="btn btn-success add-btn" id="addBrandLink">
-						<i class="fas fa-plus-square"></i> Add Brand
-					</a>
-				</div>
 			</div>
+			<form action="/brand/search" class="form-inline">
+				<div class="form-group mb-2">
+					<input type="text" class="form-control" id="brandNameSearch" name="brandName" placeholder="Brand Name"/>
+					<input tyoe="submit" value="Search" class="btn btn-primary"/>
+				</div>
+			</form>	
 			<table class="table table-bordered" id="brandDetailsTable">
 				<thead>
 					<tr class="text-center">
@@ -35,15 +36,10 @@
 					</tr>
 				</thead>
 				<tbody>
-					<!-- JS code -->
+					<!-- rendered by JS -->
 				</tbody>
 			</table>
 
-			<div class="d-flex justify-content-center">
-				<ul class="pagination">
-					<!-- JS code -->
-				</ul>
-			</div>
 		</div>
  	</div>
  	
@@ -54,7 +50,7 @@
                 <form id="brandInfoForm" role="form" enctype="multipart/form-data">
                     <div class="modal-header">
                         <h5 class="modal-title">
-                            Add Brand Form
+                            Brand Form
                         </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -63,7 +59,7 @@
                     <div class="modal-body">
                         <div class="form-group d-none">
                             <label>Brand ID</label>
-                            <input type="text" class="form-control" id="brandID" name="brandID" placeholder="Enter Brand ID" readonly>
+                            <input type="text" class="form-control" id="brandId" name="brandId" placeholder="Enter Brand ID" readonly>
                         </div>
                         <div class="form-group">
                             <label for="brandName">Brand Name <span class="required-mask">(*)</span></label>
@@ -95,8 +91,8 @@
     <div class="modal fade" id="confirmDeleteModal">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Are you sure ?</h5>
+                <div class="modal-header bg-danger">
+                    <h5 class="modal-title">Are You Sure ?</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -112,7 +108,20 @@
             </div>    
         </div>
     </div>
-	
+	<footer class="container-fluid">
+		<div class="container">
+			<div class="row">
+				<div class="float-left">
+					<a class="btn add-btn" id="addBrandLink">Add Brand</a>
+				</div>
+				<div class="float-right d-flex justify-content-center">
+					<ul class="pagination">
+						<!-- JS code -->
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
 	<jsp:include page="../common/footer.jsp"/>
 	
 	<script src="<c:url value='/js/brand.js'/>"></script>
