@@ -3,9 +3,39 @@ $(document).ready(function() {
 	/* Move pagination*/
 	$('.pagination').on('click', '.page-link', function() {
 		var pageNumber = $(this).attr("data-index");
-		findAllProducts(pageNumber);
+		var keyword = $('#keyword').val();
+		var priceFrom = $('#priceFrom').val();
+		var toPrice = $('#toPrice').val();
+		if ( keyword != "" ) {
+			searchProducOrBrandByPrice(keyword, pageNumber, priceFrom, toPrice);
+		} else {
+			findAllProducts(pageNumber);
+		}
 	});
-
+	
+	/*$('input[type=text]').on('keydown', function(event) {
+		if (event.which == 13 || event.keyCode == 13) {
+			var keyword = $('#keyword').val();
+			searchProductByName(keyword,1);
+		}
+	});*/
+	$('input[type=text]').on('keydown', function(event) {
+		if (event.which == 13 || event.keyCode == 13) {
+			var keyword = $('#keyword').val();
+			searchProductByName(keyword, 1);
+		}
+	});
+	
+	$('#searchByPrice').on('click', function() {
+		var keyword = $('#keyword').val();
+		var priceFrom = $('#priceFrom').val();
+		var toPrice = $('#toPrice').val();
+		if (keyword != "") {
+			searchProducOrBrandByPrice(keyword, 1, priceFrom, toPrice);
+		} else {
+			searchProductByPrice(priceFrom, toPrice, 1);
+		}
+	});
 	var $productInfoForm = $('#productInfoForm');
 	var $productInfoModal = $('#productInfoModal');
 
@@ -39,7 +69,7 @@ $(document).ready(function() {
 					$('#productName').val(productInfo.productName);
 					$('#quantity').val(productInfo.quantity);
 					$('#price').val(productInfo.price);
-					$('#BrandName').val(productInfo.BrandName);
+					$('#brandId').val(productInfo.brandEntity.brandId);
 					$('#saleDate').val(productInfo.saleDate);
 					$('#description').val(productInfo.description);
 
@@ -59,9 +89,8 @@ $(document).ready(function() {
 		event.preventDefault();
 		var formData = new FormData($productInfoForm[0]);
 		var productId = formData.get("productId");
-		var brandId = $('#brandId').val();
 		var isAddAction = productId == undefined || productId == "";
-		
+
 		$productInfoForm.validate({
 			ignore: [],
 			rules: {
@@ -115,12 +144,10 @@ $(document).ready(function() {
 			errorElement: "div",
 			errorClass: "error-message-invalid"
 		});
-		//nhìn  thì đúng mà lại k chạy :v :v mấy đoạn ni copy qua luôn à e cos go lai a ma e do ky lam , a thu cop bo qy
-	if ($productInfoForm.valid()) {
+		if ($productInfoForm.valid()) {
 
-			// POST data to server-side by AJAX
 			$.ajax({
-				url: "/product/api/" + (isAddAction ? "add" : "update")+"/"+brandId,
+				url: "/product/api/" + (isAddAction ? "add" : "update"),
 				type: 'POST',
 				enctype: 'multipart/form-data',
 				processData: false,
@@ -129,11 +156,10 @@ $(document).ready(function() {
 				timeout: 10000,
 				data: formData,
 				success: function(responseData) {
-
-					//hiển thị thông báo lúc chỉnh sửa thành công hoặc báo lỗi
+					//Show message successffuly or failed
 					if (responseData.responseCode == 100) {
 						$productInfoModal.modal('hide');
-						findProductList(1)			
+						findAllProducts(1);
 						showNotification(true, responseData.responseMsg);
 					} else {
 						showMsgOnField($productInfoForm.find("#productName"), responseData.responseMsg);
@@ -144,25 +170,25 @@ $(document).ready(function() {
 	})
 });
 /*Show modal confirm delete product*/
-	$("#productInfoTable").on('click', '.delete-btn', function() {
-		$("#deletedproductName").text($(this).data("name"));
-		$("#deleteSubmitBtn").attr("data-id", $(this).data("id"));
-		$('#confirmDeleteModal').modal('show');
+$("#productInfoTable").on('click', '.delete-btn', function() {
+	$("#deletedProductName").text($(this).data("name"));
+	$("#deleteSubmitBtn").attr("data-id", $(this).data("id"));
+	$('#confirmDeleteModal').modal('show');
+});
+/*Submit form deleted product*/
+$("#deleteSubmitBtn").on('click', function() {
+	$.ajax({
+		url: "/product/api/delete/" + $(this).attr("data-id"),
+		type: 'DELETE',
+		dataType: 'json',
+		contentType: 'application/json',
+		success: function(responseData) {
+			$('#confirmDeleteModal').modal('hide');
+			showNotification(responseData.responseCode == 100, responseData.responseMsg);
+			findAllProducts(1);
+		}
 	});
-	/*Submit form deleted product*/
-	$("#deleteSubmitBtn").on('click', function() {
-		$.ajax({
-			url: "/product/api/delete/" + $(this).attr("data-id"),
-			type: 'DELETE',
-			dataType: 'json',
-			contentType: 'application/json',
-			success: function(responseData) {
-				$('#confirmDeleteModal').modal('hide');
-				showNotification(responseData.responseCode == 100, responseData.responseMsg);
-				findAllProducts(1);
-			}
-		});
-	});
+});
 
 /*
 	List products with a page
@@ -182,13 +208,67 @@ function findAllProducts(pageNumber) {
 		}
 	});
 }
+//Search product by the only price
+function searchProductByPrice(priceFrom, toPrice, pageNumber) {
+	$.ajax({
+		url: "/product/api/searchByPrice/" + priceFrom + "/" + toPrice + "/" + pageNumber,
+		type: 'GET',
+		dateType: 'json',
+		contentType: 'application/json',
+		success: function(responseData) {
+			if ( responseData.responseCode == 100 ) {
+				renderProductsTable(responseData.data.productsList);
+				renderPagination(responseData.data.paginationList);
+				if ( pageNumber == 1 ) {
+					showNotification(true, responseData.responseMsg);
+				}
+			}
+		}
+	})
+}
+// Search prodcut by product name or brand name
+function searchProductByName(keyword, pageNumber) {
+	$.ajax({
+		url: "/product/api/searchByName/" + keyword + "/" + pageNumber,
+		type: 'GET',
+		dataType: 'json',
+		contentType: 'application/json',
+		success: function(responseData) {
+			if ( responseData.responseCode == 100 ) {
+				renderProductsTable(responseData.data.productsList);
+				renderPagination(responseData.data.paginationList);
+				if ( pageNumber == 1 ) {
+					showNotification(true, responseData.responseMsg);
+				}
+			}
+		}
+	})
+}
+// Search product by product name or brand name and price
+function searchProducOrBrandByPrice(keyword, pageNumber, priceFrom, toPrice) {
+	$.ajax({
+		url: "/product/api/searchByNameAndPrice/" + keyword + "/" + pageNumber + "/" + priceFrom + "/" + toPrice,
+		type: 'GET',
+		dataType: 'json',
+		contentType: 'application/json',
+		success: function(responseData) {
+			if(responseData.responseCode == 100) {
+				renderProductsTable(responseData.data.productsList);
+				renderPagination(responseData.data.paginationList);
+				if ( pageNumber == 1 ) {
+					showNotification(true, responseData.responseMsg);
+				}
+			}
+		}
+	})
+}
 /* Render jsp for product table*/
 function renderProductsTable(productsList) {
 
 	var rowHtml = "";
 	$("#productInfoTable tbody").empty();
 	$.each(productsList, function(key, value) {
-		rowHtml = "<tr class='text-center'>"
+		rowHtml = "<tr>"
 			+ "<td>" + value.productId + "</td>"
 			+ "<td>" + value.productName + "</td>"
 			+ "<td>" + value.quantity + "</td>"
@@ -196,7 +276,7 @@ function renderProductsTable(productsList) {
 			+ "<td>" + value.brandEntity.brandName + "</td>"
 			+ "<td>" + value.saleDate + "</td>"
 			+ "<td>" + value.description + "</td>"
-			+ "<td class='text-center'><a href='" + value.image + "' data-toggle='lightbox' data-max-width='1000'><img class='img-fluid' src='" + value.image + "'></td>"
+			+ "<td class='text-center '><a href='" + value.image + "' data-toggle='lightbox' data-max-width='1000'><img class='img-fluid' src='" + value.image + "'></td>"
 			+ "<td class='action-btns'>"
 			+ "<a class='edit-btn' data-id='" + value.productId + "'><i class='fas fa-edit'></i></a> | <a class='delete-btn' data-name='" + value.productName + "' data-id='" + value.productId + "'><i class='fas fa-trash-alt'></i></a>"
 			+ "</td>"
@@ -204,7 +284,6 @@ function renderProductsTable(productsList) {
 		$("#productInfoTable tbody").append(rowHtml);
 	})
 }
-/*Pagination*/
 /*Pagination*/
 function renderPagination(paginationList) {
 

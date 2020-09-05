@@ -13,15 +13,36 @@
 
 </head>
 <body>
+	<div class="nav-bg">
+		<div class="container">
+			<nav class="navbar  navbar-expand-lg navbar-light ">
+			  <a class="navbar-brand">PILOT PROJECT</a>
+			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+			    <span class="navbar-toggler-icon"></span>
+			  </button>
+			  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+			    <div class="navbar-nav">
+			      <a class="nav-item nav-link " href="/product">Product <span class="sr-only">(current)</span></a>
+			      <a class="nav-item nav-link active" href="/brand">Brand</a>
+			    </div>
+			  </div>
+			</nav>
+		</div>
+	</div>
 	<div class="container">
 		<div class="sub-header">
-			<div class="float-left sub-title">Brand Management</div>
-			<div class="float-right"><a class="btn btn-success add-btn" id="addBrandInfoModal"><i class="fas fa-plus-square"></i> Add Brand</a></div>
+			<div class="sub-title">Brand Management</div>
+			<div ><a class="add-btn" id="addBrandInfoModal"><button class="btn-add btn btn-outline-success" type="button"><i class="icon-add fas fa-plus-square"></i>Add New Brand</button></a></div>
 		</div>
-		<table class="table table-bordered" id="brandInfoTable">
+		<div class="form-search float-right">
+			<input type="text"  class="form-control" placeholder="Brand Name" id="keyword">
+			<button type="submit" name="searchBrand" id="searchBrand" class="btn btn-success">Search</button>
+			<a class="reset-page btn btn-secondary" id="restPage" href="/brand" >Reset</a>
+		</div>
+		<table class="table table-bordered table-hover" id="brandInfoTable">
 			<thead>
 				<tr class="text-center">
-					<th scope="col">STT</th>
+					<th scope="col">No</th>
 					<th scope="col">Name</th>
 					<th scope="col">Logo</th>
 					<th scope="col">Description</th>

@@ -139,7 +139,7 @@ public class ProductServiceImpl implements IProductService {
 				productDao.deleteById(productId);
 				productDao.flush();
 				FileHelper.deleteFile(productEntity.getImage());
-				responseMsg = "Delete brand successfully";
+				responseMsg = "Delete product successfully";
 				responseCode = Constants.RESULT_CD_SUCCESS;
 			}
 		} catch (Exception e) {
@@ -148,9 +148,78 @@ public class ProductServiceImpl implements IProductService {
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
 	}
+//	Search product name and brand by the only price
+	@Override
+	public ResponseDataModel searchByPrice(double priceFrom, double toPrice, int pageNumber) {
+		int responseCode = Constants.RESULT_CD_FAIL;
+		String responseMsg = StringUtils.EMPTY;
+		Map<String, Object> responseMap = new HashMap<String, Object>();
+		try {
+			Sort sortList = Sort.by(Sort.Direction.DESC, "productId");
+			Pageable pageable = PageRequest.of(pageNumber - 1 , Constants.PAGE_SIZE, sortList);
+			Page<ProductEntity> productEntitesPage = productDao.findByPriceBetween(priceFrom, toPrice, pageable);
+			responseMap.put("productsList", productEntitesPage.getContent());
+			responseMap.put("paginationList", new PageModel(pageNumber,  productEntitesPage.getTotalPages()));
+			if ( productEntitesPage.getTotalElements() > 0 ) {
+				responseMsg = "The number of product found is " + productEntitesPage.getTotalElements() + " product";
+			} else {
+				responseMsg = "Doesn't exist product have price between " + priceFrom + " and " + toPrice;
+			}
+			responseCode = Constants.RESULT_CD_SUCCESS;
+		} catch (Exception e) {
+			responseMsg = e.getMessage();
+			LOGGER.error("Error! Search by price failed: ",e);
+		}
+		return new ResponseDataModel(responseCode, responseMsg, responseMap);
+	}
+//	Search product by product name or brand name
+	@Override
+	public ResponseDataModel searchByName(String keyword, int pageNumber) {
+		int responseCode = Constants.RESULT_CD_FAIL;
+		String responseMsg = StringUtils.EMPTY;
+		Map<String, Object> responseMap = new HashMap<String, Object>();
+		try {
+			Sort sortList = Sort.by(Sort.Direction.DESC, "productId");
+			Pageable pageable = PageRequest.of(pageNumber - 1 , Constants.PAGE_SIZE, sortList);
+			Page<ProductEntity> productEntitesPage = productDao.searchProductByName(keyword, pageable);
+			responseMap.put("productsList", productEntitesPage.getContent());
+			responseMap.put("paginationList", new PageModel(pageNumber, productEntitesPage.getTotalPages()));
+			responseCode = Constants.RESULT_CD_SUCCESS;
+			if ( productEntitesPage.getTotalElements() > 0 ) {
+				responseMsg = "The number of product found is " + productEntitesPage.getTotalElements() + " product";
+			} else {
+				responseMsg = "The " + keyword + " is not exist!";
+			}
+		} catch (Exception e) {
+				responseMsg = e.getMessage();
+				LOGGER.error("Error! Search product by name is failed.", e);
+		}
+		return new ResponseDataModel(responseCode, responseMsg, responseMap);
+	}
 	
-
-	
-	
-
+//	Search by product name or brand name  and price
+	@Override
+	public ResponseDataModel searchByNameAndPrice(String keyword, int pageNumber, double priceFrom, double toPrice) {
+		
+		int responseCode = Constants.RESULT_CD_FAIL;
+		String responseMsg = StringUtils.EMPTY;
+		Map<String, Object> responseMap = new HashMap<String, Object>();
+		try {
+			Sort sortList = Sort.by(Sort.Direction.DESC,"productId");
+			Pageable pageable = PageRequest.of(pageNumber - 1, Constants.PAGE_SIZE, sortList);
+			Page<ProductEntity> productEntitesPage = productDao.searchProductByNameAndPrice(keyword, priceFrom, toPrice, pageable);
+			responseMap.put("productsList", productEntitesPage.getContent());
+			responseMap.put("paginationList", new PageModel(pageNumber, productEntitesPage.getTotalPages()));
+			if ( productEntitesPage.getTotalElements() > 0) {
+				responseMsg = "The number of product found is " + productEntitesPage.getTotalElements() + " product";
+			} else {
+				responseMsg = "The " + keyword + " is not exist";
+			}
+			responseCode = Constants.RESULT_CD_SUCCESS;
+		} catch (Exception e) {
+			responseMsg = e.getMessage();
+			LOGGER.error("Error! Search brand name or product name by price is failed: ",e);
+		}
+		return new ResponseDataModel(responseCode, responseMsg, responseMap);
+	}
 }

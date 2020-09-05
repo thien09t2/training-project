@@ -14,12 +14,13 @@ public interface IBrandService {
 	ResponseDataModel addApi(BrandEntity brandEntity);
 
 	ResponseDataModel deleteApi(Long brandId);
-
+	
 	ResponseDataModel updateApi(BrandEntity brandEntity);
 
 	ResponseDataModel findBrandByIdApi(Long brandId);
 
 	List<BrandEntity> getAll();
 
-	BrandEntity findByBrandId(Long brandId);
+	ResponseDataModel searchApi(String brandName, int pageNumber);
+
 }

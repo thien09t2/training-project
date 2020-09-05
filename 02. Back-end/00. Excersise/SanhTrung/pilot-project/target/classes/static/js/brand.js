@@ -1,15 +1,40 @@
 $(document).ready(function() {
 
 	findAllBrands(1);
-	/*Pagination on lick*/
+	/*Pagination on lick + search brand name*/
 	$('.pagination').on('click', '.page-link', function() {
 		var pageNumber = $(this).attr("data-index");
-		findAllBrands(pageNumber);
+		var brandName = $('#keyword').val();
+		if (brandName != "") {
+			searchBrandName(brandName, pageNumber);
+		} else {
+			findAllBrands(pageNumber);
+		}
 	})
 
 	var $brandInfoForm = $('#brandInfoForm')
 	var $brandInfoModal = $('#brandInfoModal')
 
+
+	/*Search brand name*/
+	/*$('#searchBrand').on('click', function() {
+		var keyword = $('#keyword').val();
+		searchBrandName(keyword, 1);
+	})*/
+	$('input[type=text]').on('keydown', function(event) {
+		if (event.which == 13 || event.keyCode == 13) {
+			var brandName = $('#keyword').val();
+			searchBrandName(brandName, 1);
+		}
+	});
+	$('#searchBrand').on('click', function() {
+		var brandName = $('#keyword').val();
+		searchBrandName(brandName, 1);
+	})
+	$('#resetPage').on('click', function(event) {
+		event.preventDefault();
+		findAllBrands(1);
+	})
 	/*Show form add new brand*/
 	$("#addBrandInfoModal").on('click', function() {
 		resetFormModal($brandInfoForm);
@@ -17,6 +42,7 @@ $(document).ready(function() {
 		$('#logoImg img').attr('src', '/images/image-demo.png');
 		$('#brandId').closest(".form-group").addClass("d-none");
 	});
+
 	/*Show form update modal*/
 	$("#brandInfoTable").on('click', '.edit-btn', function() {
 		$("#brandLogo .required-field").addClass("d-none");
@@ -67,6 +93,7 @@ $(document).ready(function() {
 			}
 		});
 	});
+
 	/*Submit add new brand*/
 	$("#saveBrandBtn").on('click', function(event) {
 
@@ -143,6 +170,25 @@ function findAllBrands(pageNumber) {
 		}
 	});
 }
+
+function searchBrandName(brandName, pageNumber) {
+	$.ajax({
+		url: "/brand/api/search/" + brandName + "/" + pageNumber,
+		type: 'GET',
+		dataType: 'json',
+		contentType: 'application/json',
+		success: function(responseData) {
+			if (responseData.responseCode == 100) {
+				renderBrandsTable(responseData.data.brandsList);
+				renderPagination(responseData.data.paginationList);
+				if (pageNumber == 1) {
+					showNotification(true, responseData.responseMsg);
+				}
+			}
+		}
+	});
+}
+
 /*Render jsp for brand table */
 function renderBrandsTable(brandsList) {
 
@@ -150,14 +196,14 @@ function renderBrandsTable(brandsList) {
 	$("#brandInfoTable tbody").empty();
 	$.each(brandsList, function(key, value) {
 		rowHtml = "<tr class='text-center'>"
-					+ "<td>" + value.brandId + "</td>"
-					+ "<td>" + value.brandName + "</td>"
-					+ "<td class='text-center'><a href='" + value.logo + "' data-toggle='lightbox' data-max-width='1000'><img class='img-fluid' src='" + value.logo + "'></td>"
-					+ "<td>" + value.description + "</td>"
-					+ "<td class='action-btns'>"
-					+ 	"<a class='edit-btn' data-id='" + value.brandId + "'><i class='fas fa-edit'></i></a> | <a class='delete-btn' data-name='" + value.brandName + "' data-id='" + value.brandId + "'><i class='fas fa-trash-alt'></i></a>"
-					+ "</td>"
-				+ "</tr>";
+			+ "<td>" + value.brandId + "</td>"
+			+ "<td>" + value.brandName + "</td>"
+			+ "<td class='text-center'><a href='" + value.logo + "' data-toggle='lightbox' data-max-width='1000'><img class='img-fluid' src='" + value.logo + "'></td>"
+			+ "<td>" + value.description + "</td>"
+			+ "<td class='action-btns'>"
+			+ "<a class='edit-btn' data-id='" + value.brandId + "'><i class='fas fa-edit'></i></a> | <a class='delete-btn' data-name='" + value.brandName + "' data-id='" + value.brandId + "'><i class='fas fa-trash-alt'></i></a>"
+			+ "</td>"
+			+ "</tr>";
 		$("#brandInfoTable tbody").append(rowHtml);
 	});
 }

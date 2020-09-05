@@ -13,20 +13,63 @@
 <link rel="stylesheet" href="<c:url value='/css/product.css'/>">
 </head>
 <body>
-	<div class="container">
-		<div class="sub-header">
-			<div class="float-left sub-title">Product Management</div>
-			<div class="float-right"><a class="btn btn-success add-btn" id="addProductInfoModal"><i class="fas fa-plus-square">Add new product</i></a></div>
+	<div class="nav-bg">
+		<div class="container">
+			<nav class="navbar navbar-expand-lg navbar-light ">
+			  <a class="navbar-brand">PILOT PROJECT</a>
+			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+			    <span class="navbar-toggler-icon"></span>
+			  </button>
+			  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+			    <div class="navbar-nav">
+			      <a class="nav-item nav-link active" href="/product">Product <span class="sr-only">(current)</span></a>
+			      <a class="nav-item nav-link" href="/brand">Brand</a>
+			    </div>
+			  </div>
+			</nav>
 		</div>
-		<table class="table table-bordered" id="productInfoTable">
+	</div>
+	<div class="container">
+		<div class="sub-header row">
+			<div class="sub-title">Product Management</div>
+			<div ><a class="add-btn" id="addProductInfoModal"><button class="btn-add btn btn-outline-success" type="button"><i class="icon-add fas fa-plus-square"></i>Add New Product</button></a></div>
+		</div>
+		<div class="search-product form-group">
+			<div class="search-product__name">
+				<input type="text" class="form-control search-brand" placeholder="Product Name, Brand Name" id="keyword">
+			</div>
+			<div class="search-product__price">
+				<label class="price-labe price-labe-from" for="priceFrom">Price From </label>
+				<select class="price priceFrom form-control" name="priceForm"  id="priceFrom">
+					<option value="0">0</option>
+					<option value="1000000">1.000.000</option>
+					<option value="2000000">2.000.000</option>
+					<option value="3000000">3.000.000</option>
+					<option value="4000000">4.000.000</option>
+				</select>
+				<label class="price-labe" for="toPrice">Price To </label>
+				<select class="price toPrice form-control" name="toPrice" id="toPrice">
+					<option value="1000000">1.000.000</option>
+					<option value="2000000">2.000.000</option>
+					<option value="4000000">4.000.000</option>
+					<option value="8000000">8.000.000</option>
+					<option value="10000000">10.000.000</option>
+					<option value="20000000">20.000.000</option>
+					<option value="100000000000000">Giá cao nhất</option>
+				</select>
+				<button type="submit" id="searchByPrice" class="btn btn-success">Search</button>
+				<a class="reset-page btn btn-secondary" id="restPage" href="/product" >Reset</a>
+			</div>
+		</div>
+		<table class="table table-bordered table-hover" id="productInfoTable">
 			<thead>
 				<tr class="text-center">
-					<th scope="col">STT</th>
+					<th scope="col">No</th>
 					<th scope="col">Product</th>
 					<th scope="col">Quantity</th>
 					<th scope="col">Price</th>
 					<th scope="col">Brand</th>
-					<th scope="col">Opening for sale</th>
+					<th scope="col" class="sale-date">Sale Date</th>
 					<th scope="col">Description</th>
 					<th scope="col">Image</th>
 					<th scope="col">Actions</th>
@@ -44,7 +87,7 @@
 			<div class="modal-content">
 				<form id="productInfoForm" role="form" enctype="multipart/form-data">
 					<div class="modal-header">
-						<h5 class="modal-titel">Add new product</h5>
+						<h5 class="modal-titel">Add New Product</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-lable>
 							<span aria-hidden="true">&times;</span>
 						</button>
@@ -56,28 +99,28 @@
 						</div>
 						<div class="form-group">
 							<label for="productName">Product name <span class="required-field">(*)</span></label>
-							<input type="text" class="form-control" name="productName" id="productName" placeholder="Product name">
+							<input type="text" class="form-control" name="productName" id="productName" placeholder="Name of the product" aria-describedby="basic-addon1">
 						</div>
 						<div class="form-group">
 							<label for="quantity">Quantity <span class="required-field">(*)</span></label>
-							<input type="text" class="form-control" name="quantity" id="quantity" placeholder="Quantity">
+							<input type="text" class="form-control" name="quantity" id="quantity" placeholder="Quantity of product">
 						</div>
 						<div class="form-group">
 							<label for="price">Price <span class="required-field">(*)</span></label>
-							<input type="text" class="form-control" name="price" id="price" placeholder="Price">
+							<input type="text" class="form-control" name="price" id="price" placeholder="Price of product">
 						</div>
 						<!-- Brand name -->
 						<div class="form-group">
 							<label for="brandId">Brand Name</label>
-							<select  class="form-control" id="brandId" name ="brandId">
+							<select  class="form-control" id="brandId" name ="brandEntity.brandId">
 								<c:forEach items="${listBrand}" var="brand">
-									<option value="${brand.brandId}">${brand.brandName}</option>
+									<option value="${brand.brandId}" class="form-select">${brand.brandName}</option>
 								</c:forEach>
 							</select>
 						</div>
 						<div class="form-group">
-							<label for="saleDate">Opening for sale <span class="required-field">(*)</span></label>
-							<input type="date" class="form-control" name="saleDate" id="saleDate" placeholder="Opening for sale">
+							<label for="saleDate">Sale Date <span class="required-field">(*)</span></label>
+							<input type="date" class="form-control" name="saleDate" id="saleDate">
 						</div>
 						<div class="form-group" id="productImage">
 							<label for="image">Image <span class="required-field">(*)</span></label>
@@ -89,7 +132,7 @@
 						</div>
 						<div class="form-group">
 							<label for="description">Description </label>
-							<input type="text" class="form-control" name="description" id="description" placeholder="Description">
+							<input type="text" class="form-control" name="description" id="description" placeholder="Description of product">
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -105,7 +148,7 @@
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">Delete product</h5>
+					<h5 class="modal-title">Delete Product</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>

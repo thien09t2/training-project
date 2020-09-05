@@ -17,7 +17,7 @@ public class PageModel {
 	private List<Integer> pageNumberList; 
 	
 	public PageModel(int currentPage, int totalPage) {
-		// TODO Auto-generated constructor stub
+		
 		this.currentPage = currentPage;
 		this.totalPage = totalPage;
 		

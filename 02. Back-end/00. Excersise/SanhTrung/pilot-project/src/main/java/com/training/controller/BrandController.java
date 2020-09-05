@@ -35,14 +35,13 @@ public class BrandController {
 	public ResponseDataModel findBrandByIdApi(@RequestParam("id") Long brandId) {
 		return brandService.findBrandByIdApi(brandId);
 	}
-
 //	Show list brand
 	@GetMapping("/api/findAll/{pageNumber}")
 	@ResponseBody
 	public ResponseDataModel findAllWithPageApi(@PathVariable("pageNumber") int pageNumber) {
 		return brandService.findAllWithPageApi(pageNumber);
 	}
-
+	
 //	Add new brand
 	@PostMapping(value = "/api/add")
 	@ResponseBody
@@ -63,5 +62,10 @@ public class BrandController {
 	public ResponseDataModel deleteApi(@PathVariable("brandId") Long brandId) {
 		return brandService.deleteApi(brandId);
 	}
-	
+//	Search brand
+	@GetMapping(value = "/api/search/{brandName}/{pageNumber}")
+	@ResponseBody
+	public ResponseDataModel searchApi(@PathVariable("brandName") String brandName, @PathVariable("pageNumber") int pageNumber) {
+		return brandService.searchApi(brandName, pageNumber);
+	}
 }
