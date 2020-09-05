@@ -78,6 +78,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		      	    .and()
 		      .exceptionHandling().accessDeniedPage("/login");
 	 }
-	// e code theo treen mang co viet 1 cai service duoi nay nua a ne a xem qua thu
 
 }
