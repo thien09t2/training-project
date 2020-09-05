@@ -36,7 +36,7 @@ public interface IBrandService {
 
 	ResponseDataModel updateApi(BrandEntity brandEntity);
 	
-	ResponseDataModel search(String searchKey, int pageNumber);
+	ResponseDataModel search( Map<String, String> searchConditions, int pageNumber);
 	
 
 	

@@ -3,6 +3,7 @@ header {
 	height: 50px;
 	margin-bottom: 15px;
 }
+
 header .main-logo {
 	font-size: 30px;
 	color: #fff;
@@ -10,53 +11,12 @@ header .main-logo {
 	text-transform: uppercase;
 	padding-top: 2px;
 }
-header .nav-link {
-	background-color: #fff;
-	margin-left: 8px;
-	margin-top: 4px;
-	width: 100px;
-	text-align: center;
-	font-weight: 600;
-	border-radius: 3px;
-	border: 1px solid;
-}
-header .nav-link {
-	color: #333;
-}
-
-header .nav-link:hover {
-	background-color: yellow;
-}
-header .nav-link.active {
-	background-color: white;
-	color: black;
-}
-
-header .nav-link.active:hover{
-	background-color: yellow;
-}
-
-.sub-header {
-	border: 1px solid #333;
-	border-radius: 5px;
-	height: 46px;
-	padding: 3px 3px;
-	background: #e9ecef;
-	color: #fff;
-	margin-bottom: 10px;
-}
-.sub-header .sub-title {
-	font-weight: 900;
-	color: #333;
-	padding-left: 40%;
-	font-size: 20px;
-	padding-top: 3px;
-}
 
 .action-btns {
 	text-align: center;
 	color: #4a90e2;
 }
+
 .action-btns a {
 	cursor: pointer;
 }
@@ -65,20 +25,26 @@ header .nav-link.active:hover{
 	padding: 0.5rem 1rem;
 	background: #e9ecef;
 }
+
 .modal-content .modal-body {
-	padding-bottom: 0.5rem; 
+	padding-bottom: 0.5rem;
 }
+
 .preview-image-upload {
 	text-align: center;
 	margin-bottom: 5px;
 }
+
 .preview-image-upload img {
 	max-width: 50%;
 }
+
 .message-area {
 	padding: 5px 15px;
 }
-div.error-message-invalid, div.error, label.error-message-invalid, label.error {
+
+div.error-message-invalid, div.error, label.error-message-invalid, label.error
+	{
 	background-color: #f8d7da;
 	position: relative;
 	padding: .375rem .75rem;
@@ -97,6 +63,7 @@ div.error-message-invalid, div.error, label.error-message-invalid, label.error {
 .pagination {
 	margin-bottom: 30px;
 }
+
 .pagination a {
 	display: block;
 	color: #000000;
@@ -107,10 +74,13 @@ div.error-message-invalid, div.error, label.error-message-invalid, label.error {
 	transition: background-color .3s;
 	min-width: 36px;
 }
+
 .pagination a.active {
+	border-radius: 5px;
 	color: white;
 	background-color: #000000;
 }
+
 .pagination a.disabled {
 	pointer-events: none;
 	color: #ccc;

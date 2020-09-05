@@ -20,12 +20,12 @@
 					<h4 style="color: red;">${errormessage}</h4>
 					<form action="/loginAction"  method=POST>
 						<div class="form-group">
-							<label>Your User Name</label> <input name="user" class="form-control"
+							<label>Your User Name</label> <input name="username" class="form-control"
 								placeholder="Input User Name" type="text" required="required">
 						</div>
 						<div class="form-group">
 							<a class="float-right" href="#">Forgot?</a> <label>Your
-								password</label> <input class="form-control" name="pass" placeholder="Input Password"
+								password</label> <input class="form-control" name="password" placeholder="Input Password"
 								type="password" required="required">
 						</div>
 						<div class="form-group">
