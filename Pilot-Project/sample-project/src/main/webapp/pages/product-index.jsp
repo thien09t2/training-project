@@ -12,11 +12,17 @@
 <body>
 	<header>
 		<div class="container">
-			<div class="d-flex">
-				<div class="main-logo">Pilot Project</div>
-				<a class="ml-5 nav-link active" href="/product">Product</a> <a
-					class="nav-link " href="/brand">Brand</a>
+			<div class="d-flex justify-content-between">
+				<div class="header-left">
+					<div class="main-logo">Pilot Project</div>
+					<a class="ml-5 nav-link active" href="/product">Product</a>
+					<a class="nav-link " href="/brand">Brand</a>
+				</div>
+				<div class="header-left">
+					<a  id="logout" class="nav-link " href="/logout" >LogOut</a>
+				</div>
 			</div>
+			
 		</div>
 	</header>
 	<div class="container">
@@ -116,7 +122,7 @@
 						<div class="form-group">
 							<label for="openForSale">Open for sale <span
 								class="required-field">(*)</span></label> <input type=date
-								name="saleDate" id="saleDate" class="form-control"
+								name="saleDate" id="saleDate" value="1945-04-30" class="form-control"
 								placeholder="Open for sale">
 						</div>
 						<div class="form-group">

@@ -75,11 +75,5 @@ public class ProductController {
 		return productService.search(keyword, pageNumber, startPrice, endPrice);
 	}
 
-	@GetMapping(value = { "/api/searchPrice/{startkey}/{endkey}/{pageNumber}" })
-	@ResponseBody
-	public ResponseDataModel searchProductByPriceApi(@PathVariable("startkey") int startkey,
-			@PathVariable("endkey") int endkey, @PathVariable("pageNumber") int pageNumber) {
-		return productService.searchByPriceBetween(startkey, endkey, pageNumber);
-	}
 
 }

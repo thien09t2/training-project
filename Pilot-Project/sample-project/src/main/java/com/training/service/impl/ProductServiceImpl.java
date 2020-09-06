@@ -172,7 +172,7 @@ public class ProductServiceImpl implements IProductService {
 
 	@Override
 	public ResponseDataModel search(String searchKey, int pageNumber , double startPrice , double endPrice) {
-		List<ProductEntity> listProduct = productDao.resultSearch(searchKey, startPrice, endPrice);
+		
 
 		int responseCode = Constants.RESULT_CD_FAIL;
 		String responseMsg = StringUtils.EMPTY;
@@ -180,51 +180,20 @@ public class ProductServiceImpl implements IProductService {
 		try {
 			Sort sortInfo = Sort.by(Sort.Direction.DESC, "productId");
 			Pageable pageable = PageRequest.of(pageNumber - 1, Constants.PAGE_SIZE, sortInfo);
-			int start = (int) pageable.getOffset();
-			int end = (start + pageable.getPageSize()) > listProduct.size() ? listProduct.size()
-					: (start + pageable.getPageSize());
-			// mỗi trang sẽ có page khác nhau
-			Page<ProductEntity> pages = new PageImpl<ProductEntity>(listProduct.subList(start, end), pageable,
-					listProduct.size());
-			// getContent lấy ra listProduct.subList(start, end)
-			responseMap.put("productList", pages.getContent());
-			responseMap.put("paginationInfo", new PagerModel(pageNumber, pages.getTotalPages()));
+			Page<ProductEntity> listProduct = (Page<ProductEntity>) productDao.resultSearch(searchKey, startPrice, endPrice,pageable);
+			responseMap.put("productList", listProduct.getContent());
+			responseMap.put("paginationInfo", new PagerModel(pageNumber, listProduct.getTotalPages()));
+			if ( listProduct.getTotalElements() > 0 ) {
+				responseMsg = "The number of product found is " + listProduct.getTotalElements() + " product";
+			} else {
+				responseMsg = "Doesn't exist product have price between " + startPrice + " and " + endPrice;
+			}
 			responseCode = Constants.RESULT_CD_SUCCESS;
-			responseMsg = "ResultSet has " + listProduct.size() + " products";
 		} catch (Exception e) {
 			responseMsg = e.getMessage();
-			LOGGER.error("Error when get all product: ", e);
+			LOGGER.error("Error! Search by price failed: ",e);
 		}
 		return new ResponseDataModel(responseCode, responseMsg, responseMap);
 	}
-	
-	@Override
-	public ResponseDataModel searchByPriceBetween(int startPrice , int endPrice,int pageNumber ) {
-		List<ProductEntity> listProduct = productDao.findAllByPriceBetween(startPrice, startPrice);
-		int responseCode = Constants.RESULT_CD_FAIL;
-		String responseMsg = StringUtils.EMPTY;
-		Map<String, Object> responseMap = new HashMap<>();
-		try {
-			Sort sortInfo = Sort.by(Sort.Direction.DESC, "productId");
-			Pageable pageable = PageRequest.of(pageNumber - 1, Constants.PAGE_SIZE, sortInfo);
-			int start = (int) pageable.getOffset();
-			int end = (start + pageable.getPageSize()) > listProduct.size() ? listProduct.size()
-					: (start + pageable.getPageSize());
-			// mỗi trang sẽ có page khác nhau
-			Page<ProductEntity> pages = new PageImpl<ProductEntity>(listProduct.subList(start, end), pageable,
-					listProduct.size());
-			// getContent lấy ra listProduct.subList(start, end)
-			responseMap.put("productList", pages.getContent());
-			responseMap.put("paginationInfo", new PagerModel(pageNumber, pages.getTotalPages()));
-			responseCode = Constants.RESULT_CD_SUCCESS;
-			responseMsg = "ResultSet has " + listProduct.size() + " products";
-		} catch (Exception e) {
-			responseMsg = e.getMessage();
-			LOGGER.error("Error when get all product: ", e);
-		}
-		return new ResponseDataModel(responseCode, responseMsg, responseMap);
-	}
-	
-	
 
 }

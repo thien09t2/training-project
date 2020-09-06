@@ -12,11 +12,17 @@
 <body>
 	<header>
 		<div class="container">
-			<div class="d-flex">
-				<div class="main-logo">Pilot Project</div>
-				<a class="ml-5 nav-link" href="/product">Product</a> <a
-					class="nav-link active" href="/brand">Brand</a>
+			<div class="d-flex justify-content-between">
+				<div class="header-left">
+					<div class="main-logo">Pilot Project</div>
+					<a class="ml-5 nav-link" href="/product">Product</a>
+					<a class="nav-link active" href="/brand">Brand</a>
+				</div>
+				<div class="header-left">
+					<a  id="logout" class="nav-link " href="/logout" >LogOut</a>
+				</div>
 			</div>
+			
 		</div>
 	</header>
 	<div class="container">
@@ -81,7 +87,7 @@
 							</div>
 							<input type="file" class="form-control upload-image"
 								name="logoFiles" accept="image/*" />
-							<!-- <input type="hidden" class="old-img" id="logo" name="logo"> -->
+							<input type="hidden" class="old-img" id="logo" name="logo">
 						</div>
 						<div class="form-group">
 							<label for="description">Description</label>

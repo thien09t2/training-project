@@ -15,14 +15,19 @@ public class PageController {
 	}
 
 	@RequestMapping(value = "/login")
-    public String login() {
-        return "login";
-    }
-	
-	  @PostMapping(value = {"/loginAction"})
-	    public String loginAction() {
+	public String login() {
+		return "login";
+	}
 
-	        return "redirect:/";
-	    }
-	
+	@PostMapping(value = {"/loginAction"})
+	public String loginAction() {
+
+		return "redirect:/";
+	}
+
+	@GetMapping("/logout")
+	public String logout() {
+		return "pageLogin";
+	}
+
 }

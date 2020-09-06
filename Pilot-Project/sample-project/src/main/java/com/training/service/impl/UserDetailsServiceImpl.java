@@ -28,12 +28,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 			authorities.add(new SimpleGrantedAuthority(userEntity.getRole()));
 			
 			User user = new User(userEntity.getUserName(), userEntity.getPassWord(), authorities); // Tạo đối tượng UserDetails. Mở xem nó yêu cầu gì thì mình truyền vào.
-			//Có thế thôi
 			return user;
 		} else {
 			throw new UsernameNotFoundException("User not found.");
 		}
-		
 	}
-
 }

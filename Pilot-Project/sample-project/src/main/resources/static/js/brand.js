@@ -21,7 +21,11 @@ $(document).ready(function() {
 	$('.pagination').on('click', '.page-link', function() {
 		var pagerNumber = $(this).attr("data-index");
 		var keyword = $('#keyword').val();
-		searchBrand(pagerNumber,keyword);
+		if(keyword !=""){
+			searchBrand(pagerNumber,keyword);
+		}else{
+			findBrands(pagerNumber);
+		}
 	})
 
 	var $brandInfoForm = $('#brandInfoForm');

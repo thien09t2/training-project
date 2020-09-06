@@ -111,7 +111,16 @@ header .nav-link.active {
 .priceTo {
 	margin-right: 10px;
 }
-
+/* Logout */
+#logout {
+	color: #efefef;
+}
+.header-left {
+	display: flex;
+}
+.header-right {
+	
+}
 .modal-content .modal-header {
 	padding: 0.5rem 1rem;
 	background: #e9ecef;

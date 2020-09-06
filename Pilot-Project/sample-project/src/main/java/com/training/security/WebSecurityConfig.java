@@ -33,7 +33,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	// UserDetailsService mà Spring Security cung cấp để làm nhiệm vụ này.
 	@Autowired
 	private UserDetailsService userDetailsService;
-	private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
 	// mã hóa pass
 	@Bean
@@ -54,20 +53,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	        http.csrf().disable()
 		      .authorizeRequests()
 		      		.antMatchers("/","/css/**", "/js/**", "/images/**","/plugins/**","/login").permitAll()
-			        .antMatchers("/brand").hasRole("ADMIN")
+			        .antMatchers("/brand","/product").hasRole("ADMIN")
 			        .anyRequest().authenticated()
 			        .and()
 		      .formLogin()
 		      		.loginPage("/login")
 		      		.loginProcessingUrl("/loginAction")
-		      		.successHandler(new AuthenticationSuccessHandler() {
-		      		  						@Override
-						public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-								Authentication authentication) throws IOException, ServletException {
-		      		  						redirectStrategy.sendRedirect(request, response, "/brand");
-						}
-		      		})
-		      		 //.defaultSuccessUrl("/")
+		      		.defaultSuccessUrl("/brand")
 		      		.usernameParameter("username")
 	                .passwordParameter("password")
 		      		.failureUrl("/login?error")
@@ -75,6 +67,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		      	    .logout().logoutSuccessUrl("/login")
 		      	    .and()
 		      .exceptionHandling().accessDeniedPage("/login");
-	 }
+ }
 
 }

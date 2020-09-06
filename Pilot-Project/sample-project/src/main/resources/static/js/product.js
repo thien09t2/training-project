@@ -19,12 +19,11 @@ $(document).ready(function() {
 		var keyword = $('#keyword').val();
 		var startPrice = $('#priceFrom').val();
 		var endPrice = $('#priceTo').val();
-		if(keyword != "" ){
+		if(keyword!=""){
 			searchFn(keyword,pagerNumber,startPrice,endPrice);
-		} else{
+		}else{
 			findProductList(pagerNumber);
 		}
-		
 	})
 	
 	//form add product
@@ -195,6 +194,7 @@ function searchFn(keyword, pageNumber, startPrice, endPrice) {
 		success : function(responseData) {
 			if (responseData.responseCode == 100) {
 				renderProductTable(responseData.data.productList);
+				console.log(responseData.data.productList);
 				renderPagination(responseData.data.paginationInfo);
 				if(pageNumber==1){
 					showNotification(true, responseData.responseMsg);

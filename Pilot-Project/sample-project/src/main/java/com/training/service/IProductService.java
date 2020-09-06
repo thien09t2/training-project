@@ -17,9 +17,8 @@ public interface IProductService {
 	ResponseDataModel deleteProductByApi(Long productId);
 
 	ResponseDataModel updateProductByApi(ProductEntity productEntity);
-
+	
 	ResponseDataModel search(String searchKey, int pageNumber , double startPrice , double endPrice);
 	
-	ResponseDataModel searchByPriceBetween (int startPrice , int endPrice,int pageNumber);
 
 }
