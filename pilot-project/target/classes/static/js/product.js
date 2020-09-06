@@ -3,11 +3,35 @@ $(document).ready(function() {
 	// Show products list when opening page
 	findAllProducts(1);
 
-	// Show products list when clicking pagination button
 	$('.pagination').on('click', '.page-link', function() {
-		var pagerNumber = $(this).attr("data-index");
-		findAllProducts(pagerNumber);
-	})
+		var pageNumber = $(this).attr("data-index");
+		var keyword = $('#keyword').val();
+		var priceFrom = $('#priceFrom').val();
+		var toPrice = $('#toPrice').val();
+		if ( keyword != "" ) {
+			searchProducOrBrandByPrice(keyword, pageNumber, priceFrom, toPrice);
+		} else {
+			findAllProducts(pageNumber);
+		}
+	});
+	
+	$('input[type=text]').on('keydown', function(event) {
+		if (event.which == 13 || event.keyCode == 13) {
+			var keyword = $('#keyword').val();
+			searchProductByName(keyword, 1);
+		}
+	});
+	
+	$('#searchByPrice').on('click', function() {
+		var keyword = $('#keyword').val();
+		var priceFrom = $('#priceFrom').val();
+		var toPrice = $('#toPrice').val();
+		if (keyword != "") {
+			searchProducOrBrandByPrice(keyword, 1, priceFrom, toPrice);
+		} else {
+			searchProductByPrice(priceFrom, toPrice, 1);
+		}
+	});
 
 	var $productInfoForm = $('#productInfoForm');
 	var $productInfoModal = $('#productInfoModal');
@@ -62,8 +86,7 @@ $(document).ready(function() {
 		$("#deleteSubmitBtn").attr("data-id", $(this).data("id"));
 		$('#confirmDeleteModal').modal('show');
 	});
-
-	// Submit delete product
+ 
 	$("#deleteSubmitBtn").on('click' , function() {
 		$.ajax({
 			url : "/product/api/delete/" + $(this).attr("data-id"),
@@ -93,6 +116,17 @@ $(document).ready(function() {
 					required: true,
 					maxlength: 100
 				},
+				quantity: {
+					required: true,
+					maxlength: 100
+				},
+				price: {
+					required: true,
+					maxlength: 100
+				},
+				saleDate: {
+					required: isAddAction,
+				},
 				imageFiles: {
 					required: isAddAction,
 				}
@@ -111,8 +145,7 @@ $(document).ready(function() {
 					maxlength: "The Price must be less than 100 characters",
 				},
 				saleDate: {
-					required: "Please input Opening",
-					maxlength: "The Product Name must be less than 100 characters",
+					required: "Please input Opening For Sale",
 				},
 				imageFiles: {
 					required: "Please upload Product Image",
@@ -150,6 +183,61 @@ $(document).ready(function() {
 		}
 	});
 });
+
+//Search product by the only price
+function searchProductByPrice(priceFrom, toPrice, pageNumber) {
+	$.ajax({
+		url: "/product/api/searchByPrice/" + priceFrom + "/" + toPrice + "/" + pageNumber,
+		type: 'GET',
+		dateType: 'json',
+		contentType: 'application/json',
+		success: function(responseData) {
+			if ( responseData.responseCode == 100 ) {
+				renderProductsTable(responseData.data.productsList);
+				renderPagination(responseData.data.paginationList);
+				if ( pageNumber == 1 ) {
+					showNotification(true, responseData.responseMsg);
+				}
+			}
+		}
+	})
+}
+// Search product by product name or brand name
+function searchProductByName(keyword, pageNumber) {
+	$.ajax({
+		url: "/product/api/searchByName/" + keyword + "/" + pageNumber,
+		type: 'GET',
+		dataType: 'json',
+		contentType: 'application/json',
+		success: function(responseData) {
+			if ( responseData.responseCode == 100 ) {
+				renderProductsTable(responseData.data.productsList);
+				renderPagination(responseData.data.paginationList);
+				if ( pageNumber == 1 ) {
+					showNotification(true, responseData.responseMsg);
+				}
+			}
+		}
+	})
+}
+// Search product by product name or brand name and price
+function searchProducOrBrandByPrice(keyword, pageNumber, priceFrom, toPrice) {
+	$.ajax({
+		url: "/product/api/searchByNameAndPrice/" + keyword + "/" + pageNumber + "/" + priceFrom + "/" + toPrice,
+		type: 'GET',
+		dataType: 'json',
+		contentType: 'application/json',
+		success: function(responseData) {
+			if(responseData.responseCode == 100) {
+				renderProductsTable(responseData.data.productsList);
+				renderPagination(responseData.data.paginationList);
+				if ( pageNumber == 1 ) {
+					showNotification(true, responseData.responseMsg);
+				}
+			}
+		}
+	})
+}
 
 function findAllProducts(pagerNumber) {
 	$.ajax({

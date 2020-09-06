@@ -17,9 +17,9 @@
 		<div class="row">
 			<div class="col-6 no-padding">
 				<form class="form-inline">
-					<input class="form-control mr-sm-2" type="search" name="term"
+					<input class="form-control mr-sm-2" type="text" id="keyword"
 						placeholder="Search by name ..." />
-					<button class="btn btn-success" type="submit">
+					<button type="button" class="btn btn-success" id="btnSearch">
 						<i class="fa fa-search"></i> Search
 					</button>
 				</form>
@@ -78,7 +78,8 @@
 								<img src="<c:url value='/images/image-demo.png'/>" alt="image">
 							</div>
 							<input type="file" class="form-control upload-image"
-								name="logoFiles" accept="image/*" /> <input type="hidden"
+								name="logoFiles" accept="image/*" /> 
+								<input type="hidden"
 								class="old-img" id="logo" name="logo">
 						</div>
 						<div class="form-group">

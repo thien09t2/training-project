@@ -1,7 +1,5 @@
 package com.training.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -108,8 +106,7 @@ public class BrandController {
 	
 	@GetMapping("/api/search/{keyword}/{pageNumber}")
 	@ResponseBody
-	public ResponseDataModel searchApi( @PathVariable("keyword") String keyword, @PathVariable("pageNumber") int pageNumber) {
-//		List<BrandEntity> result = brandService.search(keyword);
+	public ResponseDataModel searchApi(@PathVariable("keyword") String keyword, @PathVariable("pageNumber") int pageNumber) {
 		return brandService.searchApi(keyword, pageNumber);
 	}
 }

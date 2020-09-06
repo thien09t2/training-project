@@ -1,6 +1,6 @@
 package com.training.entity;
 
-import java.util.Date;
+import java.sql.Date;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -12,8 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -38,7 +36,6 @@ public class ProductEntity {
 	private Double price;
 
 	@Column(name = "SALE_DATE")
-	@Temporal(TemporalType.DATE)
 	private Date saleDate;
 
 	@Column(name = "IMAGE")

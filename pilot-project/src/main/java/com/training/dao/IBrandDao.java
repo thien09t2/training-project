@@ -1,9 +1,8 @@
 package com.training.dao;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.training.entity.BrandEntity;
@@ -17,5 +16,5 @@ public interface IBrandDao extends JpaRepository<BrandEntity, Long> {
 	
 	BrandEntity findByBrandNameAndBrandIdNot(String brandName, Long brandId);
 	
-	List<BrandEntity> findByBrandNameLike(String brandName);
+	Page<BrandEntity> findByBrandNameLike(String brandName,Pageable pageable);
 }

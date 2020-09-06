@@ -2,11 +2,21 @@ $(document).ready(function() {
 
 	// Show brands list when opening page
 	findAllBrands(1);
-
-	// Show brands list when clicking pagination button
+	
+	// Search
+	$('#btnSearch').on('click', function() {
+		var keyword = $('#keyword').val();
+		searchBrand(keyword,1);
+	})
+	
 	$('.pagination').on('click', '.page-link', function() {
-		var pagerNumber = $(this).attr("data-index");
-		findAllBrands(pagerNumber);
+		var pageNumber = $(this).attr("data-index");
+		var keyword = $('#keyword').val();
+		if(keyword != ""){
+			searchBrand(keyword,pageNumber);
+		}else{
+			findAllBrands(pageNumber);
+		}
 	})
 
 	var $brandInfoForm = $('#brandInfoForm');
@@ -75,6 +85,7 @@ $(document).ready(function() {
 			}
 		});
 	});
+	
 
 	// Submit add and update brand
 	$('#saveBrandBtn').on('click', function (event) {
@@ -136,6 +147,25 @@ $(document).ready(function() {
 		}
 	});
 });
+
+function searchBrand(keyword,pageNumber) {
+	$.ajax({
+		url : "/brand/api/search/" + keyword +"/" + pageNumber,
+		type : 'GET',
+		dataType : 'json',
+		contentType : 'application/json',
+		success : function(responseData) {
+			if (responseData.responseCode == 100) {
+				renderBrandsTable(responseData.data.brandsList);
+				console.log(responseData.data.brandsList);
+				renderPagination(responseData.data.paginationInfo);
+				if(pageNumber==1){
+					showNotification(true, responseData.responseMsg);
+				}
+			}
+		}
+	})
+}
 
 function findAllBrands(pagerNumber) {
 	$.ajax({
