@@ -17,6 +17,7 @@ header .dmx-logo {
 	display: block;
 	margin-top: 10px;
 }
+
 header .main-logo {
 	font-size: 30px;
 	color: #fff;
@@ -70,6 +71,15 @@ header .nav-link.active {
 
 .action-btns a {
 	cursor: pointer;
+}
+
+.add-btn {
+	background-color: #17a2b8;
+	margin-bottom: 15px;
+}
+
+.add-btn:hover {
+	background-color: #20c997;
 }
 
 .modal-content .modal-header {
@@ -179,26 +189,66 @@ div.error-message-invalid, div.error, label.error-message-invalid, label.error
 	font-weight: bold;
 }
 
-table, th, td {  
-  border: 1px solid black;  
-  border-collapse: collapse;  
-}  
-th, td {  
-  padding: 10px;  
-  text-align: center;
-}  
-table tr:nth-child(even) {  
-  background-color: #eee;  
-}  
-table tr:nth-child(odd) {  
-  background-color: #fff;  
-}  
-table th {  
-  color: white;  
-  background-color: #17a2b8;  
-} 
-.btn-success {
-    color: #fff;
-    background-color: #17a2b8;
-    border-color: #17a2b8;
+table, th, td {
+	border: 1px solid black;
+	border-collapse: collapse;
 }
+
+th, td {
+	padding: 10px;
+	text-align: center;
+}
+
+table tr:nth-child(even) {
+	background-color: #eee;
+}
+
+table tr:nth-child(odd) {
+	background-color: #fff;
+}
+
+table th {
+	color: white;
+	background-color: #17a2b8;
+}
+/* SEARCH PRODCUT */
+.search-product {
+	display: flex;
+	justify-content: space-between;
+	margin: 15px 0;
+}
+
+.search-product__name {
+	width: 25%;
+	display: flex;
+	align-items: center;
+}
+
+.search-product__price {
+	width: 69%;
+	display: flex;
+	align-items: center;
+}
+
+.price {
+	width: 25%;
+	margin: 0;
+	padding: 0 11px;
+}
+
+.price-labe {
+	width: 13%;
+	font-weight: 600;
+	margin: 0 0px 0 25px;
+}
+
+.price-labe-from {
+	margin: 0px 14px 0 0;
+}
+
+#searchByPrice {
+	padding: 7px 8px;
+	margin: 0px 5px 0px 20px;
+	font-weight: 600;
+}
+/* END SEARCH PRODUCT */

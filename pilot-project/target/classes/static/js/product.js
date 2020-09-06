@@ -5,11 +5,8 @@ $(document).ready(function() {
 
 	$('.pagination').on('click', '.page-link', function() {
 		var pageNumber = $(this).attr("data-index");
-		var keyword = $('#keyword').val();
-		var priceFrom = $('#priceFrom').val();
-		var toPrice = $('#toPrice').val();
 		if ( keyword != "" ) {
-			searchProducOrBrandByPrice(keyword, pageNumber, priceFrom, toPrice);
+			searchProduct(pageNumber);
 		} else {
 			findAllProducts(pageNumber);
 		}
@@ -17,20 +14,23 @@ $(document).ready(function() {
 	
 	$('input[type=text]').on('keydown', function(event) {
 		if (event.which == 13 || event.keyCode == 13) {
-			var keyword = $('#keyword').val();
-			searchProductByName(keyword, 1);
+			searchProduct(1);
 		}
 	});
 	
+//	$('#searchByPrice').on('click', function() {
+//		var keyword = $('#keyword').val();
+//		var priceFrom = $('#priceFrom').val();
+//		var toPrice = $('#toPrice').val();
+//		if (keyword != "") {
+//			searchProducOrBrandByPrice(keyword, 1, priceFrom, toPrice);
+//		} else {
+//			searchProductByPrice(priceFrom, toPrice, 1);
+//		}
+//	});
+	
 	$('#searchByPrice').on('click', function() {
-		var keyword = $('#keyword').val();
-		var priceFrom = $('#priceFrom').val();
-		var toPrice = $('#toPrice').val();
-		if (keyword != "") {
-			searchProducOrBrandByPrice(keyword, 1, priceFrom, toPrice);
-		} else {
-			searchProductByPrice(priceFrom, toPrice, 1);
-		}
+		searchProduct(1, true);
 	});
 
 	var $productInfoForm = $('#productInfoForm');
@@ -118,11 +118,14 @@ $(document).ready(function() {
 				},
 				quantity: {
 					required: true,
-					maxlength: 100
+					number: true,
 				},
 				price: {
 					required: true,
-					maxlength: 100
+					number: true,
+				},
+				brandName: {
+					required: true
 				},
 				saleDate: {
 					required: isAddAction,
@@ -138,11 +141,14 @@ $(document).ready(function() {
 				},
 				quantity: {
 					required: "Please input Quantity",
-					maxlength: "The Quantity must be less than 100 characters",
+					maxlength: "Quantity is number"
 				},
 				price: {
 					required: "Please input Price",
-					maxlength: "The Price must be less than 100 characters",
+					maxlength: "Price is number"
+				},
+				brandName: {
+					required: "Brand is required",
 				},
 				saleDate: {
 					required: "Please input Opening For Sale",
@@ -183,6 +189,21 @@ $(document).ready(function() {
 		}
 	});
 });
+
+function findAllProducts(pagerNumber) {
+	$.ajax({
+		url : "/product/api/findAll/" + pagerNumber,
+		type : 'GET',
+		dataType : 'json',
+		contentType : 'application/json',
+		success : function(responseData) {
+			if (responseData.responseCode == 100) {
+				renderProductsTable(responseData.data.productsList);
+				renderPagination(responseData.data.paginationInfo);
+			}
+		}
+	});
+}
 
 //Search product by the only price
 function searchProductByPrice(priceFrom, toPrice, pageNumber) {
@@ -239,21 +260,6 @@ function searchProducOrBrandByPrice(keyword, pageNumber, priceFrom, toPrice) {
 	})
 }
 
-function findAllProducts(pagerNumber) {
-	$.ajax({
-		url : "/product/api/findAll/" + pagerNumber,
-		type : 'GET',
-		dataType : 'json',
-		contentType : 'application/json',
-		success : function(responseData) {
-			if (responseData.responseCode == 100) {
-				renderProductsTable(responseData.data.productsList);
-				renderPagination(responseData.data.paginationInfo);
-			}
-		}
-	});
-}
-
 function renderProductsTable(productsList) {
 
 	var rowHtml = "";
@@ -291,10 +297,26 @@ function renderPagination(paginationInfo) {
 	}
 }
 
-$(function(){
-	$('.input-group.date').datepicker({
-	    calendarWeeks: true,
-	    todayHighlight: true,
-	    autoclose: true
-	});  
-	});
+function searchProduct(pageNumber, isClickedSearchBtn) {
+	var searchConditions = {
+			keyword: $("#keyword").val(),
+			priceFrom:$("#priceFrom").val(),
+			priceTo:$("#priceTo").val()
+		}
+		$.ajax({
+			url: '/product/api/searchProduct/' + pageNumber,
+			type: 'POST',
+			dataType: 'json',
+			contentType: 'application/json',
+			success: function (responseData) {
+				if(responseData.responseCode == 100) {
+					renderProductsTable(responseData.data.productsList);
+					renderPagination(responseData.data.paginationInfo);
+					if (isClickedSearchBtn) {
+						showNotification(true, responseData.responseMsg);
+					}
+				}
+			},
+			data: JSON.stringify(searchConditions)
+		});
+}

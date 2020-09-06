@@ -1,9 +1,0 @@
-package com.training.dao;
-
-import com.training.entity.ProductEntity;
-
-public interface IProductDAO {
-
-	ProductEntity findByProductId(Long productId);
-
-}

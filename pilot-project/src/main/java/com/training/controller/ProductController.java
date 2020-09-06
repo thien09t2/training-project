@@ -1,5 +1,7 @@
 package com.training.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -75,10 +78,10 @@ public class ProductController {
 		return productService.searchByName(keyword, pageNumber);
 	}
 	
-	@GetMapping(value = {"/api/searchByNameAndPrice/{keyword}/{pageNumber}/{priceFrom}/{toPrice}"})
+	@PostMapping(value = {"/api/searchProduct/{pageNumber}"})
 	@ResponseBody
-	public ResponseDataModel searchByNameAndPrice(@PathVariable("keyword") String keyword, @PathVariable("pageNumber") int pageNumber,
-											@PathVariable("priceFrom") double priceFrom, @PathVariable("toPrice") double toPrice){
-		return productService.searchByNameAndPrice(keyword, pageNumber, priceFrom, toPrice);
+	public ResponseDataModel searchProduct(@RequestBody Map<String, Object> searchCondions, 
+			@PathVariable("pageNumber") int pageNumber) {
+		return productService.searchByNameAndPrice(searchCondions, pageNumber);
 	}
 }

@@ -16,7 +16,7 @@
 		<hr>
 		<div class="search-product form-group">
 			<div class="search-product__name">
-				<input type="text" class="form-control search-brand" placeholder="Product Name, Brand Name" id="keyword">
+				<input type="text" class="form-control search-brand" placeholder="Search by product name, brand name..." id="keyword">
 			</div>
 			<div class="search-product__price">
 				<label class="price-labe price-labe-from" for="priceFrom">Price From </label>
@@ -28,25 +28,24 @@
 					<option value="4000000">4.000.000</option>
 				</select>
 				<label class="price-labe" for="toPrice">Price To </label>
-				<select class="price toPrice form-control" name="toPrice" id="toPrice">
+				<select class="price toPrice form-control" name="priceTo" id="priceTo">
 					<option value="1000000">1.000.000</option>
 					<option value="2000000">2.000.000</option>
 					<option value="4000000">4.000.000</option>
 					<option value="8000000">8.000.000</option>
 					<option value="10000000">10.000.000</option>
 					<option value="20000000">20.000.000</option>
-					<option value="100000000000000">Giá cao nhất</option>
+					<option value="100000000000000">The highest price</option>
 				</select>
-				<button type="submit" id="searchByPrice" class="btn btn-success">Search</button>
+				<button type="submit" id="searchByPrice" class="btn btn-success search-btn">Search</button>
+				<a class="reset-page btn btn-secondary" id="restPage" href="/product" >Reset</a>
 			</div>
 		</div>
-		<br>
 		<div class="float-right">
-			<a class="btn btn-success add-btn float-right"
+			<a class="btn  add-btn float-right"
 				id="addProductInfoModal"><i class="fas fa-plus-square"></i> Add
 				Product</a>
-		</div>
-		<br>
+		</div>		
 		<table class="table table-bordered" id="productInfoTable">
 			<thead>
 				<tr class="text-center">
@@ -109,10 +108,9 @@
 									<option value="${brand.brandId}">${brand.brandName}</option>
 								</c:forEach>
 							</select>
-						</div>
-						
+						</div>					
 						<div class="form-group">
-							<label for="saleDate">Open for sale <span
+							<label for="saleDate">Open For Sale <span
 								class="required-mask">(*)</span></label> <input type=date
 								name="saleDate" id="saleDate" class="form-control"
 								placeholder="Open for sale">

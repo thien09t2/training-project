@@ -18,7 +18,7 @@
 			<div class="col-6 no-padding">
 				<form class="form-inline">
 					<input class="form-control mr-sm-2" type="text" id="keyword"
-						placeholder="Search by name ..." />
+						placeholder="Search by brand name ..." />
 					<button type="button" class="btn btn-success" id="btnSearch">
 						<i class="fa fa-search"></i> Search
 					</button>
@@ -26,11 +26,9 @@
 			</div>
 			<div class="col-6 no-padding">
 				<a class="btn btn-success add-btn float-right"
-					id="addBrandInfoModal"><i class="fas fa-plus-square"></i> Add
-					Brand</a>
+					id="addBrandInfoModal"><i class="fas fa-plus-square"></i> Add Brand</a>
 			</div>
 		</div>
-		<br>
 		<table class="table table-bordered" id="brandInfoTable">
 			<thead>
 				<tr class="text-center">
