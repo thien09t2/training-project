@@ -2,6 +2,7 @@ package com.training.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -17,5 +18,11 @@ public class PageController {
     public String login() {
         return "login";
     }
+	
+	  @PostMapping(value = {"/loginAction"})
+	    public String loginAction() {
+
+	        return "redirect:/";
+	    }
 	
 }

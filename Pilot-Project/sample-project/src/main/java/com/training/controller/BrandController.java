@@ -107,10 +107,10 @@ public class BrandController {
 		return brandService.deleteApi(brandId);
 	}
 	
-	@PostMapping(value = { "/api/search/{pageNumber}" })
+	@GetMapping(value = { "/api/search/{keyword}/{pageNumber}" })
 	@ResponseBody
-	public ResponseDataModel searchApi(@ModelAttribute  Map<String, String> searchConditions , @PathVariable("pageNumber") int pageNumber) {
-		return brandService.search(searchConditions, pageNumber);
+	public ResponseDataModel searchApi(@PathVariable("keyword") String keyword , @PathVariable("pageNumber") int pageNumber) {
+		return brandService.searchApi(keyword, pageNumber);
 	}
 	
 }

@@ -54,7 +54,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	        http.csrf().disable()
 		      .authorizeRequests()
 		      		.antMatchers("/","/css/**", "/js/**", "/images/**","/plugins/**","/login").permitAll()
-			      
 			        .antMatchers("/brand").hasRole("ADMIN")
 			        .anyRequest().authenticated()
 			        .and()
@@ -66,10 +65,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 								Authentication authentication) throws IOException, ServletException {
 		      		  						redirectStrategy.sendRedirect(request, response, "/brand");
-							
 						}
 		      		})
-		      		 
+		      		 //.defaultSuccessUrl("/")
 		      		.usernameParameter("username")
 	                .passwordParameter("password")
 		      		.failureUrl("/login?error")

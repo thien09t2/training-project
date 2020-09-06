@@ -271,15 +271,27 @@ public class BrandServiceImpel implements IBrandService {
 	}
 
 	@Override
-	public ResponseDataModel search(Map<String, String> searchConditions, int pageNumber) {
-//		int responseCode = Constants.RESULT_CD_FAIL;
-//		String responseMsg = StringUtils.EMPTY;
-//		Map<String, Object> responseMap = new HashMap<>();
-//		try {
-//			Sort sortInfo = Sort.by(Sort.Direction.DESC, "brandId");
-//			Pageable pageable = PageRequest.of(pageNumber - 1, Constants.PAGE_SIZE, sortInfo);
-//			Page<BrandEntity> brandEntitiesPage = brandDao.
-		return null;
+	public ResponseDataModel searchApi(String brandName, int pageNumber) {
+		int responseCode = Constants.RESULT_CD_FAIL;
+		String responseMsg = StringUtils.EMPTY;
+		Map<String, Object> responseMap = new HashMap<String, Object>();
+		try {
+			Sort sortList = Sort.by(Sort.Direction.DESC, "brandId");
+			Pageable pageable = PageRequest.of(pageNumber - 1, Constants.PAGE_SIZE, sortList);
+			Page<BrandEntity> brandEntitesPage = brandDao.findByBrandNameLike("%" + brandName + "%", pageable);
+			responseMap.put("brandsList", brandEntitesPage.getContent());
+			responseMap.put("paginationInfo", new PagerModel(pageNumber, brandEntitesPage.getTotalPages()));
+			responseCode = Constants.RESULT_CD_SUCCESS;
+			if ( brandEntitesPage.getTotalElements() > 0) {
+				responseMsg = "The number of brand found is " + brandEntitesPage.getTotalElements() + " brand";
+			} else {
+				responseMsg = "The " + brandName + " is not exist!";
+			}
+		} catch (Exception e) {
+			responseMsg = e.getMessage();
+			LOGGER.error("Search brand name failed:",e);
+		}
+		return new ResponseDataModel(responseCode, responseMsg, responseMap);
 	}
 
 //	@Override

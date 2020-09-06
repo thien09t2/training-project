@@ -22,12 +22,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		UserEntity userEntity = userService.findByUsername(username);
-		System.out.println(userEntity==null);
+		UserEntity userEntity = userService.findByUsername(username); //get user
 		if (userEntity != null) {
-			List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+			List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>(); // list các role/quyền
 			authorities.add(new SimpleGrantedAuthority(userEntity.getRole()));
-			User user = new User(userEntity.getUserName(), userEntity.getPassWord(), authorities);
+			
+			User user = new User(userEntity.getUserName(), userEntity.getPassWord(), authorities); // Tạo đối tượng UserDetails. Mở xem nó yêu cầu gì thì mình truyền vào.
+			//Có thế thôi
 			return user;
 		} else {
 			throw new UsernameNotFoundException("User not found.");
