@@ -28,7 +28,7 @@ $(document).ready(function() {
 		var toPrice = $('#toPrice').val();
 		if (keyword != "") {
 			searchProducOrBrandByPrice(keyword, 1, priceFrom, toPrice);
-		} else {
+		} else { 
 			searchProductByPrice(priceFrom, toPrice, 1);
 		}
 	});
@@ -194,7 +194,7 @@ function searchProductByPrice(priceFrom, toPrice, pageNumber) {
 		success: function(responseData) {
 			if ( responseData.responseCode == 100 ) {
 				renderProductsTable(responseData.data.productsList);
-				renderPagination(responseData.data.paginationInfo);
+				renderPagination(responseData.data.paginationList);
 				if ( pageNumber == 1 ) {
 					showNotification(true, responseData.responseMsg);
 				}
@@ -212,7 +212,7 @@ function searchProductByName(keyword, pageNumber) {
 		success: function(responseData) {
 			if ( responseData.responseCode == 100 ) {
 				renderProductsTable(responseData.data.productsList);
-				renderPagination(responseData.data.paginationInfo);
+				renderPagination(responseData.data.paginationList);
 				if ( pageNumber == 1 ) {
 					showNotification(true, responseData.responseMsg);
 				}
@@ -230,7 +230,7 @@ function searchProducOrBrandByPrice(keyword, pageNumber, priceFrom, toPrice) {
 		success: function(responseData) {
 			if(responseData.responseCode == 100) {
 				renderProductsTable(responseData.data.productsList);
-				renderPagination(responseData.data.paginationInfo);
+				renderPagination(responseData.data.paginationList);
 				if ( pageNumber == 1 ) {
 					showNotification(true, responseData.responseMsg);
 				}

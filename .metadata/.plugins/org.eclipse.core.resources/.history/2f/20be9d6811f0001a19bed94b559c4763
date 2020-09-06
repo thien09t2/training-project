@@ -8,10 +8,12 @@ $(document).ready(function() {
 		var keyword = $('#keyword').val();
 		var priceFrom = $('#priceFrom').val();
 		var toPrice = $('#toPrice').val();
-		if ( keyword != "" ) {
+		if ( keyword != "" &&  priceFrom != "" &&  priceFrom != "" ) {
 			searchProducOrBrandByPrice(keyword, pageNumber, priceFrom, toPrice);
 		} else {
-			findAllProducts(pageNumber);
+			if ( keyword != "" ) {
+				searchProductByName(keyword, pageNumber);
+			}
 		}
 	});
 	
@@ -194,7 +196,7 @@ function searchProductByPrice(priceFrom, toPrice, pageNumber) {
 		success: function(responseData) {
 			if ( responseData.responseCode == 100 ) {
 				renderProductsTable(responseData.data.productsList);
-				renderPagination(responseData.data.paginationInfo);
+				renderPagination(responseData.data.paginationList);
 				if ( pageNumber == 1 ) {
 					showNotification(true, responseData.responseMsg);
 				}
@@ -212,7 +214,7 @@ function searchProductByName(keyword, pageNumber) {
 		success: function(responseData) {
 			if ( responseData.responseCode == 100 ) {
 				renderProductsTable(responseData.data.productsList);
-				renderPagination(responseData.data.paginationInfo);
+				renderPagination(responseData.data.paginationList);
 				if ( pageNumber == 1 ) {
 					showNotification(true, responseData.responseMsg);
 				}
@@ -230,7 +232,7 @@ function searchProducOrBrandByPrice(keyword, pageNumber, priceFrom, toPrice) {
 		success: function(responseData) {
 			if(responseData.responseCode == 100) {
 				renderProductsTable(responseData.data.productsList);
-				renderPagination(responseData.data.paginationInfo);
+				renderPagination(responseData.data.paginationList);
 				if ( pageNumber == 1 ) {
 					showNotification(true, responseData.responseMsg);
 				}
@@ -248,7 +250,7 @@ function findAllProducts(pagerNumber) {
 		success : function(responseData) {
 			if (responseData.responseCode == 100) {
 				renderProductsTable(responseData.data.productsList);
-				renderPagination(responseData.data.paginationInfo);
+				renderPagination(responseData.data.paginationList);
 			}
 		}
 	});
@@ -275,18 +277,18 @@ function renderProductsTable(productsList) {
 	});
 }
 
-function renderPagination(paginationInfo) {
+function renderPagination(paginationList) {
 
 	var paginationInnerHtml = "";
-	if (paginationInfo.pageNumberList.length > 0) {
+	if (paginationList.pageNumberList.length > 0) {
 		$("ul.pagination").empty();
-		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationInfo.firstPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="'+ paginationInfo.firstPage + '">First</a></li>'
-		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationInfo.previousPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="'+ paginationInfo.previousPage + '"> < </a></li>'
-		$.each(paginationInfo.pageNumberList, function(key, value) {
-			paginationInnerHtml += '<li class="page-item"><a class="page-link '+ (value == paginationInfo.currentPage ? 'active' : '') +'" href="javascript:void(0)" data-index="' + value +'">' + value + '</a></li>';
+		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationList.firstPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="'+ paginationList.firstPage + '">First</a></li>'
+		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationList.previousPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="'+ paginationList.previousPage + '"> < </a></li>'
+		$.each(paginationList.pageNumberList, function(key, value) {
+			paginationInnerHtml += '<li class="page-item"><a class="page-link '+ (value == paginationList.currentPage ? 'active' : '') +'" href="javascript:void(0)" data-index="' + value +'">' + value + '</a></li>';
 		});
-		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationInfo.nextPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="'+ paginationInfo.nextPage + '"> > </a></li>'
-		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationInfo.lastPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="'+ paginationInfo.lastPage + '">Last</a></li>'
+		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationList.nextPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="'+ paginationList.nextPage + '"> > </a></li>'
+		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationList.lastPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="'+ paginationList.lastPage + '">Last</a></li>'
 		$("ul.pagination").append(paginationInnerHtml);
 	}
 }

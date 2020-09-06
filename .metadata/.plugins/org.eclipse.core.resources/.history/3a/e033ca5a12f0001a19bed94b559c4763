@@ -5,7 +5,7 @@ $(document).ready(function() {
 
 	$('.pagination').on('click', '.page-link', function() {
 		var pageNumber = $(this).attr("data-index");
-		var keyword = $('#keyword').val();
+		var keyword = $('searchByPrice').val();
 		var priceFrom = $('#priceFrom').val();
 		var toPrice = $('#toPrice').val();
 		if ( keyword != "" ) {

@@ -175,7 +175,7 @@ public class ProductServiceImpl implements IProductService{
 			Pageable pageable = PageRequest.of(pageNumber - 1 , Constants.PAGE_SIZE, sortList);
 			Page<ProductEntity> productEntitesPage = productDao.findByPriceBetween(priceFrom, toPrice, pageable);
 			responseMap.put("productsList", productEntitesPage.getContent());
-			responseMap.put("paginationInfo", new PagerModel(pageNumber,  productEntitesPage.getTotalPages()));
+			responseMap.put("paginationList", new PagerModel(pageNumber,  productEntitesPage.getTotalPages()));
 			if ( productEntitesPage.getTotalElements() > 0 ) {
 				responseMsg = "The number of product found is " + productEntitesPage.getTotalElements() + " product";
 			} else {
@@ -199,7 +199,7 @@ public class ProductServiceImpl implements IProductService{
 			Pageable pageable = PageRequest.of(pageNumber - 1 , Constants.PAGE_SIZE, sortList);
 			Page<ProductEntity> productEntitesPage = productDao.searchProductByName(keyword, pageable);
 			responseMap.put("productsList", productEntitesPage.getContent());
-			responseMap.put("paginationInfo", new PagerModel(pageNumber, productEntitesPage.getTotalPages()));
+			responseMap.put("paginationList", new PagerModel(pageNumber, productEntitesPage.getTotalPages()));
 			responseCode = Constants.RESULT_CD_SUCCESS;
 			if ( productEntitesPage.getTotalElements() > 0 ) {
 				responseMsg = "The number of product found is " + productEntitesPage.getTotalElements() + " product";
@@ -218,12 +218,12 @@ public class ProductServiceImpl implements IProductService{
 		int responseCode = Constants.RESULT_CD_FAIL;
 		String responseMsg = StringUtils.EMPTY;
 		Map<String, Object> responseMap = new HashMap<String, Object>();
-		try { 	
+		try {
 			Sort sortList = Sort.by(Sort.Direction.DESC,"productId");
 			Pageable pageable = PageRequest.of(pageNumber - 1, Constants.PAGE_SIZE, sortList);
 			Page<ProductEntity> productEntitesPage = productDao.searchProductByNameAndPrice(keyword, priceFrom, toPrice, pageable);
 			responseMap.put("productsList", productEntitesPage.getContent());
-			responseMap.put("paginationInfo", new PagerModel(pageNumber, productEntitesPage.getTotalPages()));
+			responseMap.put("paginationList", new PagerModel(pageNumber, productEntitesPage.getTotalPages()));
 			if ( productEntitesPage.getTotalElements() > 0) {
 				responseMsg = "The number of product found is " + productEntitesPage.getTotalElements() + " product";
 			} else {
