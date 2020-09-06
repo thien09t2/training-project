@@ -1,31 +1,34 @@
 $(document).ready(function() {
 	findAllProducts(1);
+	var searchByName = false;
 	/* Move pagination*/
 	$('.pagination').on('click', '.page-link', function() {
 		var pageNumber = $(this).attr("data-index");
 		var keyword = $('#keyword').val();
 		var priceFrom = $('#priceFrom').val();
 		var toPrice = $('#toPrice').val();
-		if ( keyword != "" ) {
-			searchProducOrBrandByPrice(keyword, pageNumber, priceFrom, toPrice);
+		if (searchByName) {
+			searchProductByName(keyword, pageNumber);
 		} else {
-			findAllProducts(pageNumber);
+			if (keyword != "") {
+				searchProducOrBrandByPrice(keyword, pageNumber, priceFrom, toPrice);
+			} else {
+				findAllProducts(pageNumber);
+			}
 		}
 	});
-	
-	/*$('input[type=text]').on('keydown', function(event) {
-		if (event.which == 13 || event.keyCode == 13) {
-			var keyword = $('#keyword').val();
-			searchProductByName(keyword,1);
-		}
-	});*/
+	/*$('#restPage').on('click') {
+		
+	}*/
+
 	$('input[type=text]').on('keydown', function(event) {
 		if (event.which == 13 || event.keyCode == 13) {
 			var keyword = $('#keyword').val();
 			searchProductByName(keyword, 1);
+			searchByName = true;
 		}
 	});
-	
+
 	$('#searchByPrice').on('click', function() {
 		var keyword = $('#keyword').val();
 		var priceFrom = $('#priceFrom').val();
@@ -216,10 +219,10 @@ function searchProductByPrice(priceFrom, toPrice, pageNumber) {
 		dateType: 'json',
 		contentType: 'application/json',
 		success: function(responseData) {
-			if ( responseData.responseCode == 100 ) {
+			if (responseData.responseCode == 100) {
 				renderProductsTable(responseData.data.productsList);
 				renderPagination(responseData.data.paginationList);
-				if ( pageNumber == 1 ) {
+				if (pageNumber == 1) {
 					showNotification(true, responseData.responseMsg);
 				}
 			}
@@ -234,10 +237,10 @@ function searchProductByName(keyword, pageNumber) {
 		dataType: 'json',
 		contentType: 'application/json',
 		success: function(responseData) {
-			if ( responseData.responseCode == 100 ) {
+			if (responseData.responseCode == 100) {
 				renderProductsTable(responseData.data.productsList);
 				renderPagination(responseData.data.paginationList);
-				if ( pageNumber == 1 ) {
+				if (pageNumber == 1) {
 					showNotification(true, responseData.responseMsg);
 				}
 			}
@@ -252,10 +255,10 @@ function searchProducOrBrandByPrice(keyword, pageNumber, priceFrom, toPrice) {
 		dataType: 'json',
 		contentType: 'application/json',
 		success: function(responseData) {
-			if(responseData.responseCode == 100) {
+			if (responseData.responseCode == 100) {
 				renderProductsTable(responseData.data.productsList);
 				renderPagination(responseData.data.paginationList);
-				if ( pageNumber == 1 ) {
+				if (pageNumber == 1) {
 					showNotification(true, responseData.responseMsg);
 				}
 			}
@@ -276,7 +279,7 @@ function renderProductsTable(productsList) {
 			+ "<td>" + value.brandEntity.brandName + "</td>"
 			+ "<td>" + value.saleDate + "</td>"
 			+ "<td>" + value.description + "</td>"
-			+ "<td class='text-center '><a href='" + value.image + "' data-toggle='lightbox' data-max-width='1000'><img class='img-fluid' src='" + value.image + "'></td>"
+			+ "<td class='text-center'><a href='" + value.image + "' data-toggle='lightbox' data-max-width='1000'><img class='img-fluid' src='" + value.image + "'></td>"
 			+ "<td class='action-btns'>"
 			+ "<a class='edit-btn' data-id='" + value.productId + "'><i class='fas fa-edit'></i></a> | <a class='delete-btn' data-name='" + value.productName + "' data-id='" + value.productId + "'><i class='fas fa-trash-alt'></i></a>"
 			+ "</td>"

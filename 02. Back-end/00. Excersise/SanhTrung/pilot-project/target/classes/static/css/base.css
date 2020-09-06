@@ -54,7 +54,6 @@ html {
 	color: #333;
 	padding-left: 20px;
 	font-size: 20px;
-	/* padding-top: 3px; */
 }
 
 .add-new {
@@ -77,15 +76,18 @@ html {
 	color: #d9534f;
 }
 
-.action-btns {
+.edit-btn, .delete-btn {
 	cursor: pointer;
+}
+
+.action-btns {
 	color: #0080ff;
 }
 /* SEARCH BRAND */
 .form-search {
 	width: 30%;
 	display: flex;
-	margin: 10px 0;
+	margin: 15px 0;
 }
 
 .form-search #searchBrand {
@@ -97,7 +99,7 @@ html {
 .search-product {
 	display: flex;
 	justify-content: space-between;
-	margin: 15px 0;
+	margin: 20px 0;
 }
 
 .search-product__name {
@@ -127,13 +129,26 @@ html {
 .price-labe-from {
 	margin: 0px 14px 0 0;
 }
+
 #searchByPrice {
 	margin: 0 10px;
 	font-weight: 600;
 }
 /* END SEARCH PRODUCT */
+/* ADD NEW */
+.btn-add {
+	background-color: #28a745;
+	color: #fff;
+	font-weight: 600;
+}
+
+.btn-add:hover {
+	background-color: #519FFF;
+}
+
 .reset-page {
 	font-weight: 600;
+	background-color: #6c757d;
 }
 
 .modal-content .modal-header {
@@ -179,9 +194,15 @@ td {
 	height: 50px;
 	line-height: 50px;
 }
+
+.tr-bg {
+	background-color: #c3d0e0;
+}
+
 .sale-date {
 	width: 110px;
 }
+
 .pagination a {
 	display: block;
 	color: #111;

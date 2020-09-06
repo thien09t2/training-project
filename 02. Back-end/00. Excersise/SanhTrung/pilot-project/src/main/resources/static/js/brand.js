@@ -38,7 +38,7 @@ $(document).ready(function() {
 	/*Show form add new brand*/
 	$("#addBrandInfoModal").on('click', function() {
 		resetFormModal($brandInfoForm);
-		showModalWithCustomizedTitle($brandInfoModal, "Add new brand");
+		showModalWithCustomizedTitle($brandInfoModal, "Add New Brand");
 		$('#logoImg img').attr('src', '/images/image-demo.png');
 		$('#brandId').closest(".form-group").addClass("d-none");
 	});

@@ -41,7 +41,7 @@
 		</div>
 		<table class="table table-bordered table-hover" id="brandInfoTable">
 			<thead>
-				<tr class="text-center">
+				<tr class="text-center tr-bg">
 					<th scope="col">No</th>
 					<th scope="col">Name</th>
 					<th scope="col">Logo</th>
@@ -63,7 +63,7 @@
 			<div class="modal-content">
 				<form id="brandInfoForm" role="form" enctype="multipart/form-data">
 					<div class="modal-header">
-						<h5 class="modal-title">Add Brand</h5>
+						<h5 class="modal-title">Add New Brand</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>

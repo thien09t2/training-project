@@ -63,7 +63,7 @@
 		</div>
 		<table class="table table-bordered table-hover" id="productInfoTable">
 			<thead>
-				<tr class="text-center">
+				<tr class="text-center  tr-bg">
 					<th scope="col">No</th>
 					<th scope="col">Product</th>
 					<th scope="col">Quantity</th>
