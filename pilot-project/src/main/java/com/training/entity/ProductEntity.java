@@ -44,6 +44,7 @@ public class ProductEntity {
 	@Column(name = "DESCRIPTION")
 	private String description;
 
+	// Specifies a single-valued association to another entity class that has many-to-one multiplicity.
 	@JoinColumn(name = "BRAND_ID", referencedColumnName = "BRAND_ID")
 	@ManyToOne(fetch = FetchType.EAGER)
 	private BrandEntity brandEntity;

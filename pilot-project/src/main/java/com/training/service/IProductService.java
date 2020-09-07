@@ -24,12 +24,6 @@ public interface IProductService {
 
 	ResponseDataModel findProductById(Long productId);
 
-	ResponseDataModel searchByPrice(double priceFrom, double toPrice, int pageNumber);
-
-	ResponseDataModel searchByName(String keyword, int pageNumber);
-
-	ResponseDataModel searchByNameAndPrice(String keyword, int pageNumber, double priceFrom, double toPrice);
-
 	ResponseDataModel searchByNameAndPrice(Map<String, Object> searchConditions, int pageNumber);
 
 }

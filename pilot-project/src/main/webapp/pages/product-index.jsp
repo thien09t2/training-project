@@ -14,9 +14,14 @@
 	<div class="container">
 		<h3 class="text-center">Product Management</h3>
 		<hr>
+		<div class="add-product form-group">
+			<a class="btn  add-btn float-right"
+				id="addProductInfoModal"><i class="fas fa-plus-square"></i> Add Product</a>
+		</div>
+		<!-- Search Product -->
 		<div class="search-product form-group">
 			<div class="search-product__name">
-				<input type="text" class="form-control search-brand" placeholder="Search by product name, brand name..." id="keyword">
+				<input type="text" class="form-control search-product" placeholder="Search by product name, brand name..." id="keyword">
 			</div>
 			<div class="search-product__price">
 				<label class="price-labe price-labe-from" for="priceFrom">Price From </label>
@@ -41,11 +46,6 @@
 				<button type="submit" id="searchByPrice" class="btn btn-success search-btn">Search</button>
 				<a class="reset-page btn btn-secondary" id="restPage" href="/product" >Reset</a>
 			</div>
-		</div>
-		<div class="float-right">
-			<a class="btn  add-btn float-right"
-				id="addProductInfoModal"><i class="fas fa-plus-square"></i> Add
-				Product</a>
 		</div>		
 		<table class="table table-bordered" id="productInfoTable">
 			<thead>
@@ -64,8 +64,7 @@
 			</tbody>
 		</table>
 		<div class="d-flex justify-content-center">
-			<ul class="pagination">
-			</ul>
+			<ul class="pagination"></ul>
 		</div>
 	</div>
 	<!-- Modal Add and Edit Product -->

@@ -166,7 +166,7 @@ function searchBrand(keyword,pageNumber) {
 		}
 	})
 }
-
+ 
 function findAllBrands(pagerNumber) {
 	$.ajax({
 		url : "/brand/api/findAll/" + pagerNumber,

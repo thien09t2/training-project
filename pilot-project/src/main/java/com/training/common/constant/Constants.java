@@ -23,6 +23,7 @@ public class Constants {
 	public static final int RESULT_CD_DUPL = 1;
 	public static final int RESULT_CD_SUCCESS = 100;
 	
+	/** Search Product */
 	public static final String PROP_KEY_KEYWORD = "keyword";
 	public static final String PROP_KEY_PRICE_FROM = "priceFrom";
 	public static final String PROP_KEY_PRICE_TO = "priceTo";

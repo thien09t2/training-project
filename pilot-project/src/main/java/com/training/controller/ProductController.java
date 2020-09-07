@@ -64,24 +64,12 @@ public class ProductController {
 	@ResponseBody
 	public ResponseDataModel deleteProduct(@PathVariable("productId") Long productId) {
 		return productService.deleteProduct(productId);
-	}
-	
-//	@GetMapping(value = {"/api/searchByPrice/{priceForm}/{priceTo}/{pageNumber}"})
-//	@ResponseBody
-//	public ResponseDataModel searchByPrice(@PathVariable("priceFrom") double priceFrom, @PathVariable("priceTo") double toPrice, @PathVariable("pageNumber") int pageNumber) {
-//		return productService.searchByPrice(priceFrom, p, pageNumber);
-//	}
-	
-//	@GetMapping(value = {"/api/searchByName/{keyword}/{pageNumber}"})
-//	@ResponseBodyric
-//	public ResponseDataModel searchByName(@PathVariable("keyword") String keyword, @PathVariable("pageNumber") int pageNumber) {
-//		return productService.searchByName(keyword, pageNumber);
-//	}
+	}	
 	
 	@PostMapping(value = {"/api/searchProduct/{pageNumber}"})
 	@ResponseBody
-	public ResponseDataModel searchProduct(@RequestBody Map<String, Object> searchCondions, 
+	public ResponseDataModel searchProduct(@RequestBody Map<String, Object> searchConditions, 
 			@PathVariable("pageNumber") int pageNumber) {
-		return productService.searchByNameAndPrice(searchCondions, pageNumber);
+		return productService.searchByNameAndPrice(searchConditions, pageNumber);
 	}
 }

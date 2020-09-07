@@ -189,61 +189,6 @@ function findAllProducts(pagerNumber) {
 	});
 }
 
-//Search product by the only price
-//function searchProductByPrice(priceFrom, toPrice, pageNumber) {
-//	$.ajax({
-//		url: "/product/api/searchByPrice/" + priceFrom + "/" + toPrice + "/" + pageNumber,
-//		type: 'GET',
-//		dateType: 'json',
-//		contentType: 'application/json',
-//		success: function(responseData) {
-//			if ( responseData.responseCode == 100 ) {
-//				renderProductsTable(responseData.data.productsList);
-//				renderPagination(responseData.data.paginationInfo);
-//				if ( pageNumber == 1 ) {
-//					showNotification(true, responseData.responseMsg);
-//				}
-//			}
-//		}
-//	})
-//}
-// Search product by product name or brand name
-//function searchProductByName(keyword, pageNumber) {
-//	$.ajax({
-//		url: "/product/api/searchByName/" + keyword + "/" + pageNumber,
-//		type: 'GET',
-//		dataType: 'json',
-//		contentType: 'application/json',
-//		success: function(responseData) {
-//			if ( responseData.responseCode == 100 ) {
-//				renderProductsTable(responseData.data.productsList);
-//				renderPagination(responseData.data.paginationInfo);
-//				if ( pageNumber == 1 ) {
-//					showNotification(true, responseData.responseMsg);
-//				}
-//			}
-//		}
-//	})
-//}
-// Search product by product name or brand name and price
-//function searchProducOrBrandByPrice(keyword, pageNumber, priceFrom, toPrice) {
-//	$.ajax({
-//		url: "/product/api/searchByNameAndPrice/" + keyword + "/" + pageNumber + "/" + priceFrom + "/" + toPrice,
-//		type: 'GET',
-//		dataType: 'json',
-//		contentType: 'application/json',
-//		success: function(responseData) {
-//			if(responseData.responseCode == 100) {
-//				renderProductsTable(responseData.data.productsList);
-//				renderPagination(responseData.data.paginationInfo);
-//				if ( pageNumber == 1 ) {
-//					showNotification(true, responseData.responseMsg);
-//				}
-//			}
-//		}
-//	})
-//}
-
 function renderProductsTable(productsList) {
 
 	var rowHtml = "";
