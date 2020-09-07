@@ -5,29 +5,13 @@ $(document).ready(function() {
 
 	$('.pagination').on('click', '.page-link', function() {
 		var pageNumber = $(this).attr("data-index");
+		var keyword = $('#keyword').val();
 		if ( keyword != "" ) {
 			searchProduct(pageNumber);
 		} else {
 			findAllProducts(pageNumber);
 		}
-	});
-	
-	$('input[type=text]').on('keydown', function(event) {
-		if (event.which == 13 || event.keyCode == 13) {
-			searchProduct(1);
-		}
-	});
-	
-//	$('#searchByPrice').on('click', function() {
-//		var keyword = $('#keyword').val();
-//		var priceFrom = $('#priceFrom').val();
-//		var toPrice = $('#toPrice').val();
-//		if (keyword != "") {
-//			searchProducOrBrandByPrice(keyword, 1, priceFrom, toPrice);
-//		} else {
-//			searchProductByPrice(priceFrom, toPrice, 1);
-//		}
-//	});
+	});	
 	
 	$('#searchByPrice').on('click', function() {
 		searchProduct(1, true);
@@ -206,59 +190,59 @@ function findAllProducts(pagerNumber) {
 }
 
 //Search product by the only price
-function searchProductByPrice(priceFrom, toPrice, pageNumber) {
-	$.ajax({
-		url: "/product/api/searchByPrice/" + priceFrom + "/" + toPrice + "/" + pageNumber,
-		type: 'GET',
-		dateType: 'json',
-		contentType: 'application/json',
-		success: function(responseData) {
-			if ( responseData.responseCode == 100 ) {
-				renderProductsTable(responseData.data.productsList);
-				renderPagination(responseData.data.paginationInfo);
-				if ( pageNumber == 1 ) {
-					showNotification(true, responseData.responseMsg);
-				}
-			}
-		}
-	})
-}
+//function searchProductByPrice(priceFrom, toPrice, pageNumber) {
+//	$.ajax({
+//		url: "/product/api/searchByPrice/" + priceFrom + "/" + toPrice + "/" + pageNumber,
+//		type: 'GET',
+//		dateType: 'json',
+//		contentType: 'application/json',
+//		success: function(responseData) {
+//			if ( responseData.responseCode == 100 ) {
+//				renderProductsTable(responseData.data.productsList);
+//				renderPagination(responseData.data.paginationInfo);
+//				if ( pageNumber == 1 ) {
+//					showNotification(true, responseData.responseMsg);
+//				}
+//			}
+//		}
+//	})
+//}
 // Search product by product name or brand name
-function searchProductByName(keyword, pageNumber) {
-	$.ajax({
-		url: "/product/api/searchByName/" + keyword + "/" + pageNumber,
-		type: 'GET',
-		dataType: 'json',
-		contentType: 'application/json',
-		success: function(responseData) {
-			if ( responseData.responseCode == 100 ) {
-				renderProductsTable(responseData.data.productsList);
-				renderPagination(responseData.data.paginationInfo);
-				if ( pageNumber == 1 ) {
-					showNotification(true, responseData.responseMsg);
-				}
-			}
-		}
-	})
-}
+//function searchProductByName(keyword, pageNumber) {
+//	$.ajax({
+//		url: "/product/api/searchByName/" + keyword + "/" + pageNumber,
+//		type: 'GET',
+//		dataType: 'json',
+//		contentType: 'application/json',
+//		success: function(responseData) {
+//			if ( responseData.responseCode == 100 ) {
+//				renderProductsTable(responseData.data.productsList);
+//				renderPagination(responseData.data.paginationInfo);
+//				if ( pageNumber == 1 ) {
+//					showNotification(true, responseData.responseMsg);
+//				}
+//			}
+//		}
+//	})
+//}
 // Search product by product name or brand name and price
-function searchProducOrBrandByPrice(keyword, pageNumber, priceFrom, toPrice) {
-	$.ajax({
-		url: "/product/api/searchByNameAndPrice/" + keyword + "/" + pageNumber + "/" + priceFrom + "/" + toPrice,
-		type: 'GET',
-		dataType: 'json',
-		contentType: 'application/json',
-		success: function(responseData) {
-			if(responseData.responseCode == 100) {
-				renderProductsTable(responseData.data.productsList);
-				renderPagination(responseData.data.paginationInfo);
-				if ( pageNumber == 1 ) {
-					showNotification(true, responseData.responseMsg);
-				}
-			}
-		}
-	})
-}
+//function searchProducOrBrandByPrice(keyword, pageNumber, priceFrom, toPrice) {
+//	$.ajax({
+//		url: "/product/api/searchByNameAndPrice/" + keyword + "/" + pageNumber + "/" + priceFrom + "/" + toPrice,
+//		type: 'GET',
+//		dataType: 'json',
+//		contentType: 'application/json',
+//		success: function(responseData) {
+//			if(responseData.responseCode == 100) {
+//				renderProductsTable(responseData.data.productsList);
+//				renderPagination(responseData.data.paginationInfo);
+//				if ( pageNumber == 1 ) {
+//					showNotification(true, responseData.responseMsg);
+//				}
+//			}
+//		}
+//	})
+//}
 
 function renderProductsTable(productsList) {
 

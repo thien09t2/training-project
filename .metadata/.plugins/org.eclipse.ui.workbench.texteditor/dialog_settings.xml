@@ -2,21 +2,23 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="searchProductByName" key="selection"/>
+		<item value="searchProduct" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="searchProduct"/>
+			<item value="keyword"/>
+			<item value="&#x09;&#x09;&#x09;searchProduct(pageNumber);"/>
+			<item value="searchProducOrBrandByPrice"/>
+			<item value="searchByPrice"/>
+			<item value="toPrice"/>
+			<item value="findAllProducts"/>
 			<item value="searchProductByName"/>
-			<item value="add-btn"/>
-			<item value="add"/>
-			<item value="paginationList"/>
-			<item value="paginationInfo"/>
-			<item value="brandInfo"/>
-			<item value="saveProductBtn"/>
 		</list>
 		<list key="replacehistory">
+			<item value="priceTo"/>
 			<item value="paginationInfo"/>
 			<item value="paginationList"/>
 		</list>

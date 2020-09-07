@@ -66,17 +66,17 @@ public class ProductController {
 		return productService.deleteProduct(productId);
 	}
 	
-	@GetMapping(value = {"/api/searchByPrice/{priceForm}/{toPrice}/{pageNumber}"})
-	@ResponseBody
-	public ResponseDataModel searchByPrice(@PathVariable("priceFrom") double priceFrom, @PathVariable("toPrice") double toPrice, @PathVariable("pageNumber") int pageNumber) {
-		return productService.searchByPrice(priceFrom, toPrice, pageNumber);
-	}
+//	@GetMapping(value = {"/api/searchByPrice/{priceForm}/{priceTo}/{pageNumber}"})
+//	@ResponseBody
+//	public ResponseDataModel searchByPrice(@PathVariable("priceFrom") double priceFrom, @PathVariable("priceTo") double toPrice, @PathVariable("pageNumber") int pageNumber) {
+//		return productService.searchByPrice(priceFrom, p, pageNumber);
+//	}
 	
-	@GetMapping(value = {"/api/searchByName/{keyword}/{pageNumber}"})
-	@ResponseBody
-	public ResponseDataModel searchByName(@PathVariable("keyword") String keyword, @PathVariable("pageNumber") int pageNumber) {
-		return productService.searchByName(keyword, pageNumber);
-	}
+//	@GetMapping(value = {"/api/searchByName/{keyword}/{pageNumber}"})
+//	@ResponseBodyric
+//	public ResponseDataModel searchByName(@PathVariable("keyword") String keyword, @PathVariable("pageNumber") int pageNumber) {
+//		return productService.searchByName(keyword, pageNumber);
+//	}
 	
 	@PostMapping(value = {"/api/searchProduct/{pageNumber}"})
 	@ResponseBody

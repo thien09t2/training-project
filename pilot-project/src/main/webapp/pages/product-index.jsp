@@ -29,6 +29,7 @@
 				</select>
 				<label class="price-labe" for="toPrice">Price To </label>
 				<select class="price toPrice form-control" name="priceTo" id="priceTo">
+					<option value="0">-- Price Selection --</option>
 					<option value="1000000">1.000.000</option>
 					<option value="2000000">2.000.000</option>
 					<option value="4000000">4.000.000</option>
