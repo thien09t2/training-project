@@ -14,19 +14,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
-/**
- * Class is used to customize Authentication Provider to check user permission
- * 
- * @author Red Devil
- * @since 2018-07-27
- */
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
 	private static Logger logger = LoggerFactory.getLogger(CustomAuthenticationProvider.class);
-
-	//@Autowired
-	//private UserInfoService userInfoService;
 
 	/**
 	 * Set Authentication
@@ -50,9 +41,6 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		return usernamePassAuthToken;
 	}
 
-	/**
-	 * Class<?> authentication
-	 */
 	@Override
 	public boolean supports(Class<?> authentication) {
 		return authentication.equals(UsernamePasswordAuthenticationToken.class);

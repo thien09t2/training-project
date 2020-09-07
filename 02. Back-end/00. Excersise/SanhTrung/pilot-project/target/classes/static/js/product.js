@@ -1,44 +1,26 @@
 $(document).ready(function() {
 	findAllProducts(1);
-	var searchByName = false;
-	/* Move pagination*/
+//	var searchByName = false;
 	$('.pagination').on('click', '.page-link', function() {
 		var pageNumber = $(this).attr("data-index");
 		var keyword = $('#keyword').val();
-		var priceFrom = $('#priceFrom').val();
-		var toPrice = $('#toPrice').val();
-		if (searchByName) {
-			searchProductByName(keyword, pageNumber);
+		if ( keyword != "" ) {
+			searchProduct(pageNumber);
 		} else {
-			if (keyword != "") {
-				searchProducOrBrandByPrice(keyword, pageNumber, priceFrom, toPrice);
-			} else {
-				findAllProducts(pageNumber);
-			}
+			findAllProducts(pageNumber);
 		}
 	});
-	/*$('#restPage').on('click') {
-		
-	}*/
-
+	
 	$('input[type=text]').on('keydown', function(event) {
 		if (event.which == 13 || event.keyCode == 13) {
-			var keyword = $('#keyword').val();
-			searchProductByName(keyword, 1);
-			searchByName = true;
+			searchProduct(1);
 		}
+	});
+	
+	$('#searchByPrice').on('click', function() {
+		searchProduct(1, true);
 	});
 
-	$('#searchByPrice').on('click', function() {
-		var keyword = $('#keyword').val();
-		var priceFrom = $('#priceFrom').val();
-		var toPrice = $('#toPrice').val();
-		if (keyword != "") {
-			searchProducOrBrandByPrice(keyword, 1, priceFrom, toPrice);
-		} else {
-			searchProductByPrice(priceFrom, toPrice, 1);
-		}
-	});
 	var $productInfoForm = $('#productInfoForm');
 	var $productInfoModal = $('#productInfoModal');
 
@@ -49,11 +31,6 @@ $(document).ready(function() {
 		$('#logoImg img').attr('src', '/images/image-demo.png');
 		$('#productId').closest(".form-group").addClass("d-none");
 	});
-	/*Submit add new product*/
-	/*jQuery.validator.setDefaults({
-		debug: true,
-		success: "valid"
-	});*/
 	/*Show form update modal*/
 	$("#productInfoTable").on('click', '.edit-btn', function() {
 		$("#productImage .required-field").addClass("d-none");
@@ -304,4 +281,26 @@ function renderPagination(paginationList) {
 
 	}
 }
-
+function searchProduct(pageNumber, isClickedSearchBtn) {
+	var searchConditions = {
+			keyword: $("#keyword").val(),
+			priceFrom:$("#priceFrom").val(),
+			priceTo:$("#priceTo").val()
+		}
+		$.ajax({
+			url: '/product/api/searchProduct/' + pageNumber,
+			type: 'POST',
+			dataType: 'json',
+			contentType: 'application/json',
+			success: function (responseData) {
+				if(responseData.responseCode == 100) {
+					renderProductsTable(responseData.data.productsList);
+					renderPagination(responseData.data.paginationInfo);
+					if (isClickedSearchBtn) {
+						showNotification(true, responseData.responseMsg);
+					}
+				}
+			},
+			data: JSON.stringify(searchConditions)
+		});
+}

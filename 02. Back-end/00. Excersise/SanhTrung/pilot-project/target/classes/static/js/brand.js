@@ -15,12 +15,6 @@ $(document).ready(function() {
 	var $brandInfoForm = $('#brandInfoForm')
 	var $brandInfoModal = $('#brandInfoModal')
 
-
-	/*Search brand name*/
-	/*$('#searchBrand').on('click', function() {
-		var keyword = $('#keyword').val();
-		searchBrandName(keyword, 1);
-	})*/
 	$('input[type=text]').on('keydown', function(event) {
 		if (event.which == 13 || event.keyCode == 13) {
 			var brandName = $('#keyword').val();
@@ -214,11 +208,11 @@ function renderPagination(paginationList) {
 	if (paginationList.pageNumberList.length > 0) {
 		$("ul.pagination").empty();
 		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationList.firstPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="' + paginationList.firstPage + '" > Fisrt page </a></li>'
-		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationList.prevPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="' + paginationList.prevPage + '" > < </a></li>'
+		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationList.prevPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="' + paginationList.prevPage + '" > Previous </a></li>'
 		$.each(paginationList.pageNumberList, function(key, value) {
 			paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (value == paginationList.currentPage ? 'active' : '') + '" href="javascript:void(0)" data-index="' + value + '">' + value + '</a></li>';
 		});
-		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationList.nextPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="' + paginationList.nextPage + '" > > </a></li>'
+		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationList.nextPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="' + paginationList.nextPage + '" > Next </a></li>'
 		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationList.lastPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="' + paginationList.lastPage + '" > Last page </a></li>'
 		$("ul.pagination").append(paginationInnerHtml);
 

@@ -16,6 +16,7 @@
 	<div class="nav-bg">
 		<div class="container">
 			<nav class="navbar navbar-expand-lg navbar-light ">
+			<div class="left">
 			  <a class="navbar-brand">PILOT PROJECT</a>
 			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 			    <span class="navbar-toggler-icon"></span>
@@ -26,6 +27,8 @@
 			      <a class="nav-item nav-link" href="/brand">Brand</a>
 			    </div>
 			  </div>
+			</div>
+			<div class="right"> <a class="nav-item nav-link logo" href="/login">Logout</a></div>
 			</nav>
 		</div>
 	</div>
@@ -48,14 +51,15 @@
 					<option value="4000000">4.000.000</option>
 				</select>
 				<label class="price-labe" for="toPrice">Price To </label>
-				<select class="price toPrice form-control" name="toPrice" id="toPrice">
+				<select class="price toPrice form-control" name="priceTo" id="priceTo">
+					<option >----- Price To -----</option>
 					<option value="1000000">1.000.000</option>
 					<option value="2000000">2.000.000</option>
 					<option value="4000000">4.000.000</option>
 					<option value="8000000">8.000.000</option>
 					<option value="10000000">10.000.000</option>
 					<option value="20000000">20.000.000</option>
-					<option value="100000000000000">Giá cao nhất</option>
+					<option value="100000000000000">The highest price</option>
 				</select>
 				<button type="submit" id="searchByPrice" class="btn btn-success">Search</button>
 				<a class="reset-page btn btn-secondary" id="restPage" href="/product" >Reset</a>

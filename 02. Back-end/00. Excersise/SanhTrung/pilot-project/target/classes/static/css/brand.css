@@ -1,0 +1,14 @@
+.navbar {
+	display: flex;
+	justify-content: space-between;
+}
+
+.left {
+	display: flex;
+}
+
+.logo {
+	color: #fff;
+	font-size: 18px;
+	font-weight: 600;
+}

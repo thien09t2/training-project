@@ -199,21 +199,24 @@ public class ProductServiceImpl implements IProductService {
 	
 //	Search by product name or brand name  and price
 	@Override
-	public ResponseDataModel searchByNameAndPrice(String keyword, int pageNumber, double priceFrom, double toPrice) {
-		
+	public ResponseDataModel searchByNameAndPrice(Map<String, Object> searchConditions, int pageNumber) {
 		int responseCode = Constants.RESULT_CD_FAIL;
 		String responseMsg = StringUtils.EMPTY;
 		Map<String, Object> responseMap = new HashMap<String, Object>();
-		try {
+		try { 	
 			Sort sortList = Sort.by(Sort.Direction.DESC,"productId");
 			Pageable pageable = PageRequest.of(pageNumber - 1, Constants.PAGE_SIZE, sortList);
-			Page<ProductEntity> productEntitesPage = productDao.searchProductByNameAndPrice(keyword, priceFrom, toPrice, pageable);
+			Page<ProductEntity> productEntitesPage = productDao.searchProductByNameAndPrice(
+					(String) searchConditions.getOrDefault(Constants.PROP_KEY_KEYWORD, StringUtils.EMPTY),
+					Double.parseDouble((String) searchConditions.getOrDefault(Constants.PROP_KEY_PRICE_FROM, "0")),
+					Double.parseDouble((String) searchConditions.getOrDefault(Constants.PROP_KEY_PRICE_TO, "1000000000")),
+					pageable);
 			responseMap.put("productsList", productEntitesPage.getContent());
-			responseMap.put("paginationList", new PageModel(pageNumber, productEntitesPage.getTotalPages()));
+			responseMap.put("paginationInfo", new PageModel(pageNumber, productEntitesPage.getTotalPages()));
 			if ( productEntitesPage.getTotalElements() > 0) {
 				responseMsg = "The number of product found is " + productEntitesPage.getTotalElements() + " product";
 			} else {
-				responseMsg = "The " + keyword + " is not exist";
+				responseMsg = "There is no product found out";
 			}
 			responseCode = Constants.RESULT_CD_SUCCESS;
 		} catch (Exception e) {

@@ -15,17 +15,20 @@
 <body>
 	<div class="nav-bg">
 		<div class="container">
-			<nav class="navbar  navbar-expand-lg navbar-light ">
-			  <a class="navbar-brand">PILOT PROJECT</a>
-			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-			    <span class="navbar-toggler-icon"></span>
-			  </button>
-			  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-			    <div class="navbar-nav">
-			      <a class="nav-item nav-link " href="/product">Product <span class="sr-only">(current)</span></a>
-			      <a class="nav-item nav-link active" href="/brand">Brand</a>
-			    </div>
-			  </div>
+			<nav class="navbar navbar-expand-lg navbar-light ">
+				<div class="left">
+				  <a class="navbar-brand">PILOT PROJECT</a>
+				  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+				    <span class="navbar-toggler-icon"></span>
+				  </button>
+				  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				    <div class="navbar-nav">
+				      <a class="nav-item nav-link " href="/product">Product <span class="sr-only">(current)</span></a>
+				      <a class="nav-item nav-link active" href="/brand">Brand</a>
+				    </div>
+				  </div>
+				</div>
+				<div class="right"> <a class="nav-item nav-link logo" href="/login">Logout</a></div>
 			</nav>
 		</div>
 	</div>

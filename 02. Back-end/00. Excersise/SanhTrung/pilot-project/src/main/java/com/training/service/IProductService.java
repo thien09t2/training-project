@@ -1,5 +1,7 @@
 package com.training.service;
 
+import java.util.Map;
+
 import com.training.entity.ProductEntity;
 import com.training.model.ResponseDataModel;
 
@@ -17,7 +19,7 @@ public interface IProductService {
 
 	ResponseDataModel findProductById(Long productId);
 
-	ResponseDataModel searchByNameAndPrice(String keyword, int pageNumber, double priceFrom, double toPrice);
+	ResponseDataModel searchByNameAndPrice(Map<String, Object> searchConditions, int pageNumber);
 
 	ResponseDataModel searchByPrice(double priceFrom, double toPrice, int pageNumber);
 

@@ -47,7 +47,7 @@ public class PageModel {
 	 */
 
 	private List<Integer> getPageNumberList(int currentPage, int totalPage, int numberOfMaxPage) {
-		// TODO Auto-generated method stub
+		
 		List<Integer> pageNumberList = new ArrayList<Integer>();
 		
 		int pageMin, pageMax;
