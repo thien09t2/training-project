@@ -1,14 +1,20 @@
 package com.training.entity;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "BRAND")
@@ -31,8 +37,9 @@ public class BrandEntity {
 	@Transient
 	private MultipartFile[] logoFiles;
 
-	public BrandEntity() {
-	}
+	@JsonIgnore
+	@OneToMany(mappedBy = "brandEntity", fetch = FetchType.LAZY)
+	private Set<ProductEntity> productSet;
 
 	/**
 	 * @return the brandId
@@ -102,5 +109,19 @@ public class BrandEntity {
 	 */
 	public void setLogoFiles(MultipartFile[] logoFiles) {
 		this.logoFiles = logoFiles;
+	}
+
+	/**
+	 * @return the productSet
+	 */
+	public Set<ProductEntity> getProductSet() {
+		return productSet;
+	}
+
+	/**
+	 * @param productSet the productSet to set
+	 */
+	public void setProductSet(Set<ProductEntity> productSet) {
+		this.productSet = productSet;
 	}
 }
