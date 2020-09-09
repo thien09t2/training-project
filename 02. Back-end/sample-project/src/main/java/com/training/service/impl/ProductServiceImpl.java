@@ -38,6 +38,7 @@ public class ProductServiceImpl implements IProductService {
 		String responseMsg = StringUtils.EMPTY;
 		Map<String, Object> responseMap = new HashMap<>();
 		try {
+
 			Sort sortInfo = Sort.by(Sort.Direction.DESC, "productId");
 			Pageable pageable = PageRequest.of(pageNumber - 1, Constants.PAGE_SIZE, sortInfo);
 			Page<ProductEntity> productEntitiesPage = productDao.findAll(ProductJpaSpecification.getSearchCriteria(searchConditions), pageable);

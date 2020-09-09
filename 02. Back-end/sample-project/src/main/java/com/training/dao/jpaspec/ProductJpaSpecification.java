@@ -34,18 +34,40 @@ public class ProductJpaSpecification {
 
 				List<Predicate> predicates = new ArrayList<>();
 				if (searchConditionsMap != null) {
-					String searchText = (String) searchConditionsMap.get("keyword");
+					String keyword = (String) searchConditionsMap.get("keyword");
 					String priceFrom = (String) searchConditionsMap.get("priceFrom");
 					String priceTo = (String) searchConditionsMap.get("priceTo");
-					if (StringUtils.isNotEmpty(searchText)) {
+//					List<String> brandIds = (List<String>) searchConditionsMap.get("brandIds");
+
+					// Keyword
+					if (StringUtils.isNotEmpty(keyword)) {
 						Join<ProductEntity, BrandEntity> brandRoot = productRoot.join("brandEntity");
 						predicates.add(criteriaBuilder.or(
-								criteriaBuilder.like(productRoot.get("productName"), "%" + searchText + "%"),
-								criteriaBuilder.like(brandRoot.get("brandName"), "%" + searchText + "%")));
+								criteriaBuilder.like(productRoot.get("productName"), "%" + keyword + "%"),
+								criteriaBuilder.like(brandRoot.get("brandName"), "%" + keyword + "%"),
+								criteriaBuilder.like(productRoot.get("description"), "%" + keyword + "%"),
+								criteriaBuilder.like(brandRoot.get("description"), "%" + keyword + "%")
+						));
 					}
+
+					// Price From
 					if (StringUtils.isNotEmpty(priceFrom)) {
 						predicates.add(criteriaBuilder.greaterThanOrEqualTo(productRoot.get("price"), Double.parseDouble(priceFrom)));
 					}
+
+					// Price To
+					if (StringUtils.isNotEmpty(priceTo)) {
+						predicates.add(criteriaBuilder.lessThanOrEqualTo(productRoot.get("price"), Double.parseDouble(priceTo)));
+					}
+
+					// Brand 
+//					if (brandIds != null && brandIds.size() > 0) {
+//						Predicate brandIdPredicate = null;
+//						for (String brandId : brandIds) {
+//							brandIdPredicate = criteriaBuilder.equal(productRoot.get("brandId"), brandId);
+//						}
+//						predicates.add(criteriaBuilder.or(brandIdPredicate));
+//					}
 				}
 				return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
 			}

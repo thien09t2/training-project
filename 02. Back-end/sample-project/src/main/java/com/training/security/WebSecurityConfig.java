@@ -10,7 +10,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @Configuration
-@Order(value = 99)
+@Order(value = 101)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
