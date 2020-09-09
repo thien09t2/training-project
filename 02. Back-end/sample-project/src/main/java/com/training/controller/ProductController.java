@@ -22,7 +22,7 @@ public class ProductController {
 
 	@PostMapping(value = {"/api/search/{pageNumber}"})
 	@ResponseBody
-	public ResponseDataModel searchApi(@RequestBody Map<String, Object>searchConditions, @PathVariable("pageNumber") int pageNumber) {
+	public ResponseDataModel searchApi(@RequestBody Map<String, Object> searchConditions, @PathVariable("pageNumber") int pageNumber) {
 		return productService.searchWithConditions(searchConditions, pageNumber);
 	}
 }
