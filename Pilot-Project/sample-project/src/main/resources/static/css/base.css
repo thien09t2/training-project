@@ -121,6 +121,14 @@ header .nav-link.active {
 .header-right {
 	
 }
+
+.mess{
+	text-align : center;
+	margin-bottom : 0;
+	color : red;
+	font-weight: bold;
+}
+
 .modal-content .modal-header {
 	padding: 0.5rem 1rem;
 	background: #e9ecef;
@@ -165,9 +173,33 @@ div.error-message-invalid, div.error, label.error-message-invalid, label.error
 	color: red;
 	font-weight: bold;
 }
-
+.group-double {
+	display: flex;
+	justify-content: space-between;
+}
+.brandName, .saleDate {
+	width: 46%;
+}
+.image-product {
+	height: 80px;
+	opacity: 10%;
+}
+.quantity {
+	width: 46%;
+}
+.checkbox {
+	display: flex;
+	flex-wrap: wrap;
+}
+.item-logo {
+	width: 20%;
+}
 .pagination {
 	margin-bottom: 30px;
+}
+
+.priceview {
+	width:46%
 }
 
 .pagination a {

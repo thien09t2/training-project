@@ -7,7 +7,7 @@ import com.training.entity.BrandEntity;
 import com.training.model.ResponseDataModel;
 
 public interface IBrandService {
-
+	
 	BrandEntity add(BrandEntity brandEntity);
 
 	BrandEntity update(BrandEntity brandEntity);

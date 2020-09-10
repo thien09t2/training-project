@@ -2,34 +2,58 @@ $(document).ready(function() {
 	
 	findProductList(1);
 	
-	
-	
-	
+//	var brandClass = document.getElementsByClassName('brandClass');
+//	console.log(brandClass);
+//	var brandArr = [];
+//	for(let index = 0; index<brandClass.length; index++){
+//		brandClass[index].addEventListener('click', function(){
+//			
+//			if(brandClass[index].checked){
+//				let id = brandClass[index].getAttribute('id');
+//				brandArr.push(id);
+//				//console.log(brandArr);
+//			}else {
+//				let id = brandClass[index].getAttribute('id');
+//				brandArr.pop(id);
+//				//console.log(brandArr);
+//			}
+//			console.log(brandArr);
+//		});
+//	}
+	var listBrand = [];
+	$('.brandClass').on('click', function() {
+		listBrand = [];
+		$('.checkbox').find('input[name="brand.logo"]:checked').each( function() {
+			listBrand.push($(this).val());
+		});
+		console.log(listBrand);
+	})
+
 	//bắt event search
+//	$('#btnSearch').on('click', function() {
+//		var keyword = $('#keyword').val();
+//		var startPrice = $('#priceFrom').val();
+//		var endPrice = $('#priceTo').val();
+//		searchFn(keyword,1,startPrice,endPrice);
+//	})
 	$('#btnSearch').on('click', function() {
-		var keyword = $('#keyword').val();
-		var startPrice = $('#priceFrom').val();
-		var endPrice = $('#priceTo').val();
-		searchFn(keyword,1,startPrice,endPrice);
-	})
+		searchProductByInfo(1, true,listBrand);
+	});
 	
-	//hiển thị brand khi click vào thanh chỉ mục
+	//show brand on pagination
 	$('.pagination').on('click', '.page-link', function() {
-		var pagerNumber = $(this).attr("data-index");
+		var pageNumber = $(this).attr("data-index");
 		var keyword = $('#keyword').val();
-		var startPrice = $('#priceFrom').val();
-		var endPrice = $('#priceTo').val();
-		if(keyword!=""){
-			searchFn(keyword,pagerNumber,startPrice,endPrice);
-		}else{
-			findProductList(pagerNumber);
+		if ( keyword != "" ) {
+			searchProductByInfo(pageNumber);
+		} else {
+			findProductList(pageNumber);
 		}
-	})
-	
+	});	
+
 	//form add product
 	var $productInfoForm = $('#productInfoForm');
 	var $productInfoModal = $('#productInfoModal');
-
 
 	// show form add brand with js
 	$('#addProductInfoModal').on('click', function() {
@@ -39,7 +63,7 @@ $(document).ready(function() {
 		$('#productId').closest(".form-group").addClass("d-none");
 	});
 	
-	//xu ly form add
+	//form add
 	$("#productInfoTable").on('click', '.edit-btn', function() {
 
 		// tìm brand by id
@@ -76,7 +100,7 @@ $(document).ready(function() {
 		});
 	});
 	
-	// hiển thị popup delete
+	// show popup delete
 	$("#productInfoTable").on('click', '.delete-btn', function() {
 		$("#deletedProductName").text($(this).data("name"));
 		$("#deleteSubmitBtn").attr("data-id", $(this).data("id"));
@@ -84,7 +108,7 @@ $(document).ready(function() {
 	});
 	
 	// Submit delete brand
-	//sau khi hiển thị popup delete - nó sẽ truyền xuống 1 id và thông qua ajax để gọi hàm xử lý 
+	//after displaying the delete popup - it will pass down an id and pass ajax to call handler function
 	$("#deleteSubmitBtn").on('click' , function() {
 		$.ajax({
 			url : "/product/api/delete/" + $(this).attr("data-id"),
@@ -99,12 +123,12 @@ $(document).ready(function() {
 		});
 	});
 	
-	//validate FE + xử lý thông tin add || update
+	//validate FE + handler info add || update
 	$('#saveProductBtn').on('click', function (event) {
 
 		event.preventDefault();
 		var formData = new FormData($productInfoForm[0]);
-		//form data sẽ mapping với các thiết kế trong Entity 
+		//form data will mapping as Entity
 		var productId = formData.get("productId");
 		var isAddAction = productId == undefined || productId == "";
 	
@@ -134,13 +158,12 @@ $(document).ready(function() {
 					number:"Enter the number for the price"
 				}
 			},
-			//nếu lỗi xảy ra nó sẽ thêm vào class errorClass vào và hiển thị lên
+			//If an error occurs it will add the class errorClass and display it
 			errorElement: "div",
 			errorClass: "error-message-invalid"
 		});
 		
-		//khi tất cả các đk hợp lệ nó sẽ tiến hành post data vào sever bằng ajax
-		//2
+		//when all licenses are valid it will proceed to post data to the server using ajax
 		if ($productInfoForm.valid()) {
 
 			// POST data to server-side by AJAX
@@ -155,7 +178,7 @@ $(document).ready(function() {
 				data: formData,
 				success: function(responseData) {
 
-					//hiển thị thông báo lúc chỉnh sửa thành công hoặc báo lỗi
+					//show the messenger when success
 					if (responseData.responseCode == 100) {
 						$productInfoModal.modal('hide');
 						findProductList(1)			
@@ -204,9 +227,48 @@ function searchFn(keyword, pageNumber, startPrice, endPrice) {
 		}
 	});
 }
+//searchProductByInfo
+function searchProductByInfo(pageNumber, isClickedSearchBtn,listBrand) {
+	
+	var searchConditions = {
+			keyword: $("#keyword").val(),
+			priceFrom:$("#priceFrom").val(),
+			priceTo:$("#priceTo").val(),
+			list : listBrand
+		}
+		$.ajax({
+			url: '/product/api/searchProductByInfo/' + pageNumber,
+			type: 'POST',
+			dataType: 'json',
+			contentType: 'application/json',
+			success: function (responseData) {
+				if(responseData.responseCode == 100) {
+					renderProductTable(responseData.data.productsList);
+					renderPagination(responseData.data.paginationInfo);
+					if(responseData.data.paginationInfo.pageNumberList.length < 2){
+						$('.pagination').addClass("d-none");
+					}else{
+						$('.pagination').removeClass("d-none")
+					}
+					if(pageNumber){
+						renderSystemMessage(responseData.responseMsg);
+					}
+				}
+			},
+			data: JSON.stringify(searchConditions)
+		});
+}
+
+function fnFormatPrice(numParam) {
+    var param = numParam;
+    var str = param.toLocaleString('vi-VN', {
+	useGrouping : true
+    });
+    str = str.replace(/,/g, '.');
+    return str;
+}
 
 function renderProductTable(productList) {
-
 	var rowHtml = "";
 	$("#productInfoTable tbody").empty();
 	$.each(productList, function(key, value) {
@@ -214,15 +276,18 @@ function renderProductTable(productList) {
 			+		"<td>" + value.productId + "</td>"
 			+		"<td>" + value.productName + "</td>"
 			+		"<td>" + value.quantity + "</td>"
-			+		"<td>" + value.price + "</td>"
-			+		"<td>" + value.brandEntity.brandName+ "</td>"
+			+		"<td>" + fnFormatPrice(value.price)  + " VNĐ</td>"
+//			+		"<td id=formatPrice></td>"
+			+		"<td><a name='searchByBrandName' value="+value.brandEntity.brandId+">" + value.brandEntity.brandName+ "</a></td>"
 			+		"<td>" + value.saleDate + "</td>"
 			+		"<td class='text-center'><a href='" + value.image + "' data-toggle='lightbox' data-max-width='1000'><img class='img-fluid' src='" + value.image + "'></td>"
 			+		"<td class='action-btns'>"
 			+			"<a class='edit-btn' data-id='" + value.productId + "'><i class='fas fa-edit'></i></a> | <a class='delete-btn' data-name='" + value.productName + "' data-id='" + value.productId + "'><i class='fas fa-trash-alt'></i></a>"
 			+		"</td>"
 			+	"</tr>";
+		
 		$("#productInfoTable tbody").append(rowHtml);
+	
 	});
 }
 function renderPagination(paginationInfo) {
@@ -240,3 +305,11 @@ function renderPagination(paginationInfo) {
 		$("ul.pagination").append(paginationInnerHtml);
 	}
 }
+
+function renderSystemMessage(responseMsg){
+	var systemMessageHtml = "";
+	$("#system-message p").empty();
+		messHtml = responseMsg
+		$("#system-message p").append(messHtml);
+}
+

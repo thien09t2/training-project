@@ -184,10 +184,15 @@ function searchBrand(pageNumber,keyword) {
 		success : function(responseData) {
 			if (responseData.responseCode == 100) {
 				renderBrandsTable(responseData.data.brandsList);
-				console.log(responseData.data.brandsList)
 				renderPagination(responseData.data.paginationInfo);
-				if(pageNumber==1){
-					showNotification(true, responseData.responseMsg);
+				console.log(responseData.data.paginationInfo.pageNumberList.length);
+				if(responseData.data.paginationInfo.pageNumberList.length < 2){
+					$('.pagination').addClass("d-none");
+				}else{
+					$( ".pagination" ).removeClass("d-none")
+				}
+				if(pageNumber){
+					renderSystemMessage(responseData.responseMsg);
 				}
 			}
 		}
@@ -231,4 +236,10 @@ function renderPagination(paginationInfo) {
 		paginationInnerHtml += '<li class="page-item"><a class="page-link ' + (paginationInfo.lastPage == 0 ? 'disabled' : '') + '" href="javascript:void(0)" data-index="'+ paginationInfo.lastPage + '">Last Page</a></li>'
 		$("ul.pagination").append(paginationInnerHtml);
 	}
+}
+function renderSystemMessage(responseMsg){
+	var systemMessageHtml = "";
+	$("#system-message h4").empty();
+		messHtml = responseMsg
+		$("#system-message h4").append(messHtml);
 }

@@ -33,11 +33,16 @@
 					class="fas fa-plus-square"></i> Add Brand</a>
 			</div>
 		</div>
-		<div class="search-form float-right form-group">
-			<input class="form-control" type="text" placeholder="Search Brand Name"
-				id="keyword">
-			<button type="submit" id="btnSearch"
-				class="search-brand btn btn-info">Search</button>
+		<div>
+			<div id= "system-message">
+				<h4 class="float-left"></h4>
+			</div>
+			<div class="search-form float-right form-group"  style="margin-top: 1px;">
+				<input class="form-control" type="text" placeholder="Search Brand Name"
+					id="keyword">
+				<button type="submit" id="btnSearch"
+					class="search-brand btn btn-info">Search</button>
+			</div>
 		</div>
 		<table class="table table-bordered table-hover" id="brandInfoTable">
 			<thead>
@@ -46,7 +51,7 @@
 					<th scope="col">Name</th>
 					<th scope="col">Logo</th>
 					<th scope="col">Description</th>
-					<th scope="col"></th>
+					<th scope="col">Action</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -83,7 +88,7 @@
 						<div class="form-group">
 							<label for="logo">Logo <span class="required-field">(*)</span></label>
 							<div class="preview-image-upload" id="logoImg">
-								<img src="<c:url value='/images/image-demo.png'/>" alt="image">
+								<img  class="image-product"src="<c:url value='/images/image-demo.png'/>" alt="image">
 							</div>
 							<input type="file" class="form-control upload-image"
 								name="logoFiles" accept="image/*" />

@@ -110,7 +110,10 @@ public class BrandController {
 	@GetMapping(value = { "/api/search/{keyword}/{pageNumber}" })
 	@ResponseBody
 	public ResponseDataModel searchApi(@PathVariable("keyword") String keyword , @PathVariable("pageNumber") int pageNumber) {
+//		model.addAttribute("Messaging System", brandService.searchApi(keyword, pageNumber).getResponseMsg());
 		return brandService.searchApi(keyword, pageNumber);
 	}
 	
+
+
 }

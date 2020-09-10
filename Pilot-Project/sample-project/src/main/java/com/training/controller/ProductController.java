@@ -1,5 +1,7 @@
 package com.training.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -67,13 +70,26 @@ public class ProductController {
 		return productService.deleteProductByApi(productId);
 	}
 
-	@GetMapping(value = { "/api/search/{keyword}/{pageNumber}/{startPrice}/{endPrice}" })
+//	@GetMapping(value = { "/api/search/{keyword}/{pageNumber}/{startPrice}/{endPrice}" })
+//	@ResponseBody
+//	public ResponseDataModel searchByApi(@PathVariable("keyword") String keyword,
+//			@PathVariable("pageNumber") int pageNumber, @PathVariable("startPrice") double startPrice,
+//			@PathVariable("endPrice") double endPrice) {
+//		return productService.search(keyword, pageNumber, startPrice, endPrice);
+//	}
+	
+	@PostMapping(value = {"/api/searchProductByInfo/{pageNumber}"})
 	@ResponseBody
-	public ResponseDataModel searchByApi(@PathVariable("keyword") String keyword,
-			@PathVariable("pageNumber") int pageNumber, @PathVariable("startPrice") double startPrice,
-			@PathVariable("endPrice") double endPrice) {
-		return productService.search(keyword, pageNumber, startPrice, endPrice);
+	public ResponseDataModel searchProductByInfo(@RequestBody Map<String, Object> searchConditions, 
+			@PathVariable("pageNumber") int pageNumber) {
+		return productService.searchByPriceAndName(searchConditions, pageNumber);
 	}
-
-
+	
+//	@PostMapping(value = {"/api/searchProductByBrandId/{pageNumber}"})
+//	@ResponseBody
+//	public ResponseDataModel searchByCheckBoxDataModel (@RequestBody Map<String, Object> listCheck, 
+//			@PathVariable("pageNumber") int pageNumber) {
+//		return productService.searchProductByBrandId(listCheck, pageNumber);
+//		return null;
+//	}
 }

@@ -41,18 +41,33 @@
 			<div class="search-price">
 				<label class="price" for="cars">Price From :</label> <select
 					class="form-control priceFrom" name="priceFrom" id="priceFrom">
+					<option value="0">--- Lowest Price ---</option>
 					<option value="1000000">1.000.000 VND</option>
 					<option value="3000000">3.000.000 VND</option>
 					<option value="5000000">5.000.000 VND</option>
 					<option value="10000000">10.000.000 VND</option>
 				</select> <label class="price" for="priceTo">Price To :</label> <select
 					class="form-control priceTo" name="price" id="priceTo">
+					<option value="" >--- Price Selection ---</option>
 					<option value="2000000">2.000.000 VND</option>
 					<option value="4000000">4.000.000 VND</option>
 					<option value="5000000">5.000.000 VND</option>
 					<option value="100000000">100.000.000 VND</option>
 				</select>
 				<button type="submit" id="btnSearch" class="btn btn-info">Search</button>
+			</div>
+		</div>
+		<div class="checkbox-messenger">
+			<div id= "system-message">
+				<p class="mess"></p>	
+			</div>
+			 <div class="checkbox ">
+				<c:forEach items="${listBrand}" var="brand">
+					<div class="itemlogo">
+						<input type="checkbox" id="${brand.brandId}" name="brand.logo" class="brandClass" value="${brand.brandId}">
+						<img alt="Logo Brand" src="${brand.logo}">
+					</div>
+				</c:forEach>
 			</div>
 		</div>
 		<table class="table table-bordered table-hover" id="productInfoTable">
@@ -65,7 +80,7 @@
 					<th scope="col">Brand Name</th>
 					<th scope="col">Open for sale</th>
 					<th scope="col">Image</th>
-					<th scope="col"></th>
+					<th scope="col">Action</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -101,39 +116,43 @@
 								class="form-control" id="productName" name="productName"
 								placeholder="Product Name">
 						</div>
-						<div class="form-group">
-							<label for="price">Price <span class="required-field">(*)</span></label>
-							<input name="price" id="price" class="form-control"
-								placeholder="Price">
+						<div class="group-double ">
+							<div class="form-group priceview">
+								<label for="price ">Price <span class="required-field">(*)</span></label>
+								<input name="price" id="price" class="form-control"
+									placeholder="Price">
+							</div>
+							<div class="form-group quantity">
+								<label for="quantity">Quantity <span
+									class="required-field">(*)</span></label> <input name="quantity"
+									id="quantity" class="form-control" placeholder="Quantity">
+							</div>
 						</div>
-						<div class="form-group">
-							<label for="quantity">Quantity <span
-								class="required-field">(*)</span></label> <input name="quantity"
-								id="quantity" class="form-control" placeholder="Quantity">
-						</div>
-						<div class="form-group">
-							<label for="brandId">Brand Name</label> <select
-								class="form-control" id="brandId" name="brandEntity.brandId">
-								<c:forEach items="${listBrand}" var="brand">
-									<option value="${brand.brandId}">${brand.brandName}</option>
-								</c:forEach>
-							</select>
-						</div>
-						<div class="form-group">
-							<label for="openForSale">Open for sale <span
-								class="required-field">(*)</span></label> <input type=date
-								name="saleDate" id="saleDate" value="1945-04-30" class="form-control"
-								placeholder="Open for sale">
+						<div class="group-double">
+							<div class="form-group brandName">
+								<label for="brandId">Brand Name</label> <select
+									class="form-control" id="brandId" name="brandEntity.brandId">
+									<c:forEach items="${listBrand}" var="brand">
+										<option value="${brand.brandId}">${brand.brandName}</option>
+									</c:forEach>
+								</select>
+							</div>
+							<div class="form-group saleDate">
+								<label for="openForSale">Open for sale <span
+									class="required-field">(*)</span></label> <input type=date
+									name="saleDate" id="saleDate" value="1945-04-30" class="form-control"
+									placeholder="Open for sale">
+							</div>
 						</div>
 						<div class="form-group">
 							<label for="description">Description</label>
 							<textarea name="description" id="description" cols="30" rows="3"
 								class="form-control" placeholder="Description"></textarea>
 						</div>
-						<div class="form-group">
+						<div class="form-group ">
 							<label for="img">Images <span class="required-field">(*)</span></label>
-							<div class="preview-image-upload" id="logoImg">
-								<img src="<c:url value='/images/image-demo.png'/>" alt="image">
+							<div class="preview-image-upload " id="logoImg">
+								<img class="image-product" src="<c:url value='/images/image-demo.png'/>" alt="image">
 							</div>
 							<input type="file" class="form-control upload-image"
 								name="imageFiles" accept="image/*" /> <input type="hidden"

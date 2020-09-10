@@ -1,9 +1,12 @@
 package com.training.service;
 
+import java.util.Map;
+
 import com.training.entity.ProductEntity;
 import com.training.model.ResponseDataModel;
 
 public interface IProductService {
+	
 	ProductEntity findProductByProductName(String productName);
 
 	Iterable<ProductEntity> getAll();
@@ -20,5 +23,8 @@ public interface IProductService {
 	
 	ResponseDataModel search(String searchKey, int pageNumber , double startPrice , double endPrice);
 	
+	ResponseDataModel searchByPriceAndName(Map<String, Object> searchConditions, int pageNumber);
+	
+	ResponseDataModel searchProductByBrandId(Map<String, Object> searchConditions, int pageNumber);
 
 }

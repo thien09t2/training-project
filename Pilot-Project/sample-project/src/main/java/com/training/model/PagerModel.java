@@ -58,7 +58,7 @@ public class PagerModel {
 			pageMin = totalPage - maxPageDisplay + 1;
 		}
 		
-		for (int i = 0; i <= totalPage; i++) {
+		for (int i = pageMin  ; i <= totalPage; i++) {
 			if (i > 0) {
 				pageNumberList.add(i);
 			}

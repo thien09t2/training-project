@@ -284,6 +284,7 @@ public class BrandServiceImpel implements IBrandService {
 			responseCode = Constants.RESULT_CD_SUCCESS;
 			if ( brandEntitesPage.getTotalElements() > 0) {
 				responseMsg = "The number of brand found is " + brandEntitesPage.getTotalElements() + " brand";
+				responseMap.put("systemMessage", responseMsg);
 			} else {
 				responseMsg = "The " + brandName + " is not exist!";
 			}

@@ -16,7 +16,7 @@
 				<article class="card-body">
 					<!-- <a href="PageController?action=loginTT" class="float-right btn btn-outline-primary">Sign up</a> -->
 					<h4 class="card-title mb-4 mt-1">Sign in</h4>
-					<h4 style="color: red;">${errormessage}</h4>
+					<!-- <p c:if="{param.error}" class="error">You have been logged out</p> -->
 					<form action="/loginAction"  method=POST>
 						<div class="form-group">
 							<label>Your User Name</label> <input name="username" class="form-control"
