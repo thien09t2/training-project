@@ -12,6 +12,7 @@ import javax.persistence.criteria.Root;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.util.CollectionUtils;
 
 import com.training.entity.BrandEntity;
 import com.training.entity.ProductEntity;
@@ -29,19 +30,21 @@ public class ProductJpaSpecification {
 		return new Specification<ProductEntity>() {
 			private static final long serialVersionUID = 1L;
 
+			@SuppressWarnings("unchecked")
 			@Override
 			public Predicate toPredicate(Root<ProductEntity> productRoot, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
 
 				List<Predicate> predicates = new ArrayList<>();
 				if (searchConditionsMap != null) {
+
 					String keyword = (String) searchConditionsMap.get("keyword");
 					String priceFrom = (String) searchConditionsMap.get("priceFrom");
 					String priceTo = (String) searchConditionsMap.get("priceTo");
-//					List<String> brandIds = (List<String>) searchConditionsMap.get("brandIds");
+					List<String> brandIds = (List<String>) searchConditionsMap.get("brandIds");
+					Join<ProductEntity, BrandEntity> brandRoot = productRoot.join("brandEntity");
 
-					// Keyword
+					// Keyword Predicate
 					if (StringUtils.isNotEmpty(keyword)) {
-						Join<ProductEntity, BrandEntity> brandRoot = productRoot.join("brandEntity");
 						predicates.add(criteriaBuilder.or(
 								criteriaBuilder.like(productRoot.get("productName"), "%" + keyword + "%"),
 								criteriaBuilder.like(brandRoot.get("brandName"), "%" + keyword + "%"),
@@ -50,24 +53,24 @@ public class ProductJpaSpecification {
 						));
 					}
 
-					// Price From
+					// Price From Predicate
 					if (StringUtils.isNotEmpty(priceFrom)) {
 						predicates.add(criteriaBuilder.greaterThanOrEqualTo(productRoot.get("price"), Double.parseDouble(priceFrom)));
 					}
 
-					// Price To
+					// Price To Predicate
 					if (StringUtils.isNotEmpty(priceTo)) {
 						predicates.add(criteriaBuilder.lessThanOrEqualTo(productRoot.get("price"), Double.parseDouble(priceTo)));
 					}
 
-					// Brand 
-//					if (brandIds != null && brandIds.size() > 0) {
-//						Predicate brandIdPredicate = null;
-//						for (String brandId : brandIds) {
-//							brandIdPredicate = criteriaBuilder.equal(productRoot.get("brandId"), brandId);
-//						}
-//						predicates.add(criteriaBuilder.or(brandIdPredicate));
-//					}
+					// Brand Predicate
+					if (!CollectionUtils.isEmpty(brandIds) ) {
+						List<Predicate> brandIdPredicateList = new ArrayList<>();
+						for (String brandId : brandIds) {
+							brandIdPredicateList.add(criteriaBuilder.equal(brandRoot.get("brandId"), Long.parseLong(brandId)));
+						}
+						predicates.add(criteriaBuilder.or(brandIdPredicateList.toArray(new Predicate[brandIdPredicateList.size()])));
+					}
 				}
 				return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
 			}
