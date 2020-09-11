@@ -20,6 +20,8 @@ $(document).ready(function() {
 //			console.log(brandArr);
 //		});
 //	}
+	
+	
 	var listBrand = [];
 	$('.brandClass').on('click', function() {
 		listBrand = [];
@@ -40,12 +42,21 @@ $(document).ready(function() {
 		searchProductByInfo(1, true,listBrand);
 	});
 	
+	$('#reset').on('click', function() {
+		$('input[type=checkbox]').each(function(){
+			this.checked = false;
+		})
+		$('#keyword').val("");
+		listBrand = [];
+		findProductList(1);
+	});
+	
 	//show brand on pagination
 	$('.pagination').on('click', '.page-link', function() {
 		var pageNumber = $(this).attr("data-index");
 		var keyword = $('#keyword').val();
-		if ( keyword != "" ) {
-			searchProductByInfo(pageNumber);
+		if ( keyword != "" || listBrand !="" ) {
+			searchProductByInfo(pageNumber,true,listBrand);		
 		} else {
 			findProductList(pageNumber);
 		}
@@ -203,6 +214,9 @@ function findProductList(pageNumber) {
 			if (responseData.responseCode == 100) {
 				renderProductTable(responseData.data.productList);
 				renderPagination(responseData.data.paginationInfo);
+				if($('.pagination').removeClass("d-none")){
+					$("#system-message p").empty();
+				}
 			}
 		}
 	});
@@ -276,10 +290,9 @@ function renderProductTable(productList) {
 			+		"<td>" + value.productId + "</td>"
 			+		"<td>" + value.productName + "</td>"
 			+		"<td>" + value.quantity + "</td>"
-			+		"<td>" + fnFormatPrice(value.price)  + " VNĐ</td>"
-//			+		"<td id=formatPrice></td>"
+			+		"<td>" + fnFormatPrice(value.price)  + "₫</td>"
 			+		"<td><a name='searchByBrandName' value="+value.brandEntity.brandId+">" + value.brandEntity.brandName+ "</a></td>"
-			+		"<td>" + value.saleDate + "</td>"
+			+		"<td>" + renderDate(value.saleDate) + "</td>"
 			+		"<td class='text-center'><a href='" + value.image + "' data-toggle='lightbox' data-max-width='1000'><img class='img-fluid' src='" + value.image + "'></td>"
 			+		"<td class='action-btns'>"
 			+			"<a class='edit-btn' data-id='" + value.productId + "'><i class='fas fa-edit'></i></a> | <a class='delete-btn' data-name='" + value.productName + "' data-id='" + value.productId + "'><i class='fas fa-trash-alt'></i></a>"
@@ -313,3 +326,15 @@ function renderSystemMessage(responseMsg){
 		$("#system-message p").append(messHtml);
 }
 
+function renderDate(date){
+	let data= new Date(date)
+    let month = data.getMonth() + 1
+    let day = data.getDate()
+    let year = data.getFullYear()
+    if(day<=9)
+      day = '0' + day
+    if(month<10)
+      month = '0' + month
+    const postDate = day + '-' + month + '-' + year
+    return postDate
+}

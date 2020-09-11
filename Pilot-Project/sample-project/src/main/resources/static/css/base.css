@@ -32,8 +32,6 @@ header .nav-link {
 	width: 83px;
 	text-align: center;
 	font-weight: 600;
-	/* border-radius: 3px; */
-	/* border: 1px solid; */
 }
 
 header .nav-link {
@@ -89,6 +87,7 @@ header .nav-link.active {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	margin: 1rem 3px 0 2px;
 }
 
 .search-price {
@@ -97,6 +96,10 @@ header .nav-link.active {
 	justify-content: center;
 	align-items: center;
 	text-align: center;
+}
+
+#reset {
+	margin-left: 10px;
 }
 
 .price {
@@ -115,18 +118,44 @@ header .nav-link.active {
 #logout {
 	color: #efefef;
 }
+
 .header-left {
 	display: flex;
 }
+
 .header-right {
 	
 }
+/* Search */
+.nava {
+	background-color: #eee9e9;;
+	border: 1px solid #333;
+	border-radius: 5px;
+}
+.itemlogo {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 14%;
+	margin-bottom: 10px
+}
+.form-group {
+	margin-bottom: 0rem;
+}
 
-.mess{
-	text-align : center;
-	margin-bottom : 0;
-	color : red;
+.mess {
+	text-align: center;
+	margin-bottom: 0;
+	color: red;
 	font-weight: bold;
+	margin-top: 1px;
+}
+
+.checkbox img {
+	width: 100px;
+	height: 50px;
+	margin-left: 6px;
+	border-radius: 10px;
 }
 
 .modal-content .modal-header {
@@ -165,41 +194,54 @@ div.error-message-invalid, div.error, label.error-message-invalid, label.error
 }
 
 .table-bordered img {
-	width: 80px;
-	height: 100px;
+	width:60px;
+	height: 65px;
 }
 
 .required-field {
 	color: red;
 	font-weight: bold;
 }
+
 .group-double {
 	display: flex;
 	justify-content: space-between;
 }
+
 .brandName, .saleDate {
 	width: 46%;
 }
+
 .image-product {
 	height: 80px;
 	opacity: 10%;
 }
+
 .quantity {
 	width: 46%;
 }
+
 .checkbox {
 	display: flex;
+	justify-content: center;
+	align-items: center;
 	flex-wrap: wrap;
+	margin: 5px;
 }
+
 .item-logo {
 	width: 20%;
+}
+.table thead th, .table-bordered td, .table-bordered th {
+	border: 1px solid #333;
+	border-radius: 5px;
 }
 .pagination {
 	margin-bottom: 30px;
 }
 
 .priceview {
-	width:46%
+	width: 46%
 }
 
 .pagination a {

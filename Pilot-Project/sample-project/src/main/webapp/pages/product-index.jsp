@@ -33,44 +33,47 @@
 					class="fas fa-plus-square"></i> Add Product</a>
 			</div>
 		</div>
-		<div class=" form-search form-group">
-			<div class="search-name">
-				<input class="form-control" type="text" placeholder="Search.."
-					id="keyword">
+		<div class="nava">
+			<div class=" form-search form-group">
+				<div class="search-name">
+					<input class="form-control" type="text" placeholder="Search.."
+						id="keyword">
+				</div>
+				<div class="search-price">
+					<label class="price" for="cars">Price From :</label> <select
+						class="form-control priceFrom" name="priceFrom" id="priceFrom">
+						<option value="0">--- Lowest Price ---</option>
+						<option value="1000000">1.000.000 VND</option>
+						<option value="3000000">3.000.000 VND</option>
+						<option value="5000000">5.000.000 VND</option>
+						<option value="10000000">10.000.000 VND</option>
+					</select> <label class="price" for="priceTo">Price To :</label> <select
+						class="form-control priceTo" name="price" id="priceTo">
+						<option value="" >--- Price Selection ---</option>
+						<option value="2000000">2.000.000 VND</option>
+						<option value="4000000">4.000.000 VND</option>
+						<option value="5000000">5.000.000 VND</option>
+						<option value="100000000">100.000.000 VND</option>
+					</select>
+					<button type="submit" id="btnSearch" class="btn btn-info">Search</button>
+					<button type="submit" id="reset" class="btn btn-info">Reset</button>
+				</div>
 			</div>
-			<div class="search-price">
-				<label class="price" for="cars">Price From :</label> <select
-					class="form-control priceFrom" name="priceFrom" id="priceFrom">
-					<option value="0">--- Lowest Price ---</option>
-					<option value="1000000">1.000.000 VND</option>
-					<option value="3000000">3.000.000 VND</option>
-					<option value="5000000">5.000.000 VND</option>
-					<option value="10000000">10.000.000 VND</option>
-				</select> <label class="price" for="priceTo">Price To :</label> <select
-					class="form-control priceTo" name="price" id="priceTo">
-					<option value="" >--- Price Selection ---</option>
-					<option value="2000000">2.000.000 VND</option>
-					<option value="4000000">4.000.000 VND</option>
-					<option value="5000000">5.000.000 VND</option>
-					<option value="100000000">100.000.000 VND</option>
-				</select>
-				<button type="submit" id="btnSearch" class="btn btn-info">Search</button>
-			</div>
+			<div class="checkbox-messenger">
+				<div class="checkbox ">
+					<c:forEach items="${listBrand}" var="brand">
+						<div class="itemlogo">
+							<input type="checkbox" id="${brand.brandId}" name="brand.logo" class="brandClass" value="${brand.brandId}" >
+							<img alt="Logo Brand" src="${brand.logo}">
+						</div>
+					</c:forEach>
+				</div>
+		 	</div>
 		</div>
-		<div class="checkbox-messenger">
-			<div id= "system-message">
-				<p class="mess"></p>	
-			</div>
-			 <div class="checkbox ">
-				<c:forEach items="${listBrand}" var="brand">
-					<div class="itemlogo">
-						<input type="checkbox" id="${brand.brandId}" name="brand.logo" class="brandClass" value="${brand.brandId}">
-						<img alt="Logo Brand" src="${brand.logo}">
-					</div>
-				</c:forEach>
-			</div>
+		<div id= "system-message">
+			<p class="mess"></p>	
 		</div>
-		<table class="table table-bordered table-hover" id="productInfoTable">
+		<table class="table table-bordered table-hover" id="productInfoTable" style="margin-top: 10px";>
 			<thead>
 				<tr class="text-center">
 					<th scope="col">Product ID</th>
