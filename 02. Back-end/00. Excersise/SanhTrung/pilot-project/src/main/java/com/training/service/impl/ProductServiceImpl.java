@@ -33,6 +33,7 @@ public class ProductServiceImpl implements IProductService {
 
 	@Autowired
 	IProductDao productDao;
+	
 //	List all products
 	@Override
 	public ResponseDataModel findAllProductWithPage(int pageNumber) {
@@ -53,6 +54,7 @@ public class ProductServiceImpl implements IProductService {
 		}
 		return new ResponseDataModel(responseCode, responseMsg, responseMap);
 	}
+	
 //	Add new product
 	@Override
 	public ResponseDataModel addProduct(ProductEntity productEntity) {
@@ -64,9 +66,9 @@ public class ProductServiceImpl implements IProductService {
 				responseMsg = "Product name have been exist!";
 				responseCode = Constants.RESULT_CD_DUPL;
 			} else {
-				MultipartFile[] logoFiles = productEntity.getLogoFiles();
-				if ( logoFiles != null && logoFiles[0].getSize() > 0) {
-					String imagePath = FileHelper.addNewFile(productLogoFolderPath, logoFiles);
+				MultipartFile[] imageFiles = productEntity.getLogoFiles();
+				if ( imageFiles != null && imageFiles[0].getSize() > 0) {
+					String imagePath = FileHelper.addNewFile(productLogoFolderPath, imageFiles);
 					productEntity.setImage(imagePath);
 				}
 				productDao.saveAndFlush(productEntity);
@@ -79,11 +81,13 @@ public class ProductServiceImpl implements IProductService {
 		} 
 		return new ResponseDataModel(responseCode, responseMsg);
 	}
+	
 //	Find product by name
 	@Override
 	public ProductEntity findByProductName(String productName) {
 		return productDao.findByProductName(productName);
 	}
+	
 //	Update product
 	@Override
 	public ResponseDataModel updateProduct(ProductEntity productEntity) {
@@ -109,6 +113,7 @@ public class ProductServiceImpl implements IProductService {
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
 	}
+	
 //	Find product by id 
 	@Override
 	public ResponseDataModel findProductById(Long productId) {
@@ -127,6 +132,7 @@ public class ProductServiceImpl implements IProductService {
 		}
 		return new ResponseDataModel(responseCode, responseMsg, productEntity);
 	}
+	
 //	Delete product
 	@Override
 	public ResponseDataModel deleteProduct(Long productId) {
@@ -148,71 +154,18 @@ public class ProductServiceImpl implements IProductService {
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
 	}
-//	Search product name and brand by the only price
-	@Override
-	public ResponseDataModel searchByPrice(double priceFrom, double toPrice, int pageNumber) {
-		int responseCode = Constants.RESULT_CD_FAIL;
-		String responseMsg = StringUtils.EMPTY;
-		Map<String, Object> responseMap = new HashMap<String, Object>();
-		try {
-			Sort sortList = Sort.by(Sort.Direction.DESC, "productId");
-			Pageable pageable = PageRequest.of(pageNumber - 1 , Constants.PAGE_SIZE, sortList);
-			Page<ProductEntity> productEntitesPage = productDao.findByPriceBetween(priceFrom, toPrice, pageable);
-			responseMap.put("productsList", productEntitesPage.getContent());
-			responseMap.put("paginationList", new PageModel(pageNumber,  productEntitesPage.getTotalPages()));
-			if ( productEntitesPage.getTotalElements() > 0 ) {
-				responseMsg = "The number of product found is " + productEntitesPage.getTotalElements() + " product";
-			} else {
-				responseMsg = "Doesn't exist product have price between " + priceFrom + " and " + toPrice;
-			}
-			responseCode = Constants.RESULT_CD_SUCCESS;
-		} catch (Exception e) {
-			responseMsg = e.getMessage();
-			LOGGER.error("Error! Search by price failed: ",e);
-		}
-		return new ResponseDataModel(responseCode, responseMsg, responseMap);
-	}
-//	Search product by product name or brand name
-	@Override
-	public ResponseDataModel searchByName(String keyword, int pageNumber) {
-		int responseCode = Constants.RESULT_CD_FAIL;
-		String responseMsg = StringUtils.EMPTY;
-		Map<String, Object> responseMap = new HashMap<String, Object>();
-		try {
-			Sort sortList = Sort.by(Sort.Direction.DESC, "productId");
-			Pageable pageable = PageRequest.of(pageNumber - 1 , Constants.PAGE_SIZE, sortList);
-			Page<ProductEntity> productEntitesPage = productDao.searchProductByName(keyword, pageable);
-			responseMap.put("productsList", productEntitesPage.getContent());
-			responseMap.put("paginationList", new PageModel(pageNumber, productEntitesPage.getTotalPages()));
-			responseCode = Constants.RESULT_CD_SUCCESS;
-			if ( productEntitesPage.getTotalElements() > 0 ) {
-				responseMsg = "The number of product found is " + productEntitesPage.getTotalElements() + " product";
-			} else {
-				responseMsg = "The " + keyword + " is not exist!";
-			}
-		} catch (Exception e) {
-				responseMsg = e.getMessage();
-				LOGGER.error("Error! Search product by name is failed.", e);
-		}
-		return new ResponseDataModel(responseCode, responseMsg, responseMap);
-	}
 	
-//	Search by product name or brand name  and price
 	@Override
-	public ResponseDataModel searchByNameAndPrice(Map<String, Object> searchConditions, int pageNumber) {
+	public ResponseDataModel searchProductWithConditions(Map<String, Object> searchConditions, int pageNumber) {
 		int responseCode = Constants.RESULT_CD_FAIL;
 		String responseMsg = StringUtils.EMPTY;
 		Map<String, Object> responseMap = new HashMap<String, Object>();
 		try { 	
 			Sort sortList = Sort.by(Sort.Direction.DESC,"productId");
 			Pageable pageable = PageRequest.of(pageNumber - 1, Constants.PAGE_SIZE, sortList);
-			Page<ProductEntity> productEntitesPage = productDao.searchProductByNameAndPrice(
-					(String) searchConditions.getOrDefault(Constants.PROP_KEY_KEYWORD, StringUtils.EMPTY),
-					Double.parseDouble((String) searchConditions.getOrDefault(Constants.PROP_KEY_PRICE_FROM, "0")),
-					Double.parseDouble((String) searchConditions.getOrDefault(Constants.PROP_KEY_PRICE_TO, "1000000000")),
-					pageable);
+			Page<ProductEntity> productEntitesPage = productDao.findAll(IProductDao.getSearchCondition(searchConditions),pageable);
 			responseMap.put("productsList", productEntitesPage.getContent());
-			responseMap.put("paginationInfo", new PageModel(pageNumber, productEntitesPage.getTotalPages()));
+			responseMap.put("paginationList", new PageModel(pageNumber, productEntitesPage.getTotalPages()));
 			if ( productEntitesPage.getTotalElements() > 0) {
 				responseMsg = "The number of product found is " + productEntitesPage.getTotalElements() + " product";
 			} else {
@@ -221,7 +174,7 @@ public class ProductServiceImpl implements IProductService {
 			responseCode = Constants.RESULT_CD_SUCCESS;
 		} catch (Exception e) {
 			responseMsg = e.getMessage();
-			LOGGER.error("Error! Search brand name or product name by price is failed: ",e);
+			LOGGER.error("Error! Search brand name or product name by price is failed: ", e);
 		}
 		return new ResponseDataModel(responseCode, responseMsg, responseMap);
 	}

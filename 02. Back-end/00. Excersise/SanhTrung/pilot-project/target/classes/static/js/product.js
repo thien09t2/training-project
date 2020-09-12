@@ -1,36 +1,133 @@
 $(document).ready(function() {
+	/*$('#saleDate').val(new Date().toDateInputValue());*/
+
 	findAllProducts(1);
-//	var searchByName = false;
+
+	/* Pagination*/
 	$('.pagination').on('click', '.page-link', function() {
 		var pageNumber = $(this).attr("data-index");
 		var keyword = $('#keyword').val();
-		if ( keyword != "" ) {
-			searchProduct(pageNumber);
+		if (keyword != "" || listBrandArr != "") {
+			searchProduct(pageNumber, true, listBrandArr);
 		} else {
 			findAllProducts(pageNumber);
 		}
 	});
-	
-	$('input[type=text]').on('keydown', function(event) {
-		if (event.which == 13 || event.keyCode == 13) {
-			searchProduct(1);
-		}
-	});
-	
+	/* Reset page */
+	$('#restPage').on('click', function() {
+		$('#keyword').val("");
+		listBrandArr = [];
+		$('input[type=checkbox]').each(function() {
+			this.checked = false;
+		})
+		findAllProducts(1);
+	})
+
+	/* Show more and hidden logo bran */
+	var max = 13;
+	$('ul, li').each(function() {
+		$(this).find('li').each(function(index) {
+			if (index >= max) {
+				$(this).hide();
+			}
+		})
+	})
+	$('.hidden-item').on('click', function(event) {
+		event.preventDefault();
+		$('.hidden-item').addClass("d-none");
+		$('.show-more').removeClass("d-none");
+		$('ul, li').each(function() {
+			$(this).find('li').each(function(index) {
+				if (index >= max) {
+					$(this).hide();
+				}
+			})
+		})
+	})
+	$('.show-more').on('click', function(event) {
+		event.preventDefault();
+		$('.hidden-item').removeClass("d-none");
+		$('.show-more').addClass("d-none");
+		$('ul, li').each(function() {
+			$(this).find('li').each(function(index) {
+				$(this).show();
+			})
+		})
+	})
+	/*var max = 14;
+	$('ul, li').each(function() {
+		$(this).find('li').each(function(index) {
+			if (index >= max) {
+				$(this).hide();
+			}
+		})
+	})*/
+
+	/*Get list brandId*/
+	var listBrandArr = [];
+	$('.check').on('click', function() {
+		listBrandArr = [];
+		$('.listBrand').find('input[name="brand.logo"]:checked').each(function() {
+			listBrandArr.push($(this).val());
+		});
+		/*console.log(listBrandArr);
+		$('#output ').html(listBrandArr.join('\xa0\xa0'));*/
+	})
+
+	/* Search product */
 	$('#searchByPrice').on('click', function() {
-		searchProduct(1, true);
+		searchProduct(1, true, listBrandArr);
 	});
 
+	/*Search product by conditions*/
+	function searchProduct(pageNumber, isClickedSearchBtn, listBrandArr) {
+		var searchConditions = {
+			keyword: $("#keyword").val(),
+			priceFrom: $("#priceFrom").val(),
+			priceTo: $("#priceTo").val(),
+			listBrandId: listBrandArr
+		}
+		$.ajax({
+			url: '/product/api/searchProduct/' + pageNumber,
+			type: 'POST',
+			dataType: 'json',
+			contentType: 'application/json',
+			success: function(responseData) {
+				if (responseData.responseCode == 100) {
+					renderProductsTable(responseData.data.productsList);
+					renderPagination(responseData.data.paginationList);
+					if (responseData.data.paginationList.pageNumberList.length < 2) {
+						$('.pagination').addClass("d-none");
+					} else {
+						$('.pagination').removeClass("d-none");
+					}
+					renderMessageSearch(responseData.responseMsg);
+				}
+			},
+			data: JSON.stringify(searchConditions)
+		});
+	}
 	var $productInfoForm = $('#productInfoForm');
 	var $productInfoModal = $('#productInfoModal');
 
-	/*Show form add new product*/
+
+	/* Set current day default for sale date*/
+	var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth() + 1; //January is 0!
+	var yyyy = today.getFullYear();
+	if (dd < 10) { dd = '0' + dd }
+	if (mm < 10) { mm = '0' + mm }
+	today = yyyy + '-' + mm + '-' + dd;
+	/* Show form add new product*/
 	$("#addProductInfoModal").on('click', function() {
 		resetFormModal($productInfoForm);
-		showModalWithCustomizedTitle($productInfoModal, "Add new product");
+		$('input[name=saleDate]').val(today);
+		showModalWithCustomizedTitle($productInfoModal, "Add New Product");
 		$('#logoImg img').attr('src', '/images/image-demo.png');
 		$('#productId').closest(".form-group").addClass("d-none");
 	});
+
 	/*Show form update modal*/
 	$("#productInfoTable").on('click', '.edit-btn', function() {
 		$("#productImage .required-field").addClass("d-none");
@@ -43,7 +140,7 @@ $(document).ready(function() {
 				if (responseData.responseCode == 100) {
 					var productInfo = responseData.data;
 					resetFormModal($productInfoForm);
-					showModalWithCustomizedTitle($productInfoModal, "Edit product");
+					showModalWithCustomizedTitle($productInfoModal, "Edit Product");
 
 					$('#productId').val(productInfo.productId);
 					$('#productName').val(productInfo.productName);
@@ -64,7 +161,8 @@ $(document).ready(function() {
 			}
 		})
 	});
-	/*Submit add new product*/
+
+	/*Submit add new product or update product*/
 	$("#saveProductBtn").on('click', function(event) {
 		event.preventDefault();
 		var formData = new FormData($productInfoForm[0]);
@@ -149,12 +247,14 @@ $(document).ready(function() {
 		}
 	})
 });
+
 /*Show modal confirm delete product*/
 $("#productInfoTable").on('click', '.delete-btn', function() {
 	$("#deletedProductName").text($(this).data("name"));
 	$("#deleteSubmitBtn").attr("data-id", $(this).data("id"));
 	$('#confirmDeleteModal').modal('show');
 });
+
 /*Submit form deleted product*/
 $("#deleteSubmitBtn").on('click', function() {
 	$.ajax({
@@ -184,64 +284,22 @@ function findAllProducts(pageNumber) {
 			if (responseData.responseCode == 100) {
 				renderProductsTable(responseData.data.productsList);
 				renderPagination(responseData.data.paginationList);
+				if ($('.pagination').removeClass("d-none")) {
+					$('#resultSearch p').empty();
+				}
 			}
 		}
 	});
 }
-//Search product by the only price
-function searchProductByPrice(priceFrom, toPrice, pageNumber) {
-	$.ajax({
-		url: "/product/api/searchByPrice/" + priceFrom + "/" + toPrice + "/" + pageNumber,
-		type: 'GET',
-		dateType: 'json',
-		contentType: 'application/json',
-		success: function(responseData) {
-			if (responseData.responseCode == 100) {
-				renderProductsTable(responseData.data.productsList);
-				renderPagination(responseData.data.paginationList);
-				if (pageNumber == 1) {
-					showNotification(true, responseData.responseMsg);
-				}
-			}
-		}
-	})
+
+/* Currency format 
+	@param price
+	@return price format
+*/
+function currencyFormat(price) {
+	return price.toLocaleString('vi-VN', { useGrouping: true });
 }
-// Search prodcut by product name or brand name
-function searchProductByName(keyword, pageNumber) {
-	$.ajax({
-		url: "/product/api/searchByName/" + keyword + "/" + pageNumber,
-		type: 'GET',
-		dataType: 'json',
-		contentType: 'application/json',
-		success: function(responseData) {
-			if (responseData.responseCode == 100) {
-				renderProductsTable(responseData.data.productsList);
-				renderPagination(responseData.data.paginationList);
-				if (pageNumber == 1) {
-					showNotification(true, responseData.responseMsg);
-				}
-			}
-		}
-	})
-}
-// Search product by product name or brand name and price
-function searchProducOrBrandByPrice(keyword, pageNumber, priceFrom, toPrice) {
-	$.ajax({
-		url: "/product/api/searchByNameAndPrice/" + keyword + "/" + pageNumber + "/" + priceFrom + "/" + toPrice,
-		type: 'GET',
-		dataType: 'json',
-		contentType: 'application/json',
-		success: function(responseData) {
-			if (responseData.responseCode == 100) {
-				renderProductsTable(responseData.data.productsList);
-				renderPagination(responseData.data.paginationList);
-				if (pageNumber == 1) {
-					showNotification(true, responseData.responseMsg);
-				}
-			}
-		}
-	})
-}
+
 /* Render jsp for product table*/
 function renderProductsTable(productsList) {
 
@@ -249,12 +307,12 @@ function renderProductsTable(productsList) {
 	$("#productInfoTable tbody").empty();
 	$.each(productsList, function(key, value) {
 		rowHtml = "<tr>"
-			+ "<td>" + value.productId + "</td>"
+			+ "<td class='no'>" + value.productId + "</td>"
 			+ "<td>" + value.productName + "</td>"
-			+ "<td>" + value.quantity + "</td>"
-			+ "<td>" + value.price + "</td>"
-			+ "<td>" + value.brandEntity.brandName + "</td>"
-			+ "<td>" + value.saleDate + "</td>"
+			+ "<td class='quantity'>" + value.quantity + "</td>"
+			+ "<td class='price-td'>" + currencyFormat(value.price) + "₫</td>"
+			+ "<td class='brand-logo-td'>" + value.brandEntity.brandName + "</td>"
+			+ "<td class='sale-date'>" + getFormattedDate(value.saleDate) + "</td>"
 			+ "<td>" + value.description + "</td>"
 			+ "<td class='text-center'><a href='" + value.image + "' data-toggle='lightbox' data-max-width='1000'><img class='img-fluid' src='" + value.image + "'></td>"
 			+ "<td class='action-btns'>"
@@ -263,6 +321,33 @@ function renderProductsTable(productsList) {
 		"</tr>";
 		$("#productInfoTable tbody").append(rowHtml);
 	})
+}
+
+/* Render result message search */
+function renderMessageSearch(responseMsg) {
+	$('#resultSearch p').empty();
+	$('#resultSearch p').append(responseMsg);
+}
+function getCurrentDay(saleDate) {
+	var saleDate = new Date();
+	var month = (saleDate.getMonth() + 1);
+	var day = saleDate.getDate();
+	if (month < 10)
+		month = "0" + month;
+	if (day < 10)
+		day = "0" + day;
+	var today = day + + '-' + month + '-' + saleDate.getFullYear();
+	return today;
+}
+/* Format Date*/
+function getFormattedDate(saleDate) {
+	var date = new Date(saleDate);
+	var day = date.getDate();
+	var month = date.getMonth();
+	var year = date.getFullYear();
+	if (date < 10) { date = '0' + date }
+	if (month < 10) { month = '0' + month }
+	return day + '/' + month + '/' + year;
 }
 /*Pagination*/
 function renderPagination(paginationList) {
@@ -281,26 +366,4 @@ function renderPagination(paginationList) {
 
 	}
 }
-function searchProduct(pageNumber, isClickedSearchBtn) {
-	var searchConditions = {
-			keyword: $("#keyword").val(),
-			priceFrom:$("#priceFrom").val(),
-			priceTo:$("#priceTo").val()
-		}
-		$.ajax({
-			url: '/product/api/searchProduct/' + pageNumber,
-			type: 'POST',
-			dataType: 'json',
-			contentType: 'application/json',
-			success: function (responseData) {
-				if(responseData.responseCode == 100) {
-					renderProductsTable(responseData.data.productsList);
-					renderPagination(responseData.data.paginationInfo);
-					if (isClickedSearchBtn) {
-						showNotification(true, responseData.responseMsg);
-					}
-				}
-			},
-			data: JSON.stringify(searchConditions)
-		});
-}
+

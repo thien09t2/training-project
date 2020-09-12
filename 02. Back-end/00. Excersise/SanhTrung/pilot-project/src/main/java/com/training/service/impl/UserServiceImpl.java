@@ -20,4 +20,10 @@ public class UserServiceImpl implements IUserService{
 	public UserEntity findByUserName(String userName) {
 		return userDao.findByUserName(userName);
 	}
+
+	@Override
+	public UserEntity login(String username, String password) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

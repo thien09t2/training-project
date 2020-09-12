@@ -15,21 +15,20 @@ $(document).ready(function() {
 	var $brandInfoForm = $('#brandInfoForm')
 	var $brandInfoModal = $('#brandInfoModal')
 
-	$('input[type=text]').on('keydown', function(event) {
-		if (event.which == 13 || event.keyCode == 13) {
-			var brandName = $('#keyword').val();
-			searchBrandName(brandName, 1);
-		}
-	});
+	/* Search brand */
 	$('#searchBrand').on('click', function() {
 		var brandName = $('#keyword').val();
 		searchBrandName(brandName, 1);
 	})
-	$('#resetPage').on('click', function(event) {
-		event.preventDefault();
+
+	/* Rest form*/
+	$('#restPage').on('click', function() {
+		$('#keyword').val("");
+		$('#resultSearch').empty();
 		findAllBrands(1);
 	})
-	/*Show form add new brand*/
+
+	/* Show form add new brand */
 	$("#addBrandInfoModal").on('click', function() {
 		resetFormModal($brandInfoForm);
 		showModalWithCustomizedTitle($brandInfoModal, "Add New Brand");
@@ -37,7 +36,7 @@ $(document).ready(function() {
 		$('#brandId').closest(".form-group").addClass("d-none");
 	});
 
-	/*Show form update modal*/
+	/* Show form update modal */
 	$("#brandInfoTable").on('click', '.edit-btn', function() {
 		$("#brandLogo .required-field").addClass("d-none");
 		$.ajax({
@@ -67,13 +66,14 @@ $(document).ready(function() {
 		})
 	});
 
-	/*Show modal confirm delete brand*/
+	/* Show modal confirm delete brand */
 	$("#brandInfoTable").on('click', '.delete-btn', function() {
 		$("#deletedBrandName").text($(this).data("name"));
 		$("#deleteSubmitBtn").attr("data-id", $(this).data("id"));
 		$('#confirmDeleteModal').modal('show');
 	});
-	/*Submit form deleted brand*/
+	
+	/* Submit form deleted brand */
 	$("#deleteSubmitBtn").on('click', function() {
 		$.ajax({
 			url: "/brand/api/delete/" + $(this).attr("data-id"),
@@ -88,7 +88,7 @@ $(document).ready(function() {
 		});
 	});
 
-	/*Submit add new brand*/
+	/* Submit add new brand */
 	$("#saveBrandBtn").on('click', function(event) {
 
 		event.preventDefault();
@@ -160,6 +160,9 @@ function findAllBrands(pageNumber) {
 			if (responseData.responseCode == 100) {
 				renderBrandsTable(responseData.data.brandsList);
 				renderPagination(responseData.data.paginationList);
+				if ($('.pagination').removeClass("d-none")) {
+					$('#resultSearch p').empty();
+				}
 			}
 		}
 	});
@@ -175,9 +178,12 @@ function searchBrandName(brandName, pageNumber) {
 			if (responseData.responseCode == 100) {
 				renderBrandsTable(responseData.data.brandsList);
 				renderPagination(responseData.data.paginationList);
-				if (pageNumber == 1) {
-					showNotification(true, responseData.responseMsg);
+				if (responseData.data.paginationList.pageNumberList.length < 2) {
+					$('.pagination').addClass("d-none");
+				} else {
+					$('.pagination').removeClass("d-none");
 				}
+				renderMessageSearch(responseData.responseMsg);
 			}
 		}
 	});
@@ -190,16 +196,20 @@ function renderBrandsTable(brandsList) {
 	$("#brandInfoTable tbody").empty();
 	$.each(brandsList, function(key, value) {
 		rowHtml = "<tr class='text-center'>"
-			+ "<td>" + value.brandId + "</td>"
-			+ "<td>" + value.brandName + "</td>"
+			+ "<td class='no'>" + value.brandId + "</td>"
+			+ "<td class='brand-name'>" + value.brandName + "</td>"
 			+ "<td class='text-center'><a href='" + value.logo + "' data-toggle='lightbox' data-max-width='1000'><img class='img-fluid' src='" + value.logo + "'></td>"
-			+ "<td>" + value.description + "</td>"
+			+ "<td class='description'>" + value.description + "</td>"
 			+ "<td class='action-btns'>"
 			+ "<a class='edit-btn' data-id='" + value.brandId + "'><i class='fas fa-edit'></i></a> | <a class='delete-btn' data-name='" + value.brandName + "' data-id='" + value.brandId + "'><i class='fas fa-trash-alt'></i></a>"
 			+ "</td>"
 			+ "</tr>";
 		$("#brandInfoTable tbody").append(rowHtml);
 	});
+}
+function renderMessageSearch(responseMsg) {
+	$('#resultSearch p').empty();
+	$('#resultSearch p').append(responseMsg);
 }
 /*Pagination*/
 function renderPagination(paginationList) {

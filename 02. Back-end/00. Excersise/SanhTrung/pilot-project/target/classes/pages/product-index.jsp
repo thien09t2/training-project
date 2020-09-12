@@ -37,33 +37,51 @@
 			<div class="sub-title">Product Management</div>
 			<div ><a class="add-btn" id="addProductInfoModal"><button class="btn-add btn btn-outline-success" type="button"><i class="icon-add fas fa-plus-square"></i>Add New Product</button></a></div>
 		</div>
-		<div class="search-product form-group">
-			<div class="search-product__name">
-				<input type="text" class="form-control search-brand" placeholder="Product Name, Brand Name" id="keyword">
+		<div class="search-area">
+			<div class="search-product form-group">
+				<div class="search-product__name">
+					<input type="text" class="form-control search-brand" placeholder="Product Name, Brand Name" id="keyword">
+				</div>
+				<div class="search-product__price">
+					<label class="price-labe price-labe-from" for="priceFrom">Price From </label>
+					<select class="price priceFrom form-control" name="priceForm"  id="priceFrom">
+						<option value="">--- Lowest Price ---</option>
+						<option value="1000000">1.000.000₫</option>
+						<option value="2000000">2.000.000₫</option>
+						<option value="3000000">3.000.000₫</option>
+						<option value="4000000">4.000.000₫</option>
+					</select>
+					<label class="price-labe" for="toPrice">Price To </label>
+					<select class="price toPrice form-control" name="priceTo" id="priceTo">
+						<option value="" >--- Highest price ---</option>
+						<option value="1000000">1.000.000₫</option>
+						<option value="2000000">2.000.000₫</option>
+						<option value="4000000">4.000.000₫</option>
+						<option value="8000000">8.000.000₫</option>
+						<option value="10000000">10.000.000₫</option>
+						<option value="20000000">20.000.000₫</option>
+					</select>
+				</div>
+				<div class="btn-search">
+					<button type="submit" id="searchByPrice" class="btn btn-success">Search</button>
+					<button type="button" class="reset-page btn btn-secondary" id="restPage">Reset</button>
+				</div>
 			</div>
-			<div class="search-product__price">
-				<label class="price-labe price-labe-from" for="priceFrom">Price From </label>
-				<select class="price priceFrom form-control" name="priceForm"  id="priceFrom">
-					<option value="0">0</option>
-					<option value="1000000">1.000.000</option>
-					<option value="2000000">2.000.000</option>
-					<option value="3000000">3.000.000</option>
-					<option value="4000000">4.000.000</option>
-				</select>
-				<label class="price-labe" for="toPrice">Price To </label>
-				<select class="price toPrice form-control" name="priceTo" id="priceTo">
-					<option >----- Price To -----</option>
-					<option value="1000000">1.000.000</option>
-					<option value="2000000">2.000.000</option>
-					<option value="4000000">4.000.000</option>
-					<option value="8000000">8.000.000</option>
-					<option value="10000000">10.000.000</option>
-					<option value="20000000">20.000.000</option>
-					<option value="100000000000000">The highest price</option>
-				</select>
-				<button type="submit" id="searchByPrice" class="btn btn-success">Search</button>
-				<a class="reset-page btn btn-secondary" id="restPage" href="/product" >Reset</a>
+			<div class="searchByBrand">
+				<ul class="listBrand">
+					<c:forEach items="${listBrand}" var="brand">
+						<li class="list-brand__item">
+							<input class="check" id="${brand.brandId}" type="checkbox" value="${brand.brandId}" name="brand.logo">
+							<img class="logo-brand" alt="Logo Brand" src="${brand.logo}">
+						</li>
+					</c:forEach>
+					<span class="show-more">Show more <i class="icon fas fa-caret-down"></i></span>
+					<span class="hidden-item d-none">Hidden <i class="icon-up fas fa-sort-up"></i></span>
+				</ul>
 			</div>
+		</div>
+		<div id="resultSearch">
+			<p></p>
 		</div>
 		<table class="table table-bordered table-hover" id="productInfoTable">
 			<thead>
@@ -73,7 +91,7 @@
 					<th scope="col">Quantity</th>
 					<th scope="col">Price</th>
 					<th scope="col">Brand</th>
-					<th scope="col" class="sale-date">Sale Date</th>
+					<th scope="col">Sale Date</th>
 					<th scope="col">Description</th>
 					<th scope="col">Image</th>
 					<th scope="col">Actions</th>
@@ -91,8 +109,8 @@
 			<div class="modal-content">
 				<form id="productInfoForm" role="form" enctype="multipart/form-data">
 					<div class="modal-header">
-						<h5 class="modal-titel">Add New Product</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-lable>
+						<h5 class="modal-title">Add New Product</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
@@ -101,42 +119,48 @@
 							<label for="productId">Product ID</label>
 							<input type="text" class="form-control" name="productId" id="productId" placeholder="Product ID" readonly="readonly">
 						</div>
-						<div class="form-group">
+						<div class="form-group product-name" id="product-name">
 							<label for="productName">Product name <span class="required-field">(*)</span></label>
 							<input type="text" class="form-control" name="productName" id="productName" placeholder="Name of the product" aria-describedby="basic-addon1">
 						</div>
-						<div class="form-group">
-							<label for="quantity">Quantity <span class="required-field">(*)</span></label>
-							<input type="text" class="form-control" name="quantity" id="quantity" placeholder="Quantity of product">
-						</div>
-						<div class="form-group">
-							<label for="price">Price <span class="required-field">(*)</span></label>
-							<input type="text" class="form-control" name="price" id="price" placeholder="Price of product">
+						<div class="group-quantity-price">
+							<div class="form-group quantity-form">
+								<label for="quantity">Quantity <span class="required-field">(*)</span></label>
+								<input type="text" class="form-control" name="quantity" id="quantity" placeholder="Quantity of product">
+							</div>
+							<div class="form-group price-form">
+								<label for="price">Price <span class="required-field">(*)</span></label>
+								<input type="text" class="form-control" name="price" id="price" placeholder="Price of product">
+							</div>
 						</div>
 						<!-- Brand name -->
-						<div class="form-group">
-							<label for="brandId">Brand Name</label>
-							<select  class="form-control" id="brandId" name ="brandEntity.brandId">
-								<c:forEach items="${listBrand}" var="brand">
-									<option value="${brand.brandId}" class="form-select">${brand.brandName}</option>
-								</c:forEach>
-							</select>
-						</div>
-						<div class="form-group">
-							<label for="saleDate">Sale Date <span class="required-field">(*)</span></label>
-							<input type="date" class="form-control" name="saleDate" id="saleDate">
-						</div>
-						<div class="form-group" id="productImage">
-							<label for="image">Image <span class="required-field">(*)</span></label>
-							<div class="preview-image-upload" id="logoImg">
-								<img src="<c:url value='/images/image-demo.png'/>" alt="image">
+						<div class="group-quantity-price">
+							<div class="form-group brand-logo">
+								<label for="brandId">Brand Name</label>
+								<select  class="form-control" id="brandId" name ="brandEntity.brandId">
+									<c:forEach items="${listBrand}" var="brand">
+										<option value="${brand.brandId}" class="form-select">${brand.brandName}</option>
+									</c:forEach>
+								</select>
 							</div>
-							<input type="file" class="form-control upload-image" name="logoFiles" accept="image/*" />
-							<input type="hidden" class="old-img" id="image" name="image">
+							<div class="form-group saleDate">
+								<label for="saleDate">Sale Date <span class="required-field">(*)</span></label>
+								<input type="date" class="form-control" name="saleDate" id="saleDate" value="">
+							</div>
 						</div>
-						<div class="form-group">
-							<label for="description">Description </label>
-							<input type="text" class="form-control" name="description" id="description" placeholder="Description of product">
+						<div class="group-img-description">
+							<div class="form-group img-product" id="productImage">
+								<label for="image">Image <span class="required-field">(*)</span></label>
+								<div class="preview-image-upload" id="logoImg">
+									<img src="<c:url value='/images/image-demo.png'/>" alt="image">
+								</div>
+								<input type="file" class="form-control upload-image" name="logoFiles" accept="image/*" />
+								<input type="hidden" class="old-img" id="image" name="image">
+							</div>
+							<div class="form-group description">
+								<label for="description">Description </label>
+								<textarea cols="30" rows="4" class="form-control" name="description" id="description" placeholder="Description of product"></textarea>
+							</div>
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -162,7 +186,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-					<button type="button" class="btn btn-primary" id="deleteSubmitBtn">Save</button>
+					<button type="button" class="btn btn-primary" id="deleteSubmitBtn">Confirm</button>
 				</div>
 			</div>
 		</div>

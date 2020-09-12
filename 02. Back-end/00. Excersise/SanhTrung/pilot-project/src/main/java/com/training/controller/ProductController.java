@@ -30,14 +30,19 @@ public class ProductController {
 	@Autowired
 	IBrandService brandService;
 
-//	Initialization page
+	// Initialization page
 	@GetMapping
 	public String initProductPage(Model model) {
 		model.addAttribute("listBrand", brandService.getAll());
 		return "product-index";
 	}
 
-//	List all product
+	/**
+	 * Find all product with pager
+	 * 
+	 * @param pageNumber
+	 * @return ResponseDataModel
+	 */
 	@GetMapping("/api/findAll/{pageNumber}")
 	@ResponseBody
 	public ResponseDataModel findAllProductWithPage(@PathVariable("pageNumber") int pageNumber) {
@@ -72,26 +77,11 @@ public class ProductController {
 		return productService.deleteProduct(productId);
 	}
 	
-//	Search prodcut by the only price
-	@GetMapping(value = {"/api/searchByPrice/{priceFrom}/{toPrice}/{pageNumber}"})
-	@ResponseBody
-	public ResponseDataModel searchByPrice(@PathVariable("priceFrom") double priceFrom, @PathVariable("toPrice") double toPrice
-										  ,@PathVariable("pageNumber") int pageNumber ) {
-		return productService.searchByPrice(priceFrom, toPrice, pageNumber );
-	}
-//	Search product by product name or brandName
-	@GetMapping(value = {"/api/searchByName/{keyword}/{pageNumber}"})
-	@ResponseBody
-	public ResponseDataModel searchByName(@PathVariable("keyword") String keyword, @PathVariable("pageNumber") int pageNumber) {
-		return productService.searchByName(keyword, pageNumber);
-	}
-	
 //	Search product by product name or brand name and price
 	@PostMapping(value = {"/api/searchProduct/{pageNumber}"})
 	@ResponseBody
-	public ResponseDataModel searchProduct(@RequestBody Map<String, Object> searchCondions, 
+	public ResponseDataModel searchProduct(@RequestBody Map<String, Object> searchConditions, 
 			@PathVariable("pageNumber") int pageNumber) {
-		return productService.searchByNameAndPrice(searchCondions, pageNumber);
+		return productService.searchProductWithConditions(searchConditions, pageNumber);
 	}
-
 }

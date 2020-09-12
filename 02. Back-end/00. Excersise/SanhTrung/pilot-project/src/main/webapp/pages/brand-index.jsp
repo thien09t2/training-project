@@ -37,10 +37,15 @@
 			<div class="sub-title">Brand Management</div>
 			<div ><a class="add-btn" id="addBrandInfoModal"><button class="btn-add btn btn-outline-success" type="button"><i class="icon-add fas fa-plus-square"></i>Add New Brand</button></a></div>
 		</div>
-		<div class="form-search float-right">
-			<input type="text"  class="form-control" placeholder="Brand Name" id="keyword">
-			<button type="submit" name="searchBrand" id="searchBrand" class="btn btn-success">Search</button>
-			<a class="reset-page btn btn-secondary" id="restPage" href="/brand" >Reset</a>
+		<div class="search-result">
+			<div class="form-search">
+				<input type="text"  class="form-control" placeholder="Brand Name" id="keyword">
+				<button type="submit" name="searchBrand" id="searchBrand" class="btn btn-success">Search</button>
+				<button type="button" class="reset-page btn btn-secondary" id="restPage">Reset</button>
+			</div>
+			<div id="resultSearch">
+				<p ></p>
+			</div>
 		</div>
 		<table class="table table-bordered table-hover" id="brandInfoTable">
 			<thead>

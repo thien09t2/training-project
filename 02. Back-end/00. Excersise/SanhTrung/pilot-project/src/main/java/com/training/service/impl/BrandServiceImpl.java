@@ -61,6 +61,10 @@ public class BrandServiceImpl implements IBrandService {
 	}
 
 	@Override
+
+	/**
+	 * 
+	 */
 	public ResponseDataModel searchApi(String brandName , int pageNumber) {
 		int responseCode = Constants.RESULT_CD_FAIL;
 		String responseMsg = StringUtils.EMPTY;
