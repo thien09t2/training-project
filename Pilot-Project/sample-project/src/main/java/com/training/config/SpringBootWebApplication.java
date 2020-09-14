@@ -30,6 +30,6 @@ public class SpringBootWebApplication extends SpringBootServletInitializer {
 	
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootWebApplication.class, args);
-//		System.out.println(new BCryptPasswordEncoder().encode("123") +"///");
+//		System.out.println(new BCryptPasswordEncoder().encode("abc") +"///");
 	}
 }

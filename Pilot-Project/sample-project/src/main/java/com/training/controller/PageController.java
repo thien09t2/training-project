@@ -22,7 +22,7 @@ public class PageController {
 	@PostMapping(value = {"/loginAction"})
 	public String loginAction() {
 
-		return "redirect:/";
+		return "redirect:/product";
 	}
 
 	@GetMapping("/logout")

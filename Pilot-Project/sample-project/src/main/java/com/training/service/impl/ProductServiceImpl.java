@@ -222,33 +222,4 @@ public class ProductServiceImpl implements IProductService {
 		}
 		return new ResponseDataModel(responseCode, responseMsg, responseMap);
 	}
-
-	@Override
-	public ResponseDataModel searchProductByBrandId(Map<String, Object> listId, int pageNumber) {
-		int responseCode = Constants.RESULT_CD_FAIL;
-		String responseMsg = StringUtils.EMPTY;
-		Map<String, Object> responseMap = new HashMap<String, Object>();
-		List<Number> list = new ArrayList<Number>();
-		list.add(1);
-		list.add(2);
-		list.add(3);
-		try { 	
-			Sort sortList = Sort.by(Sort.Direction.DESC,"productId");
-			Pageable pageable = PageRequest.of(pageNumber - 1, Constants.PAGE_SIZE, sortList);
-//			Page<ProductEntity> productEntitesPage = productDao.searchByCheckBox(list,pageable);
-//			responseMap.put("productsList", productEntitesPage.getContent());
-//			responseMap.put("paginationInfo", new PagerModel(pageNumber, productEntitesPage.getTotalPages()));
-//			if ( productEntitesPage.getTotalElements() > 0) {
-//				responseMsg = "The number of product found is " + productEntitesPage.getTotalElements() + " product";
-//			} else {
-//				responseMsg = "There is no product found out";
-//			}
-			responseCode = Constants.RESULT_CD_SUCCESS;
-		} catch (Exception e) {
-			responseMsg = e.getMessage();
-			LOGGER.error("Error! Search brand name or product name by price is failed: ",e);
-		}
-		return new ResponseDataModel(responseCode, responseMsg, responseMap);
-	}
-
 }

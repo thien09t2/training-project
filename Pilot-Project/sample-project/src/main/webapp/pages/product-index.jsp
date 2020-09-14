@@ -40,14 +40,14 @@
 						id="keyword">
 				</div>
 				<div class="search-price">
-					<label class="price" for="cars">Price From :</label> <select
+					<label class="price" for="cars">Price From: </label> <select
 						class="form-control priceFrom" name="priceFrom" id="priceFrom">
 						<option value="0">--- Lowest Price ---</option>
 						<option value="1000000">1.000.000 VND</option>
 						<option value="3000000">3.000.000 VND</option>
 						<option value="5000000">5.000.000 VND</option>
 						<option value="10000000">10.000.000 VND</option>
-					</select> <label class="price" for="priceTo">Price To :</label> <select
+					</select> <label class="price" for="priceTo">Price To: </label> <select
 						class="form-control priceTo" name="price" id="priceTo">
 						<option value="" >--- Price Selection ---</option>
 						<option value="2000000">2.000.000 VND</option>
@@ -81,7 +81,7 @@
 					<th scope="col">Quantity</th>
 					<th scope="col">Price</th>
 					<th scope="col">Brand Name</th>
-					<th scope="col">Open for sale</th>
+					<th scope="col">Open For Sale</th>
 					<th scope="col">Image</th>
 					<th scope="col">Action</th>
 				</tr>
@@ -141,25 +141,27 @@
 								</select>
 							</div>
 							<div class="form-group saleDate">
-								<label for="openForSale">Open for sale <span
+								<label for="openForSale">Open For Sale <span
 									class="required-field">(*)</span></label> <input type=date
-									name="saleDate" id="saleDate" value="1945-04-30" class="form-control"
+									name="saleDate" id="saleDate" value="2020-09-14" class="form-control"
 									placeholder="Open for sale">
 							</div>
 						</div>
-						<div class="form-group">
-							<label for="description">Description</label>
-							<textarea name="description" id="description" cols="30" rows="3"
+						<div class="group-double">
+							<div class="form-group description">
+								<label for="description">Description</label>
+								<textarea name="description" id="description" cols="30" rows="3"
 								class="form-control" placeholder="Description"></textarea>
-						</div>
-						<div class="form-group ">
-							<label for="img">Images <span class="required-field">(*)</span></label>
-							<div class="preview-image-upload " id="logoImg">
-								<img class="image-product" src="<c:url value='/images/image-demo.png'/>" alt="image">
 							</div>
-							<input type="file" class="form-control upload-image"
-								name="imageFiles" accept="image/*" /> <input type="hidden"
-								class="old-img" id="image" name="image">
+							<div class="form-group images">
+								<label for="img">Images <span class="required-field">(*)</span></label>
+								<div class="preview-image-upload " id="logoImg">
+									<img class="image-product" src="<c:url value='/images/image-demo.png'/>" alt="image">
+								</div>
+								<input type="file" class="form-control upload-image"
+									name="imageFiles" accept="image/*" /> <input type="hidden"
+									class="old-img" id="image" name="image">
+							</div>
 						</div>
 
 					</div>

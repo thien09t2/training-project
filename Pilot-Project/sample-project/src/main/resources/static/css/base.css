@@ -45,8 +45,8 @@ header .nav-link.active {
 .sub-header {
 	border: 1px solid #333;
 	border-radius: 5px;
-	height: 46px;
-	padding: 3px 3px;
+	height: 60px;
+	padding: 10px 10px;
 	background: #bad5f1;
 	color: #fff;
 	margin-bottom: 10px;
@@ -55,7 +55,7 @@ header .nav-link.active {
 .sub-header .sub-title {
 	font-weight: 900;
 	color: #333;
-	padding-left: 20px;
+	padding-left: 0px;
 	font-size: 20px;
 	padding-top: 3px;
 }
@@ -87,7 +87,7 @@ header .nav-link.active {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	margin: 1rem 3px 0 2px;
+	margin: 1rem 10px 0 10px;
 }
 
 .search-price {
@@ -100,11 +100,13 @@ header .nav-link.active {
 
 #reset {
 	margin-left: 10px;
+	background: #6c757d;
+	border: #6c757d;
 }
 
 .price {
 	width: 52%;
-	margin: 0;
+	margin: 0px 0px 0px -20px;
 }
 
 .priceFrom {
@@ -113,6 +115,14 @@ header .nav-link.active {
 
 .priceTo {
 	margin-right: 10px;
+}
+
+.description , .images {
+	width: 46%;
+}
+
+textarea#description {
+    height: 80%;
 }
 /* Logout */
 #logout {
@@ -129,7 +139,7 @@ header .nav-link.active {
 /* Search */
 .nava {
 	background-color: #eee9e9;;
-	border: 1px solid #333;
+	border: 1px solid #9E9E9E;
 	border-radius: 5px;
 }
 .itemlogo {
@@ -140,13 +150,13 @@ header .nav-link.active {
 	margin-bottom: 10px
 }
 .form-group {
-	margin-bottom: 0rem;
+	margin-bottom: 1rem;
 }
 
 .mess {
 	text-align: center;
 	margin-bottom: 0;
-	color: red;
+	color: blue;
 	font-weight: bold;
 	margin-top: 1px;
 }
@@ -154,7 +164,7 @@ header .nav-link.active {
 .checkbox img {
 	width: 100px;
 	height: 50px;
-	margin-left: 6px;
+	margin-left: 10px;
 	border-radius: 10px;
 }
 
@@ -214,7 +224,7 @@ div.error-message-invalid, div.error, label.error-message-invalid, label.error
 
 .image-product {
 	height: 80px;
-	opacity: 10%;
+	opacity: 60%;
 }
 
 .quantity {
@@ -226,7 +236,7 @@ div.error-message-invalid, div.error, label.error-message-invalid, label.error
 	justify-content: center;
 	align-items: center;
 	flex-wrap: wrap;
-	margin: 5px;
+	margin: 0px -20px 10px -10px;
 }
 
 .item-logo {
@@ -235,7 +245,9 @@ div.error-message-invalid, div.error, label.error-message-invalid, label.error
 .table thead th, .table-bordered td, .table-bordered th {
 	border: 1px solid #333;
 	border-radius: 5px;
+	vertical-align: middle;
 }
+
 .pagination {
 	margin-bottom: 30px;
 }
@@ -255,6 +267,9 @@ div.error-message-invalid, div.error, label.error-message-invalid, label.error
 	min-width: 36px;
 }
 
+td {
+	text-align : center;
+}
 .pagination a.active {
 	border-radius: 5px;
 	color: white;

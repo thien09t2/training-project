@@ -70,14 +70,6 @@ public class ProductController {
 		return productService.deleteProductByApi(productId);
 	}
 
-//	@GetMapping(value = { "/api/search/{keyword}/{pageNumber}/{startPrice}/{endPrice}" })
-//	@ResponseBody
-//	public ResponseDataModel searchByApi(@PathVariable("keyword") String keyword,
-//			@PathVariable("pageNumber") int pageNumber, @PathVariable("startPrice") double startPrice,
-//			@PathVariable("endPrice") double endPrice) {
-//		return productService.search(keyword, pageNumber, startPrice, endPrice);
-//	}
-	
 	@PostMapping(value = {"/api/searchProductByInfo/{pageNumber}"})
 	@ResponseBody
 	public ResponseDataModel searchProductByInfo(@RequestBody Map<String, Object> searchConditions, 
@@ -85,11 +77,4 @@ public class ProductController {
 		return productService.searchByPriceAndName(searchConditions, pageNumber);
 	}
 	
-//	@PostMapping(value = {"/api/searchProductByBrandId/{pageNumber}"})
-//	@ResponseBody
-//	public ResponseDataModel searchByCheckBoxDataModel (@RequestBody Map<String, Object> listCheck, 
-//			@PathVariable("pageNumber") int pageNumber) {
-//		return productService.searchProductByBrandId(listCheck, pageNumber);
-//		return null;
-//	}
 }

@@ -2,26 +2,6 @@ $(document).ready(function() {
 	
 	findProductList(1);
 	
-//	var brandClass = document.getElementsByClassName('brandClass');
-//	console.log(brandClass);
-//	var brandArr = [];
-//	for(let index = 0; index<brandClass.length; index++){
-//		brandClass[index].addEventListener('click', function(){
-//			
-//			if(brandClass[index].checked){
-//				let id = brandClass[index].getAttribute('id');
-//				brandArr.push(id);
-//				//console.log(brandArr);
-//			}else {
-//				let id = brandClass[index].getAttribute('id');
-//				brandArr.pop(id);
-//				//console.log(brandArr);
-//			}
-//			console.log(brandArr);
-//		});
-//	}
-	
-	
 	var listBrand = [];
 	$('.brandClass').on('click', function() {
 		listBrand = [];
@@ -31,13 +11,6 @@ $(document).ready(function() {
 		console.log(listBrand);
 	})
 
-	//bắt event search
-//	$('#btnSearch').on('click', function() {
-//		var keyword = $('#keyword').val();
-//		var startPrice = $('#priceFrom').val();
-//		var endPrice = $('#priceTo').val();
-//		searchFn(keyword,1,startPrice,endPrice);
-//	})
 	$('#btnSearch').on('click', function() {
 		searchProductByInfo(1, true,listBrand);
 	});
@@ -48,25 +21,29 @@ $(document).ready(function() {
 		})
 		$('#keyword').val("");
 		listBrand = [];
+		$('#priceFrom').val('');
+		$('#priceTo').val('');
 		findProductList(1);
 	});
 	
-	//show brand on pagination
+	// Show brand on pagination
 	$('.pagination').on('click', '.page-link', function() {
 		var pageNumber = $(this).attr("data-index");
 		var keyword = $('#keyword').val();
-		if ( keyword != "" || listBrand !="" ) {
+		var priceFrom = $('#priceFrom').val();
+		var priceTo = $('#priceTo').val();
+		if ( keyword != "" || listBrand !="" || priceFrom !="" || priceTo !="") {
 			searchProductByInfo(pageNumber,true,listBrand);		
 		} else {
 			findProductList(pageNumber);
 		}
 	});	
 
-	//form add product
+	// Form add product
 	var $productInfoForm = $('#productInfoForm');
 	var $productInfoModal = $('#productInfoModal');
 
-	// show form add brand with js
+	// Show form add brand with js
 	$('#addProductInfoModal').on('click', function() {
 		resetFormModal($productInfoForm);
 		showModalWithCustomizedTitle($productInfoModal, "Add Product");
@@ -74,10 +51,8 @@ $(document).ready(function() {
 		$('#productId').closest(".form-group").addClass("d-none");
 	});
 	
-	//form add
+	// Form add
 	$("#productInfoTable").on('click', '.edit-btn', function() {
-
-		// tìm brand by id
 		$.ajax({
 			url : "/product/api/find?id=" + $(this).data("id"),
 			type : 'GET',
@@ -97,13 +72,12 @@ $(document).ready(function() {
 					$('#openForSale').val(productInfo.saleDate);
 					$('#description').val(productInfo.description);
 					
-					//nếu logo = null hoặc rỗng thì tự set thành logo mặc định
 					var productLogo = productInfo.image;
 					if (productLogo == null || productLogo == "") {
 						productLogo = "/images/image-demo.png";
 					}
 					$("#logoImg img").attr("src", productLogo);
-					//phải mapping logo với các productEntity == ajax giống jsp và giống productEntity
+					// Must mapping logo with productEntity == ajax like jsp and like productEntity
 					$("#image").val(productLogo);
 					$('#productdId').closest(".form-group").removeClass("d-none");
 				}
@@ -111,7 +85,7 @@ $(document).ready(function() {
 		});
 	});
 	
-	// show popup delete
+	// Show popup delete
 	$("#productInfoTable").on('click', '.delete-btn', function() {
 		$("#deletedProductName").text($(this).data("name"));
 		$("#deleteSubmitBtn").attr("data-id", $(this).data("id"));
@@ -119,7 +93,7 @@ $(document).ready(function() {
 	});
 	
 	// Submit delete brand
-	//after displaying the delete popup - it will pass down an id and pass ajax to call handler function
+	// After displaying the delete popup - it will pass down an id and pass ajax to call handler function
 	$("#deleteSubmitBtn").on('click' , function() {
 		$.ajax({
 			url : "/product/api/delete/" + $(this).attr("data-id"),
@@ -134,12 +108,12 @@ $(document).ready(function() {
 		});
 	});
 	
-	//validate FE + handler info add || update
+	// Validate FE + handler info add || update
 	$('#saveProductBtn').on('click', function (event) {
 
 		event.preventDefault();
 		var formData = new FormData($productInfoForm[0]);
-		//form data will mapping as Entity
+		// Form data will mapping as Entity
 		var productId = formData.get("productId");
 		var isAddAction = productId == undefined || productId == "";
 	
@@ -169,14 +143,13 @@ $(document).ready(function() {
 					number:"Enter the number for the price"
 				}
 			},
-			//If an error occurs it will add the class errorClass and display it
+			// If an error occurs it will add the class errorClass and display it
 			errorElement: "div",
 			errorClass: "error-message-invalid"
 		});
 		
-		//when all licenses are valid it will proceed to post data to the server using ajax
+		// When all licenses are valid it will proceed to post data to the server using ajax
 		if ($productInfoForm.valid()) {
-
 			// POST data to server-side by AJAX
 			$.ajax({
 				url: "/product/api/" + (isAddAction ? "add" : "update"),
@@ -241,7 +214,7 @@ function searchFn(keyword, pageNumber, startPrice, endPrice) {
 		}
 	});
 }
-//searchProductByInfo
+
 function searchProductByInfo(pageNumber, isClickedSearchBtn,listBrand) {
 	
 	var searchConditions = {
@@ -271,15 +244,6 @@ function searchProductByInfo(pageNumber, isClickedSearchBtn,listBrand) {
 			},
 			data: JSON.stringify(searchConditions)
 		});
-}
-
-function fnFormatPrice(numParam) {
-    var param = numParam;
-    var str = param.toLocaleString('vi-VN', {
-	useGrouping : true
-    });
-    str = str.replace(/,/g, '.');
-    return str;
 }
 
 function renderProductTable(productList) {
@@ -337,4 +301,11 @@ function renderDate(date){
       month = '0' + month
     const postDate = day + '-' + month + '-' + year
     return postDate
+}
+
+function fnFormatPrice(numParam) {
+    var param = numParam;
+    var str = param.toLocaleString('vi-VN','');
+    str = str.replace(/,/g, '.');
+    return str;
 }

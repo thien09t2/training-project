@@ -25,6 +25,5 @@ public interface IProductService {
 	
 	ResponseDataModel searchByPriceAndName(Map<String, Object> searchConditions, int pageNumber);
 	
-	ResponseDataModel searchProductByBrandId(Map<String, Object> searchConditions, int pageNumber);
 
 }
