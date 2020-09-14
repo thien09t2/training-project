@@ -6,12 +6,8 @@ public interface IUserService {
 
 	UserEntity findByUserName(String userName);
 
-	UserEntity addUser(UserEntity userEntity);
+	UserEntity register(UserEntity userEntity);
 
-//	boolean isValidUser(String userName, String password);
-
-//	ResponseDataModel findByUserNameApi(String userName);
-
-	UserEntity validateUser(UserEntity userEntity);
-
+	UserEntity login(String userName, String password);
+	
 }

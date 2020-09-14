@@ -65,16 +65,16 @@ body {
     border-color: #eee;
     background-color: #fff;
 }
-.form-group--2 > .form-input {
-    width: calc(50% - 2.5px);
+.form-group--2 .form-group {
+    width: calc(100% / 2 - 2px);
 }
-.form-group--2 > .form-input:last-child {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-}
-.form-group--2 > .form-input:first-child {
+.form-group--2 .form-group:first-child > .form-input {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
+}
+.form-group--2 .form-group:last-child > .form-input {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 }
 .form-input::-webkit-input-placeholder {
     color: #ccc;

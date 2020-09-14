@@ -9,6 +9,5 @@ import com.training.entity.UserEntity;
 public interface IUserDAO extends JpaRepository<UserEntity, Long> {
 
 	UserEntity findByUserName(String userName);
-
-	UserEntity findByUserNameAndPasswordNot(String userName, String password);
+	
 }

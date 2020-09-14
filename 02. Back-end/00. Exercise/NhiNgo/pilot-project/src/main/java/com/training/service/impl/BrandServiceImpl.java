@@ -1,6 +1,5 @@
 package com.training.service.impl;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,67 +39,6 @@ public class BrandServiceImpl implements IBrandService {
 	IBrandDAO brandDAO;
 
 	@Override
-	public BrandEntity add(BrandEntity brandEntity) {
-
-		try {
-			String imagePath = FileHelpper.addNewFile(brandLogoFolderPath, brandEntity.getLogoFiles());
-			brandEntity.setLogo(imagePath);
-		} catch (IOException e) {
-			System.out.println("Error warning: " + e.getMessage());
-		}
-		return brandDAO.saveAndFlush(brandEntity);
-	}
-
-	@Override
-	public BrandEntity update(BrandEntity brandEntity) {
-
-		try {
-			if (brandEntity.getLogoFiles()[0].getSize() > 0) {
-
-				// Store file into local storage, then remove old file and get img path to save
-				// in database
-				String imagePath = FileHelpper.editFile(brandLogoFolderPath, brandEntity.getLogoFiles(),
-						brandEntity.getLogo());
-				brandEntity.setLogo(imagePath);
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		return brandDAO.saveAndFlush(brandEntity);
-		// lưu và xóa cache
-	}
-
-	@Override
-	public ResponseDataModel delete(Long brandId) {
-
-		BrandEntity brandEntity = brandDAO.findByBrandId(brandId);
-		if (brandEntity != null) {
-			brandDAO.deleteById(brandId);
-			brandDAO.flush();
-
-			try {
-
-				// Remove logo of brand from store folder
-				FileHelpper.deleteFile(brandEntity.getLogo());
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		return null;
-	}
-
-	@Override
-	public List<BrandEntity> getAll() {
-		return brandDAO.findAll(Sort.by(Sort.Direction.DESC, "brandId"));
-	}
-
-	@Override
-	public BrandEntity findByBrandId(Long brandId) {
-		return brandDAO.findByBrandId(brandId);
-	}
-
-	@Override
 	public List<BrandEntity> getAllOrderByBrandName() {
 		return brandDAO.findAll(Sort.by(Sort.Direction.ASC, "brandName"));
 	}
@@ -108,19 +46,6 @@ public class BrandServiceImpl implements IBrandService {
 	@Override
 	public BrandEntity findByBrandName(String brandName) {
 		return brandDAO.findByBrandName(brandName);
-	}
-
-	@Override
-	public Map<String, Object> findAllWithPager(int pgNum) {
-
-		Map<String, Object> responseMap = new HashMap<>();
-		Sort sortInfo = Sort.by(Sort.Direction.DESC, "brandId");
-		Pageable pageable = PageRequest.of(pgNum - 1, Constants.PAGE_SIZE, sortInfo);
-		Page<BrandEntity> brandEntityPage = brandDAO.findAll(pageable);
-		responseMap.put("brandList", brandEntityPage.getContent());
-		responseMap.put("paginationInfo", new PagerModel(pgNum, brandEntityPage.getTotalPages()));
-
-		return responseMap;
 	}
 
 	@Override
@@ -158,7 +83,7 @@ public class BrandServiceImpl implements IBrandService {
 			responseMap.put("paginationInfo", new PagerModel(pgNum, brandEntityPage.getTotalPages()));
 			responseCode = Constants.RESULT_CD_SUCCESS;
 		} catch (Exception e) {
-			responseMessg = e.getMessage();
+			responseMessg = "Error occurs when getting all brands: " + e.getMessage();
 			LOGGER.error("Error occurs when getting all brands: ", e);
 		}
 
@@ -203,8 +128,7 @@ public class BrandServiceImpl implements IBrandService {
 
 		try {
 
-			BrandEntity existedBrand = brandDAO.findByBrandNameAndBrandIdNot(brandEntity.getBrandName(),
-					brandEntity.getBrandId());
+			BrandEntity existedBrand = brandDAO.findByBrandNameAndBrandIdNot(brandEntity.getBrandName(), brandEntity.getBrandId());
 
 			// Checking if brand name existed
 			if (existedBrand != null) {
@@ -242,10 +166,9 @@ public class BrandServiceImpl implements IBrandService {
 				brandDAO.deleteById(brandId);
 				brandDAO.flush();
 
-				// remove logo from storage after deleting brand
+				// Remove logo from storage after deleting brand
 				FileHelpper.deleteFile(brandEntity.getLogo());
-				responseMessg = "Brand #" + brandEntity.getBrandId() + " - " + brandEntity.getBrandName()
-						+ " was deleted successfully!";
+				responseMessg = "Brand #" + brandEntity.getBrandId() + " was deleted successfully!";
 				responseCode = Constants.RESULT_CD_SUCCESS;
 			}
 		} catch (Exception e) {
@@ -254,5 +177,38 @@ public class BrandServiceImpl implements IBrandService {
 		}
 
 		return new ResponseDataModel(responseCode, responseMessg);
+	}
+	
+	@Override
+	public ResponseDataModel searchBrandWithPager(String keyword, int pgNum) {
+
+		int responseCode = Constants.RESULT_CD_FAIL;
+		String responseMessg = StringUtils.EMPTY;
+		Map<String, Object> responseMap = new HashMap<String, Object>();
+		
+		try {
+			Sort sortInfo = Sort.by(Sort.Direction.ASC, "brandId");
+			Pageable pageable = PageRequest.of(pgNum - 1, Constants.PAGE_SIZE, sortInfo);
+
+			if (!StringUtils.isEmpty(keyword)) {
+				Page<BrandEntity> brandEntityResultPage = brandDAO.findByBrandNameLike(keyword, pageable);
+				responseMap.put("brandList", brandEntityResultPage.getContent());
+				responseMap.put("paginationInfo", new PagerModel(pgNum, brandEntityResultPage.getTotalPages()));
+				responseCode = Constants.RESULT_CD_SUCCESS;
+				
+				if (brandEntityResultPage.getTotalElements() > 0) {
+					responseMessg = "Found " + brandEntityResultPage.getTotalElements() + " match results.";
+				} else {
+					responseMessg = "No match found.";
+				}
+			} else {
+				responseMessg = "You did not type a keyword.";
+			}
+		} catch (Exception e) {
+			responseMessg = "Error occurs when loading results: " + e.getMessage();
+			LOGGER.error("Error occurs when looking for brand: ", e);
+		}
+		
+		return new ResponseDataModel(responseCode, responseMessg, responseMap);
 	}
 }

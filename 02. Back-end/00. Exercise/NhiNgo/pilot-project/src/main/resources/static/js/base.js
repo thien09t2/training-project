@@ -8,7 +8,13 @@ $(document).ready(function () {
             $this.addClass("active");
         }
     });
-
+    
+    //Adjust input width fits to placeholder length
+    
+    $("input[placeholder]").each(function () {
+        $(this).attr('size', $(this).attr('placeholder').length);
+    });
+    
     //Upload image preview
     $('input.upload-img').on('change', function () {
         var url = window.URL || window.webkitURL;
@@ -35,6 +41,25 @@ $(document).ready(function () {
     	$(this).ekkoLightbox({
     		alwaysShowClose: true
     	});
+    });
+    
+    /**
+     * Clearable text inputs
+     */
+    $(".clearable").each(function() {
+      
+      var $inp = $(this).find("input:text"),
+          $cle = $(this).find(".clearable__clear");
+
+      $inp.on("input", function(){
+        $cle.toggle(!!this.value);
+      });
+      
+      $cle.on("touchstart click", function(e) {
+        e.preventDefault();
+        $inp.val("").trigger("input");
+      });
+      
     });
 });
 
@@ -150,3 +175,4 @@ function topFunction() {
     document.body.scrollTop = 0; //for Safari
     document.documentElement.scrollTop = 0; //Chrome, IE, ...
 }
+

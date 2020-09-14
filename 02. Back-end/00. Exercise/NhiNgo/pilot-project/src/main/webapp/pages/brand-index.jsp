@@ -18,18 +18,27 @@
  		<div class="container wrapper">
 			<div class="sub-header">
 				<div class="float-left sub-title">Brand Management</div>
-			</div>
-			<form action="/brand/search" class="form-inline">
-				<div class="form-group mb-2">
-					<input type="text" class="form-control" id="brandNameSearch" name="brandName" placeholder="Brand Name"/>
-					<input tyoe="submit" value="Search" class="btn btn-primary"/>
+				<div class="float-right">
+					<a class="btn add-btn" id="addBrandLink">Add Brand</a>
 				</div>
-			</form>	
+			</div>
+			<div class="search-bar">
+				<form action="/brand/search" class="form-inline align-items-center" method="POST">
+					<div class="form-group">
+					<span class="clearable">
+						<input type="text" class="form-control " id="keyword" name="keyword" placeholder="Brand Name" /> 
+						<span><i id="resetSearchBrand" class="clearable__clear">&times;</i></span> 
+					</span>
+					</div>
+					<button type="button" id="brandSearchBtn" class="btn btn-primary">Search</button>
+				</form>
+			</div>
+			
 			<table class="table table-bordered" id="brandDetailsTable">
 				<thead>
 					<tr class="text-center">
-						<th scope="col"  width="6%">ID</th>
-						<th scope="col"  width="20%">Name</th>
+						<th scope="col" width="6%">ID</th>
+						<th scope="col" width="20%">Name</th>
 						<th scope="col">Logo</th>
 						<th scope="col" width="40%">Description</th>
 						<th scope="col" width="10%"></th>
@@ -40,6 +49,11 @@
 				</tbody>
 			</table>
 
+			<div class="d-flex justify-content-center">
+				<ul class="pagination">
+					<!-- JS code -->
+				</ul>
+			</div>
 		</div>
  	</div>
  	
@@ -57,25 +71,25 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="form-group d-none">
+                        <div class="form-group form-inline d-none">
                             <label>Brand ID</label>
-                            <input type="text" class="form-control" id="brandId" name="brandId" placeholder="Enter Brand ID" readonly>
+                            <input type="text" class="form-control col-8" id="brandId" name="brandId" placeholder="Enter Brand ID" readonly>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group form-inline">
                             <label for="brandName">Brand Name <span class="required-mask">(*)</span></label>
-                            <input type="text" class="form-control" id="brandName" name="brandName" placeholder="Enter Brand Name" required>
+                            <input type="text" class="form-control col-8" id="brandName" name="brandName" placeholder="Enter Brand Name" required>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group form-inline">
                             <label for="logo">Logo <span class="required-mask">(*)</span></label>
                             <div class="preview-img-upload" id="logoImg">
 								<img src="<c:url value="/images/image-demo.png"/>" alt="logo-image">
 							</div>
-							<input type="file" class="form-control upload-img" name="logoFiles" accept="image/*">
+							<input type="file" class="form-control upload-img col-8" name="logoFiles" accept="image/*">
 							<input type="hidden" class="old-img" id="logo" name="logo">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group form-inline">
                             <label for="description">Description</label>
-							<textarea class="form-control" id="description" name="description" cols="30" rows="3" placeholder="Enter description"></textarea>
+							<textarea class="form-control col-8" id="description" name="description" cols="30" rows="3" placeholder="Enter description"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -108,20 +122,7 @@
             </div>    
         </div>
     </div>
-	<footer class="container-fluid">
-		<div class="container">
-			<div class="row">
-				<div class="float-left">
-					<a class="btn add-btn" id="addBrandLink">Add Brand</a>
-				</div>
-				<div class="float-right d-flex justify-content-center">
-					<ul class="pagination">
-						<!-- JS code -->
-					</ul>
-				</div>
-			</div>
-		</div>
-	</footer>
+
 	<jsp:include page="../common/footer.jsp"/>
 	
 	<script src="<c:url value='/js/brand.js'/>"></script>

@@ -44,8 +44,8 @@ public class BrandController {
 
 	@GetMapping(value = { "/api/find" })
 	@ResponseBody
-	public ResponseDataModel findByBrandIdApi(@RequestParam("id") Long brandID) {
-		return brandService.findByBrandIdApi(brandID);
+	public ResponseDataModel findByBrandIdApi(@RequestParam("id") Long brandId) {
+		return brandService.findByBrandIdApi(brandId);
 
 	}
 
@@ -56,9 +56,17 @@ public class BrandController {
 
 	}
 
-	@DeleteMapping(value = { "/api/delete/{brandID}" })
+	@DeleteMapping(value = { "/api/delete/{brandId}" })
 	@ResponseBody
-	public ResponseDataModel deleteApi(@PathVariable("brandID") Long brandID) {
-		return brandService.deleteApi(brandID);
+	public ResponseDataModel deleteApi(@PathVariable("brandId") Long brandId) {
+		return brandService.deleteApi(brandId);
 	}
+	
+	@GetMapping(value = {"/api/search/{keyword}/{pgNum}"})
+	@ResponseBody
+	public ResponseDataModel searchBrandApi(@PathVariable("keyword") String keyword, @PathVariable("pgNum") int pgNum) {
+		return brandService.searchBrandWithPager(keyword, pgNum);
+	}
+
+
 }

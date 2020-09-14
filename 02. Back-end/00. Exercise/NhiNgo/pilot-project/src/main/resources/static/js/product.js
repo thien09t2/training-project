@@ -1,18 +1,159 @@
 $(document).ready(function() {
 	
-	//Load prodList when page opening
+	// Load product list for product index page
 	loadAllProducts(1);
 	
-	//Load brandList when clicking pagination btn
-    $('.pagination').on('click', '.page-link', function() {
-    	var pgNum = $(this).attr("data-index");
-    	loadAllProducts(pgNum);
+	/**
+	 * Load products with pager API
+	 * 
+	 * @param pgNum
+	 */ 
+	function loadAllProducts(pgNum) {
+	    $.ajax({
+	        url : "/product/api/findAll/" + pgNum,
+	        type : 'GET',
+	        dataType : 'json',
+	        contentType : 'application/json',
+	        success : function(responseData) {
+	            if (responseData.responseCode == 100) {
+	            	renderProductTable(responseData.data.prodList);
+	                renderPagination(responseData.data.paginationInfo);
+	            }
+	        }
+	    });
+	}
+	
+	/**
+	 * Render Html for product table
+	 * 
+	 * @param prodList
+	 */ 
+	function renderProductTable(prodList) {
+		
+		var rowHtml = "";
+		$('#productDetailTable tbody').empty();
+		$.each(prodList, function(key, value) {
+	        rowHtml = "<tr>"
+	                +       "<td>"  + value.productId  +   "</td>"
+	                +       "<td>"  + value.productName  +   "</td>"
+	                +       "<td class='text-center'>"  + value.quantity  +   "</td>"
+	                +       "<td class='text-right'>" +	formatCurrency(value.price) + "</td>"
+	                +       "<td class='text-center'>" +	value.brandEntity.brandName	+	"</td>"
+	                +       "<td class='text-right'>"  + renderDate(value.saleDate)  +   "</td>"
+	                +       "<td class='text-center logo-cell'><a href='"  +   value.prodImg    + "' data-toggle='lightbox' data-max-width='1000'><img class='img-fluid' src='"  +   value.prodImg    + "'></td>"
+	                +       "<td>"  + value.prodDesct  +   "</td>"
+	                +       "<td class='action-btns'>"
+	                +	         "<a class='edit-btn' data-id='" +   value.productId   +   
+	                				"'><i class='fas fa-edit'></i></a> | <a class='delete-btn' data-name='" +   value.productName   +	
+	                				"' data-id='" +   value.productId   + "'><i class='fas fa-trash-alt'></i></a>"
+	                +		"</td>"
+	                +   "</tr>"; 
+	        $('#productDetailTable tbody').append(rowHtml);
+	    });
+	}
+
+	/**
+	 * Render Html for pagination bar in Product page
+	 * 
+	 * @param paginationInfo
+	 */ 
+	function renderPagination(paginationInfo) {
+		
+		var paginationInnerHtml = "";
+		 $("ul.pagination").empty();
+	    if (paginationInfo.pgNumList.length > 0) {
+	        paginationInnerHtml += '<li class="page-item"><a class="page-link ' +    (paginationInfo.firstPage == 0 ? 'disabled' : '')  +   '" href="javascript:void(0)" data-index= "'    +   paginationInfo.firstPage    +     '">First</a></li>'
+	        paginationInnerHtml += '<li class="page-item"><a class="page-link ' +    (paginationInfo.prvsPage == 0 ? 'disabled' : '')  +   '" href="javascript:void(0)" data-index= "'    +   paginationInfo.prvsPage    +     '">Previous</a></li>'
+	        $.each(paginationInfo.pgNumList, function(key, value) {
+	            paginationInnerHtml += '<li class="page-item"><a class="page-link ' +    (value == paginationInfo.currtPage ? 'active' : '')  +   '" href="javascript:void(0)" data-index= "'    +   value    +     '">'   +  value   + '</a></li>';
+	        });
+	        paginationInnerHtml += '<li class="page-item"><a class="page-link ' +    (paginationInfo.nextPage == 0 ? 'disabled' : '')  +   '" href="javascript:void(0)" data-index= "'    +   paginationInfo.nextPage    +     '">Next</a></li>'
+	        paginationInnerHtml += '<li class="page-item"><a class="page-link ' +    (paginationInfo.lastPage == 0 ? 'disabled' : '')  +   '" href="javascript:void(0)" data-index= "'    +   paginationInfo.lastPage    +     '">Last</a></li>'
+	        $("ul.pagination").append(paginationInnerHtml);
+	    }
+		
+	}
+	
+	// Load product list by page
+	var pgNum;
+	
+    $('.pagination').on( 'click', '.page-link', function() {
+    	pgNum = $(this).attr("data-index");
+    	var keyword = $('#keyword').val();
+    	var priceFrom = $('#priceFrom').val();
+    	var priceTo = $('#priceTo').val();
+    	
+    	// Orienting for pagination
+    	if (keyword != "" || priceTo != "" || priceFrom != "") {
+    		searchProduct(pgNum);
+    	} else {
+        	loadAllProducts(pgNum);
+    	}
+    })
+    
+    // Executing search process
+    $("#prodSearchBtn").on( 'click', function() {
+    	var keyword = $('#keyword').val();
+    	var priceFrom = $('#priceFrom').val();
+    	var priceTo = $('#priceTo').val();
+    	if (keyword != "" || priceTo != "" || priceFrom != "") {
+    		searchProduct(1);
+    	}
+    })
+    
+    /**
+     * Search product with pager API
+     * 
+     * @param pgNum
+     * @returns 
+     */
+    function searchProduct(pgNum) {
+    	var searchConditionMap = {
+    			keyword: $("#keyword").val(),
+    			priceFrom:$("#priceFrom").val(),
+    			priceTo:$("#priceTo").val()
+    	}	
+    	$.ajax({
+    		url: '/product/api/search/' + pgNum,
+    		type : 'POST',
+    		dataType : 'json',
+    		contentType : 'application/json',
+    		data: JSON.stringify(searchConditionMap),
+    		success : function(responseData) {
+    			if (responseData.responseCode == 100) {
+    				renderProductTable(responseData.data.prodResultList);
+    				renderPagination(responseData.data.resultPaginationInfo);
+    				if(responseData.data.resultPaginationInfo.pgNumList.length < 2){
+    					$('.pagination').addClass("d-none");
+    				} else {
+    					$('.pagination').removeClass("d-none");
+    				}
+    			}
+    			showNotif(responseData.responseCode, responseData.responseMessg);
+    		}
+    	});	
+    }
+    
+    // Prevent default submit event from enter key press
+    $('#keyword').on( 'keydown', function(e) {
+        if (e.which === 13) {
+            e.preventDefault();
+        }
     });
     
+    // Reset search criteria
+    $("#resetSearchProd").on( 'click', function() {
+    	$("#keyword").val(""),
+		$("#priceFrom").val(""),
+		$("#priceTo").val("")
+    	loadAllProducts(1);
+    	$('.pagination').removeClass("d-none");
+    })
+    	
     var $productModifyModal = $('#productModifyModal');
     var $productInputForm = $('#productInputForm');
     
-    //Load add-product modal by clicking the button
+    // Load Add-product Modal
     $('#addProdLink').click( function() {
     	resetFormModal($productInputForm);
     	showModalWithCustomizedTitle($productModifyModal, "Add New Product");
@@ -21,12 +162,12 @@ $(document).ready(function() {
     	$('#productImg .required-mask').removeClass('d-none');
     });
     
-    //Show Update-product Modal
-    $('#productDetailTable').on('click', '.edit-btn', function() {
+    // Load Update-product Modal
+    $('#productDetailTable').on( 'click', '.edit-btn', function() {
     	
     	$('#productImg .required-mask').addClass("d-none");
     	
-    	//Load product details by prodID
+    	// Load product details by productId
     	$.ajax({
     		url  : "/product/api/find?id=" + $(this).data("id"),
     		type : 'GET',
@@ -34,8 +175,8 @@ $(document).ready(function() {
     	    contentType : 'application/json',
     	    success : function(responseData) {
 
-    	    	//Hide modal then show success message after saving successfully
-    	    	//Else show error message in modal
+    	    	// Hide modal then show success message after saving successfully
+    	    	// Else show error message in modal
     	    	if (responseData.responseCode == 100) {
     	    		var prodDetails = responseData.data;
     	    		resetFormModal($productInputForm);
@@ -62,7 +203,7 @@ $(document).ready(function() {
     	});
     });
     
-    //Submit Input Data form Modal
+    // Submit Data from Modal
     $('#productSaveBtn').click( function(event) {
     	
     	event.preventDefault();
@@ -72,7 +213,7 @@ $(document).ready(function() {
     	var isAddAction = productId == undefined || productId == "";
     	
     	$productInputForm.validate({
-    		ignore : [],
+    		ignore : '',
     		rules : {
     			productName : {
     				required : true,
@@ -80,7 +221,7 @@ $(document).ready(function() {
     			},
     			quantity : {
     				required : true,
-    				max : 500
+    				max : 1000
     			},
     			price : {
     				required : true
@@ -101,25 +242,25 @@ $(document).ready(function() {
     		}, 
     		messages : {
     			productName : {
-    				required : "Product Name is required.",
+    				required : "Product name is required.",
     				maxlength : "Product name must not be longer than 50 characters!"
     			},
     			quantity : {
     				required : "Quantity of product is required.",
-    				max : "Quantity must not be larger than 500!"
+    				max : "Quantity must not be larger than 1000!"
     			},
     			price : {
     				required : "Price of product is required."
     			},
     			brandName : {
-    				required : "Brand Name is required."
+    				required : "Brand name is required."
     			},
     			saleDate : {
-    				required : "Sale Date is required.",
+    				required : "Sale date is required.",
     				date : "Please enter valid date!"
     			},
     			prodImgFiles : {
-    				required : "Product Imgae is required for new Product."
+    				required : "Product image is required for new Product."
     			},
     			description : {
     				maxlength : "Description must not be longer than 150 characters!"
@@ -129,10 +270,10 @@ $(document).ready(function() {
 			errorClass : "err-message-invalid"
     	});
     	
-    	//Save data if valid
+    	// Save data if valid
     	if ($productInputForm.valid()) {
     		
-    		//Post data to server-side by AJAX
+    		// Post data to server-side by AJAX
     		$.ajax({
     			url  : "/product/api/" + (isAddAction ? "add" : "update"),
     			type : 'POST',
@@ -144,11 +285,15 @@ $(document).ready(function() {
     	        data : formData,
     	        success : function(responseData) {
     	        	
-    	        	//Hide modal then show success message after saving successfully
-    	        	//Else show error message in modal
+    	        	// Hide modal then show success message after saving successfully
+    	        	// Else show error message in modal
     	            if (responseData.responseCode == 100) {
     	            	$productModifyModal.modal('hide');
-    	            	loadAllProducts(1);
+    	            	if (isAddAction) {
+    	            		loadAllProducts(1);
+    	            	} else {
+    	            		loadAllProducts(pgNum);
+    	            	}
     	            	showNotif(true, responseData.responseMessg);
     	            } else {
     	            	showMessgOnForm($productInputForm.find("#productName"), responseData.responseMessg);
@@ -158,15 +303,15 @@ $(document).ready(function() {
     	}
     });
     
-    //Show Confirm-To-Delete-Product Modal
-    $('#productDetailTable').on('click', '.delete-btn', function() {
+    // Show Confirm-To-Delete-Product Modal
+    $('#productDetailTable').on( 'click', '.delete-btn', function() {
     	$('#productToBeDeleted').text($(this).data('name'));
     	$('#delSubmmitBtn').attr('data-id', $(this).data('id'));
     	$('#confirmDeleteModal').modal('show');
     });
     
-    //Submit delete action
-    $('#delSubmmitBtn').on('click', function() {
+    // Execute delete action
+    $('#delSubmmitBtn').on( 'click', function() {
 		$.ajax({
 			url  : "/product/api/delete/" + $(this).attr("data-id"),
     		type : 'DELETE',
@@ -175,83 +320,12 @@ $(document).ready(function() {
     	    success : function(responseData) {
     	    	$('#confirmDeleteModal').modal('hide');
     	    	showNotif(responseData.responseCode == 100, responseData.responseMessg);
-    	    	loadAllProducts(1);
+    	    	loadAllProducts(pgNum);
     	    }
 		});
 	});
-    
 });
 
-/**
- * Render Html for product table
- * 
- * @param prodList
- */ 
-function renderProductTable(prodList) {
-	
-	var rowHtml = "";
-	$('#productDetailTable tbody').empty();
-	$.each(prodList, function(key, value) {
-        rowHtml = "<tr>"
-                +       "<td>"  + value.productId  +   "</td>"
-                +       "<td>"  + value.productName  +   "</td>"
-                +       "<td class='text-center'>"  + value.quantity  +   "</td>"
-                +       "<td class='text-right'>" +	formatCurrency(value.price) + "</td>"
-                +       "<td>" +	value.brandEntity.brandName	+	"</td>"
-                +       "<td class='text-right'>"  + value.saleDate  +   "</td>"
-                +       "<td class='text-center logo-cell'><a href='"  +   value.prodImg    + "' data-toggle='lightbox' data-max-width='1000'><img class='img-fluid' src='"  +   value.prodImg    + "'></td>"
-                +       "<td>"  + value.prodDesct  +   "</td>"
-                +       "<td class='action-btns'>"
-                +	         "<a class='edit-btn' data-id='" +   value.productId   +   
-                				"'><i class='fas fa-edit'></i></a> | <a class='delete-btn' data-name='" +   value.productName   +	
-                				"' data-id='" +   value.productId   + "'><i class='fas fa-trash-alt'></i></a>"
-                +		"</td>"
-                +   "</tr>"; 
-        $('#productDetailTable tbody').append(rowHtml);
-    });
-}
-
-/**
- * Render Html for pagination bar in Product page
- * 
- * @param paginationInfo
- */ 
-function renderPagination(paginationInfo) {
-	
-	var paginationInnerHtml = "";
-    if (paginationInfo.pgNumList.length > 0) {
-        $("ul.pagination").empty();
-        paginationInnerHtml += '<li class="page-item"><a class="page-link ' +    (paginationInfo.firstPage == 0 ? 'disabled' : '')  +   '" href="javascript:void(0)" data-index= "'    +   paginationInfo.firstPage    +     '">First</a></li>'
-        paginationInnerHtml += '<li class="page-item"><a class="page-link ' +    (paginationInfo.prvsPage == 0 ? 'disabled' : '')  +   '" href="javascript:void(0)" data-index= "'    +   paginationInfo.prvsPage    +     '">Previous</a></li>'
-        $.each(paginationInfo.pgNumList, function(key, value) {
-            paginationInnerHtml += '<li class="page-item"><a class="page-link ' +    (value == paginationInfo.currtPage ? 'active' : '')  +   '" href="javascript:void(0)" data-index= "'    +   value    +     '">'   +  value   + '</a></li>';
-        });
-        paginationInnerHtml += '<li class="page-item"><a class="page-link ' +    (paginationInfo.nextPage == 0 ? 'disabled' : '')  +   '" href="javascript:void(0)" data-index= "'    +   paginationInfo.nextPage    +     '">Next</a></li>'
-        paginationInnerHtml += '<li class="page-item"><a class="page-link ' +    (paginationInfo.lastPage == 0 ? 'disabled' : '')  +   '" href="javascript:void(0)" data-index= "'    +   paginationInfo.lastPage    +     '">Last</a></li>'
-        $("ul.pagination").append(paginationInnerHtml);
-    }
-	
-}
-
-/**
- * Load products with pager API
- * 
- * @param pgNum
- */ 
-function loadAllProducts(pgNum) {
-    $.ajax({
-        url : "/product/api/findAll/" + pgNum,
-        type : 'GET',
-        dataType : 'json',
-        contentType : 'application/json',
-        success : function(responseData) {
-            if (responseData.responseCode == 100) {
-            	renderProductTable(responseData.data.prodList);
-                renderPagination(responseData.data.paginationInfo);
-            }
-        }
-    });
-}
 /**
  * Format number as currency
  * 
@@ -262,6 +336,28 @@ function formatCurrency(number) {
 		return i > 0 && c !== "." && (a.length - i) % 3 === 0 ? "," + c : c;
 	});
 }
-//Set Max value for sale date is the current date
+// Set Max value for sale date is the current date
+/**
+ * Format Date to Local Time
+ */
 document.getElementById('saleDate').max = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0];
+
+/**
+ * Format for displayed date on table
+ * 
+ * @param date
+ * @returns
+ */
+function renderDate(date){
+	let data= new Date(date)
+    let month = data.getMonth() + 1
+    let day = data.getDate()
+    let year = data.getFullYear()
+    if(day<=9)
+      day = '0' + day
+    if(month<10)
+      month = '0' + month
+    const postDate = day + '-' + month + '-' + year
+    return postDate
+}
 

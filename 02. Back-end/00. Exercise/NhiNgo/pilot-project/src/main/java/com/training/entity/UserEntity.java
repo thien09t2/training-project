@@ -1,22 +1,14 @@
 package com.training.entity;
 
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
-@Table(name = "USER_INFO")
+@Table(name = "USERS")
 public class UserEntity {
 
 	@Id
@@ -36,25 +28,22 @@ public class UserEntity {
 	@Column(name = "TEL", nullable = true)
 	private Long tel;
 
-	@Column(name = "ECRYPTED_PASSWORD", nullable = false)
+	@Column(name = "PASSWORD", nullable = false)
 	private String password;
 
-	@Column(name = "ACTIVE", length = 1, nullable = false)
-	private boolean active;
+	@Column(name = "ROLE", length = 20, nullable = false)
+	private String role;
 
-	@JsonIgnore
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "USER_ID"), inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
-	private Set<RoleEntity> roleList;
-
-	public UserEntity() {
+		public UserEntity() {
 	}
 
-	public UserEntity(String userName, String password) {
-		super();
-		this.userName = userName;
-		this.password = password;
-	}
+	public UserEntity(String userName, String password, String role) {
+			this.userName = userName;
+			this.password = password;
+			this.role = role;
+		}
+
+
 
 	/**
 	 * @return the userId
@@ -141,31 +130,23 @@ public class UserEntity {
 	}
 
 	/**
+	 * @return the role
+	 */
+	public String getRole() {
+		return role;
+	}
+
+	/**
+	 * @param role the role to set
+	 */
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	/**
 	 * @param active the active to set
 	 */
-	public void setActive(boolean active) {
-		this.active = active;
-	}
 
-	/**
-	 * @return the active
-	 */
-	public boolean isActive() {
-		return active;
-	}
-
-	/**
-	 * @return the roleList
-	 */
-	public Set<RoleEntity> getRoleList() {
-		return roleList;
-	}
-
-	/**
-	 * @param roleList the roleList to set
-	 */
-	public void setRoleList(Set<RoleEntity> roleList) {
-		this.roleList = roleList;
-	}
-
+	
+	
 }

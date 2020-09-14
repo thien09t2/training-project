@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.training.common.constant.Constants;
 import com.training.common.util.FileHelpper;
 import com.training.dao.IProductDAO;
+import com.training.dao.jpaspec.ProductSpecifycation;
 import com.training.entity.ProductEntity;
 import com.training.model.PagerModel;
 import com.training.model.ResponseDataModel;
@@ -181,6 +182,36 @@ public class ProductServiceImpl implements IProductService {
 		}
 
 		return new ResponseDataModel(responseCode, responseMessg);
+	}
+
+	@Override
+	public ResponseDataModel searchProductWithNameAndPricePager(Map<String, Object> searchConditionMap, int pgNum) {
+		int responseCode = Constants.RESULT_CD_FAIL;
+		String responseMessg = StringUtils.EMPTY;
+		Map<String, Object> responseMap = new HashMap<>();
+		
+		try {
+//			Sort sortInfo = Sort.by(
+//					Sort.Order.asc("price"),
+//					Sort.Order.asc("brandEntity.brandId"));
+			Sort sortList = Sort.by(Sort.Direction.ASC,"price");
+			Pageable pageable = PageRequest.of(pgNum - 1, Constants.PAGE_SIZE, sortList);
+			Page<ProductEntity> prodEntityResultPage = prodDAO.findAll(ProductSpecifycation.getSearchCriteria(searchConditionMap), pageable);
+			responseMap.put("prodResultList", prodEntityResultPage.getContent());
+			responseMap.put("resultPaginationInfo", new PagerModel(pgNum, prodEntityResultPage.getTotalPages()));
+			responseCode = Constants.RESULT_CD_SUCCESS;
+			if (prodEntityResultPage.getTotalElements() > 0) {
+				responseMessg = "Found " + prodEntityResultPage.getTotalElements() + " match results.";
+			} else {
+				responseMessg = "No match found.";
+			}
+			
+		} catch (Exception e) {
+			responseMessg = "Error occurs when loading results: " + e.getMessage();
+			LOGGER.error("Error occurs when loading results", e);
+		}
+		
+		return new ResponseDataModel(responseCode, responseMessg, responseMap);
 	}
 
 }

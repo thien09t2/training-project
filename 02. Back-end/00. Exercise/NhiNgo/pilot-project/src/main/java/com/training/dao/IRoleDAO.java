@@ -10,6 +10,4 @@ public interface IRoleDAO extends JpaRepository<RoleEntity, Long> {
 
 	RoleEntity findByRoleName(String roleName);
 
-//	@Query("select role from ROLES where role_id = ?")
-//	List<RoleEntity> getRoleName(Long roleId);
 }

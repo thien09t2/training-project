@@ -1,32 +1,156 @@
 $(document).ready(function() {
 
-    //Load brandList when page opening
+    // Load brand list for brand index page
     loadAllBrands(1);
     
-    //Load add-new-button with customized name
+    /**
+     * Load brands with pager API
+     * 
+     * @param pgNum
+     */ 
+    function loadAllBrands(pgNum) {
+        $.ajax({
+            url : "/brand/api/findAll/" + pgNum,
+            type : 'GET',
+            dataType : 'json',
+            contentType : 'application/json',
+            success : function(responseData) {
+                if (responseData.responseCode == 100) {
+                	renderBrandTable(responseData.data.brandList);
+                    renderPagination(responseData.data.paginationInfo);                
+                }
+            }
+        });
+    }
     
+    /**
+     * Render Html for brand table
+     * 
+     * @param brandList
+     */ 
+    function renderBrandTable(brandList) {
+
+        var rowHtml = "";
+        $("#brandDetailsTable tbody").empty();
+        $.each(brandList, function(key, value) {
+            rowHtml = "<tr>"
+                    +       "<td>"  + value.brandId  +   "</td>"
+                    +       "<td>"  + value.brandName  +   "</td>"
+                    +       "<td class='text-center logo-cell'><a href='"  +   value.logo    + "' data-toggle='lightbox' data-max-width='1000'><img class='img-fluid' src='"  +   value.logo    + "'></td>"
+                    +       "<td>"  + value.description  +   "</td>"
+                    +       "<td class='action-btns'>"
+                    +	         "<a class='edit-btn' data-id='" +   value.brandId   +   
+                    				"'><i class='fas fa-edit'></i></a> | <a class='delete-btn' data-name='" +   value.brandName   +	
+                    				"' data-id='" +   value.brandId   + "'><i class='fas fa-trash-alt'></i></a>"
+                    +		"</td>"
+                    +   "</tr>"; 
+            $("#brandDetailsTable tbody").append(rowHtml);
+        });
+    }
     
-    //Load brandList when clicking pagination btn
-    $('.pagination').on('click', '.page-link', function() {
-    	var pgNum = $(this).attr("data-index");
-    	loadAllBrands(pgNum);
+    /**
+     * Render Html for pagination bar in Brand page
+     * 
+     * @param paginationInfo
+     */ 
+    function renderPagination(paginationInfo) {
+
+        var paginationInnerHtml = "";
+        if (paginationInfo.pgNumList.length > 0) {
+            $("ul.pagination").empty();
+            paginationInnerHtml += '<li class="page-item"><a class="page-link ' +    (paginationInfo.firstPage == 0 ? 'disabled' : '')  +   '" href="javascript:void(0)" data-index= "'    +   paginationInfo.firstPage    +     '">First</a></li>'
+            paginationInnerHtml += '<li class="page-item"><a class="page-link ' +    (paginationInfo.prvsPage == 0 ? 'disabled' : '')  +   '" href="javascript:void(0)" data-index= "'    +   paginationInfo.prvsPage    +     '">Previous</a></li>'
+            $.each(paginationInfo.pgNumList, function(key, value) {
+                paginationInnerHtml += '<li class="page-item"><a class="page-link ' +    (value == paginationInfo.currtPage ? 'active' : '')  +   '" href="javascript:void(0)" data-index= "'    +   value    +     '">'   +  value   + '</a></li>';
+            });
+            paginationInnerHtml += '<li class="page-item"><a class="page-link ' +    (paginationInfo.nextPage == 0 ? 'disabled' : '')  +   '" href="javascript:void(0)" data-index= "'    +   paginationInfo.nextPage    +     '">Next</a></li>'
+            paginationInnerHtml += '<li class="page-item"><a class="page-link ' +    (paginationInfo.lastPage == 0 ? 'disabled' : '')  +   '" href="javascript:void(0)" data-index= "'    +   paginationInfo.lastPage    +     '">Last</a></li>'
+            $("ul.pagination").append(paginationInnerHtml);
+        }
+    }
+    
+    // Load brand list by page
+    var pgNum;
+    
+    $('.pagination').on( 'click', '.page-link', function() {
+    	pgNum = $(this).attr("data-index");
+    	var keyword = $('#keyword').val();
+
+    	// Orienting for pagination
+    	if (keyword != "") {
+    		searchBrand(keyword, pgNum);
+    	} else {
+    		loadAllBrands(pgNum);
+    	}
+    });
+    
+    // Executing search process
+    $("#brandSearchBtn").on( 'click', function() {
+    	var keyword = $("#keyword").val()
+    	if (keyword != "") {
+    		searchBrand(keyword, 1);
+    	}
+    });
+
+    /**
+     * Search Brand with pager API
+     * 
+     * @param pgNum
+     * @returns
+     */
+    function searchBrand(keyword, pgNum) {
+    	$.ajax({
+    		url : "/brand/api/search/" + keyword + "/" + pgNum,
+    		type : 'GET',
+    		dataType : 'json',
+    		contentType : 'application/json',
+    		success : function(responseData) {
+    			if (responseData.responseCode == 100) {
+    				renderBrandTable(responseData.data.brandList);
+    				renderPagination(responseData.data.paginationInfo);
+    				if(responseData.data.paginationInfo.pgNumList.length < 2){
+    					$('.pagination').addClass("d-none");
+    				} else {
+    					$('.pagination').removeClass("d-none");
+    				}
+    			}
+    			showNotif(responseData.responseCode, responseData.responseMessg);
+    		}
+    	});	
+    }
+    
+    // Prevent default submit event from enter key press
+    $('#keyword').on( 'keydown', function(e) {
+    	var keyword = $("#keyword").val()
+        if (e.which === 13) {
+            e.preventDefault();
+            if (keyword != ''){
+            	searchBrand(keyword, 1);	
+            }
+        }
+    });
+    
+    // Reset search criteria
+    $("#resetSearchBrand").on( 'click', function() {
+    	$("#keyword").val(""),
+    	loadAllBrands(1);
+    	$('.pagination').removeClass("d-none");
     });
     
     var $brandModifyModal = $('#brandModifyModal');
     var $brandInfoForm = $('#brandInfoForm');
     
-    //Show Add-Brand Modal
-    $('#addBrandLink').click(function() {
+    // Load Add-Brand Modal
+    $('#addBrandLink').click( function() {
     	resetFormModal($brandInfoForm);
     	showModalWithCustomizedTitle($brandModifyModal, "Add New Brand");
     	$('#logoImg img').attr('src', '/images/image-demo.png');
     	$('#brandId').closest(".form-group").addClass("d-none");
     	$('#brandLogo .required-mask').removeClass("d-none");
-//    	$brandModifyModal.modal("show");
     });
     
-    //Show Update-brand Modal
-    $("#brandDetailsTable").on('click', '.edit-btn', function() {
+    // Load Update-brand Modal
+    $("#brandDetailsTable").on( 'click', '.edit-btn', function() {
 		
     	$('#brandLogo .required-mask').addClass("d-none");
     	
@@ -38,8 +162,8 @@ $(document).ready(function() {
     	    contentType : 'application/json',
     	    success : function(responseData) {
 
-    	    	//Hide modal then show success message after saving successfully
-    	    	//Else show error message in modal
+    	    	// Hide modal then show success message after saving successfully
+    	    	// Else show error message in modal
     	    	if (responseData.responseCode == 100) {
     	    		var brandDetails = responseData.data;
     	    		resetFormModal($brandInfoForm);
@@ -62,7 +186,7 @@ $(document).ready(function() {
     	});
 	});
     
-    //Submit Input Data from Modal
+    // Submit Data from Modal
     $('#brandSaveBtn').click( function(event) {
 		
     	event.preventDefault();
@@ -71,7 +195,7 @@ $(document).ready(function() {
     	var isAddAction = brandId == undefined || brandId == "";
     	
     	$brandInfoForm.validate({
-    		ignore : [],
+    		ignore : 'input[type=hidden], .select2-input, .select2-focusser',
     		rules : {
     			brandName : {
     				required : true,
@@ -86,11 +210,11 @@ $(document).ready(function() {
     		},
     		messages: {
     			brandName : {
-    				required : "Brand Name is required.",
+    				required : "Brand name is required.",
     				maxlength : "Brand name must not be longer than 20 characters!"
     			},
     			logoFiles : {
-    				required : "Brand Logo is required for new Brand."
+    				required : "Brand logo is required for new Brand."
     			},
     			description : {
     				maxlength : "Description must not be longer than 50 characters!"
@@ -100,7 +224,7 @@ $(document).ready(function() {
 			errorClass : "err-message-invalid"
     	});
     	
-    	//Save data if form is validated
+    	// Save data if form is validated
     	if ($brandInfoForm.valid()) {
     		
     		//Post data to server-side by AJAX
@@ -119,7 +243,11 @@ $(document).ready(function() {
     	        	//Else show error message in modal
     	            if (responseData.responseCode == 100) {
     	            	$brandModifyModal.modal('hide');
-    	            	loadAllBrands(1);
+    	            	if (isAddAction) {
+    	            		loadAllBrands(1);
+    	            	} else {
+    	            		loadAllBrands(pgNum);
+    	            	}
     	            	showNotif(true, responseData.responseMessg);
     	            } else {
     	            	showMessgOnForm($brandInfoForm.find("#brandName"), responseData.responseMessg);
@@ -129,15 +257,15 @@ $(document).ready(function() {
     	}
 	});
     
-    //Show Delete-brand Confirmation Modal
-    $("#brandDetailsTable").on('click', '.delete-btn', function() {
+    // Show Delete-brand Confirmation Modal
+    $("#brandDetailsTable").on( 'click', '.delete-btn', function() {
     	$("#brandToBeDeleted").text($(this).data("name"));
     	$("#delSubmmitBtn").attr("data-id", $(this).data("id"));
     	$("#confirmDeleteModal").modal('show');
     });
     
-    //Submit delete action
-    $("#delSubmmitBtn").on('click', function() {
+    // Execute delete action
+    $("#delSubmmitBtn").on( 'click', function() {
     	$.ajax({
     		url  : "/brand/api/delete/" + $(this).attr("data-id"),
     		type : 'DELETE',
@@ -146,83 +274,8 @@ $(document).ready(function() {
     	    success : function(responseData) {
     	    	$('#confirmDeleteModal').modal('hide');
     	    	showNotif(responseData.responseCode == 100, responseData.responseMessg);
-    	    	loadAllBrands(1);
+    	    	loadAllBrands(pgNum);
     	    }
     	});
     });
-    
-
 });
-
-/**
- * Load brands with pager API
- * 
- * @param pgNum
- */ 
-function loadAllBrands(pgNum) {
-    $.ajax({
-        url : "/brand/api/findAll/" + pgNum,
-        type : 'GET',
-        dataType : 'json',
-        contentType : 'application/json',
-        success : function(responseData) {
-            if (responseData.responseCode == 100) {
-                renderBrandTable(responseData.data.brandList);
-                renderPagination(responseData.data.paginationInfo);
-            	/*console.log(responseData.data);*/
-            }
-        }
-    });
-}
-
-/**
- * Render Html for brand table
- * 
- * @param brandList
- */ 
-function renderBrandTable(brandList) {
-
-    var rowHtml = "";
-    $("#brandDetailsTable tbody").empty();
-    $.each(brandList, function(key, value) {
-        rowHtml = "<tr>"
-                +       "<td>"  + value.brandId  +   "</td>"
-                +       "<td>"  + value.brandName  +   "</td>"
-                +       "<td class='text-center logo-cell'><a href='"  +   value.logo    + "' data-toggle='lightbox' data-max-width='1000'><img class='img-fluid' src='"  +   value.logo    + "'></td>"
-                +       "<td>"  + value.description  +   "</td>"
-                +       "<td class='action-btns'>"
-                +	         "<a class='edit-btn' data-id='" +   value.brandId   +   
-                				"'><i class='fas fa-edit'></i></a> | <a class='delete-btn' data-name='" +   value.brandName   +	
-                				"' data-id='" +   value.brandId   + "'><i class='fas fa-trash-alt'></i></a>"
-                +		"</td>"
-                +   "</tr>"; 
-        $("#brandDetailsTable tbody").append(rowHtml);
-    });
-}
-
-/**
- * Render Html for pagination bar in Brand page
- * 
- * @param paginationInfo
- */ 
-function renderPagination(paginationInfo) {
-
-    var paginationInnerHtml = "";
-    if (paginationInfo.pgNumList.length > 0) {
-        $("ul.pagination").empty();
-        paginationInnerHtml += '<li class="page-item"><a class="page-link ' +    (paginationInfo.firstPage == 0 ? 'disabled' : '')  +   '" href="javascript:void(0)" data-index= "'    +   paginationInfo.firstPage    +     '">First</a></li>'
-        paginationInnerHtml += '<li class="page-item"><a class="page-link ' +    (paginationInfo.prvsPage == 0 ? 'disabled' : '')  +   '" href="javascript:void(0)" data-index= "'    +   paginationInfo.prvsPage    +     '">Previous</a></li>'
-        $.each(paginationInfo.pgNumList, function(key, value) {
-            paginationInnerHtml += '<li class="page-item"><a class="page-link ' +    (value == paginationInfo.currtPage ? 'active' : '')  +   '" href="javascript:void(0)" data-index= "'    +   value    +     '">'   +  value   + '</a></li>';
-        });
-        paginationInnerHtml += '<li class="page-item"><a class="page-link ' +    (paginationInfo.nextPage == 0 ? 'disabled' : '')  +   '" href="javascript:void(0)" data-index= "'    +   paginationInfo.nextPage    +     '">Next</a></li>'
-        paginationInnerHtml += '<li class="page-item"><a class="page-link ' +    (paginationInfo.lastPage == 0 ? 'disabled' : '')  +   '" href="javascript:void(0)" data-index= "'    +   paginationInfo.lastPage    +     '">Last</a></li>'
-        $("ul.pagination").append(paginationInnerHtml);
-    }
-}
-
-//function loadButtonWithCustomizedName(pgName) {
-//	
-//	var name = "";
-//	if 
-//}

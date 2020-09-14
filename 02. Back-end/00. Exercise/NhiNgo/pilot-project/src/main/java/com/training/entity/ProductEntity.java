@@ -57,6 +57,21 @@ public class ProductEntity {
 	public ProductEntity() {
 	}
 
+//	
+//	public ProductEntity(Long productId, String productName, Long quantity, Double price, BrandEntity brandEntity,
+//			Date saleDate, String prodImg, MultipartFile[] prodImgFiles, String prodDesct) {
+//		this.productId = productId;
+//		this.productName = productName;
+//		this.quantity = quantity;
+//		this.price = price;
+//		this.brandEntity = brandEntity;
+//		this.saleDate = saleDate;
+//		this.prodImg = prodImg;
+//		this.prodImgFiles = prodImgFiles;
+//		this.prodDesct = prodDesct;
+//	}
+
+
 	/**
 	 * @param productId
 	 */

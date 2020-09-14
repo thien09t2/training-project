@@ -38,11 +38,15 @@
 							<input type="text" id="fullName" name="fullName"
 								class="form-input" placeholder="Fullname (*)" required>
 						</div>
-						<div class="form-group form-group--2">
-							<input type="email" id="email" name="email"
-								class="form-input" placeholder="Email (*)" required> 
-							<input type="text" id="tel" name="tel"
-								class="form-input" placeholder="Mobile number">
+						<div class="form-group--2">
+							<div class="form-group">
+								<input type="email" id="email" name="email" class="form-input"
+									placeholder="Email (*)" required>
+							</div>
+							<div class="form-group">
+								<input type="text" id="tel" name="tel" class="form-input"
+									placeholder="Mobile number">
+							</div>
 						</div>
 						<div class="form-group">
 							<input type="password" id="password" name="password" 

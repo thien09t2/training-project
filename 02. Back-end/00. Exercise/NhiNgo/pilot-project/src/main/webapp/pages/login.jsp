@@ -27,11 +27,11 @@
 						<div class="err-message-invalid">Login Failed!</div>
 					</div>
 				</c:if>
-				<form action="/login" role="form" enctype="multipart/form-data" class="signup-form" autocomplete="off" method="POST">
+				<form action="/loginAction" role="form" enctype="multipart/form-data" class="signup-form" autocomplete="off" method="POST">
 					<h3 class="signup-heading">Welcome to Manager Page</h3>
 					<div class="modal-body">
 						<div class="form-group">
-							<input type="text" id="userName" name="userName"
+							<input type="text" id="userName" name="username"
 								class="form-input" placeholder="Username" required>
 						</div>
 						<div class="form-group">

@@ -26,8 +26,8 @@
                     <form id="brandInfoForm" role="form" enctype="multipart/form-data" action="/brand/update" method="POST">
                         <div class="modal-body">
                             <div class="form-group">
-                                <label for="brandID">Brand ID</label>
-                                <input type="text" class="form-control" id="brandID" name="brandID" placeholder="Enter Brand ID" value="${brandEntity.brandID}" readonly>
+                                <label for="brandId">Brand ID</label>
+                                <input type="text" class="form-control" id="brandId" name="brandId" placeholder="Enter Brand ID" value="${brandEntity.brandId}" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="brandName">Brand Name</label>

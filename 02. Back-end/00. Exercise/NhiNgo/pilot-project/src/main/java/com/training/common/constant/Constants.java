@@ -26,5 +26,5 @@ public class Constants {
 
 	/** Currency Format */
 	public static final String CURRENCY_FORMAT = "#,###";
-
+	
 }
