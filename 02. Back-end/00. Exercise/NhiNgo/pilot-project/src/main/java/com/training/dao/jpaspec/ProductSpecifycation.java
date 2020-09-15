@@ -44,7 +44,6 @@ public class ProductSpecifycation {
 					//Add keyword
 					if (StringUtils.isNotEmpty(keyword)) {
 						
-						
 						//Add criteria for predicates
 						predicates.add(cb.or(
 								cb.like(prodRoot.get("productName"), "%" + keyword + "%"),

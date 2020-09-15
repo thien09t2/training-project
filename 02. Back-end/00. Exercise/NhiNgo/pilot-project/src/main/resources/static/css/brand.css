@@ -16,9 +16,6 @@ form#brandInfoForm .modal-body .form-group input.upload-img button {
 .preview-img-upload img {
     max-width: 40%;
 }
-.form-group .upload-img {
-	margin-left: 151px;
-}
 .modal-footer .btn {
 	font-size: .9rem;
 }

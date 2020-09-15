@@ -71,25 +71,33 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="form-group form-inline d-none">
-                            <label>Brand ID</label>
-                            <input type="text" class="form-control col-8" id="brandId" name="brandId" placeholder="Enter Brand ID" readonly>
+                        <div class="form-group d-none">
+                            <label class="col-4">Brand ID</label>
+                            <div class="col-8">
+                            	<input type="text" class="form-control" id="brandId" name="brandId" placeholder="Enter Brand ID" readonly>
+                            </div>
                         </div>
-                        <div class="form-group form-inline">
-                            <label for="brandName">Brand Name <span class="required-mask">(*)</span></label>
-                            <input type="text" class="form-control col-8" id="brandName" name="brandName" placeholder="Enter Brand Name" required>
+                        <div class="form-group">
+                            <label class="col-4" for="brandName">Brand Name <span class="required-mask">(*)</span></label>
+                            <div class="col-8">
+                            	<input type="text" class="form-control" id="brandName" name="brandName" placeholder="Enter Brand Name" required>
+                            </div>
                         </div>
-                        <div class="form-group form-inline">
-                            <label for="logo">Logo <span class="required-mask">(*)</span></label>
-                            <div class="preview-img-upload" id="logoImg">
-								<img src="<c:url value="/images/image-demo.png"/>" alt="logo-image">
+                        <div class="form-group">
+                            <label class="col-4" for="logo">Logo <span class="required-mask">(*)</span></label>
+							<div class="col-8 img-area">
+								<div class="preview-img-upload" id="logoImg">
+									<img src="<c:url value="/images/image-demo.png"/>" alt="logo-image">
+								</div>
+								<input type="file" class="form-control upload-img" name="logoFiles" accept="image/*">
 							</div>
-							<input type="file" class="form-control upload-img col-8" name="logoFiles" accept="image/*">
 							<input type="hidden" class="old-img" id="logo" name="logo">
-                        </div>
-                        <div class="form-group form-inline">
-                            <label for="description">Description</label>
-							<textarea class="form-control col-8" id="description" name="description" cols="30" rows="3" placeholder="Enter description"></textarea>
+						</div>
+                        <div class="form-group">
+                            <label class="col-4" for="description">Description</label>
+                            <div class="col-8">
+                            	<textarea class="form-control" id="description" name="description" cols="30" rows="3" placeholder="Enter description"></textarea>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">

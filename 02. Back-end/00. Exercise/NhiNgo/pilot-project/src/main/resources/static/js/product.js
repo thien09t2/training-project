@@ -3,6 +3,11 @@ $(document).ready(function() {
 	// Load product list for product index page
 	loadAllProducts(1);
 	
+	var pgNum;
+	var keyword;
+	var priceFrom;
+	var priceTo;
+	
 	/**
 	 * Load products with pager API
 	 * 
@@ -75,28 +80,30 @@ $(document).ready(function() {
 	}
 	
 	// Load product list by page
-	var pgNum;
-	
     $('.pagination').on( 'click', '.page-link', function() {
     	pgNum = $(this).attr("data-index");
-    	var keyword = $('#keyword').val();
-    	var priceFrom = $('#priceFrom').val();
-    	var priceTo = $('#priceTo').val();
-    	
+    	keyword = $('#keyword').val();
+    	priceFrom = $('#priceFrom').val();
+    	priceTo = $('#priceTo').val();
+
     	// Orienting for pagination
-    	if (keyword != "" || priceTo != "" || priceFrom != "") {
-    		searchProduct(pgNum);
+    	if ((keyword == "" || keyword == null)
+    			&& (priceTo == "" || priceTo == null)
+    			&& (priceFrom == "" || priceFrom == null)) {
+    		loadAllProducts(pgNum);
     	} else {
-        	loadAllProducts(pgNum);
+    		searchProduct(pgNum);
     	}
     })
     
     // Executing search process
     $("#prodSearchBtn").on( 'click', function() {
-    	var keyword = $('#keyword').val();
-    	var priceFrom = $('#priceFrom').val();
-    	var priceTo = $('#priceTo').val();
-    	if (keyword != "" || priceTo != "" || priceFrom != "") {
+    	keyword = $('#keyword').val();
+    	priceFrom = $('#priceFrom').val();
+    	priceTo = $('#priceTo').val();
+    	if ((keyword != "" && keyword != null)
+    			|| (priceTo != "" && priceTo != null)
+    			|| (priceFrom != "" && priceFrom != null)) {
     		searchProduct(1);
     	}
     })
@@ -129,7 +136,9 @@ $(document).ready(function() {
     					$('.pagination').removeClass("d-none");
     				}
     			}
-    			showNotif(responseData.responseCode, responseData.responseMessg);
+    			if (pgNum == 1) {
+    				showNotif(responseData.responseCode, responseData.responseMessg);
+    			}
     		}
     	});	
     }
@@ -205,6 +214,10 @@ $(document).ready(function() {
     
     // Submit Data from Modal
     $('#productSaveBtn').click( function(event) {
+    	
+    	keyword = $('#keyword').val();
+    	priceFrom = $('#priceFrom').val();
+    	priceTo = $('#priceTo').val();
     	
     	event.preventDefault();
     	var formData = new FormData($productInputForm[0]);
@@ -292,11 +305,21 @@ $(document).ready(function() {
     	            	if (isAddAction) {
     	            		loadAllProducts(1);
     	            	} else {
-    	            		loadAllProducts(pgNum);
+    	            		if ((keyword != undefined && keyword != "")
+    	            				|| (priceTo != "" && priceTo != null)
+    	            				|| (priceFrom != "" && priceFrom != null)) {
+    	            			if (pgNum == undefined) {
+    	            				searchProduct(1);
+    	            			} else {
+    	            				searchProduct(pgNum);
+    	            			}
+    	            		} else {
+    	            			loadAllProducts(pgNum);
+    	            		}
     	            	}
     	            	showNotif(true, responseData.responseMessg);
     	            } else {
-    	            	showMessgOnForm($productInputForm.find("#productName"), responseData.responseMessg);
+    	            	showMessgBelowInput($productInputForm.find("#productName"), responseData.responseMessg);
     	            }
     	        }
     		});
@@ -312,6 +335,10 @@ $(document).ready(function() {
     
     // Execute delete action
     $('#delSubmmitBtn').on( 'click', function() {
+    	keyword = $('#keyword').val();
+    	priceFrom = $('#priceFrom').val();
+    	priceTo = $('#priceTo').val();
+    	
 		$.ajax({
 			url  : "/product/api/delete/" + $(this).attr("data-id"),
     		type : 'DELETE',
@@ -320,7 +347,17 @@ $(document).ready(function() {
     	    success : function(responseData) {
     	    	$('#confirmDeleteModal').modal('hide');
     	    	showNotif(responseData.responseCode == 100, responseData.responseMessg);
-    	    	loadAllProducts(pgNum);
+    	    	if ((keyword != undefined && keyword != "")
+        				|| (priceTo != "" && priceTo != null)
+        				|| (priceFrom != "" && priceFrom != null)) {
+        			if (pgNum == undefined) {
+        				searchProduct(1);
+        			} else {
+        				searchProduct(pgNum);
+        			}
+        		} else {
+        			loadAllProducts(1);
+        		}
     	    }
 		});
 	});

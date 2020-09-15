@@ -71,13 +71,14 @@ $(document).ready(function() {
     
     // Load brand list by page
     var pgNum;
+    var keyword;
     
     $('.pagination').on( 'click', '.page-link', function() {
     	pgNum = $(this).attr("data-index");
-    	var keyword = $('#keyword').val();
+    	keyword = $('#keyword').val();
 
     	// Orienting for pagination
-    	if (keyword != "") {
+    	if (keyword != "" && keyword !== null) {
     		searchBrand(keyword, pgNum);
     	} else {
     		loadAllBrands(pgNum);
@@ -86,8 +87,8 @@ $(document).ready(function() {
     
     // Executing search process
     $("#brandSearchBtn").on( 'click', function() {
-    	var keyword = $("#keyword").val()
-    	if (keyword != "") {
+    	keyword = $("#keyword").val()
+    	if (keyword != "" && keyword !== null) {
     		searchBrand(keyword, 1);
     	}
     });
@@ -114,14 +115,16 @@ $(document).ready(function() {
     					$('.pagination').removeClass("d-none");
     				}
     			}
-    			showNotif(responseData.responseCode, responseData.responseMessg);
+    			if (pgNum == 1) {
+    				showNotif(responseData.responseCode, responseData.responseMessg);
+    			}
     		}
     	});	
     }
     
     // Prevent default submit event from enter key press
     $('#keyword').on( 'keydown', function(e) {
-    	var keyword = $("#keyword").val()
+    	keyword = $("#keyword").val()
         if (e.which === 13) {
             e.preventDefault();
             if (keyword != ''){
@@ -179,7 +182,7 @@ $(document).ready(function() {
     	    		}
 
     	    		$('#logoImg img').attr("src", brandLogo);
-    	    		$('#logo').val(brandLogo);
+//    	    		$('#logo').val(brandLogo);
     	    		$('#brandId').closest(".form-group").removeClass("d-none");
     	    	}
     	    }
@@ -195,7 +198,7 @@ $(document).ready(function() {
     	var isAddAction = brandId == undefined || brandId == "";
     	
     	$brandInfoForm.validate({
-    		ignore : 'input[type=hidden], .select2-input, .select2-focusser',
+    		ignore : 'not:input[type=hidden], .select2-input, .select2-focusser',
     		rules : {
     			brandName : {
     				required : true,
@@ -243,18 +246,27 @@ $(document).ready(function() {
     	        	//Else show error message in modal
     	            if (responseData.responseCode == 100) {
     	            	$brandModifyModal.modal('hide');
+    	            	
     	            	if (isAddAction) {
     	            		loadAllBrands(1);
     	            	} else {
-    	            		loadAllBrands(pgNum);
+    	            		if (keyword != undefined && keyword != "") {
+    	            			if (pgNum == undefined) {
+    	            				searchBrand(keyword, 1);
+    	            			} else {
+    	            				searchBrand(keyword, pgNum);
+    	            			}
+    	            		} else {
+    	            			loadAllBrands(pgNum);
+    	            		}
     	            	}
     	            	showNotif(true, responseData.responseMessg);
     	            } else {
-    	            	showMessgOnForm($brandInfoForm.find("#brandName"), responseData.responseMessg);
+    	            	showMessgBelowInput($brandInfoForm.find("#brandName"), responseData.responseMessg);
     	            }
     	        }
     		});
-    	}
+    	} 
 	});
     
     // Show Delete-brand Confirmation Modal
@@ -274,7 +286,13 @@ $(document).ready(function() {
     	    success : function(responseData) {
     	    	$('#confirmDeleteModal').modal('hide');
     	    	showNotif(responseData.responseCode == 100, responseData.responseMessg);
-    	    	loadAllBrands(pgNum);
+    	    	if (keyword != undefined && keyword != "") {
+        			if (pgNum == undefined) {
+        				loadAllBrands(1);
+        			} else {
+        				loadAllBrands(pgNum);
+        			}
+        		}
     	    }
     	});
     });

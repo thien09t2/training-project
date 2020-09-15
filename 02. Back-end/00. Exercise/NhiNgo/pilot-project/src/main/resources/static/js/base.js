@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    //"Active" class for link in header
+    // Add "active" class for link in header
     var pathName = window.location.pathname;
     $("header .nav-link").each(function () {
         $this = $(this);
@@ -9,20 +9,20 @@ $(document).ready(function () {
         }
     });
     
-    //Adjust input width fits to placeholder length
-    
+    // Adjust input width fits to placeholder length
     $("input[placeholder]").each(function () {
         $(this).attr('size', $(this).attr('placeholder').length);
     });
     
-    //Upload image preview
-    $('input.upload-img').on('change', function () {
+    // Upload image preview
+    $('input.upload-img').on( 'change', function () {
         var url = window.URL || window.webkitURL;
         var file = this.files[0];
         var fileURL;
         var $parent = $(this).parent();
         if (file) {
         	fileURL = url.createObjectURL(file);
+        	$parent.find('.err-message-invalid[id$="-error"]').remove();
         	$parent.find('.err-message-invalid').removeClass("err-message-invalid");
         } else {
             var oldImagePath = $parent.find(".old-img").val();
@@ -36,7 +36,7 @@ $(document).ready(function () {
     });
     
     //See full size image by clicking
-    $(document).on('click', '[data-toggle="lightbox"]', function (event) {
+    $(document).on( 'click', '[data-toggle="lightbox"]', function (event) {
     	event.preventDefault();
     	$(this).ekkoLightbox({
     		alwaysShowClose: true
@@ -122,7 +122,7 @@ function showNotif(isSuccess, message) {
 			message	: message	
 		}, {
 			type : 'info',
-			delay : 5000
+			delay : 3000
 		});
 	} else {
 		$.notify({
@@ -130,26 +130,43 @@ function showNotif(isSuccess, message) {
 			message	: message	
 		}, {
 			type : 'danger',
-			delay : 8000
+			delay : 5000
 		});
 	}
 }
 
 /**
- * Show Message on the Form
+ * Show Message on popup
  *
  * @param $element
- * 				element to show err-messg
+ * 				element to show error message
+ * @param isSuccessMessg
+ * 				true if message is an inform (alert-info)
+ * 				false if message is an error message
+ * @param messg
+ */
+function showMessgOnPopup($element, messg, isSuccessMessg) {
+	
+	var className = isSuccessMessg ? "alert-info" : "err-message-invalid";
+	$element.find(".form-messg").remove();
+	$element.prepend("<div class='"	+	className	+	" form-messg'>"	+	messg	+	"</div>");
+}
+
+/**
+ * Show Message below input field
+ *
+ * @param $element
+ * 				element to show error message
  * @param isSuccessMessg
  * 				true if messg is an inform(alert-info)
  * 				false if messg is an error message
  * @param messg
  */
-function showMessgOnForm($element, messg, isSuccessMessg) {
+function showMessgBelowInput($element, messg, isSuccessMessg) {
 	
 	var className = isSuccessMessg ? "alert-info" : "err-message-invalid";
 	$element.find(".form-messg").remove();
-	$element.prepend("<div class='"	+	className	+	" form-messg'>"	+	messg	+	"</div>");
+	$element.parent().append("<div class='" + className + " form-messg'>" + messg + "</div>");
 }
 
 /**

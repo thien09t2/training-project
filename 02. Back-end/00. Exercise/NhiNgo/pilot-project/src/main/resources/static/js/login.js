@@ -41,14 +41,14 @@ $(document).ready(function() {
 				},
 				email: "Please enter your email",
 				tel: {
-					digits: "Please enter a valid mobile number",
-					minlength: "Mobile number must be a string of 10 digits",
-					maxlength: "Mobile number must be a string of 10 digits"
+					digits: "This entry can only contain numbers",
+					minlength: "Please enter a 10-digit phone number",
+					maxlength: "Please enter a 10-digit phone number"
 				},
 				password: "Please enter your password",
 				rePassword: {
 					required: "Please retype your password",
-					equalTo: "Password is not the same as above"
+					equalTo: "Password should be the same as above"
 				}
 			},
 			errorElement : "div",

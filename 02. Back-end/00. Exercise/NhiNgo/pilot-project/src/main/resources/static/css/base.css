@@ -216,8 +216,19 @@ header .float-left .nav-link:hover {
 	padding-top: .6rem;
     padding-bottom: .5rem;
 }
-.modal-content .modal-body .form-inline {
+.modal-content .modal-body .form-group {
+	display: flex;
 	justify-content: space-between;
+	align-items: center;
+}
+.modal-content .modal-body .form-group label.col-4 {
+	margin-bottom: 0;
+	padding-left: 0;
+}
+.modal-content .modal-body .form-group div.col-8 {
+	padding-right: 0;
+	padding-left: 0;
+	max-width: 100%;
 }
 .preview-img-upload {
     text-align: center;
@@ -237,8 +248,8 @@ div.err-message-invalid, div.error, label.err-message-invalid, label.error {
     color: #dc3545 !important;
     width: 100%;
     border-radius: .5rem;
+    margin-bottom: 15px;
     font-size: .6rem;
-    margin-left: 153px;
 }
 
 .required-mask {
@@ -276,6 +287,7 @@ div.err-message-invalid, div.error, label.err-message-invalid, label.error {
 .ekko-lightbox .modal-header .close:hover span {
 	background: #212529;
 }
+
 /*--- ENDING FOR MODAL ---*/
 /* ================================= */
 /*--- STARTING FOR PAGINATION ---*/
@@ -305,7 +317,6 @@ div.err-message-invalid, div.error, label.err-message-invalid, label.error {
 	color: #ccc;
 }
 
-
 /*--- ENDING FOR PAGINATION ---*/
 /* ================================= */
 /*--- BACK TO TOP BUTTON ---*/
@@ -328,6 +339,7 @@ div.err-message-invalid, div.error, label.err-message-invalid, label.error {
 #myTopBtn:hover {
     background-color: var(--secondary-color); /* Add a dark-grey background on hover */
 }
+
 /*--- ENDING BACK TO TOP BUTTON ---*/
 /* ================================= */
 /* Clearable text inputs */
