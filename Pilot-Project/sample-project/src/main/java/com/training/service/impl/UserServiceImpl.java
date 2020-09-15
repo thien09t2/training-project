@@ -1,6 +1,7 @@
 package com.training.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +20,12 @@ public class UserServiceImpl implements IUserService{
 	@Override
 	public UserEntity findByUsername(String userName) {
 		return userDao.findByUserName(userName);
+	}
+
+	@Override
+	public UserEntity login(String userName, String passWord) {
+		UserEntity userEntity = userDao.findUserEntityByUsername(userName, passWord);
+		return userEntity;
 	}
 	
 	

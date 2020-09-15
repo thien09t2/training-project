@@ -25,11 +25,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ComponentScan(basePackages = "com.training")
 @EntityScan("com.training")
 public class SpringBootWebApplication extends SpringBootServletInitializer {
-	@Autowired
-	PasswordEncoder passwordEncoder;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootWebApplication.class, args);
-		System.out.println(new BCryptPasswordEncoder().encode("abc") +"///");
 	}
 }

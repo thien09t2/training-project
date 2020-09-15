@@ -9,4 +9,6 @@ import com.training.entity.UserEntity;
 public interface IUserService {
 	
 	UserEntity findByUsername(String userName);
+	
+	UserEntity login(String userName ,String passWord );
 }

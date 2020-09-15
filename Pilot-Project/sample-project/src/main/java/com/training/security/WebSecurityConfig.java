@@ -4,43 +4,44 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
-@Order(value = 99)
+@Order(value = 101)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+	@Autowired
+	private CustomerAuthenticationProvider authProvider;
 	
-	 @Autowired
-	    private UserDetailsService userDetailsService;
-	 
+	
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.authenticationProvider(authProvider);
+	}
 
-	 @Bean
-	 public PasswordEncoder passwordEncoder() {
-	 return new BCryptPasswordEncoder();
-	 }
-
-	 @Autowired
-	 public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		 auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-	 }
-
+	@Bean("authenticationManager")
+	@Override
+	public AuthenticationManager authenticationManagerBean() throws Exception {
+		return super.authenticationManagerBean();
+	}
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable()
 			.authorizeRequests()
 					.antMatchers("/","/css/**", "/js/**", "/images/**","/plugins/**","/login").permitAll()
-					.antMatchers("/brand","/product").hasRole("ADMIN")
+					.antMatchers("/brand","/product").access("hasRole('ROLE_ADMIN')")
 					.anyRequest().authenticated()
 			.and().formLogin().loginPage("/login")
 					.loginProcessingUrl("/loginAction")
 					.defaultSuccessUrl("/product")
-					.usernameParameter("userName")
-					.passwordParameter("passWord")
+					.usernameParameter("username")
+					.passwordParameter("password")
 					.failureUrl("/login?error")
 			.and().logout().logoutSuccessUrl("/login")
 			.and().exceptionHandling().accessDeniedPage("/login");
