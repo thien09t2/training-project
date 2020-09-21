@@ -28,7 +28,7 @@
 			    </div>
 			  </div>
 			</div>
-			<div class="right"> <a class="nav-item nav-link logo" href="/login">Logout</a></div>
+			<div class="right"> <a class="nav-item nav-link logo" href="logout">Logout</a></div>
 			</nav>
 		</div>
 	</div>
@@ -72,10 +72,11 @@
 					<c:forEach items="${listBrand}" var="brand">
 						<li class="list-brand__item">
 							<input class="check" id="${brand.brandId}" type="checkbox" value="${brand.brandId}" name="brand.logo">
-							<img class="logo-brand" alt="Logo Brand" src="${brand.logo}">
+							<!-- <span class="icon-check"><i class="fas fa-check"></i></span> -->
+							<label for="${brand.brandId}"><img class="logo-brand" alt="Logo Brand" src="${brand.logo}"></label>
 						</li>
 					</c:forEach>
-					<span class="show-more">Show more <i class="icon fas fa-caret-down"></i></span>
+					<span class="show-more">Show more<i class="icon fas fa-caret-down"></i></span>
 					<span class="hidden-item d-none">Hidden <i class="icon-up fas fa-sort-up"></i></span>
 				</ul>
 			</div>
@@ -126,7 +127,7 @@
 						<div class="group-quantity-price">
 							<div class="form-group quantity-form">
 								<label for="quantity">Quantity <span class="required-field">(*)</span></label>
-								<input type="text" class="form-control" name="quantity" id="quantity" placeholder="Quantity of product">
+								<input type="text" class="form-control quantity-input" name="quantity" id="quantity" placeholder="Quantity of product">
 							</div>
 							<div class="form-group price-form">
 								<label for="price">Price <span class="required-field">(*)</span></label>

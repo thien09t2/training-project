@@ -5,7 +5,7 @@
 html {
 	font-family: "Roboto", sans-serif;
 }
-/* Bá» ouline cá»§a button khi click */
+/* Remove outline of button when click */
 :focus {
 	outline: 0 !important;
 	box-shadow: none !important;

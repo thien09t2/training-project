@@ -30,7 +30,12 @@ public class ProductController {
 	@Autowired
 	IBrandService brandService;
 
-	// Initialization page
+	/**
+	 * Initialization page
+	 *  
+	 * @param model
+	 * 
+	 */
 	@GetMapping
 	public String initProductPage(Model model) {
 		model.addAttribute("listBrand", brandService.getAll());
@@ -41,7 +46,7 @@ public class ProductController {
 	 * Find all product with pager
 	 * 
 	 * @param pageNumber
-	 * @return ResponseDataModel
+	 * 
 	 */
 	@GetMapping("/api/findAll/{pageNumber}")
 	@ResponseBody
@@ -49,35 +54,61 @@ public class ProductController {
 		return productService.findAllProductWithPage(pageNumber);
 	}
 
-//	Add new product
+	/**
+	 * Add new product
+	 * 
+	 * @param productEntity
+	 * 
+	 */
 	@PostMapping(value = "/api/add")
 	@ResponseBody
 	public ResponseDataModel addProduct(@ModelAttribute ProductEntity productEntity) {
 		return productService.addProduct(productEntity);
 	}
 
-//	Find product by id
+	/**
+	 * Find product by id
+	 * 
+	 * @param productId
+	 * 
+	 */
 	@GetMapping("/api/find")
 	@ResponseBody
 	public ResponseDataModel findProductById(@RequestParam("id") Long productId) {
 		return productService.findProductById(productId);
 	}
 
-//	Edit product
+	/**
+	 * 	Edit product
+	 * 
+	 * @param productEntity
+	 * 
+	 */
 	@PostMapping(value = { "/api/update" })
 	@ResponseBody
 	public ResponseDataModel updateProduct(@ModelAttribute ProductEntity productEntity) {
 		return productService.updateProduct(productEntity);
 	}
 
-//	Delete product
+	/**
+	 * Delete product
+	 *  
+	 * @param productId
+	 * 
+	 */
 	@DeleteMapping(value = {"/api/delete/{productId}"})
 	@ResponseBody
 	public ResponseDataModel deleteProduct(@PathVariable("productId") Long productId) {
 		return productService.deleteProduct(productId);
 	}
 	
-//	Search product by product name or brand name and price
+	/**
+	 * Search product by product name or brand name and price
+	 * 
+	 * @param searchConditions
+	 * @param pageNumber
+	 * 
+	 */
 	@PostMapping(value = {"/api/searchProduct/{pageNumber}"})
 	@ResponseBody
 	public ResponseDataModel searchProduct(@RequestBody Map<String, Object> searchConditions, 

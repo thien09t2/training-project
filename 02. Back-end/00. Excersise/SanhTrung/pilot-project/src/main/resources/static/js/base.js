@@ -33,7 +33,8 @@ $(document).on('click', '[data-toggle="lightbox"]', function(event) {
                 event.preventDefault();
                 $(this).ekkoLightbox();
             });
-/*Rest form add new brand*/
+
+/* Rest form add new brand*/
 function resetFormModal($formElement) {
 
 	$formElement[0].reset();
@@ -42,12 +43,14 @@ function resetFormModal($formElement) {
 	$formElement.find(".error-message-invalid").remove();
 	$formElement.find("img").attr('src', '');
 }
-/*Auto change title form add to edit or edit to add  */
+
+/* Auto change title form add to edit or edit to add  */
 function showModalWithCustomizedTitle($selectedModal, title) {
 	$selectedModal.find(".modal-title").text(title);
 	$selectedModal.modal('show');
 }
-/*Show message add new brand success or failed*/
+
+/* Show message add new brand success or failed*/
 function showNotification(isSuccess, message) {
 
 	if (isSuccess) {

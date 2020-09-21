@@ -24,7 +24,7 @@ $(document).ready(function() {
 	/* Rest form*/
 	$('#restPage').on('click', function() {
 		$('#keyword').val("");
-		$('#resultSearch').empty();
+		$('#resultSearch p').empty();
 		findAllBrands(1);
 	})
 

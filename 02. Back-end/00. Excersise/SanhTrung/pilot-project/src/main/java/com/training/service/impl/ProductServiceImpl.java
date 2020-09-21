@@ -34,7 +34,7 @@ public class ProductServiceImpl implements IProductService {
 	@Autowired
 	IProductDao productDao;
 	
-//	List all products
+	//	List all products
 	@Override
 	public ResponseDataModel findAllProductWithPage(int pageNumber) {
 
@@ -55,7 +55,7 @@ public class ProductServiceImpl implements IProductService {
 		return new ResponseDataModel(responseCode, responseMsg, responseMap);
 	}
 	
-//	Add new product
+	//	Add new product
 	@Override
 	public ResponseDataModel addProduct(ProductEntity productEntity) {
 		
@@ -82,13 +82,13 @@ public class ProductServiceImpl implements IProductService {
 		return new ResponseDataModel(responseCode, responseMsg);
 	}
 	
-//	Find product by name
+	//	Find product by name
 	@Override
 	public ProductEntity findByProductName(String productName) {
 		return productDao.findByProductName(productName);
 	}
 	
-//	Update product
+	//	Update product
 	@Override
 	public ResponseDataModel updateProduct(ProductEntity productEntity) {
 		int responseCode = Constants.RESULT_CD_SUCCESS;
@@ -114,7 +114,7 @@ public class ProductServiceImpl implements IProductService {
 		return new ResponseDataModel(responseCode, responseMsg);
 	}
 	
-//	Find product by id 
+	//	Find product by id 
 	@Override
 	public ResponseDataModel findProductById(Long productId) {
 
@@ -133,7 +133,7 @@ public class ProductServiceImpl implements IProductService {
 		return new ResponseDataModel(responseCode, responseMsg, productEntity);
 	}
 	
-//	Delete product
+	//	Delete product
 	@Override
 	public ResponseDataModel deleteProduct(Long productId) {
 		
@@ -155,6 +155,7 @@ public class ProductServiceImpl implements IProductService {
 		return new ResponseDataModel(responseCode, responseMsg);
 	}
 	
+	// Search product with conditions
 	@Override
 	public ResponseDataModel searchProductWithConditions(Map<String, Object> searchConditions, int pageNumber) {
 		int responseCode = Constants.RESULT_CD_FAIL;

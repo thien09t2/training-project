@@ -11,7 +11,7 @@ public class UserEntity {
 	
 	@Id
 	@Column(name = "USERNAME", nullable = false)
-	private String userName;
+	private String username;
 	
 	@Column(name = "PASSWORD", nullable = true)
 	private String password;
@@ -20,21 +20,17 @@ public class UserEntity {
 	private String role;
 
 	/**
-	 * @return the userName
+	 * @return the username
 	 */
-	public String getUserName() {
-		return userName;
-	}
-
-	public UserEntity() {
-		super();
+	public String getUsername() {
+		return username;
 	}
 
 	/**
-	 * @param userName the userName to set
+	 * @param username the username to set
 	 */
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	/**
@@ -64,7 +60,4 @@ public class UserEntity {
 	public void setRole(String role) {
 		this.role = role;
 	}
-
-	
-	
 }

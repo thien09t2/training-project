@@ -28,7 +28,7 @@
 				    </div>
 				  </div>
 				</div>
-				<div class="right"> <a class="nav-item nav-link logo" href="/login">Logout</a></div>
+				<div class="right"> <a class="nav-item nav-link logo" href="logout">Logout</a></div>
 			</nav>
 		</div>
 	</div>
@@ -121,7 +121,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-					<button type="button" class="btn btn-primary" id="deleteSubmitBtn">Save</button>
+					<button type="button" class="btn btn-primary" id="deleteSubmitBtn">Confirm</button>
 				</div>
 			</div>
 		</div>

@@ -16,6 +16,12 @@ public class PageModel {
 	private int lastPage;
 	private List<Integer> pageNumberList; 
 	
+	/**
+	 * Page number
+	 * 
+	 * @param currentPage
+	 * @param totalPage
+	 */
 	public PageModel(int currentPage, int totalPage) {
 		
 		this.currentPage = currentPage;
@@ -37,6 +43,7 @@ public class PageModel {
 		}
 		this.pageNumberList = getPageNumberList( currentPage, totalPage, NUMBER_OF_MAX_PAGE);
 	}
+	
 	/**
 	 * Get List Page Number
 	 * 
@@ -45,7 +52,6 @@ public class PageModel {
 	 * @param numberOfMaxPage
 	 * @return List Page Number
 	 */
-
 	private List<Integer> getPageNumberList(int currentPage, int totalPage, int numberOfMaxPage) {
 		
 		List<Integer> pageNumberList = new ArrayList<Integer>();

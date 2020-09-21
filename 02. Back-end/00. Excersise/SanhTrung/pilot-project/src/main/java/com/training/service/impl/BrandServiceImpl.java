@@ -39,7 +39,8 @@ public class BrandServiceImpl implements IBrandService {
 	public BrandEntity findByBrandName(String brandName) {
 		return brandDao.findByBrandName(brandName);
 	}
-//	Find all brand
+	
+	//	Find all brand
 	@Override
 	public ResponseDataModel findAllWithPageApi(int pageNumber) {
 
@@ -62,9 +63,7 @@ public class BrandServiceImpl implements IBrandService {
 
 	@Override
 
-	/**
-	 * 
-	 */
+	//  Search brand by brand name
 	public ResponseDataModel searchApi(String brandName , int pageNumber) {
 		int responseCode = Constants.RESULT_CD_FAIL;
 		String responseMsg = StringUtils.EMPTY;
@@ -87,7 +86,8 @@ public class BrandServiceImpl implements IBrandService {
 		}
 		return new ResponseDataModel(responseCode, responseMsg, responseMap);
 	}
-//	Find brand by id
+	
+	//  Find brand by id
 	@Override
 	public ResponseDataModel findBrandByIdApi(Long brandId) {
 		int responseCode = Constants.RESULT_CD_FAIL;
@@ -105,7 +105,7 @@ public class BrandServiceImpl implements IBrandService {
 		return new ResponseDataModel(responseCode, responseMsg, brandEntity);
 	}
 
-//	Add new brand
+	//	Add new brand
 	@Override
 	public ResponseDataModel addApi(BrandEntity brandEntity) {
 
@@ -161,7 +161,7 @@ public class BrandServiceImpl implements IBrandService {
 		return new ResponseDataModel(responseCode, responseMsg);
 	}
 
-// Delete brand
+	// Delete brand
 	@Override
 	public ResponseDataModel deleteApi(Long brandId) {
 
@@ -182,39 +182,35 @@ public class BrandServiceImpl implements IBrandService {
 		}
 		return new ResponseDataModel(responseCode, responseMsg);
 	}
-//	Search brand
-//	@Override
-//	public ResponseDataModel searchApi(String brandName , int pageNumber) {
-//		
-//		List<BrandEntity> brandsList = brandDao.findByBrandNameLike("%" + brandName + "%");
-//		int responseCode = Constants.RESULT_CD_FAIL;
-//		String responseMsg = StringUtils.EMPTY;
-//		Map<String, Object> responseMap = new HashMap<String, Object>();
-//		try {
-//			Sort sortList = Sort.by(Sort.Direction.DESC, "brandId");
-//			Pageable pageable = PageRequest.of(pageNumber - 1, Constants.PAGE_SIZE, sortList);
-//			
-//			int start = (int) pageable.getOffset();
-//			int end = (start + pageable.getPageSize()) > brandsList.size() ? brandsList.size() : (start + pageable.getPageSize());
-//			Page<BrandEntity> brandEntitesPage = new PageImpl<BrandEntity>(brandsList.subList(start, end), pageable, brandsList.size());
-//			responseMap.put("brandsList", brandEntitesPage.getContent());
-//			responseMap.put("paginationList", new PageModel(pageNumber, brandEntitesPage.getTotalPages()));
-//			if (brandsList.size() > 0) {
-//				responseMsg = "The number of results found is " + brandsList.size() + " brand!";
-//			} else {
-//				responseMsg = "The brand isn't exist!";
-//			}
-//			responseCode = Constants.RESULT_CD_SUCCESS;
-//		} catch (Exception e) {
-//			responseMsg = e.getMessage();
-//			LOGGER.error("Search brand name failed:",e);
-//		}
-//		return new ResponseDataModel(responseCode, responseMsg, responseMap);
-//	}
+	/*
+	 * // Search brand
+	 * 
+	 * @Override public ResponseDataModel searchApi(String brandName , int
+	 * pageNumber) {
+	 * 
+	 * List<BrandEntity> brandsList = brandDao.findByBrandNameLike("%" + brandName +
+	 * "%"); int responseCode = Constants.RESULT_CD_FAIL; String responseMsg =
+	 * StringUtils.EMPTY; Map<String, Object> responseMap = new HashMap<String,
+	 * Object>(); try { Sort sortList = Sort.by(Sort.Direction.DESC, "brandId");
+	 * Pageable pageable = PageRequest.of(pageNumber - 1, Constants.PAGE_SIZE,
+	 * sortList);
+	 * 
+	 * int start = (int) pageable.getOffset(); int end = (start +
+	 * pageable.getPageSize()) > brandsList.size() ? brandsList.size() : (start +
+	 * pageable.getPageSize()); Page<BrandEntity> brandEntitesPage = new
+	 * PageImpl<BrandEntity>(brandsList.subList(start, end), pageable,
+	 * brandsList.size()); responseMap.put("brandsList",
+	 * brandEntitesPage.getContent()); responseMap.put("paginationList", new
+	 * PageModel(pageNumber, brandEntitesPage.getTotalPages())); if
+	 * (brandsList.size() > 0) { responseMsg = "The number of results found is " +
+	 * brandsList.size() + " brand!"; } else { responseMsg =
+	 * "The brand isn't exist!"; } responseCode = Constants.RESULT_CD_SUCCESS; }
+	 * catch (Exception e) { responseMsg = e.getMessage();
+	 * LOGGER.error("Search brand name failed:",e); } return new
+	 * ResponseDataModel(responseCode, responseMsg, responseMap); }
+	 */
 
-
-
-	
+	// Get all brand and sort DESC 
 	@Override
 	public List<BrandEntity> getAll() {
 		return brandDao.findAll(Sort.by(Sort.Direction.DESC, "brandId"));

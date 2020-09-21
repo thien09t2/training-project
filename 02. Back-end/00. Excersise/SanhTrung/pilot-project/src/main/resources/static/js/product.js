@@ -1,5 +1,4 @@
 $(document).ready(function() {
-	/*$('#saleDate').val(new Date().toDateInputValue());*/
 
 	findAllProducts(1);
 
@@ -7,23 +6,34 @@ $(document).ready(function() {
 	$('.pagination').on('click', '.page-link', function() {
 		var pageNumber = $(this).attr("data-index");
 		var keyword = $('#keyword').val();
-		if (keyword != "" || listBrandArr != "") {
+		var priceFrom = $('#priceFrom').val();
+		var priceTo = $('#priceTo').val();
+		if (keyword != "" || listBrandArr != "" || priceFrom != "" || priceTo != "") {
 			searchProduct(pageNumber, true, listBrandArr);
 		} else {
 			findAllProducts(pageNumber);
 		}
 	});
+
 	/* Reset page */
 	$('#restPage').on('click', function() {
+		$('#priceFrom').val("");
+		$('#priceTo').val("");
 		$('#keyword').val("");
 		listBrandArr = [];
 		$('input[type=checkbox]').each(function() {
 			this.checked = false;
 		})
+		$('.list-brand__item').removeClass("li-enable");
 		findAllProducts(1);
 	})
 
-	/* Show more and hidden logo bran */
+	/* Border for tag "li" on click*/
+	$('.check').change(function() {
+		$(this).parent().toggleClass("li-enable");
+	})
+
+	/* Show more and hidden logo brand */
 	var max = 13;
 	$('ul, li').each(function() {
 		$(this).find('li').each(function(index) {
@@ -54,14 +64,6 @@ $(document).ready(function() {
 			})
 		})
 	})
-	/*var max = 14;
-	$('ul, li').each(function() {
-		$(this).find('li').each(function(index) {
-			if (index >= max) {
-				$(this).hide();
-			}
-		})
-	})*/
 
 	/*Get list brandId*/
 	var listBrandArr = [];
@@ -69,6 +71,8 @@ $(document).ready(function() {
 		listBrandArr = [];
 		$('.listBrand').find('input[name="brand.logo"]:checked').each(function() {
 			listBrandArr.push($(this).val());
+			//$('li').addClass("border border-primary");
+			//$('input[type=checkbox], input[type=radio]').css("opacity", "1");
 		});
 		/*console.log(listBrandArr);
 		$('#output ').html(listBrandArr.join('\xa0\xa0'));*/
@@ -162,13 +166,13 @@ $(document).ready(function() {
 		})
 	});
 
+
 	/*Submit add new product or update product*/
 	$("#saveProductBtn").on('click', function(event) {
 		event.preventDefault();
 		var formData = new FormData($productInfoForm[0]);
 		var productId = formData.get("productId");
 		var isAddAction = productId == undefined || productId == "";
-
 		$productInfoForm.validate({
 			ignore: [],
 			rules: {
@@ -328,7 +332,7 @@ function renderMessageSearch(responseMsg) {
 	$('#resultSearch p').empty();
 	$('#resultSearch p').append(responseMsg);
 }
-function getCurrentDay(saleDate) {
+/*function getCurrentDay(saleDate) {
 	var saleDate = new Date();
 	var month = (saleDate.getMonth() + 1);
 	var day = saleDate.getDate();
@@ -338,12 +342,12 @@ function getCurrentDay(saleDate) {
 		day = "0" + day;
 	var today = day + + '-' + month + '-' + saleDate.getFullYear();
 	return today;
-}
+}*/
 /* Format Date*/
 function getFormattedDate(saleDate) {
 	var date = new Date(saleDate);
 	var day = date.getDate();
-	var month = date.getMonth();
+	var month = date.getMonth() + 1;
 	var year = date.getFullYear();
 	if (date < 10) { date = '0' + date }
 	if (month < 10) { month = '0' + month }

@@ -42,52 +42,89 @@ public class BrandEntity {
 
 	public BrandEntity() {
 	}
-
-	/* Getter and Setter */
-	public Set<ProductEntity> getProductSet() {
-		return productSet;
-	}
-	public void setProductSet(Set<ProductEntity> productSet) {
-		this.productSet = productSet;
-	}
-
+	/**
+	 * @return the brandId
+	 */
 	public Long getBrandId() {
 		return brandId;
 	}
 
+	/**
+	 * @param brandId the brandId to set
+	 */
 	public void setBrandId(Long brandId) {
 		this.brandId = brandId;
 	}
 
+	/**
+	 * @return the brandName
+	 */
 	public String getBrandName() {
 		return brandName;
 	}
 
+	/**
+	 * @param brandName the brandName to set
+	 */
 	public void setBrandName(String brandName) {
 		this.brandName = brandName;
 	}
 
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
+	/**
+	 * @return the logo
+	 */
 	public String getLogo() {
 		return logo;
 	}
 
+	/**
+	 * @param logo the logo to set
+	 */
 	public void setLogo(String logo) {
 		this.logo = logo;
 	}
 
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * @param description the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	/**
+	 * @return the logoFiles
+	 */
 	public MultipartFile[] getLogoFiles() {
 		return logoFiles;
 	}
 
+	/**
+	 * @param logoFiles the logoFiles to set
+	 */
 	public void setLogoFiles(MultipartFile[] logoFiles) {
 		this.logoFiles = logoFiles;
 	}
+
+	/**
+	 * @return the productSet
+	 */
+	public Set<ProductEntity> getProductSet() {
+		return productSet;
+	}
+
+	/**
+	 * @param productSet the productSet to set
+	 */
+	public void setProductSet(Set<ProductEntity> productSet) {
+		this.productSet = productSet;
+	}
+
+	
 }

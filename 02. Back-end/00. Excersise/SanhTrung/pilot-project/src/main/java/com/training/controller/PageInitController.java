@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = { "/" })
 public class PageInitController {
 
-
 	@RequestMapping(value = "/login")
 	public String login() {
 		return "login";

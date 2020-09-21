@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 import java.security.SecureRandom;
 import java.util.Date;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 import com.training.common.constant.Constants;
@@ -80,6 +81,7 @@ public class FileHelper {
 			deletedFile.delete();
 		}
 	}
+	
 	/**
 	 * Delete File
 	 * 
@@ -94,4 +96,17 @@ public class FileHelper {
 		}
 	}
 	
+	/**
+	 * Enrcypt String(password) to MD5
+	 * 
+	 * @param inputStr
+	 * @return
+	 */
+	public static String enrcyptMD5(String inputStr) {
+		return DigestUtils.md5Hex(DigestUtils.md5(inputStr + Constants.ENCRYPT_CONSTANTS));
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(enrcyptMD5("123"));
+	}
 }
